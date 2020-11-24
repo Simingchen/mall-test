@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "申请售后",
+  "usingComponents": {
+    "van-field": "../../../@vant/field/index",
+    "van-popup": "../../../@vant/popup/index",
+    "van-card": "../../../@vant/card/index",
+    "van-cell": "../../../@vant/cell/index",
+    "van-radio-group": "../../../@vant/radio-group/index",
+    "van-cell-group": "../../../@vant/cell-group/index",
+    "van-radio": "../../../@vant/radio/index",
+    "van-uploader": "../../../@vant/uploader/index",
+    
+    "van-button": "../../../@vant/button/index"
+  }
+}

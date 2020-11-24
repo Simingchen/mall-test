@@ -1,0 +1,24 @@
+<import src="../../../wxParse/wxParse.wxml"/> 
+<view class="title">{{detail.title}}</view>
+<!-- <view class="sub-tit flex-box">
+  <view class="item" wx:if="{{detail.ClickNumber > config.ClickShowNumber}}">查看：{{detail.ClickNumber}}</view>
+  <view class="item" wx:if="{{detail.CollectNumber > config.CollectShowNumber}}">收藏：{{detail.CollectNumber}}</view>
+  <view class="item" wx:if="{{detail.ShareNumber > config.ShareShowNumber}}">分享：{{detail.ShareNumber}}</view>
+</view> -->
+<view class="time-box flex-row-center">
+  <view class="company c9">
+    <!-- {{detail.ClassNames}} -->
+  </view>
+  <view class="time">{{detail.add_time}}</view>
+</view>
+<view class="content">
+  <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+</view>
+
+<!-- 分享 -->
+<share type="{{1}}" 
+  targetId="{{detail.NewsId}}"
+  shareTitle="{{detail.Title}}"
+  shareImg="{{detail.MainImg}}"
+  isCollect="{{detail.IsCollect}}" 
+  bind:onCollect="onCollect"/>

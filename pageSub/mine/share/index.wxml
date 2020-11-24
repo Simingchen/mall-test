@@ -1,0 +1,31 @@
+<view>｜规则说明</view>
+
+<view class="con">
+  <view class="flex-box">
+    <view>1、</view>分享给好友，让好友通过你的分享链接进入，邀请可得{{userConfig.pointinvitenum}}积分，积分可在兑对区兑对商品；
+  </view>
+  <view>2、好友每日签到，你可以获得{{userConfig.pointloginnum}}积分；</view>
+  <view>3、好友每一次购物你可以获得相应的商品积分；</view>
+</view>
+
+<!-- <van-button custom-class="confirm-btn" plain round color="#F06f48" type="info">购买会员</van-button> -->
+<view class="share-popup flex-center">
+  <button class="item share-button" open-type="share">
+    <image class="img" src="../../../static/icon_share_wechat.png"></image>
+    微信
+  </button>
+  <view class="item" bindtap="setPoster">
+    <image class="img" src="../../../static/icon_share_pyq.png"></image>
+    朋友圈
+  </view>
+</view>
+
+<view class='share' wx:if="{{isShowShare}}" catchtouchmove="ture">
+  <view class="mask" bindtap='closeShare'></view>
+  <view class='share-moment'>
+    <canvas type="2d" id="canvas" canvas-id="shareCanvas" class="canvas"
+    style="width: 300px; height: 340px;"></canvas>
+    <view class="iconfont iconshanchu" bindtap='closeShare'></view>
+    <!-- <view class="save-btn flex-center" bindtap="saveCanvas">保存到相册</view> -->
+  </view>
+</view>

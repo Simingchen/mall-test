@@ -1,0 +1,109 @@
+page{
+  background-color: #f6f7fa;
+  min-height: 100vh;
+}
+/* 我的页面 S======== */
+.member-page {
+  padding-top: 30rpx;
+}
+
+.member-page .van-cell__title {
+  font-weight: 500;
+}
+
+.member-page .integral-panel .btn {
+  width: 120rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  border-radius: 50rpx;
+  font-size: 24rpx;
+  color: #fff;
+  background: #fa78ac;
+}
+
+.member-page .panel {
+  width: 690rpx;
+  margin: 0 auto 20rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.order-panel{
+  padding-bottom:20rpx;
+}
+
+
+.goods-url{
+  margin-top: 10rpx;
+}
+
+
+.member-page .van-cell {
+  font-size: 24rpx;
+  color: #333;
+  line-height: 100rpx;
+  padding: 0 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.member-page .van-cell .van-cell__right-icon {
+  line-height: 100rpx;
+  font-size: 24rpx;
+}
+
+.member-page .van-tabbar-item {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.member-page .van-info {
+  background: #e52c87;
+  min-width: 40rpx;
+}
+
+/* 我的页面 E======== */
+
+.c9{
+  margin-left: 40rpx;
+}
+.mb20{
+  margin-bottom: 20rpx;
+}
+.money-panel{
+  padding: 30rpx;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 30rpx;
+  color: #919191;
+  background-image: linear-gradient(to right, #3a3a3a, #2b2b2b, #222222) !important;
+}
+.money-panel .num{
+  color: #fff;
+  font-weight: 600;
+  line-height: 60rpx;
+  font-size: 28rpx;
+}
+.money-panel .flex4{
+  position: relative;
+  flex:4;
+}
+.account-money {
+  position: relative;
+  flex: 3;
+  color:#fff;
+  text-align: left;
+}
+.money-panel .flex4:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left:0;
+  height: 74rpx;
+  width:1px;
+  border-right: 1rpx solid #5b5b5b;
+}
+.account-money .num{
+  color:#ffbe53;
+}

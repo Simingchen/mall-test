@@ -1,0 +1,28 @@
+<wxs module="filter" src="../../../filter.wxs"></wxs>
+<block wx:for="{{curTab.list}}" wx:key="index">
+  <view class="order-item panel" wx:for="{{item}}" wx:for-item="order" wx:key="id">
+    <view bindtap="goDetail" data-item="{{order}}">
+      <view class="status flex-row-center">
+        <view>退款时间: {{order.confirm_time}}</view>
+        <view class="primary">{{order.wayStr}}</view>
+      </view>
+      <view>
+        <van-card lazy-load class="goods" num="{{order.order_good.quantity}}"
+          price="{{filter.filterMoney(order.order_good.goods_price)}}" desc="{{order.order_good.spec_text}}"
+          title="{{order.order_good.goods_title}}" thumb="{{order.order_good.img_url}}"> </van-card>
+      </view>
+      <view class="flex-row-center state-line">
+        <view>退款：￥{{filter.filterMoney(order.apply_amount)}}</view>
+        <view>{{order.statusStr}}</view>
+      </view>
+    </view>
+    <view class="tool-bar flex-box">
+      <van-button color="#666" plain round size="small" bindtap="goDetail" data-item="{{order}}">查看详情
+      </van-button>
+      <!-- <van-button color="#999" plain round size="small" bindtap="delete" data-item="{{order}}">删除记录
+      </van-button> -->
+    </view>
+  </view>
+</block>
+<!-- 加载状态 -->
+<loading status="{{curTab.loadStatus}}" isEmpty="{{curTab.isEmpty}}" />

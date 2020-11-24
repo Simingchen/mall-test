@@ -1,0 +1,50 @@
+page{
+  background: #f8f8f8;
+}
+.live-list {
+  padding: 20rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.live-list .item{
+  position: relative;
+  width: 336rpx;
+  height: 336rpx;
+  background: #eee;
+  padding-bottom: 24rpx;
+  margin-bottom: 20rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  color: #fff;
+}
+.live-list .tag{
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 50px;
+  background: #ff3f00;
+  font-size: 24rpx;
+}
+.live-list .tag.tag-video{
+  background: #888;
+}
+.live-list .address{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left:0;
+  padding: 0 20rpx;
+  line-height: 60rpx;
+}
+
+ .tab-list .van-tabs__wrap{
+   width: 100%;
+  position: fixed;
+  top:0;
+  display: none;
+}
+/* .van-tabs__content{
+  margin-top: 44px;
+} */

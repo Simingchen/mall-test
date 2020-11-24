@@ -1,0 +1,12 @@
+<view>
+  <view class="hr100"></view>
+  <view class="tabbar-box">
+    <view class="item {{selected == index?'active':''}}" wx:for="{{tabBar.list}}" wx:key="index" bindtap="goUrl" data-index="{{index}}">
+      <view class="cartNum" wx:if="{{index == 2 && cartNum > 0}}">{{cartNum}}</view>
+      <view class="iconfont {{item.iconPath}}"></view>
+      {{item.text}}
+    </view>
+  </view>
+</view>
+
+<!-- globalData.cartNum -->

@@ -1,0 +1,11 @@
+<view class="location-item" wx:for="{{storeList}}" wx:key="index" bindtap="goDetail" data-item="{{item}}">
+	<view class="name ellipsis">{{item.title}} {{item.address}}</view>
+	<view class="flex-row-center">
+		<view class="location">距离：{{item.kilometre}} km</view>
+		<view class="navation">
+			导航
+			<text class="iconfont icondaohang"></text>
+		</view>
+	</view>
+</view>
+<van-empty class="empty-box" wx:if="{{!storeList.length}}" description="暂无附近专卖店" />

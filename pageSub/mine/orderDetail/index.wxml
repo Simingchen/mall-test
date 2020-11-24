@@ -1,0 +1,64 @@
+<wxs module="filter" src="../../../filter.wxs"></wxs>
+<import src="../../../wxParse/wxParse.wxml" />
+<view class="orderDetail-page">
+  <view class="page-bg js-txt">
+    {{detail.order_status}}
+  </view>
+  <view class="page-con">
+    <view class="address-show flex-box panel">
+      <van-icon class="img" name="location" />
+      <view class="flex-item van-hairline--bottom">
+        <view class="name-line">
+          <text class="name">{{detail.accept_name}}</text>
+          {{detail.mobile}}
+        </view>
+        <view>{{detail.area}}</view>
+        <view>{{detail.address}}</view>
+      </view>
+    </view>
+    <view class="panel">
+      <block wx:for="{{detail.order_goods}}" wx:key="index">
+        <van-card lazy-load class="goods" num="{{item.quantity}}" price="{{filter.filterMoney(item.goods_price)}}"
+          desc="{{item.spec_text}}" title="{{item.goods_title}}" thumb="{{item.img_url}}">
+          <view slot="footer">
+            <van-button custom-class="state-btn" size="mini" type="default" round wx:if="{{item.is_refund}}">
+              {{item.refund_way + item.refund_status}}
+            </van-button>
+            <block wx:if="{{(detail.status == 1 || detail.status == 2) && detail.payment_status==2 && !item.is_refund}}">
+              <van-button type="default" round size="mini" bindtap="refund" data-item="{{item}}" data-order="{{detail}}">
+                申请售后
+              </van-button>
+            </block>
+          </view>
+        </van-card>
+      </block>
+      <!-- <van-cell title="运费" border="{{false}}">
+      </van-cell> -->
+      <view class="all-price flex-box">
+        <view class="price flex-box">合计：￥{{filter.filterMoney(detail.payable_amount)}}
+        </view>
+        共1件
+      </view>
+    </view>
+    <view class="order-info panel" wx:if="{{expressdetail}}">
+      <view class="tit">物流信息</view>
+      <view class="content">
+        <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+      </view>
+    </view>
+    <view class="order-info panel">
+      <view class="tit">订单信息</view>
+      <view class="flex-row-center">
+        <view>订单编号：{{detail.order_no}}</view>
+        <van-button round size="mini" plain type="info" bind:click="copy">复制</van-button>
+      </view>
+      <view>创建时间：{{detail.add_time}}</view>
+    </view>
+    <view class="tool-box">
+      <view class="tool-bar flex-box">
+        <view class="btn" wx:if="{{detail.order_status == '待付款'}}" bindtap="pay">支付</view>
+        <view class="btn" wx:if="{{detail.order_status == '待收货'}}" bindtap="confirmIt">确认收货</view>
+      </view>
+    </view>
+  </view>
+</view>

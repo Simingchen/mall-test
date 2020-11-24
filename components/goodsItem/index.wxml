@@ -1,0 +1,13 @@
+<wxs module="filter" src="../../filter.wxs"></wxs>
+<view class="goods-list">
+	<view class="goodsCard" wx:for="{{list}}" wx:key="index" data-item="{{item}}" bindtap="goUrl">
+		<image lazy-load class="img" mode="aspectFill" src="{{item.img_url}}" />
+		<view class="tit ellipsis">{{item.title}}</view>
+		<view class="bot flex-row-center">
+			<view class="price flex-box">
+				{{currency}} {{filter.filterMoney(item.sell_price || item.point)}}
+			</view>
+			<view class="count" wx:if="{{currency == '￥'}}">销量 {{item.sales}}</view>
+		</view>
+	</view>
+</view>

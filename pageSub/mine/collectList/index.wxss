@@ -1,0 +1,8 @@
+.van-swipe-cell__right{
+  width: 65px;  
+  color: #fff;
+  background-color: #ee0a24;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

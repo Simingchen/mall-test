@@ -1,0 +1,90 @@
+page{
+  background: #f8f8f8;
+}
+.top-box{
+  height: 110rpx;
+}
+.fixed{
+  position: fixed;
+  top:0;
+  width: 100%;
+  z-index: 10;
+}
+.location-box{
+  margin-right: 10rpx;
+  font-size: 24rpx;
+  text-align: center;
+  color:rgba(238, 80, 32, 1);
+  background: #fff;
+  flex-direction: column;
+  line-height: 1;
+}
+.location-box .iconfont{
+  margin-bottom: 6rpx;
+}
+.tab-list{
+  height: 80rpx;
+}
+.tab-list .van-tabs--line .van-tabs__wrap, .van-tab{
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.goods-list {
+  padding: 20rpx 30rpx;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.goodsCard {
+  width: 335rpx;
+  padding-bottom: 24rpx;
+  margin-bottom: 20rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.goodsCard .left-txt {
+  width: 100%;
+  height: 38rpx;
+  text-align: center;
+  line-height: 38rpx;
+  margin-bottom: 6rpx;
+  border-radius: 38rpx;
+  color: #fa78ac;
+  background: #fee4ee;
+  font-size: 20rpx;
+  font-weight: 500;
+}
+
+.goodsCard .img {
+  display: block;
+  width: 336rpx;
+  height: 336rpx;
+}
+
+.goodsCard .tit {
+  padding: 10rpx 20rpx 0;
+  color: #333;
+  line-height: 52rpx;
+}
+
+
+.goodsCard .price {
+  color: #ee5020;
+  padding-left:20rpx;
+}
+
+.goodsCard .count {
+  color: #999;
+}
+
+.van-tab__pane{
+  display: none;
+}

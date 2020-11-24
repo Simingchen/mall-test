@@ -1,0 +1,79 @@
+<wxs module="filter" src="../../../filter.wxs"></wxs>
+<view wx:if="{{isLoaded}}">
+  <view class="panel">
+    <van-cell title="{{curAddress.id ? (curAddress.accept_name + ' ' + curAddress.mobile) : '请添加地址'}}"
+      label="{{curAddress.id ? (curAddress.area + curAddress.address) : ''}}" is-link border="{{false}}"
+      bind:click="toggleAddrPop">
+    </van-cell>
+  </view>
+  <view class="panel">
+    <van-cell value="{{curExpress.title}}" title="配送方式" is-link bind:click="toggleExpressPop"></van-cell>
+  </view>
+
+  <view class="panel">
+    <view wx:for="{{detail.GoodsList}}" wx:key="index">
+      <van-card lazy-load currency="¥" num="{{item.quantity}}" price="{{filter.filterMoney(item.user_price)}}"
+        title="{{item.title}}" thumb="{{item.img_url}}" desc="{{item.spec_text}}"></van-card>
+    </view>
+    <van-cell title="" class="fee" border="{{false}}">
+      共{{detail.GoodsTotal.total_quantity}}件 <text class="c21">商品小计：</text>
+      <text class="cf5">¥ {{filter.filterMoney(detail.GoodsTotal.payable_amount)}}</text>
+    </van-cell>
+  </view>
+  <view class="panel">
+    <van-cell value="{{curPay.title}}" title="支付方式" is-link bind:click="togglePayPop"></van-cell>
+  </view>
+
+  <view class="panel mes-panel">
+    <van-field value="{{message}}" rows="2" autosize label="买家留言" type="textarea" maxlength="50"
+      placeholder="留言建议提前协商（50字以内）" show-word-limit bind:change="onChangeMsg"></van-field>
+  </view>
+
+  <view class="check-bar">
+    <van-submit-bar price="{{ detail.GoodsTotal.payable_amount * 100 }}" button-text="提交订单" bind:submit="onSubmit">
+    </van-submit-bar>
+  </view>
+</view>
+
+<!-- 地址选择 -->
+<van-popup show="{{isShowAddrList}}" position="bottom" round closeable bind:close="onClosePop">
+  <view class="addr-box">
+    <van-radio-group value="{{ curAddressRadio }}" bind:change="onChangeAddr">
+      <van-cell-group border="{{false}}">
+        <van-cell title="{{item.accept_name + ' ' + item.mobile}}" label="{{item.area + item.address}}"
+          wx:for="{{addrlist}}" wx:key="index" clickable data-name="{{item.id}}" bind:click="onClickAddr">
+          <van-radio slot="right-icon" name="{{item.id}}" />
+        </van-cell>
+      </van-cell-group>
+    </van-radio-group>
+  </view>
+  <van-button v-if="addrlist.length < 7" custom-class="addAddr-btn" type="danger" round block bind:click="goUrl">
+    添加地址</van-button>
+</van-popup>
+<!-- 物流选择 -->
+<van-popup show="{{isShowExpressPop}}" position="bottom" round closeable bind:close="onClosePop">
+  <view class="addr-box">
+    <van-radio-group value="{{ curExpressRadio }}">
+      <van-cell-group border="{{false}}">
+        <van-cell title="{{item.title}}" wx:for="{{expressList}}" wx:key="index" clickable data-name="{{item.id}}"
+          bind:click="onClickExpress">
+          <van-radio slot="right-icon" name="{{item.id}}" />
+        </van-cell>
+      </van-cell-group>
+    </van-radio-group>
+  </view>
+</van-popup>
+<!-- 支付选择 -->
+<van-popup show="{{isShowPayPop}}" position="bottom" round closeable bind:close="onClosePop">
+  <view class="addr-box">
+    <van-radio-group value="{{ curPayRadio }}">
+      <van-cell-group border="{{false}}">
+        <van-cell title="{{item.title}}" wx:for="{{payList}}" wx:key="index" clickable data-name="{{item.id}}"
+          bind:click="onClickPay">
+          <van-radio slot="right-icon" name="{{item.id}}" />
+        </van-cell>
+      </van-cell-group>
+    </van-radio-group>
+  </view>
+</van-popup>
+

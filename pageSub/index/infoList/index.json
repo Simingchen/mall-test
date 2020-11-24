@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "资讯",
+  "usingComponents": {
+    "van-search": "../../../@vant/search/index",
+    "van-popup": "../../../@vant/popup/index",
+    "van-tabs": "../../../@vant/tabs/index",
+    "van-loading": "../../../@vant/loading/index",
+    "van-tab": "../../../@vant/tab/index"
+  }
+}

@@ -1,0 +1,38 @@
+.class-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding-top: 40rpx;
+  text-align: center;
+  line-height: 50rpx;
+  background: #fff;
+}
+
+.class-list .item {
+  margin-bottom: 20rpx;
+  height: 98rpx;
+  width: 120rpx;
+  font-size: 20rpx;
+  overflow: hidden;
+}
+
+.class-list .img {
+  display: block;
+  width: 60rpx;
+  height: 60rpx;
+  margin: 0 auto;
+}
+.van-tree-select__item--active{
+  color:#333!important;
+}
+.van-tree-select__selected{
+  display: none;
+}
+.van-tree-select__item{
+  font-weight: normal!important;
+}
+.van-sidebar-item--selected .van-sidebar-item__text{
+  color:#ee0a24;
+}

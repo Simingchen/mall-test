@@ -1,0 +1,30 @@
+<view class="share-box">
+  <view class="box flex-row-center">
+    <view class="item share" bindtap="togglePopup">分享</view>
+    <view class="item collect {{isCollect ? '' : 'active'}}" bindtap="collect">
+      
+      {{isCollect ? '已收藏' : '收藏'}}
+    </view>
+  </view>
+</view>
+
+<view class='share' wx:if="{{isShowShare}}" catchtouchmove="ture">
+  <view class="mask"></view>
+  <view class='share-moment'>
+    <canvas type="2d" id="canvas" canvas-id="shareCanvas" class="canvas" style="width: 300px; height: {{type == 5 ? 240 : 360}}px"></canvas>
+    <view class="iconfont iconshanchu" bindtap='closeShare'></view>
+  </view>
+</view>
+
+<van-popup show="{{ isOpend }}" round position="bottom" bind:close="togglePopup">
+	<view class="share-popup">
+    <button class="item share-button" open-type="share">
+      <image class="img" src="../../static/icon_share_wechat.png"></image>
+      微信
+    </button>
+    <view class="item" bindtap="setPoster">
+      <image class="img" src="../../static/icon_share_pyq.png"></image>
+      朋友圈
+    </view>
+	</view>
+</van-popup>

@@ -1,0 +1,14 @@
+<view class="input-box flex-box" wx:if="{{isOriginalPhone}}">
+	<input class="input" type="number" placeholder="原手机号码" bindinput="changeInput" data-tag="OriginalPhone" value="{{OriginalPhone}}" maxlength="50" />
+</view>
+<view class="input-box flex-box">
+  <input class="input" type="number" placeholder="新手机号码" bindinput="changeInput" data-tag="Phone" value="{{Phone}}" maxlength="50" />
+  <view class="get-code" catchtap="getCode">
+    <view class="c9" wx:if="{{isSendCode}}">{{seconds}}S后重新获取</view>
+    <block wx:else>获取验证码</block>
+  </view>
+</view>
+<view class="input-box flex-box">
+	<input class="input" type="number"  placeholder="验证码" bindinput="changeInput" data-tag="ValidateCode" value="{{ValidateCode}}" maxlength="50" />
+</view>
+<view class="submit {{isCanSubmit? 'active' : ''}}" bindtap="setPhone">提交</view>

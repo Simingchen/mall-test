@@ -1,0 +1,12 @@
+<wxs module="filter" src="../../../filter.wxs"></wxs>
+<view class="panel">
+	<view class="input-box">
+		<van-field model:value="{{ value }}" type="number" label="￥" placeholder="输入提现金额" maxlength="5"/>
+	</view>
+	<view class="p30">
+		<view class="txt">可提现金额：￥{{filter.filterMoney(detail.amount)}}</view>
+		<view class="flex-center">
+			<van-button custom-class="comfirm-btn" type="danger" bindtap="confirm">确认提现</van-button>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "退款与售后",
+  "usingComponents": {
+    "van-tabs": "../../../@vant/tabs/index",
+    "van-loading": "../../../@vant/loading/index",
+    "van-tab": "../../../@vant/tab/index",
+    "van-card": "../../../@vant/card/index",
+    "van-empty": "../../../@vant/empty/index",
+    "van-button": "../../../@vant/button/index"
+  }
+}

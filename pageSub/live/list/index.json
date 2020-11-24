@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "直播广场",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "van-tabs": "../../../@vant/tabs/index",
+    "van-loading": "../../../@vant/loading/index",
+    "van-tab": "../../../@vant/tab/index"
+  }
+}

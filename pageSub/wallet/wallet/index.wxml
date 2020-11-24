@@ -1,0 +1,28 @@
+<wxs module="filter" src="../../../filter.wxs"></wxs>
+<view class="member-page">
+	<view class="panel money-panel">
+		<view class="flex-box">
+			<view class="account-money">
+				账户金额
+				<view class="num">{{filter.filterMoney(detail.amount)}}</view>
+			</view>
+			<view class="flex-box flex4">
+				<view class="flex-item">
+					今日红包
+					<view class="num">{{filter.filterMoney(0)}}</view>
+				</view>
+				<view class="flex-item">
+					今日预估
+					<view class="num">{{filter.filterMoney(0)}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="mb20">
+		<van-cell title="提现" is-link url="/pageSub/wallet/withdraw/index"></van-cell>
+		<van-cell title="提现记录" is-link url="/pageSub/wallet/withdrawList/index" border="{{false}}"></van-cell>
+	</view>
+
+
+</view>

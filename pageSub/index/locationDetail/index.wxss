@@ -1,0 +1,19 @@
+page{
+  background: #f8f8f8;
+  min-height: 100vh;
+}
+.location-item{
+  width: 710rpx;
+  padding: 30rpx;
+  margin: 20rpx auto 0;
+  color:#666;
+  background: #fff;
+  border-radius: 12rpx;
+}
+.location-item .name{
+  margin-bottom: 20rpx;
+  font-size: 32rpx;
+}
+.location-item .navation{
+  color:#ee5020;
+}

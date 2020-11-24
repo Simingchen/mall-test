@@ -1,0 +1,184 @@
+.icon-set{
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  font-size: 50rpx;
+}
+page{
+  background-color: #f6f7fa;
+  min-height: 100vh;
+}
+/* 我的页面 S======== */
+.member-page {
+  padding-top: 30rpx;
+}
+
+
+.member-page .van-tabbar-item__icon .img {
+  width: 54rpx;
+  height: 44rpx;
+}
+
+.member-page .van-cell__title {
+  font-weight: 500;
+}
+
+.member-page .integral-panel .btn {
+  width: 120rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  border-radius: 50rpx;
+  font-size: 24rpx;
+  color: #fff;
+  background: #fa78ac;
+}
+
+.member-page .panel {
+  width: 690rpx;
+  margin: 0 auto 20rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.order-panel{
+  padding-bottom:20rpx;
+}
+
+.member-page .top-panel {
+  position: relative;
+  padding: 30rpx 0 30rpx 30rpx;
+  margin-bottom: 30rpx;
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 500;
+  background: #ee5020;
+}
+.avatar-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 30rpx;
+  text-align: center;
+}
+.member-page .top-panel .avatar {
+  display: block;
+  width: 110rpx;
+  height: 110rpx;
+  
+  margin-bottom: 10rpx;
+  border-radius: 110rpx;
+  background: #eee;
+  /* border: 1rpx solid #ccc; */
+}
+
+.member-page .top-panel .name {
+  font-size: 30rpx;
+  line-height: 40rpx;
+  margin-top: 8rpx;
+}
+
+.member-page .top-panel .name-box {
+  position: relative;
+  width: 485rpx;
+  min-height: 145rpx;
+  /* line-height: 46rpx; */
+  /* padding-right: 160rpx; */
+}
+.member-page .top-panel .mt20{
+  margin-top: 16rpx;
+}
+.top-panel .name-box  .point-line{
+  margin-top: 20rpx;
+  justify-content: space-between;
+}
+.goods-url{
+  margin-top: 10rpx;
+}
+.member-page .integral-panel {
+  padding: 20rpx 30rpx 30rpx;
+  line-height: 50rpx;
+  font-size: 22rpx;
+  color: #666;
+}
+
+.member-page .integral-panel .amount {
+  font-weight: 700;
+  line-height: 1;
+  font-size: 34rpx;
+}
+
+.member-page .van-cell {
+  font-size: 24rpx;
+  color: #333;
+  line-height: 100rpx;
+  padding: 0 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.member-page .van-cell .van-cell__right-icon {
+  line-height: 100rpx;
+  font-size: 24rpx;
+}
+
+.member-page .van-tabbar-item {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.member-page .van-info {
+  background: #e52c87;
+  min-width: 40rpx;
+}
+
+/* 我的页面 E======== */
+.order-cell {
+  color:#333;
+  text-align: center;
+}
+.order-cell .txt{
+  line-height: 40rpx;
+}
+.c9{
+  margin-left: 40rpx;
+}
+.mb20{
+  margin-bottom: 20rpx;
+}
+.money-panel{
+  padding: 30rpx;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 30rpx;
+  color: #919191;
+  background-image: linear-gradient(to right, #3a3a3a, #2b2b2b, #222222) !important;
+}
+.money-panel .num{
+  color: #fff;
+  font-weight: 600;
+  line-height: 60rpx;
+  font-size: 28rpx;
+}
+.money-panel .flex4{
+  position: relative;
+  flex:4;
+}
+.account-money {
+  position: relative;
+  flex: 3;
+  color:#fff;
+  text-align: left;
+}
+.money-panel .flex4:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left:0;
+  height: 74rpx;
+  width:1px;
+  border-right: 1rpx solid #5b5b5b;
+}
+.account-money .num{
+  color:#ffbe53;
+}

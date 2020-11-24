@@ -1,0 +1,112 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/goodsSort/index",
+    "pages/cart/index",
+    "pages/mine/index",
+    "pages/login/index"
+  ],
+  "subPackages": [
+    {
+      "root": "pageSub/index",
+      "pages": [
+        "seckillList/index",
+        "searchList/index",
+        "goodsDetail/index",
+        "infoDetail/index",
+        "submitOrder/index",
+        "locationList/index",
+        "locationDetail/index"
+      ]
+    },
+    {
+      "root": "pageSub/mine",
+      "pages": [
+        "addressList/index",
+        "addressEdit/index",
+        "update/index",
+        "share/index",
+        "setting/index",
+        "orderList/index",
+        "orderDetail/index",
+        "collectList/index",
+        "goodsList/index",
+        "changePhone/index"
+      ]
+    },
+    {
+      "root": "pageSub/wallet",
+      "pages": [
+        "wallet/index",
+        "withdraw/index",
+        "withdrawList/index"
+      ]
+    },
+    {
+      "root": "pageSub/afterSales",
+      "pages": [
+        "orderDetail/index",
+        "orderSubmit/index",
+        "orderList/index"
+      ]
+    },
+    {
+      "root": "pageSub/live",
+      "pages": [
+        "post/index",
+        "list/index"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black",
+    "onReachBottomDistance":300
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "custom": true,
+    "color": "#d7d7d7",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
+    "selectedColor": "#f4a240",
+    "list": [
+      {
+        "selectedIconPath": "./static/tab/11.png",
+        "iconPath": "./static/tab/1.png",
+        "pagePath": "pages/index/index",
+        "text": "宫颜禧"
+      },
+      {
+        "selectedIconPath": "./static/tab/21.png",
+        "iconPath": "./static/tab/2.png",
+        "pagePath": "pages/goodsSort/index",
+        "text": "美丽资讯"
+      },
+      {
+        "selectedIconPath": "./static/tab/31.png",
+        "iconPath": "./static/tab/3.png",
+        "pagePath": "pages/cart/index",
+        "text": "美丽播"
+      },
+      {
+        "selectedIconPath": "./static/tab/51.png",
+        "iconPath": "./static/tab/5.png",
+        "pagePath": "pages/mine/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "loading": "./components/loading/index",
+    "goodsItem": "./components/goodsItem/index",
+    "tabBar": "./components/tabBar/index"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取位置"
+    }
+  }
+}

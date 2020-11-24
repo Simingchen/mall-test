@@ -1,0 +1,202 @@
+page{
+  background:#f8f8f8;
+}
+.location-box{
+  margin-right: 10rpx;
+  font-size: 24rpx;
+  text-align: center;
+  color:rgba(238, 80, 32, 1);
+  background: #fff;
+  flex-direction: column;
+  line-height: 1;
+}
+.location-box .iconfont{
+  margin-bottom: 6rpx;
+}
+.banner-list {
+  position: relative;
+  height:400rpx;
+  margin-bottom: 20rpx;
+}
+.banner-list .item{
+  width:100%;
+  overflow: hidden;
+}
+.banner-list  .img{
+  display: block;
+  width:100%;
+  margin: 0 auto;
+  height:100%;
+  background: #eee;
+}
+.mine-list {
+  background: #fff;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 64rpx;
+}
+.mine-list .flex-box{
+  flex-wrap: wrap;
+}
+.mine-list .item {
+  width:25%;
+}
+.mine-list .img {
+  display: block;
+  width: 72rpx;
+  height: 72rpx;
+  margin: 0 auto;
+}
+
+.title-box{
+  height: 70rpx;
+  line-height: 70rpx;
+  color:#222;
+  font-size: 34rpx;
+  background: #fff;
+  font-weight: 600;
+  padding: 0 30rpx;
+}
+.title-box .more{
+  font-size: 24rpx;
+  color:#999;
+  line-height: 50rpx;
+  font-weight: 400;
+}
+.title-box .more .iconfont{
+  font-size: 20rpx;
+}
+.msg-swiper-box{
+  height: 66rpx;
+  line-height: 66rpx;
+  overflow: hidden;
+}
+.msg-swiper-list{
+  width: 100%;
+  height: 66rpx;
+  line-height: 66rpx;
+  overflow: hidden;
+  font-size: 28rpx;
+  /* padding: 0 25rpx; */
+}
+.msg-swiper-list .txt{
+  height: 66rpx;
+  line-height: 66rpx;
+  overflow: hidden;
+  font-size: 28rpx;
+  overflow: hidden;
+	white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: right;
+}
+.msg-swiper-box .tit{
+  
+  width: 110rpx;
+  padding-left:20rpx;
+  color:red;
+}
+
+.goods-seckill {
+  display: block;
+  width: 710rpx;
+  height: 210rpx;
+  border-radius: 12rpx;
+  margin: 0 auto 20rpx;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.goods-seckill .con {
+  width: 440rpx;
+  padding-top: 10rpx;
+}
+
+.goods-seckill .img {
+  display: block;
+  width: 210rpx;
+  height: 210rpx;
+  margin-right: 40rpx;
+  background: #eee;
+}
+
+.goods-seckill .tit {
+  padding-top:10rpx;
+  margin-bottom: 20rpx;
+  font-weight: 600;
+  font-size: 30rpx;
+}
+
+.goods-seckill .count-line {
+  color: #999;
+  font-size: 24rpx;
+}
+.goods-seckill .count-line .del{
+  text-decoration: line-through;
+}
+.goods-seckill .process{
+  width: 300rpx;
+}
+.goods-seckill .price{
+  margin: 20rpx 0;
+  color:#ff0000;
+}
+.msg-cell.van-cell {
+  align-items: center;
+  background: #fff!important;
+}
+.msg-cell .van-cell__title{
+  color:#ff0000;
+  font-weight: 600;
+  font-size: 32rpx;
+  flex: none;
+  margin-right: 30rpx;
+  line-height: 66rpx;
+}
+.bf8.van-cell {
+  background: #f8f8f8!important;
+}
+.copyright{
+  margin-top: 30rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+.live-list {
+  padding: 20rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.live-list .item{
+  position: relative;
+  width: 336rpx;
+  height: 336rpx;
+  background: #eee;
+  padding-bottom: 24rpx;
+  margin-bottom: 20rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  color: #fff;
+}
+.live-list .tag{
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 50px;
+  background: #ff3f00;
+  font-size: 24rpx;
+}
+.live-list .tag.tag-video{
+  background: #888;
+}
+.live-list .address{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left:0;
+  padding: 0 20rpx;
+  line-height: 60rpx;
+}

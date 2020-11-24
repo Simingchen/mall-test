@@ -1,0 +1,25 @@
+<view class="me-page">
+	<view class="avatar-box flex-box" bindtap="chooseImg">
+		<image class="avatar" mode="aspectFill" src="{{userInfo.avatar}}" />
+		<view class="txt">点击更换头像</view>
+	</view>
+	<van-field
+		label="会员名称"
+    value="{{userInfo.nick_name}}"
+    placeholder="请输入会员名称"
+		border="{{ false }}"
+		maxlength="15"
+		clearable
+    bind:change="onChange"
+  />
+	
+	<view class="mt20">
+	<van-cell  title="我的收货地址" is-link border="{{false}}" url="/pageSub/mine/addressList/index"></van-cell>
+</view>
+	<!-- 上传组件 -->
+	<!-- <van-uploader class="uploader" ref="uploader" class="avator" :max-size="500 * 1024" oversize="onOversize"
+		:max-count="1" :after-read="uploadDone"> </van-uploader> -->
+</view>
+<view class="flex-center">
+	<van-button round type="info" custom-class="confirm-btn" color="#ff0000" bindtap="save">提交</van-button>
+</view>

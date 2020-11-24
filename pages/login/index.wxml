@@ -1,0 +1,6 @@
+<view class="login-page">
+  <image class="logo" src="../../static/login.png"></image>
+  <view class="logo-txt">请先登录</view>
+  <button class="button" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGetUserInfo">授权登录</button>
+  <!-- <navigator wx:if="config.IsPwdLogin" class="link" hover-class="none" url="/pages/login1/index">账号登录</navigator> -->
+</view>

@@ -1,0 +1,31 @@
+<wxs module="filter" src="../../filter.wxs"></wxs>
+<view class="cart-page" wx:if="{{isLoaded}}">
+	<block wx:if="{{goodsList.length}}">
+		<view class="edit-bar" bindtap="toggleEdit">{{isEdit? '完成' : '编辑'}}</view>
+		<!-- 商品 -->
+		<van-checkbox-group value="{{result}}" ref="checkboxGroup" bind:change="checkChage">
+			<van-checkbox name="{{item.goods_id}}" class="goods {{item.isDisabled ? disabled : ''}}" checked-color="#ff5500"
+				wx:for="{{goodsList}}" wx:key="goods_id">
+				<van-card lazy-load num="{{item.quantity}}" price="{{filter.filterMoney(item.sell_price)}}" desc="{{item.spec_text}}" title="{{item.title}}"
+					thumb="{{item.img_url}}"> </van-card>
+			</van-checkbox>
+		</van-checkbox-group>
+	</block>
+	<!-- 结算栏 -->
+	<view class="check-bar">
+			<van-submit-bar class="{{isEdit? 'edit' : ''}}" price="{{allCheckPrice}}"
+				button-text="{{(isEdit? '删除' : '结算')+ '(' + result.length + ')' }} " bind:submit="onSubmit">
+				<van-checkbox value="{{isCheckedAll}}" checked-color="#ff5500" bind:change="checkAll">全选</van-checkbox>
+			</van-submit-bar>
+		</view>
+	<!-- 空状态 -->
+	<van-empty class="empty-box" wx:if="{{!goodsList.length}}">
+		<view class="tit">购物车竟然是空的</view>
+		<view class="txt">在忙，也要记得去逛逛呦</view>
+		<van-button plain type="primary" color="#999" size="small" class="bottom-button" bind:click="goUrl">
+			去逛逛
+		</van-button>
+	</van-empty>
+</view>
+<!-- tabbar -->
+<tabBar selected="2" cartNum="{{goodsList.length}}"/>

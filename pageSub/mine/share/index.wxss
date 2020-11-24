@@ -1,0 +1,80 @@
+page{
+  padding: 60rpx 20rpx;
+  line-height: 1.2;
+}
+.con{
+  padding: 40rpx 20rpx;
+  line-height: 45rpx;
+}
+.confirm-btn{
+  width: 690rpx;
+  margin: 200rpx auto 0;
+}
+.share-popup {
+  display: flex;
+  padding: 40rpx;
+}
+.share-popup .img{
+  display: block;
+  width: 108rpx;
+  height: 108rpx;
+  margin: 0 auto;
+}
+.share-popup .item{
+  width: 200rpx;
+  text-align: center;
+  line-height: 90rpx;
+  padding:0;
+  margin: 0;
+  font-size: 28rpx;
+}
+.share-moment {
+  width: 300px;
+  height: 360px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 100rpx;
+  margin: auto;
+  z-index: 200;
+}
+.mask{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom:0;
+  background: rgba(0,0,0,.3);
+  z-index: 20;
+}
+.share-moment .btn-box {
+  padding: 1060rpx 60rpx 0 60rpx;
+}
+
+.share-moment .bottom {
+  width: 300px;
+  height: 40px;
+  background-color: white;
+}
+.canvas{
+  /* border: 1px solid #f2f2f2; */
+}
+.iconshanchu{
+  position: absolute;
+  width: 60rpx;
+  height: 60rpx;
+  font-size: 60rpx;
+  color: #f2f2f2;
+  z-index: 10;
+  top: -84rpx;
+  right: 10rpx;
+}
+.save-btn{
+  width: 300rpx;
+  height: 80rpx;
+  border-radius: 80rpx;
+  border: 1rpx solid #eee;
+  color:#eee;
+  margin: 30rpx auto;
+}

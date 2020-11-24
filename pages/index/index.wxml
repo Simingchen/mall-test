@@ -1,0 +1,93 @@
+<view class="search-bar">
+    <van-search disabled shape="round" placeholder="请输入产品/厂家" use-action-slot maxlength="50" bindtap="goLocalUrl"
+    data-url="/pageSub/index/searchList/index">
+      <view slot="action" catchtap="goLocationUrl" class="location-box flex-center">
+        <view class="iconfont iconai204"></view>
+        附近专卖店
+      </view>
+    </van-search>
+  </view>
+<!-- 轮播图 -->
+<swiper class='banner-list' indicatorDots circular autoplay
+  indicatorActiveColor="rgba(255,255,255,.6)" indicatorColor="rgba(255,255,255, .8)">
+  <swiper-item class='item' wx:for="{{bannerList}}" wx:key="index" bindtap="goBannerUrl" data-item="{{item}}">
+    <image class="img" mode='aspectFill' src="{{item.img_url}}" />
+  </swiper-item>
+</swiper>
+<van-cell custom-class="msg-cell" title="澳米特头条" is-link border="{{false}}">
+  <swiper class='msg-swiper-list' circular autoplay vertical>
+    <swiper-item class='item' wx:for="{{msgList}}" wx:key="index" bindtap="goInfoDetail" data-item="{{item}}">
+      <view class="txt">{{item.title}}</view>
+    </swiper-item>
+  </swiper>
+</van-cell>
+<!-- 主入口 -->
+<!-- <View class='mine-list'>
+  <View class='flex-box w700'>
+    <view class='item' wx:for="{{navList}}" wx:key="index" bindtap="goBannerUrl" data-item="{{item}}">
+      <image class="img" mode="aspectFill" src="{{item.img_url}}" />
+      {{item.title}}
+    </view>
+  </View>
+</View> -->
+
+<View class='mine-list'>
+<swiper indicatorDots 
+  indicatorActiveColor="rgba(255,255,255,.6)" indicatorColor="rgba(255,255,255, .8)" >
+  <swiper-item class='item' wx:for="{{navList}}" wx:key="index">
+    <View class='flex-box w700' >
+    <view class='item' wx:for="{{item}}" wx:for-item="nav" wx:key="index" bindtap="goBannerUrl" data-item="{{nav}}">
+      <image class="img" mode="aspectFill" src="{{nav.img_url}}" />
+      {{nav.title}}
+    </view>
+  </View>
+  </swiper-item>
+</swiper>
+</View>
+<van-cell custom-class="bf8"  title="直播广场" is-link value="更多" border="{{false}}" url="/pageSub/live/list/index" />
+<view class="live-list">
+  <view class="item" wx:for="{{liveList}}" data-item="{{item}}" wx:key="index" bindtap="goLiveDetail">
+    <image class="img" mode="aspectFill" src="{{item.cover_img}}"></image>
+    <view class="tag flex-start" wx:if="{{item.live_status == 101}}">
+      <view class="iconfont iconIcon-zhibozhong"></view>
+      直播中
+    </view>
+    <view class="tag flex-start" wx:if="{{item.live_status == 102}}">
+      <view class="iconfont iconIcon-zhibozhong"></view>
+      未开始
+    </view>
+    <view class="tag tag-video" wx:if="{{item.live_status == 103}}">已结束</view>
+    <view class="address ellipsis">{{item.anchor_name}}-{{item.name}}</view>
+  </view>
+</view>
+<van-cell custom-class="bf8"  title="团购" is-link value="更多" border="{{false}}" url="/pageSub/index/seckillList/index" />
+<view class="goods-seckill" wx:for="{{eventList}}" wx:key="index" bindtap="goDetail" data-item="{{item}}">
+  <image class="img" mode="aspectFill" src="{{item.img_url}}" />
+  <view class="con">
+    <view class="tit ellipsis">{{item.title}}</view>
+    <view class="count-line flex-row-center">
+      <view class="count del">
+        <block wx:if="{{item.market_price>0}}">原价 ￥{{item.market_price}}</block>
+      </view>
+      <view class="count">已拼{{item.stock_quantity}}人</view>
+    </view>
+    <view class="price">拼团价 {{item.sell_price}}元/只</view>
+    <view class="time-box flex-start" wx:if="{{item.percentDay}}">
+      <view class="txt">倒计时：</view>
+      <van-progress custom-class="process" percentage="{{item.percentDay}}" color="#ff0000" pivot-color="#ff0000" stroke-width="26rpx"
+        show-pivot="{{false}}" />
+    </view>
+  </view>
+</view>
+
+<van-cell custom-class="bf8" title="推荐产品" is-link value="更多" border="{{false}}" url="/pageSub/index/searchList/index"/>
+<goodsItem list="{{goodsList}}" />
+<!-- <van-cell custom-class="bf8" title="商品兑换" is-link value="更多" border="{{false}}" url="/pageSub/mine/goodsList/index"/> -->
+<!-- <goodsItem list="{{exchangeList}}"  currency="积分"/> -->
+
+<!-- 版权 -->
+<view class="flex-center copyright">
+  汕头诸事帮科技有限公司技术支持
+</view>
+<!-- tabbar -->
+<tabBar selected="0" cartNum="{{cartNum}}"/>

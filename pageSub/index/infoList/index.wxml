@@ -1,0 +1,69 @@
+<view class="bb20">
+  <view class="search-bar">
+    <van-search value="{{ searchTxt }}" placeholder="输入需要搜索的内容" use-action-slot bind:change="onChange" bind:search="onSearch" maxlength="50">
+      <view slot="action" bind:tap="onSearch" class="iconfont iconmagnifier"></view>
+    </van-search>
+  </view>
+</view>
+<!-- 轮播图 -->
+<swiper class='banner-list' wx:if="{{bannerList.length}}" indicatorDots circular autoplay indicatorActiveColor="rgba(255,255,255,.6)" indicatorColor="rgba(255,255,255, .8)">
+	<swiper-item class='item' wx:for="{{bannerList}}" wx:key="index" bindtap="goBannerUrl" data-item="{{item}}">
+		<image class="img" mode='aspectFill' src="{{item.Img}}" />
+	</swiper-item>
+</swiper>
+<!-- 筛选 -->
+<view class="filter-bar">
+  <!-- <view class="tab flex-row-center-list">
+    <view wx:for="{{tabList}}" wx:key="index" class="item" bindtap="tabsChange" data-type="{{item.type}}">{{item.title}}</view>
+  </view> -->
+  <view class="txt flex-box" bindtap="openFilter">
+    <view class="iconfont iconshaixuan"></view>筛选
+  </view>
+</view>
+<van-tabs swipeable bind:change="tabsChange">
+  <van-tab title="{{tab.title}}" wx:for="{{tabList}}" wx:key="index" wx:for-item="tab">
+    <view wx:if="{{!tab.isEmpty}}" class="copy-tips" bindtap="showCopyright">版权声明</view>
+    <block wx:for="{{tab.list}}" wx:key="index">
+      <infoItem list="{{item}}"/>
+    </block>
+   
+    <!-- 加载状态 -->
+    <loading status="{{tab.loadStatus}}" isEmpty="{{tab.isEmpty}}"/>
+  </van-tab>
+</van-tabs>
+
+
+<van-popup
+  show="{{ isOpend }}"
+  round
+  position="right"
+  bind:close="closeFilter"
+>
+  <view class="filter-box">
+    <view class="tit">时间</view>
+    <view class="tags flex-box">
+      <view class="tag {{item.time == curTime?' active':''}}" 
+      wx:for="{{timeList}}" 
+      bindtap="changeFilter"
+      wx:key="index" data-id="{{item.time}}" data-type="Time">{{item.Name}}</view>
+    </view>
+    <view class="tit">类别</view>
+    <view class="tags flex-box">
+      <view class="tag {{item.ClassId == curClass?' active':''}}" 
+      wx:for="{{classList}}" 
+      bindtap="changeFilter"
+      wx:key="index" data-id="{{item.ClassId}}" data-type="Class">{{item.Name}}</view>
+    </view>
+    <view class="tit pt20">关键词</view>
+    <view class="tags flex-box">
+      <view class="tag {{item.Name == curKey?' active':''}}" 
+      wx:for="{{keyList}}" 
+      bindtap="changeFilter"
+      wx:key="index" data-id="{{item.Name}}"  data-type="Key">{{item.Name}}</view>
+    </view>
+    <view class="btns flex-row-center">
+      <view class="btn cancle" bindtap="resetFilter" data-id="{{0}}">重置</view>
+      <view class="btn confirm" bindtap="closeFilter">确定</view>
+    </view>
+  </view>
+</van-popup>

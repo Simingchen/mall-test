@@ -1,0 +1,111 @@
+<wxs module="filter" src="../../filter.wxs"></wxs>
+<view class="member-page">
+	<view class="top-panel panel flex-box">
+		<view class="flex-box">
+			<view class="avatar-box">
+				<image class="avatar" mode="aspectFill" src="{{detail.avatar}}" />
+				{{['普通用户', '珀金用户'][detail.group_id - 1]}}
+			</view>
+			<view class="name-box">
+				<view class="name flex-box">
+					{{detail.nick_name}}
+				</view>
+				<view class="code">{{detail.mobile}}</view>
+				<view class="flex-box point-line">
+					<view>积分：{{detail.point}}</view>
+				</view>
+				<!-- <view class="flex-row-center mt20">
+					<view>可提金额：{{detail.amount}}</view>
+				</view> -->
+			</view>
+		</view>
+		<navigator hover-class="none" url="/pageSub/mine/setting/index" class="icon-set iconfont iconshezhi"></navigator>
+	</view>
+
+	<view class="panel money-panel" bindtap="goWalletUrl">
+		<view class="flex-box">
+			<view class="account-money">
+				账户金额
+				<view class="num">{{filter.filterMoney(detail.amount)}}</view>
+			</view>
+			<view class="flex-box flex4">
+				<view class="flex-item">
+					今日红包
+					<view class="num">{{filter.filterMoney(0)}}</view>
+				</view>
+				<view class="flex-item">
+					今日预估
+					<view class="num">{{filter.filterMoney(0)}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="order-panel panel">
+		<van-cell title="全部订单" is-link value="更多" border="{{false}}" url="/pageSub/mine/orderList/index?type=-1"></van-cell>
+		<van-tabbar class="order-cell" fixed="{{false}}" border="{{false}}" inactive-color="#333"
+			bind:change="onChangeOrder">
+			<van-tabbar-item>
+				<image class="img" slot="icon" src="../../static/o_07.png" />
+				<view class="txt">待付款</view>
+			</van-tabbar-item>
+			<van-tabbar-item>
+				<image class="img" slot="icon" src="../../static/o_09.png" />
+				<view class="txt">待发货</view>
+			</van-tabbar-item>
+			<van-tabbar-item>
+				<image class="img" slot="icon" src="../../static/o_11.png" />
+				<view class="txt">待收货</view>
+			</van-tabbar-item>
+			<van-tabbar-item>
+				<image class="img" slot="icon" src="../../static/o_13.png" />
+				<view class="txt">已完成</view>
+			</van-tabbar-item>
+			<van-tabbar-item>
+				<image class="img" slot="icon" src="../../static/o_15.png" />
+				<view class="txt">退款售后</view>
+			</van-tabbar-item>
+		</van-tabbar>
+
+	</view>
+	<view class="mb20" wx:if="{{detail.group_id == 1}}">
+		<van-cell title="升为白金会员" is-link url="/pageSub/mine/update/index" border="{{false}}"></van-cell>
+	</view>
+	<view class="mb20">
+		<van-cell title="收藏列表" is-link url="/pageSub/mine/collectList/index"></van-cell>
+		<van-cell title="兑换商品" is-link url="/pageSub/mine/goodsList/index" border="{{false}}"></van-cell>
+	</view>
+
+
+	<van-cell wx:if="{{!detail.is_signin}}">
+		<view slot="title">
+			<text class="van-cell-text">今日签到</text>
+			<text class="c9">+{{userConfig.pointloginnum}}积分</text>
+		</view>
+		<van-button plain type="primary" round color="{{detail.is_signin? '#999' : '#ee5020'}}" size="mini"
+			bindtap="getSign" data-type="1">
+			去签到
+		</van-button>
+	</van-cell>
+	<van-cell url="/pageSub/index/searchList/index">
+		<view slot="title">
+			<text class="van-cell-text">今日购物</text>
+			<text class="c9">购物即送积分</text>
+		</view>
+		<van-button plain type="primary" round color="#ee5020" size="mini">
+			去购物
+		</van-button>
+	</van-cell>
+
+	<van-cell url="/pageSub/mine/share/index">
+		<view slot="title">
+			<text class="van-cell-text">分享赚积分</text>
+			<text class="c9">+{{userConfig.pointinvitenum}}积分</text>
+		</view>
+		<van-button plain type="primary" round color="#ee5020" size="mini">
+			去分享
+		</van-button>
+	</van-cell>
+</view>
+<!-- tabbar -->
+<tabBar selected="3" cartNum="{{cartNum}}" />

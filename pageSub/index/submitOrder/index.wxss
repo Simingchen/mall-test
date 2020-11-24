@@ -1,0 +1,24 @@
+page {
+  min-height: 100vh;
+  background: #f8f8f8;
+}
+
+.addr-box {
+  padding: 80rpx 20rpx 40rpx;
+  font-weight: normal;
+}
+
+.addAddr-btn {
+  width: 710rpx;
+  margin: 20rpx auto;
+}
+
+.panel {
+  background: #fff;
+  border-radius: 16rpx;
+  margin: 20rpx;
+  overflow: hidden;
+}
+.van-card{
+  background: #fff!important;
+}

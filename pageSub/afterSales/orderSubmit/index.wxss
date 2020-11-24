@@ -1,0 +1,85 @@
+/* 订单详情 S ========== */
+page {
+  background: #f6f7fa;
+  padding-top: 20rpx;
+  padding-bottom: 110rpx;
+  min-height: 100vh;
+}
+.van-card{
+  background-color: #fff!important;
+}
+
+.panel {
+  width: 690rpx;
+  padding-bottom: 20rpx;
+  margin: 0 auto 20rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.panel .van-cell__title{
+  color:#111;
+  font-weight: 600;
+}
+.mini-cell{
+  padding-right: 10rpx!important;
+  padding-top:10rpx!important;
+  padding-bottom:10rpx!important;
+}
+.money-cell{
+  padding-right: 20rpx!important;
+}
+.money-cell .van-cell__value{
+  color:#ee0a24;
+}
+.mini-cell .van-cell__title{
+  color:#111;
+  font-weight: 400;
+  font-size: 24rpx;
+}
+.mini-cell .van-cell__value{
+  font-size: 24rpx;
+}
+.mini-cell .van-icon{
+  font-size: 24rpx;
+}
+
+.input-box{
+  width: 660rpx;
+  padding-bottom: 20rpx;
+  margin: 0 auto 20rpx;
+  background: #fafafa;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.input-box .van-cell {
+  background-color: transparent ;
+}
+.bot{
+  position: fixed;
+  width: 100%;
+  bottom:0;
+  padding: 0 20rpx;
+  height: 110rpx;
+  background: #fff;
+}
+.bot van-button{
+  width: 95%!important;
+}
+.bot1{
+  padding: 20rpx 0;
+}
+.bot1 van-button{
+  width: 95%!important;
+}
+.pop-tit{
+  line-height: 100rpx;
+}
+.van-checkbox {
+  flex-direction: row-reverse;
+}
+.van-cell__title, .van-cell__value {
+  overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}

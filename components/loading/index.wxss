@@ -1,0 +1,14 @@
+.no-auth{
+    padding: 100rpx;
+    text-align: center;
+    color: #999;
+    line-height: 46rpx;
+  }
+.no-more{
+  padding: 200rpx 0 40rpx;
+    text-align: center;
+    color: #999;
+}
+.no-more .iconfont {
+  font-size: 110rpx;
+}

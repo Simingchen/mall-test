@@ -1,0 +1,51 @@
+<wxs module="filter" src="../../../filter.wxs"></wxs>
+<view class="tab-list">
+  <van-tabs custom-class="tab-list" active="{{ curTabType }}" bind:change="tabsChange">
+    <van-tab title="{{item.name}}" wx:for="{{tabList}}" wx:key="index"></van-tab>
+  </van-tabs>
+</view>
+<block wx:for="{{curTab.list}}" wx:key="index" wx:for-item="items">
+  <view class="order-item panel" wx:for="{{items}}" wx:for-item="order" wx:key="order_no">
+    <view class="status flex-row-center">
+      <view>订单号: {{order.order_no}}</view>
+      <van-button round size="mini" data-item="{{order}}" plain type="info" bind:click="copy">复制</van-button>
+      <view class="primary">{{order.order_status}}</view>
+    </view>
+    <view bindtap="goDetail" data-item="{{order}}">
+      <view>
+        <block wx:for="{{order.order_goods}}" wx:key="index">
+          <van-card lazy-load class="goods" num="{{item.quantity}}" price="{{filter.filterMoney(item.goods_price)}}"
+            desc="{{item.spec_text}}" title="{{item.goods_title}}" thumb="{{item.img_url}}"> 
+            <view slot="footer">
+              <van-button size="mini"  custom-class="state-btn" type="default" round wx:if="{{item.is_refund}}">
+                  {{item.refund_way + item.refund_status}}   
+              </van-button>
+              <block wxif="{{(order.status == 1 || order.status == 2) && order.payment_status==2 && !item.is_refund}}">
+                <van-button type="default" round size="mini" catchtap="refund" data-item="{{item}}" data-order="{{order}}">申请售后
+                </van-button>
+              </block>
+            </view>
+          </van-card>
+        </block>
+      </view>
+      <view class="all-price flex-box">
+        <view class="price flex-box">
+          合计：
+          <view class="primary">¥{{filter.filterMoney(order.payable_amount)}}</view>
+        </view>
+        共1件
+      </view>
+    </view>
+    <view class="tool-bar flex-box">
+      <block wx:if="{{curTabType==0 && order.order_status == '待付款'}}">
+        <van-button type="default" round size="small" bindtap="pay" data-item="{{order}}">支付
+        </van-button>
+        <van-button type="default" round size="small" bindtap="cancel" data-item="{{order}}">取消订单
+        </van-button>
+      </block>
+      
+    </view>
+  </view>
+</block>
+<!-- 加载状态 -->
+<loading status="{{curTab.loadStatus}}" isEmpty="{{curTab.isEmpty}}" />

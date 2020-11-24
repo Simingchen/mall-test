@@ -1,0 +1,11 @@
+page{
+  background-color: #f6f7fa;
+  padding-top:30rpx;
+  min-height: 100vh;
+}
+.comfirm-btn{
+  width: 630rpx;
+  height: 86rpx;
+  margin-top: 56rpx;
+  border-radius: 10rpx!important;
+}

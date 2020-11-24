@@ -1,0 +1,30 @@
+<van-field label="房间名字" required model:value="{{ name }}" placeholder="最短3个汉字，最长17个汉字" maxlength="20" />
+<van-cell label="开始时间" required>
+	<view class="flex-row-center">
+		<picker mode="date" value="{{startDay}}" start="{{startDay}}" end="{{maxDay}}" bindchange="bindTimeChange" data-type="startDay">
+			<view class="picker">{{startDay}}</view>
+		</picker>
+		<picker mode="time" value="{{startTime}}" bindchange="bindTimeChange" data-type="startTime">
+			<view class="picker">{{startTime}}</view>
+		</picker>
+	</view>
+</van-cell>
+<van-cell label="结束时间" required>
+	<view class="flex-row-center">
+		<picker mode="date" value="{{endDay}}" start="{{startDay}}" end="{{maxDay}}" bindchange="bindTimeChange" data-type="endDay">
+			<view class="picker">{{endDay}}</view>
+		</picker>
+		<picker mode="time" value="{{endTime}}" bindchange="bindTimeChange" data-type="endTime">
+			<view class="picker">
+				{{endTime}}
+			</view>
+		</picker>
+	</view>
+</van-cell>
+<van-field label="主播昵称" required model:value="{{ anchorName }}" placeholder="请输入用户名" maxlength="20" />
+<van-field label="主播微信号" model:value="{{ anchorWechat }}" placeholder="请输入用户名" maxlength="20" />
+<van-field label="创建者微信号" model:value="{{ createrWechat }}" placeholder="请输入用户名" maxlength="20" />
+<van-field label="房间名字" model:value="{{ name }}" placeholder="请输入用户名" maxlength="20" />
+<view class="flex-center">
+	<van-button custom-class="comfirm-btn" type="danger" bindtap="confirm">确认</van-button>
+</view>

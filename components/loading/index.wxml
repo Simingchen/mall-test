@@ -1,0 +1,11 @@
+<!-- 没有内容 -->
+<view class="no-more" wx:if="{{isEmpty && status == 'noMore'}}">
+  <van-empty description="暂无相关内容" />
+</view>
+<!-- 加载状态 -->
+<block wx:if="{{status == 'loading'}}">
+  <van-loading size="24px">加载中...</van-loading>
+</block>
+<block wx:if="{{!isEmpty && status == 'noMore'}}">
+  <view class="onMoreloading">没有更多内容啦~</view>
+</block>

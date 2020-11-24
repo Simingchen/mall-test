@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "明细",
+  "usingComponents": {
+    "van-cell": "../../../@vant/cell/index",
+    "van-tabs": "../../../@vant/tabs/index",
+    "van-loading": "../../../@vant/loading/index",
+    "van-tab": "../../../@vant/tab/index",
+    "van-image": "../../../@vant/image/index"
+    
+  }
+}

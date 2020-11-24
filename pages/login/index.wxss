@@ -1,0 +1,52 @@
+page{
+  background: #f0f2f5;
+}
+.login-page{
+  margin-top: 80rpx;
+}
+.logo{
+  display: block;
+  width: 400rpx;
+  height: 400rpx;
+  margin: 120rpx auto 0rpx;
+}
+.w690{
+  width: 690rpx;
+  margin: 0 auto;
+}
+.login-btn{
+  display: block;
+  width:680rpx;
+  height:80rpx;
+  line-height: 80rpx;
+  border-radius:40rpx;
+  border:1rpx solid rgba(27,89,228,1);
+  color: #fff;
+  background: #026BF6FF;
+  font-size: 28rpx;
+  margin: 30rpx auto;
+  text-align: center;
+}
+.button{
+  display: block;
+  width:680rpx;
+  height:80rpx;
+  line-height: 80rpx;
+  border-radius:40rpx;
+  border:1rpx solid rgba(27,89,228,1);
+  color: #fff;
+  background: #026BF6FF;
+  font-size: 28rpx;
+  margin: 30rpx auto 0;
+}
+.logo-txt{
+  color:#999;
+  text-align: center;
+  line-height: 50rpx;
+}
+.link{
+  margin-top: 35rpx;
+  margin-left: 35rpx;
+  color:black;
+  font-size: 35rpx;
+}

@@ -1,0 +1,143 @@
+/* 购物车 =====S */
+.cart-page {
+  background: #f8f8f8;
+  min-height: 100vh;
+}
+
+.goods {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 690rpx;
+  padding-left: 30rpx;
+  margin: 0 auto 18rpx;
+  border-radius: 16rpx;
+  background: #fff;
+}
+
+.goods .van-checkbox__label {
+  margin-left: 0;
+}
+
+.cart-page .goods .van-card {
+  width: 620rpx;
+  padding: 30rpx;
+}
+
+.goods .van-card {
+  padding: 30rpx;
+}
+
+.goods .van-card__thumb {
+  width: 155rpx;
+  height: 155rpx;
+}
+.van-card{
+  background: #fff!important;
+}
+.goods .van-card__desc {
+  color: #999;
+}
+
+.goods .van-card__content {
+  min-height: auto;
+}
+
+.goods .van-card__title {
+  display: block;
+  width: 396rpx;
+  font-size: 26rpx;
+  color: #333;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  line-height: 54rpx;
+}
+
+.goods .van-card__price {
+  color: #ee5020;
+}
+
+.cart-page .edit-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  padding: 0 30rpx;
+  line-height: 100rpx;
+}
+
+.cart-page .van-submit-bar__price {
+  color: #ee5020;
+}
+.cart-page .van-submit-bar {
+  bottom: 98rpx;
+}
+
+.cart-page .edit .van-submit-bar__text text {
+  display: none;
+}
+
+.van-submit-bar__bar .van-checkbox__label {
+  color: #999;
+}
+
+/* .cart-page .van-submit-bar__price{
+    position: absolute;
+    right: -2.5rem;
+  } */
+/* .cart-page .van-submit-bar__text{
+    position: relative;
+    overflow: hidden;
+    padding-right: 1rem;
+    line-height: 1rem;
+  }
+  .cart-page .van-submit-bar__price--integer{
+    position: absolute;
+    right: 3rem;
+  } */
+.cart-page .disabled .van-image:after {
+  position: absolute;
+  content: "失效";
+  width: 2rem;
+  height: 0.85rem;
+  left: 0.9rem;
+  bottom: 0.25rem;
+  text-align: center;
+  line-height: 0.85rem;
+  color: #fff;
+  font-size: 0.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 0.85rem;
+}
+
+.cart-page .check-bar {
+  height: 120rpx;
+}
+.cart-page .van-button--danger {
+  background: -webkit-linear-gradient(left, #ff6034, #ee0a24);
+    background: linear-gradient(to right, #ff6034, #ee0a24);
+    border:0;
+}
+.empty-box{
+  text-align: center;
+}
+.empty-box .tit{
+  font-size: 30rpx;
+}
+.empty-box .txt{
+  font-size: 24rpx;
+  line-height: 100rpx;
+  color:#999;
+}
+.van-empty__image{
+  display: none;
+}
+/* 购物车 =====E */

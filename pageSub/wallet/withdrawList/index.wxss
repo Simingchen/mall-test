@@ -1,0 +1,10 @@
+page{
+  background: #f8f8f8;
+}
+.van-tab__pane{
+  display: none;
+}
+
+.tab-list{
+  margin-bottom: 10rpx;
+}
