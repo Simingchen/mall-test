@@ -29,19 +29,19 @@ Component({
           "selectedIconPath": "iconshouye",
           "iconPath": "iconshouye",
           "pagePath": "pages/index/index",
-          "text": "首页"
+          "text": "宫颜禧"
         },
         {
           "selectedIconPath": "iconweibiaoti35",
           "iconPath": "iconweibiaoti35",
           "pagePath": "pages/goodsSort/index",
-          "text": "产品"
+          "text": "美丽资讯"
         },
         {
           "selectedIconPath": "icontianchongxing-",
           "iconPath": "icontianchongxing-",
           "pagePath": "pages/cart/index",
-          "text": "购物车"
+          "text": "美丽播"
         },
         {
           "selectedIconPath": "iconwode",

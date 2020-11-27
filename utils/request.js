@@ -1,4 +1,4 @@
-const baseURL = "https://service.aomit.cn/"
+const baseURL = "http://8.129.87.241/lhss/Root/index.php/"
 
 export default function fetch(options, globalData) {
   return new Promise((resolve, reject) => {
@@ -19,12 +19,11 @@ export default function fetch(options, globalData) {
       //   resolve(401.3)
       //   return false
       // }
-      let perUrl = url.slice(0, 3) == 'api' ? '' : 'actions/'
       // console.log(`${baseURL}`)
       // console.log(`${perUrl}`)
       // console.log(`${url}`)
       wx.request({
-        url: `${baseURL + perUrl + url}`,
+        url: `${baseURL + url}`,
         header,
         method,
         data: reqParams,

@@ -4,15 +4,13 @@ import "./weapp-cookie/index";
 //app.js
 App({
   async onLaunch () {
-    // this.getConfig()
-
     // 登录
-    // wx.login({
-    //   success: res => {
-    //     this.login(res.code)
-    //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
-    //   }
-    // })
+    wx.login({
+      success: res => {
+        this.login(res.code)
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+      }
+    })
     // 获取用户信息
     wx.getSetting({
       success: (res) => {
@@ -33,14 +31,6 @@ App({
         }
       },
     });
-    const userInfo = wx.getStorageSync('userInfo')
-
-    if (userInfo.id) {
-      const res = await this.fetch({ url: `GetMyCart.ashx`})
-      this.globalData.cartNum = res.GoodsList.length
-      console.log(this.globalData.cartNum)
-    }
-    
   },
   
   globalData: {
@@ -81,32 +71,13 @@ App({
       },
     });
   },
-  // 获取配置信息
-  async getConfig(code) {
-    const config = await this.fetch({
-      url: `api/C/Anonymous/System/GetConfig`,
-    });
-    this.globalData.config = config;
-  },
-  // 上报记录
-  setRecord(type, id) {
+  // login
+  login(code) {
     const data = {
-      id,
-      type,
+      code,
     };
     this.fetch({
-      url: "api/C/Anonymous/Record/Record",
-      data,
-    });
-  },
-  // 分享
-  setShare(type, id) {
-    const data = {
-      id,
-      type,
-    };
-    this.fetch({
-      url: "api/C/Common/Share/Share",
+      url: "Api/Api/getOpenId",
       data,
     });
   },
