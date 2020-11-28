@@ -97,9 +97,8 @@ Page({
   async getData (par) {
     const data = {
       "id": par.id,
-	    "channel_id": par.channel_id
     }
-    let detail = await app.fetch({url: "GetGoodsDetails.ashx", data })
+    let detail = await app.fetch({url: "Api/Goods/detail", data })
     // detail.fields.video_src = 'https://www.w3school.com.cn/i/movie.ogg'
 
     try {

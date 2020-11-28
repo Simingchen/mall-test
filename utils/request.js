@@ -43,7 +43,7 @@ export default function fetch(options, globalData) {
           }
           response = (response && response[0]) || {}
 
-          if (response.Status == 201 || response.Status.slice(0, 1) == 4) {
+          if (response.Status == 20) {
             wx.showToast({
               title: response.Msg,
               icon: "none"

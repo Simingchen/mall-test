@@ -1,0 +1,35 @@
+<view class="search-bar">
+  <van-search value="{{ searchTxt }}" placeholder="输入需要搜索的内容" shape="round" use-action-slot bind:change="onChange"
+    bind:search="onSearch" maxlength="50">
+  </van-search>
+</view>
+<view class="info-item" bindtap="goUrl">
+  <image mode="aspectFill" class="img"
+    src="https://www.vchello.com/vchello_main/20190514/fae2c6592c5c4216a56ecfb62771eac3/b86fc616c0934394979312d04ba978b9.jpg">
+  </image>
+  <view class="con">
+    <view class="name">网鱼网咖要上市 王思聪图什么</view>
+    <view class="flex-row-center">
+      <view class="time">2019-05-14</view>
+      <view class="flex-box">
+        <view class="c9">
+          <text class="iconfont iconchakan primary"></text>
+          1234
+        </view>
+        <view class="ml30 c9">
+          <text class="iconfont icondianzan primary"></text>
+          1234
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<block wx:for="{{curTab.list}}" wx:key="index">
+
+</block>
+
+<!-- 加载状态 -->
+<loading status="{{curTab.loadStatus}}" isEmpty="{{curTab.isEmpty}}" />
+
+<!-- tabbar -->
+<tabBar selected="1"/>

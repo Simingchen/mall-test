@@ -232,7 +232,7 @@ form {
 }
 
 .primary{
-  color:#ff0000;
+  color:#00a5a5;
 }
 
 .iconmagnifier{

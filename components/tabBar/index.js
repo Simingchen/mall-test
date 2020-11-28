@@ -34,7 +34,7 @@ Component({
         {
           "selectedIconPath": "iconweibiaoti35",
           "iconPath": "iconweibiaoti35",
-          "pagePath": "pages/goodsSort/index",
+          "pagePath": "pages/infoList/index",
           "text": "美丽资讯"
         },
         {

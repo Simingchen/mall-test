@@ -1,120 +1,85 @@
-.icon-set{
-  position: absolute;
-  top: 30rpx;
-  right: 30rpx;
-  font-size: 50rpx;
-}
+
 page{
   background-color: #f6f7fa;
   min-height: 100vh;
 }
-/* 我的页面 S======== */
-.member-page {
-  padding-top: 30rpx;
-}
-
 
 .member-page .van-tabbar-item__icon .img {
   width: 54rpx;
   height: 44rpx;
 }
 
-.member-page .van-cell__title {
-  font-weight: 500;
-}
 
-.member-page .integral-panel .btn {
-  width: 120rpx;
-  height: 50rpx;
-  text-align: center;
-  line-height: 50rpx;
-  border-radius: 50rpx;
-  font-size: 24rpx;
-  color: #fff;
-  background: #fa78ac;
-}
-
-.member-page .panel {
-  width: 690rpx;
+.panel {
+  width: 710rpx;
   margin: 0 auto 20rpx;
   background: #fff;
   border-radius: 16rpx;
   overflow: hidden;
 }
-.order-panel{
-  padding-bottom:20rpx;
-}
 
 .member-page .top-panel {
   position: relative;
-  padding: 30rpx 0 30rpx 30rpx;
+  padding-top: 30rpx;
   margin-bottom: 30rpx;
   color: #fff;
+  background: #00a5a5;
   font-size: 24rpx;
   font-weight: 500;
-  background: #ee5020;
 }
+
 .avatar-box{
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin-right: 30rpx;
   text-align: center;
 }
-.member-page .top-panel .avatar {
+.top-panel .avatar {
   display: block;
   width: 110rpx;
   height: 110rpx;
-  
+  margin-top: 20rpx;
   margin-bottom: 10rpx;
   border-radius: 110rpx;
   background: #eee;
-  /* border: 1rpx solid #ccc; */
 }
-
-.member-page .top-panel .name {
-  font-size: 30rpx;
-  line-height: 40rpx;
-  margin-top: 8rpx;
+.top-panel .label{
+  padding: 8rpx 10rpx;
+  background: rgba(0,0,0,.5);
+  margin: 10rpx 10rpx 0;
+  border-radius: 8rpx;
+  font-size: 20rpx;
+  color:#ffff80;
 }
-
-.member-page .top-panel .name-box {
-  position: relative;
-  width: 485rpx;
-  min-height: 145rpx;
-  /* line-height: 46rpx; */
-  /* padding-right: 160rpx; */
+.iconzuanshi{
+  color:#ffff80;
 }
-.member-page .top-panel .mt20{
-  margin-top: 16rpx;
+.recommender{
+  padding: 15rpx 20rpx;
+  margin-top: 30rpx;
+  background: rgba(0,0,0,.5);
+  border-radius: 99rpx 0 0 99rpx;
+  font-size: 20rpx;
 }
-.top-panel .name-box  .point-line{
-  margin-top: 20rpx;
-  justify-content: space-between;
+.iconshezhi{
+  font-size: 40rpx;
+  margin-left: 20rpx;
 }
-.goods-url{
-  margin-top: 10rpx;
+.share-code{
+  padding: 5rpx 10rpx;
+  background: rgba(0,0,0,.5);
+  margin-right: 20rpx;
+  border-radius: 8rpx;
 }
-.member-page .integral-panel {
-  padding: 20rpx 30rpx 30rpx;
-  line-height: 50rpx;
-  font-size: 22rpx;
-  color: #666;
-}
-
-.member-page .integral-panel .amount {
-  font-weight: 700;
-  line-height: 1;
-  font-size: 34rpx;
+.share-code .iconfont{
+  margin-right: 6rpx;
 }
 
 .member-page .van-cell {
-  font-size: 24rpx;
   color: #333;
   line-height: 100rpx;
   padding: 0 30rpx;
   display: flex;
   align-items: center;
+  font-weight: 500;
 }
 
 .member-page .van-cell .van-cell__right-icon {
@@ -127,58 +92,68 @@ page{
   font-size: 24rpx;
 }
 
-.member-page .van-info {
-  background: #e52c87;
-  min-width: 40rpx;
+
+.tool-list {
+  flex-wrap: wrap;
+}
+.tool-list .item {
+  flex-direction: column;
+  flex-basis: 25%;
+  padding:0;
+  margin: 0;
+  padding-bottom: 40rpx;
+  font-size: 24rpx;
+  line-height: 60rpx;
+  background: transparent;
+}
+.tool-list .iconfont {
+  width: 50rpx;
+  height: 50rpx;
+  font-size: 50rpx;
+}
+.noborder:after{
+  border:0;
+}
+.user-tool{
+  width: 710rpx;
+  height: 80rpx;
+  margin: 0 auto;
+  background: #333;
+  border-radius: 12rpx;
+}
+.user-tool .iconfont{
+  margin-right: 10rpx;
+}
+.user-tool .item{
+  flex:1;
 }
 
-/* 我的页面 E======== */
-.order-cell {
-  color:#333;
-  text-align: center;
-}
-.order-cell .txt{
-  line-height: 40rpx;
-}
-.c9{
-  margin-left: 40rpx;
-}
-.mb20{
-  margin-bottom: 20rpx;
-}
-.money-panel{
-  padding: 30rpx;
-  font-size: 24rpx;
-  text-align: center;
-  line-height: 30rpx;
-  color: #919191;
-  background-image: linear-gradient(to right, #3a3a3a, #2b2b2b, #222222) !important;
-}
-.money-panel .num{
-  color: #fff;
-  font-weight: 600;
-  line-height: 60rpx;
-  font-size: 28rpx;
-}
-.money-panel .flex4{
-  position: relative;
-  flex:4;
-}
-.account-money {
-  position: relative;
-  flex: 3;
-  color:#fff;
-  text-align: left;
-}
-.money-panel .flex4:after{
-  position: absolute;
-  content: "";
+.share-moment {
+  width: 300px;
+  height: 360px;
+  position: fixed;
+  left: 0;
+  right: 0;
   top: 0;
-  left:0;
-  height: 74rpx;
-  width:1px;
-  border-right: 1rpx solid #5b5b5b;
+  bottom: 100rpx;
+  margin: auto;
+  z-index: 200;
 }
-.account-money .num{
-  color:#ffbe53;
+.mask{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom:0;
+  background: rgba(0,0,0,.3);
+  z-index: 20;
+}
+.share-moment .btn-box {
+  padding: 1060rpx 60rpx 0 60rpx;
+}
+
+.share-moment .bottom {
+  width: 300px;
+  height: 40px;
+  background-color: white;
 }

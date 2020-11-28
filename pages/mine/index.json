@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "我的",
+  "navigationBarTitleText": "个人中心",
   "usingComponents": {
     "van-cell": "../../@vant/cell/index",
     "van-tabbar": "../../@vant/tabbar/index",

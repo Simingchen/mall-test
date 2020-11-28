@@ -1,0 +1,26 @@
+page{
+  background-color: #f6f7fa;
+  min-height: 100vh;
+}
+.info-item{
+  width: 710rpx;
+  background: #fff;
+  border-radius: 12rpx;
+  margin: 20rpx;
+  overflow: hidden;
+}
+.info-item .img{
+  display: block;
+  width: 100%;
+  height: 400rpx;
+}
+.info-item .con{
+  padding: 20rpx 20rpx 30rpx;
+}
+.info-item .name{
+  margin-bottom: 10rpx;
+  line-height: 50rpx;
+}
+.info-item .time{
+  color:#999;
+}

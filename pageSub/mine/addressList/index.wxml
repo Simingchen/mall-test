@@ -9,7 +9,9 @@
     </view>
     <van-icon name="edit"/>
   </view>
+  <van-loading size="24px" wx:if="{{!isLoaded}}">加载中...</van-loading>
+  <van-empty description="暂无地址~" wx:if="{{!caseTab.list.length && isLoaded}}"/>
 </view>
 <view class="bottom-btn" wx:if="{{caseTab.list.length < 7}}">
-  <van-button custom-class="add-btn" type="danger" block round bind:click="goUrl">添加新地址</van-button>
+  <van-button custom-class="add-btn" block round bind:click="goUrl" color="#00a5a5">添加新地址</van-button>
 </view>

@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/goodsSort/index",
+    "pages/infoList/index",
     "pages/cart/index",
     "pages/mine/index",
     "pages/login/index"
@@ -82,7 +82,7 @@
       {
         "selectedIconPath": "./static/tab/21.png",
         "iconPath": "./static/tab/2.png",
-        "pagePath": "pages/goodsSort/index",
+        "pagePath": "pages/infoList/index",
         "text": "美丽资讯"
       },
       {

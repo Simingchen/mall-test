@@ -28,12 +28,12 @@
       "disablePlugins": [],
       "outputPath": ""
     },
+    "enableEngineNative": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "enableEngineNative": false,
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
@@ -209,6 +209,17 @@
           "name": "直播发布",
           "pathName": "pageSub/live/post/index",
           "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/infoList/index",
+          "pathName": "pages/infoList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "资讯详情",
+          "pathName": "pageSub/index/infoDetail/index",
           "scene": null
         }
       ]

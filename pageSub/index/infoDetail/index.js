@@ -5,6 +5,7 @@ let wxparse = require("../../../wxParse/wxParse.js");
 Page({
   data: {
     detail: {},
+    isDig: false
   },
   onLoad (option) {
 
@@ -16,13 +17,13 @@ Page({
       })
 
       this.getData(detail.id)
+      this.dataReport(detail.id)
     };
   },
 
   async getData (id) {
-    let detail = await app.fetch({url: "GetNewsDetails.ashx", data: {id} })
+    let detail = await app.fetch({url: "Api/Article/detail", data: {id} })
 
-    detail.add_time = detail.add_time && detail.add_time.replace('T', ' ')
     this.setData({
       detail
     })
@@ -31,6 +32,26 @@ Page({
       wxparse.wxParse('content', 'html', detail.content, this, 5)
     }
   },
+  // 数据上报
+  async dataReport (id) {
+    let detail = await app.fetch({url: "Api/Article/detail", data: {id} })
+  },
+  // 点赞
+  dig: app.throttle(async function () {
+    if (this.data.isDig) {
+      await app.fetch({url: "Api/Article/detail", data: {id: this.data.detail.id} })
+      this.setData({
+        isDig: false
+      })
+      return false
+    }
+
+    await app.fetch({url: "Api/Article/detail", data: {id: this.data.detail.id} })
+    this.setData({
+      isDig: true
+    })
+
+  }),
   //转发
   onShareAppMessage1 (res) {
     console.log("button分享页面的内容")
@@ -42,7 +63,6 @@ Page({
     const item = encodeURIComponent(JSON.stringify({
       Id: detail.NewsId
     }))
-    app.setShare(1, detail.NewsId)
     return {
       title: detail.Title,
       path: `/pageSub/index/infoDetail/index?item=${item}&scene=${app.globalData.userInfo.invitation_code}`,
