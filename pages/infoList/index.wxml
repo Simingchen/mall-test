@@ -3,33 +3,33 @@
     bind:search="onSearch" maxlength="50">
   </van-search>
 </view>
-<view class="info-item" bindtap="goUrl">
-  <image mode="aspectFill" class="img"
-    src="https://www.vchello.com/vchello_main/20190514/fae2c6592c5c4216a56ecfb62771eac3/b86fc616c0934394979312d04ba978b9.jpg">
-  </image>
-  <view class="con">
-    <view class="name">网鱼网咖要上市 王思聪图什么</view>
-    <view class="flex-row-center">
-      <view class="time">2019-05-14</view>
-      <view class="flex-box">
-        <view class="c9">
-          <text class="iconfont iconchakan primary"></text>
-          1234
-        </view>
-        <view class="ml30 c9">
-          <text class="iconfont icondianzan primary"></text>
-          1234
+
+<block wx:for="{{curTab.list}}" wx:key="index">
+  <view class="info-item" bindtap="goUrl" wx:for="{{item}}" wx:key="index" wx:for-item="info" data-item="{{info}}">
+    <image mode="aspectFill" class="img"
+      src="{{info.banner}}">
+    </image>
+    <view class="con">
+      <view class="name">{{info.title}}</view>
+      <view class="flex-row-center">
+        <view class="time">{{info.post_date_formal}}</view>
+        <view class="flex-box">
+          <view class="c9">
+            <text class="iconfont iconchakan primary"></text>
+            1234
+          </view>
+          <view class="ml30 c9">
+            <text class="iconfont icondianzan primary"></text>
+            1234
+          </view>
         </view>
       </view>
     </view>
   </view>
-</view>
-<block wx:for="{{curTab.list}}" wx:key="index">
-
 </block>
 
 <!-- 加载状态 -->
 <loading status="{{curTab.loadStatus}}" isEmpty="{{curTab.isEmpty}}" />
 
 <!-- tabbar -->
-<tabBar selected="1"/>
+<tabBar selected="1" />

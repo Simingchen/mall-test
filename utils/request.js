@@ -41,34 +41,22 @@ export default function fetch(options, globalData) {
           if (Object.prototype.toString.call(response) == "[object String]") {
             return reject()
           }
-          response = (response && response[0]) || {}
 
-          if (response.Status == 20) {
+          if (response.code != 200) {
             wx.showToast({
-              title: response.Msg,
+              title: response.msg,
               icon: "none"
             })
 
-            if (response.Status == 405) {
-              wx.navigateTo({
-                url: '/pages/login/index',
-              })
-            }
+            
             return false
-          }
-
-          if (response.Status == 500) {
-            return wx.showToast({
-              title: response.Msg,
-              icon: "none"
-            })
           }
 
           // 自动刷新token
           if (response && response.Data && response.Data[0] && response.Token) {
             wx.setStorageSync("token", response.Token)
           }
-          resolve(response.Data && response.Data[0])
+          resolve(response.data)
         },
         fail(err) {
           console.error(err)

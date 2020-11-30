@@ -29,9 +29,16 @@
 }
 
 .dig-box{
+  margin-top: 100rpx;
   flex-direction: column;
 }
 .dig-box .iconfont{
   font-size: 40rpx;
   margin-bottom: 20rpx;
+}
+.banner{
+  display: block;
+  width: 100%;
+  height: 400rpx;
+  border-radius: 12rpx;
 }

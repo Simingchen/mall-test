@@ -11,13 +11,12 @@ Page({
 
     if(option.item) {
       const detail = JSON.parse(decodeURIComponent(option.item));
-
+      console.log(detail)
       this.setData({
         detail
       })
 
       this.getData(detail.id)
-      this.dataReport(detail.id)
     };
   },
 

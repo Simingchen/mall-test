@@ -83,16 +83,16 @@ Page({
     
 
     this.loading = true
-    const res = await app.fetch({url: "Api/Article/list", data })
+    const res = await app.fetch({url: "Api/Article/alist", data })
     this.loading = false
 
     const curTab = `curTab`
     this.setData({
       [curTab + '.isLoaded']: true,
-      [curTab + '.page']: {...curTabItem.page, finished: !res.HasNextPage},
-      [curTab + '.isEmpty']: ![...curTabItem.list, ...res.Items ].length,
-      [curTab + '.list[' + (curTabItem.page.page - 1) + ']']: res.Items,
-      [curTab + '.loadStatus']: res.HasNextPage? 'loading' : 'noMore',
+      // [curTab + '.page']: {...curTabItem.page, finished: !res.HasNextPage},
+      [curTab + '.isEmpty']: ![...curTabItem.list, ...res ].length,
+      [curTab + '.list[' + (curTabItem.page.page - 1) + ']']: res,
+      // [curTab + '.loadStatus']: res.HasNextPage? 'loading' : 'noMore',
     })
   },
   // 上拉加载

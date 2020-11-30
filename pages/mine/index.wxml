@@ -9,9 +9,9 @@
 			</view>
 		</view>
 		<view class="flex-center avatar-box">
-			<image class="avatar" mode="aspectFill" src="{{detail.avatar}}" />
+			<image class="avatar" mode="aspectFill" src="{{detail.headimgurl}}" />
 			<view class="name-box flex-start">
-				彭于晏 <view class="label flex-center">普通会员</view>
+				{{detail.nickname}} <view class="label flex-center">普通会员</view>
 				<view class="iconfont iconzuanshi"></view>
 			</view>
 		</view>
