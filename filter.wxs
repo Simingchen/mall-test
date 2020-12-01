@@ -1,6 +1,6 @@
 var filters = {
   // 添加前缀 0
-  format10: function(data) {
+  format10: function (data) {
     if (isNaN(data)) return 0;
     if (data < 10) return "0" + data;
     return data;
@@ -10,11 +10,13 @@ var filters = {
       return "0.00";
     }
     console.log(parseFloat(value))
-     // 截取当前数据到小数点后三位
+    // 截取当前数据到小数点后三位
     var tempVal = parseFloat(value).toFixed(3);
 
     var realVal = tempVal.substring(0, tempVal.length - 1);
     return realVal;
   },
+  
+
 }
 module.exports = filters

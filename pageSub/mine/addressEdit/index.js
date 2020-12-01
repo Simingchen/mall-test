@@ -29,7 +29,6 @@ Page({
     };
     wx.setNavigationBarTitle({
       title: detail.id > 0 ? '编辑地址' : '新增地址',
-      
     })
     this.setData({
       isEdit: detail.id > 0,
@@ -40,7 +39,7 @@ Page({
     id
   }) { //节流
     const res = await app.fetch({
-      url: "api/C/Common/msg/GetDetail",
+      url: "/Api/Address/address_edit",
       data: {
         Id: id
       }
@@ -111,19 +110,16 @@ Page({
     }
     const data = {
       "id": par.id,
-      "accept_name": par.userName,
-      "province": par.areaValues[0].name,
-      "city": par.areaValues[1].name,
-      "area": par.areaValues[2].name,
-      "address": par.address,
+      "name": par.userName,
+      "provinceid": par.areaValues[0].id,
+      "cityid": par.areaValues[1].id,
+      "districtid": par.areaValues[2].id,
+      "remark": par.address,
       "mobile": par.phone,
       is_default: Number(par.checked),
-      // "email": "@qq.com",
-      // "post_code": "515000"
     }
     const res = await app.fetch({
-      method: 'post',
-      url: "SaveUserAddress.ashx",
+      url: "Api/Address/address_edit",
       data
     })
 

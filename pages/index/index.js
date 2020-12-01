@@ -18,20 +18,20 @@ Page({
     if (option.scene) {
       wx.setStorageSync("scene", option.scene);
 
-      this.parseCode(option.scene)
+      // this.parseCode(option.scene)
     }
   },
   async onShow() {
-    this.getBanner();
-    this.getMsgList();
-    this.getNavList();
-    this.getEventList();
-    this.getGoodsList();
-    // this.getExchangeList();
-    this.getLiveList()
-    this.setData({
-      cartNum: app.globalData.cartNum,
-    });
+    // this.getBanner();
+    // this.getMsgList();
+    // this.getNavList();
+    // this.getEventList();
+    // this.getGoodsList();
+    // // this.getExchangeList();
+    // this.getLiveList()
+    // this.setData({
+    //   cartNum: app.globalData.cartNum,
+    // });
   },
   // 获取直播列表
   async getLiveList () {

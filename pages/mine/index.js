@@ -13,7 +13,10 @@ Page({
     }
   },
   onShow () {
-    this.getData()
+    // this.getData()
+    this.setData({
+      userInfo: wx.getStorageSync('userInfo') || {}
+    })
   },
   async getData () {
     const detail = await app.fetch({method: 'post', url: "Api/Api/addUser"})

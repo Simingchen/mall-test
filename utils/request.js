@@ -7,9 +7,9 @@ export default function fetch(options, globalData) {
     let token = wx.getStorageSync('token')
     let header = token ? { 'Authorization': token } : {}
     try {
-      // if (method.toUpperCase() == 'POST' || method.toUpperCase() == 'PUT') {
-      //   header['content-type'] = 'application/json'
-      // }
+      if (method.toUpperCase() == 'POST' || method.toUpperCase() == 'PUT') {
+        header['content-type'] = 'application/x-www-form-urlencoded'
+      }
       // 显示加载
       if (isShowLoading) { wx.showLoading({ title: '' }) }
 
@@ -42,20 +42,22 @@ export default function fetch(options, globalData) {
             return reject()
           }
 
-          if (response.code != 200) {
+          // 单独处理获取openid接口，改返回格式不一样
+          if (url.indexOf('Api/getOpenId') != -1) {
+            return resolve(response)
+          }
+
+
+          if (response.code != 200 && url.indexOf('Api/addUse') == -1) {
+
             wx.showToast({
-              title: response.msg,
+              title: response.msg || '',
               icon: "none"
             })
-
             
             return false
           }
 
-          // 自动刷新token
-          if (response && response.Data && response.Data[0] && response.Token) {
-            wx.setStorageSync("token", response.Token)
-          }
           resolve(response.data)
         },
         fail(err) {

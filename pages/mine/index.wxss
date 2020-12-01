@@ -52,9 +52,12 @@ page{
 .iconzuanshi{
   color:#ffff80;
 }
+.recommender-bar{
+  margin-top: 30rpx;
+  height: 60rpx;
+}
 .recommender{
   padding: 15rpx 20rpx;
-  margin-top: 30rpx;
   background: rgba(0,0,0,.5);
   border-radius: 99rpx 0 0 99rpx;
   font-size: 20rpx;

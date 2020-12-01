@@ -1,7 +1,8 @@
+<wxs module="filter" src="../../../filter.wxs"></wxs>
 <import src="../../../wxParse/wxParse.wxml"/> 
 <view class="title">{{detail.title}}</view>
 <view class="time-box flex-row-center">
-  <view class="time">{{detail.post_date_formal}}</view>
+  <view class="time">{{detail.post_date_formal || filter.filterTime(detail.post_date)}}</view>
   <view class="company c9">
     <!-- {{detail.ClassNames}} -->
   </view>
@@ -13,7 +14,7 @@
 </view>
 <view class="dig-box flex-center {{isDig? 'primary': ''}}" bindtap="dig">
   <view class="iconfont icondianzan"></view>
-  123
+  {{digNum}}
 </view>
 
 <!-- 分享 -->

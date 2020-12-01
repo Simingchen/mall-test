@@ -5,7 +5,8 @@ let wxparse = require("../../../wxParse/wxParse.js");
 Page({
   data: {
     detail: {},
-    isDig: false
+    isDig: false,
+    digNum: 0,
   },
   onLoad (option) {
 
@@ -17,12 +18,16 @@ Page({
       })
 
       this.getData(detail.id)
+      this.getDig(detail.id)
     };
   },
 
   async getData (id) {
     let detail = await app.fetch({url: "Api/Article/detail", data: {id} })
 
+    detail.post_date = this.filterTime(detail.post_date)
+
+    console.log(detail)
     this.setData({
       detail
     })
@@ -33,12 +38,19 @@ Page({
   },
   // 数据上报
   async dataReport (id) {
-    let detail = await app.fetch({url: "Api/Article/detail", data: {id} })
+    let detail = await app.fetch({url: "/Api/Article/zan", data: {id} })
+  },
+  // 点赞数
+  async getDig (id) {
+    let digNum = await app.fetch({url: "/Api/Article/zan", data: {aid: id} })
+    this.setData({
+      digNum
+    })
   },
   // 点赞
   dig: app.throttle(async function () {
     if (this.data.isDig) {
-      await app.fetch({url: "Api/Article/detail", data: {id: this.data.detail.id} })
+      await app.fetch({url: "/Api/Article/zan", data: {id: this.data.detail.id} })
       this.setData({
         isDig: false
       })
@@ -51,6 +63,11 @@ Page({
     })
 
   }),
+  filterTime: function (date) {
+    date = new Date()
+    console.log(date)
+    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+  },
   //转发
   onShareAppMessage1 (res) {
     console.log("button分享页面的内容")

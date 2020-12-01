@@ -21,50 +21,6 @@ Page({
         this.login();
       }
     );
-
-    return;
-    let that = this;
-    wx.getSetting({
-      success: async (res) => {
-        if (res.authSetting["scope.userInfo"]) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          //静默授权
-          wx.getUserInfo({
-            success: async (res) => {
-              // console.log("静默授权========>", res);
-
-              let loginRes = await wx.login({});
-              console.log("loginRes=======>", loginRes);
-              if (loginRes.errMsg != "login:ok") {
-                return app.toast("登录失败，重新登录");
-              }
-
-              that.setData(
-                {
-                  loginCode: loginRes.code,
-                },
-                () => {
-                  that.login();
-                }
-              );
-            },
-          });
-        } else {
-          //未授权
-          // that.setData({ loginByPhone: false });
-          let loginRes = await wx.login({});
-          console.log("loginRes=======>", loginRes);
-          if (loginRes.errMsg != "login:ok") {
-            return app.toast("登录失败，重新登录");
-          }
-
-          that.setData({ loginCode: loginRes.code }, () => {
-            // that.login()
-            console.log(that.data);
-          });
-        }
-      },
-    });
   },
   //获取用户信息
   async onGetUserInfo({ detail }) {
@@ -76,29 +32,14 @@ Page({
 
     // 交换信息
     const data = {
-      encryptedDataStr: detail.encryptedData,
-      sessionKey: this.data.loginRes.session_key,
-      iv: detail.iv,
+      nickname: detail.userInfo.nickName, 
+      headimg: detail.userInfo.avatarUrl, 
+      openid: this.data.loginRes.openid,
+      // unionid
     };
 
-    const res = await app.fetch({ method: "post", url: `GetAESDecrypt.ashx`, data });
-
-    const par = {
-      nick_name: res.nickName,
-      wx_openid: res.openId,
-      unionid: res.unionId,
-      avatar: res.avatarUrl,
-      sex: res.gender,
-    };
-    const code = wx.getStorageSync("scene");
-
-    if (code) {
-      par.recommend_code = code;
-    }
-
-    const res1 = await app.fetch({ method: "post", url: `Login.ashx`, data: par });
-
-    wx.setStorageSync("token", res1.Token);
+    const res = await app.fetch({ url: `Api/Api/addUser`, data });
+    
     wx.setStorageSync("userInfo", res);
     app.globalData.userInfo = res;
 
@@ -129,8 +70,11 @@ Page({
     const data = {
       code: this.data.loginCode,
     };
-    const res = await app.fetch({ method: "post", url: `GetMiniAppUserUnionID.ashx`, data });
-
+    
+    const res = await app.fetch({
+      url: "Api/Api/getOpenId",
+      data
+    })
     this.setData({
       loginRes: res,
     });

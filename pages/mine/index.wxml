@@ -3,23 +3,28 @@
 	<view class="top-panel">
 		<view class="flex-row-center">
 			<view class="iconfont iconshezhi"></view>
-			<view class="share-code flex-start" bindtap="setPoster">
+			<view class="share-code flex-start" bindtap="setPoster" wx:if="{{userInfo.openid}}">
 				<text class="iconfont iconico"></text>
 				分享码
 			</view>
 		</view>
-		<view class="flex-center avatar-box">
+		<view class="flex-center avatar-box" >
 			<image class="avatar" mode="aspectFill" src="{{detail.headimgurl}}" />
-			<view class="name-box flex-start">
+			<view class="name-box flex-start" wx:if="{{userInfo.openid}}">
 				{{detail.nickname}} <view class="label flex-center">普通会员</view>
 				<view class="iconfont iconzuanshi"></view>
 			</view>
+			<navigator url="/pages/login/index" class="name-box flex-start" wx:if="{{!userInfo.openid}}">
+				登录
+			</navigator>
 		</view>
-		<view class="flex-row-center">
-			<view class=""></view>
-			<view class="recommender">
-				推荐人：刘德华
-			</view>
+		<view class="flex-row-center recommender-bar" >
+			<block wx:if="{{userInfo.openid}}">
+				<view class=""></view>
+				<view class="recommender">
+					推荐人：刘德华
+				</view>
+			</block>
 		</view>
 		<view class="user-tool flex-box">
 			<view class="item flex-center" bindtap="goUrl" data-url="/pageSub/mine/orderList/index">

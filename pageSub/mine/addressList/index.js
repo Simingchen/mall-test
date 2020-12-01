@@ -37,16 +37,12 @@ Page({
     curTabItem.page.page ++
 
     let data = {
-      "page_size":"10",
-      "page_index":"0"
+      "uid": app.globalData.unionid,
     }
     
     this.loading = true
-    const res = await app.fetch({method: 'post', url: "GetUserAddrBookList.ashx", data })
+    const res = await app.fetch({url: "Api/Address/address_list", data })
     this.loading = false
-    res.list.forEach(item => {
-      item.area1 = item.area.replace(/,/g, ' ')
-    })
 
     this.setData({
       ['caseTab.isLoaded']: true,
