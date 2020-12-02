@@ -33,7 +33,7 @@ App({
   },
   
   globalData: {
-    userInfo: {},
+    userInfo: wx.getStorageSync('userInfo') || {},
     openData: {}
   },
   // async await

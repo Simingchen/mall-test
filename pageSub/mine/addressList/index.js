@@ -3,7 +3,7 @@ const regeneratorRuntime = app.runtime
 Page({
   data: {
     list: [],
-    caseTab: {
+    curTab: {
       isLoaded: false,
       loadStatus: "loading",   // 加载状态
       page: {   // 页码
@@ -18,9 +18,9 @@ Page({
     this.getList(true)
   },
   async getList (init) {
-    const { caseTab } = this.data
+    const { curTab } = this.data
     
-    const curTabItem = caseTab
+    const curTabItem = curTab
     // 初始化
     if (init) {
       curTabItem.page.page = 0;
@@ -29,7 +29,7 @@ Page({
       this.loading = false
       // 清空数据
       this.setData({
-        'caseTab.list': []
+        'curTab.list': []
       })
     }
     if (this.loading || curTabItem.page.finished) return;
@@ -37,7 +37,7 @@ Page({
     curTabItem.page.page ++
 
     let data = {
-      "uid": app.globalData.unionid,
+      "uid": app.globalData.userInfo.id,
     }
     
     this.loading = true
@@ -45,12 +45,12 @@ Page({
     this.loading = false
 
     this.setData({
-      ['caseTab.isLoaded']: true,
-      ['caseTab.page']: {...curTabItem.page, finished: !res.list.length},
-      ['caseTab.list']: [...curTabItem.list, ...res.list ],
-      ['caseTab.loadStatus']: res.list.length? 'loading' : 'noMore',
+      ['curTab.isLoaded']: true,
+      ['curTab.page']: {...curTabItem.page, finished: true},
+      ['curTab.list']: [...curTabItem.list, ...(res || []) ],
+      ['curTab.loadStatus']: 'noMore',
     }, () => {
-      console.log(this.data.caseTab)
+      console.log(this.data.curTab)
     })
   },
   // 上拉加载
@@ -58,7 +58,7 @@ Page({
     this.getList();
   },
   goUrl ({currentTarget}) {
-    const item = encodeURIComponent(JSON.stringify(currentTarget.dataset.item))
+    const item = currentTarget.dataset.item ? encodeURIComponent(JSON.stringify(currentTarget.dataset.item)) : "{}"
     wx.navigateTo({
       url: `/pageSub/mine/addressEdit/index?item=${item}`,
     })

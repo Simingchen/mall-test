@@ -15,9 +15,11 @@ Page({
   },
   onLoad(options) {
     let detail = {}
+
+    console.log(options)
     if (options.item) {
       detail = JSON.parse(decodeURIComponent(options.item));
-      detail.area = detail.area.replace(/,/g, '/')
+      // detail.area = detail.area.replace(/,/g, '/')
       this.setData({
         "id": detail.id,
         userName: detail.accept_name,

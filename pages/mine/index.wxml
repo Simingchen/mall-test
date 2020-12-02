@@ -9,9 +9,9 @@
 			</view>
 		</view>
 		<view class="flex-center avatar-box" >
-			<image class="avatar" mode="aspectFill" src="{{detail.headimgurl}}" />
+			<image class="avatar" mode="aspectFill" src="{{userInfo.headimgurl}}" />
 			<view class="name-box flex-start" wx:if="{{userInfo.openid}}">
-				{{detail.nickname}} <view class="label flex-center">普通会员</view>
+				{{userInfo.nickname}} <view class="label flex-center">普通会员</view>
 				<view class="iconfont iconzuanshi"></view>
 			</view>
 			<navigator url="/pages/login/index" class="name-box flex-start" wx:if="{{!userInfo.openid}}">

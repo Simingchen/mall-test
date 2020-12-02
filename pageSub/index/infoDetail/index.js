@@ -19,6 +19,7 @@ Page({
 
       this.getData(detail.id)
       this.getDig(detail.id)
+      this.getIsDig(detail.id)
     };
   },
 
@@ -47,21 +48,40 @@ Page({
       digNum
     })
   },
+  // 是否点赞
+  async getIsDig (id) {
+    const data = {
+      "uid": app.globalData.userInfo.id,
+      aid: id,
+      action: 'add'
+    }
+    let res = await app.fetch({url: "/Api/Article/zan", data })
+    
+    if (res.code == 201) {
+      this.setData({
+        isDig: true,
+      })
+    }
+  },
   // 点赞
   dig: app.throttle(async function () {
-    if (this.data.isDig) {
-      await app.fetch({url: "/Api/Article/zan", data: {id: this.data.detail.id} })
+    const data = {
+      "uid": app.globalData.userInfo.id,
+      aid: this.data.detail.id
+    }
+    if (!this.data.isDig) {
+      await app.fetch({url: "Api/Article/zan", data: {
+        ...data,
+        action: 'add'
+      } })
       this.setData({
-        isDig: false
+        isDig: true,
+        digNum: parseFloat(this.data.digNum) + 1
       })
       return false
+    } else {
+      app.toast("你已点赞")
     }
-
-    await app.fetch({url: "Api/Article/detail", data: {id: this.data.detail.id} })
-    this.setData({
-      isDig: true
-    })
-
   }),
   filterTime: function (date) {
     date = new Date()

@@ -48,7 +48,7 @@ export default function fetch(options, globalData) {
           }
 
 
-          if (response.code != 200 && url.indexOf('Api/addUse') == -1) {
+          if (response.code != 200 && url.indexOf('Api/addUse') == -1 && url.indexOf('Article/zan') == -1) {
 
             wx.showToast({
               title: response.msg || '',
@@ -58,7 +58,7 @@ export default function fetch(options, globalData) {
             return false
           }
 
-          resolve(response.data)
+          resolve(response.data || response)
         },
         fail(err) {
           console.error(err)

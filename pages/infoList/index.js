@@ -85,6 +85,9 @@ Page({
     this.loading = true
     const res = await app.fetch({url: "Api/Article/alist", data })
     this.loading = false
+    res.forEach(item =>{
+      item.post_date = this.filterTime(item.post_date)
+    })
 
     const curTab = `curTab`
     this.setData({
@@ -99,10 +102,15 @@ Page({
   onReachBottom() {
     this.getList();
   },
-  goUrl ({currentTarget}) {
+  goUrl: app.throttle(function ({currentTarget}) {
     const item = encodeURIComponent(JSON.stringify(currentTarget.dataset.item))
     wx.navigateTo({
       url: `/pageSub/index/infoDetail/index?item=${item}`,
     })
+  }, 100),
+  filterTime: function (date) {
+    date = new Date(date)
+    console.log(date)
+    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
   },
 });
