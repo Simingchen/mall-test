@@ -27,7 +27,7 @@ Page({
     curExprsssRadio: '',
     isShowExpressPop: false,
     curPay: {},
-    curPayRadio: '3',
+    curPayRadio: 3,
     isShowPayPop: false,
     isShowAddrList: false,
     isShowAddrEdit: false,
@@ -35,14 +35,13 @@ Page({
       {id: 4, title: '微信支付'},
       {id: 3, title: '余额支付'},
     ],
-    addressInfo: {
-      name: "",
-      tel: "",
-      province: "",
-      city: "",
-      county: "",
-      addressDetail: "",
-    },
+    payPhone: "",   // 支付号码
+    payPassword: '',
+    payPassword2: '',
+    isSendCode: false,  // 是否已经发送支付验证码
+    seconds: 60,
+    imgCode: '',
+    verifyCode: ''
   },
   async onLoad (option) {
     try {
@@ -53,6 +52,7 @@ Page({
       const detail = JSON.parse(decodeURIComponent(option.item));
        this.setData({
         detail,
+        payPhone: wx.getStorageSync('userInfo').phone
        }, () => {
         wx.hideLoading()
       })
@@ -61,15 +61,15 @@ Page({
    } catch (e) {
      console.error(e)
    }
-   this.GetExpressList()
+  //  this.GetExpressList()
  },
  onShow() {
   this.getAddrList()
  },
- // 留言
- onChangeMsg({detail}) {
+ // 输入框更改
+ onChangeInput({currentTarget, detail}) {
   this.setData({
-    message: detail
+    [currentTarget.dataset.type]: detail.trim()
   })
  },
  // 关闭弹窗
@@ -171,9 +171,10 @@ Page({
   },
   // 提交订单
   async onSubmit () {
+    this.togglePayPop()
+    return false
     const { curAddress, curExpress, curPay, goodsJsonData, message } = this.data
 
-    const area = curAddress.area.split(',')
     console.log(goodsJsonData)
     const data = {
       goodsJsonData,
@@ -193,18 +194,19 @@ Page({
 
     // 余额支付
     if (curPay.id == 3) {
-      const par2 = {
-        pay_order_no: resOrder.order_no
-      }
-      await app.fetch({url: "api/payment/balance/index.ashx", data: par2 })
+      this.togglePayPop()
+      // const par2 = {
+      //   pay_order_no: resOrder.order_no
+      // }
+      // await app.fetch({url: "api/payment/balance/index.ashx", data: par2 })
 
-      app.toast('支付成功')
+      // app.toast('支付成功')
 
-      setTimeout(() => {
-        wx.redirectTo({
-          url: '/pageSub/mine/orderList/index?index=1',
-        })
-      }, 1000)
+      // setTimeout(() => {
+      //   wx.redirectTo({
+      //     url: '/pageSub/mine/orderList/index?index=1',
+      //   })
+      // }, 1000)
     }
     // 微信支付
     if (curPay.id == 4) {
@@ -248,5 +250,65 @@ Page({
     wx.navigateTo({
       url: '/pageSub/mine/addressEdit/index',
     })
+  },
+  async getCode () {
+    console.log("sdf")
+    const {isSendCode, payPhone } = this.data
+    if (isSendCode) return;
+
+    if (!payPhone.length) {
+      app.toast('获取验证码手机号不能为空')
+      return false
+    }
+    // if (!(/^1[3456789]\d{9}$/.test(Phone))) {
+    //   wx.showToast({
+    //     title: '手机号码格式有误',
+    //     icon: "none"
+    //   })
+
+    //   return false
+    // }
+
+    const data = {
+      Phone: payPhone,
+    }
+    // await app.fetch({url: 'api/C/Anonymous/ValidateCode/SendCode', data})
+    app.toast("短信验证码已经发送,注意查收,长时间未收到短信请点击重新发送")
+    this.setTimer()
+    this.setData({isSendCode: true})
+  },
+  setTimer () {
+    clearInterval(this.timer)
+    let seconds = this.data.seconds
+    this.timer= setInterval(() => {
+      seconds --
+
+      if (seconds <= 0) {
+        clearInterval(this.timer)
+        this.setData({isSendCode: false, seconds: 60})
+        return false;
+      }
+
+      this.setData({seconds})
+    }, 1000)
+  },
+  // 余额确认支付
+  confirmPay () {
+    const { imgCode, verifyCode, payPassword, payPassword2 } = this.data
+    if (!imgCode.length) {
+      return app.toast('请输入图形验证码')
+    }
+    if (!verifyCode.length) {
+      return app.toast('请输入手机验证码')
+    }
+    if (!payPassword.length) {
+      return app.toast('请输入支付密码')
+    }
+    if (!payPassword2.length) {
+      return app.toast('请再次输入支付密码')
+    }
+    if (payPassword != payPassword2) {
+      return app.toast('再次输入的密码不一致')
+    }
   }
 });

@@ -1,11 +1,11 @@
-page {
-  min-height: 100vh;
-  background: #f8f8f8;
-}
+
 
 .addr-box {
   padding: 80rpx 20rpx 40rpx;
   font-weight: normal;
+}
+.pay-pop{
+  padding: 0rpx 20rpx 40rpx;
 }
 
 .addAddr-btn {
@@ -21,4 +21,10 @@ page {
 }
 .van-card{
   background: #fff!important;
+}
+.pay-pop-tit{
+  line-height: 100rpx;
+}
+.pay-pop-btn{
+  margin-top: 40rpx;
 }

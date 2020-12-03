@@ -220,6 +220,13 @@
         {
           "name": "资讯详情",
           "pathName": "pageSub/index/infoDetail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pageSub/index/submitOrder/index",
+          "pathName": "pageSub/index/submitOrder/index",
+          "query": "",
           "scene": null
         }
       ]

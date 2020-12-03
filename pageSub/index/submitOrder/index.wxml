@@ -2,18 +2,19 @@
 <view wx:if="{{isLoaded}}">
   <view class="panel">
     <van-cell title="{{curAddress.id ? (curAddress.name + ' ' + curAddress.mobile) : '请添加地址'}}"
-      label="{{curAddress.id ? (curAddress.province +curAddress.city +curAddress.district + curAddress.remark) : ''}}" is-link border="{{false}}"
-      bind:click="toggleAddrPop">
+      label="{{curAddress.id ? (curAddress.province +curAddress.city +curAddress.district + curAddress.remark) : ''}}"
+      is-link border="{{false}}" bind:click="toggleAddrPop">
     </van-cell>
   </view>
-  <view class="panel">
+  <!-- <view class="panel">
     <van-cell value="{{curExpress.title}}" title="配送方式" is-link bind:click="toggleExpressPop"></van-cell>
-  </view>
+  </view> -->
 
   <view class="panel">
     <!-- <view wx:for="{{detail.GoodsList}}" wx:key="index"> -->
-      <van-card lazy-load currency="¥" num="{{detail.quality}}" thumb-mode="aspectFill" price="{{filter.filterMoney(detail.price)}}"
-        title="{{detail.name}}" thumb="{{detail.banner}}" desc="{{detail.msg}}"></van-card>
+    <van-card lazy-load currency="¥" num="{{detail.quality}}" thumb-mode="aspectFill"
+      price="{{filter.filterMoney(detail.price)}}" title="{{detail.name}}" thumb="{{detail.banner}}"
+      desc="{{detail.msg}}"></van-card>
     <!-- </view> -->
     <van-cell title="" class="fee" border="{{false}}">
       共{{detail.quality}}件 <text class="c21">商品小计：</text>
@@ -21,12 +22,21 @@
     </van-cell>
   </view>
   <view class="panel">
-    <van-cell value="{{curPay.title}}" title="支付方式" is-link bind:click="togglePayPop"></van-cell>
+    <van-cell title="支付方式"></van-cell>
+    <van-radio-group value="{{ curPayRadio }}">
+      <van-cell-group border="{{false}}">
+        <van-cell title="{{item.title}}" wx:for="{{payList}}" wx:key="index" clickable data-name="{{item.id}}"
+          bind:click="onClickPay">
+          <van-radio slot="right-icon" name="{{item.id}}" checked-color="#00a5a5" />
+        </van-cell>
+      </van-cell-group>
+    </van-radio-group>
   </view>
 
   <view class="panel mes-panel">
     <van-field value="{{message}}" rows="2" autosize label="买家留言" type="textarea" maxlength="50"
-      placeholder="留言建议提前协商（50字以内）" show-word-limit bind:change="onChangeMsg"></van-field>
+      placeholder="留言建议提前协商（50字以内）" show-word-limit bind:change="onChangeInput"
+      data-type="message"></van-field>
   </view>
 
   <view class="check-bar">
@@ -40,7 +50,8 @@
   <view class="addr-box">
     <van-radio-group value="{{ curAddressRadio }}" bind:change="onChangeAddr">
       <van-cell-group border="{{false}}">
-        <van-cell title="{{item.name + ' ' + item.mobile}}" label="{{curAddress.province +curAddress.city +curAddress.district + curAddress.remark}}"
+        <van-cell title="{{item.name + ' ' + item.mobile}}"
+          label="{{curAddress.province +curAddress.city +curAddress.district + curAddress.remark}}"
           wx:for="{{addrlist}}" wx:key="index" clickable data-name="{{item.id}}" bind:click="onClickAddr">
           <van-radio slot="right-icon" name="{{item.id}}" />
         </van-cell>
@@ -64,7 +75,7 @@
   </view>
 </van-popup>
 <!-- 支付选择 -->
-<van-popup show="{{isShowPayPop}}" position="bottom" round closeable bind:close="onClosePop">
+<!-- <van-popup show="{{isShowPayPop}}" position="bottom" round closeable bind:close="onClosePop">
   <view class="addr-box">
     <van-radio-group value="{{ curPayRadio }}">
       <van-cell-group border="{{false}}">
@@ -75,5 +86,27 @@
       </van-cell-group>
     </van-radio-group>
   </view>
+</van-popup> -->
+<!-- 余额支付 -->
+<van-popup show="{{isShowPayPop}}" position="bottom" round closeable bind:close="onClosePop">
+  <view class="pay-pop">
+    <view class="flex-center pay-pop-tit">支付</view>
+    <van-cell title="手机号码" value="{{payPhone}}"></van-cell>
+    <van-field value="{{ imgCode }}" center clearable placeholder="请输入图像验证码" bind:change="onChangeInput"
+      data-type="imgCode" use-button-slot>
+      <van-button slot="button" size="small" type="primary" plain round>发送验证码</van-button>
+    </van-field>
+    <van-field value="{{ verifyCode }}" center clearable placeholder="请输入短信验证码" bind:change="onChangeInput"
+      data-type="verifyCode" use-button-slot>
+      <van-button slot="button" size="small" type="primary" color="{{isSendCode? '#999' : '#07c160'}}" plain round bind:click="getCode">
+        <view wx:if="{{isSendCode}}">{{seconds}}S后重新获取</view>
+        <block wx:else>获取验证码</block>
+      </van-button>
+    </van-field>
+    <van-field value="{{ payPassword }}" type="password" placeholder="请输入支付密码" bind:change="onChangeInput"
+      data-type="payPassword" />
+    <van-field value="{{ payPassword2 }}" type="password" placeholder="请再次输入支付密码" bind:change="onChangeInput"
+      data-type="payPassword2" />
+    <van-button round type="info" block color="#00a5a5" custom-class="pay-pop-btn" bind:click="confirmPay">确认支付</van-button>
+  </view>
 </van-popup>
-
