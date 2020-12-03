@@ -1,8 +1,8 @@
 <wxs module="filter" src="../../../filter.wxs"></wxs>
 <view wx:if="{{isLoaded}}">
   <view class="panel">
-    <van-cell title="{{curAddress.id ? (curAddress.accept_name + ' ' + curAddress.mobile) : '请添加地址'}}"
-      label="{{curAddress.id ? (curAddress.area + curAddress.address) : ''}}" is-link border="{{false}}"
+    <van-cell title="{{curAddress.id ? (curAddress.name + ' ' + curAddress.mobile) : '请添加地址'}}"
+      label="{{curAddress.id ? (curAddress.province +curAddress.city +curAddress.district + curAddress.remark) : ''}}" is-link border="{{false}}"
       bind:click="toggleAddrPop">
     </van-cell>
   </view>
@@ -11,13 +11,13 @@
   </view>
 
   <view class="panel">
-    <view wx:for="{{detail.GoodsList}}" wx:key="index">
-      <van-card lazy-load currency="¥" num="{{item.quantity}}" price="{{filter.filterMoney(item.user_price)}}"
-        title="{{item.title}}" thumb="{{item.img_url}}" desc="{{item.spec_text}}"></van-card>
-    </view>
+    <!-- <view wx:for="{{detail.GoodsList}}" wx:key="index"> -->
+      <van-card lazy-load currency="¥" num="{{detail.quality}}" thumb-mode="aspectFill" price="{{filter.filterMoney(detail.price)}}"
+        title="{{detail.name}}" thumb="{{detail.banner}}" desc="{{detail.msg}}"></van-card>
+    <!-- </view> -->
     <van-cell title="" class="fee" border="{{false}}">
-      共{{detail.GoodsTotal.total_quantity}}件 <text class="c21">商品小计：</text>
-      <text class="cf5">¥ {{filter.filterMoney(detail.GoodsTotal.payable_amount)}}</text>
+      共{{detail.quality}}件 <text class="c21">商品小计：</text>
+      <text class="cf5">¥ {{filter.filterMoney(detail.quality * detail.price)}}</text>
     </van-cell>
   </view>
   <view class="panel">
@@ -30,7 +30,7 @@
   </view>
 
   <view class="check-bar">
-    <van-submit-bar price="{{ detail.GoodsTotal.payable_amount * 100 }}" button-text="提交订单" bind:submit="onSubmit">
+    <van-submit-bar price="{{detail.price * 100 * detail.quality}}" button-text="提交订单" bind:submit="onSubmit">
     </van-submit-bar>
   </view>
 </view>
@@ -40,7 +40,7 @@
   <view class="addr-box">
     <van-radio-group value="{{ curAddressRadio }}" bind:change="onChangeAddr">
       <van-cell-group border="{{false}}">
-        <van-cell title="{{item.accept_name + ' ' + item.mobile}}" label="{{item.area + item.address}}"
+        <van-cell title="{{item.name + ' ' + item.mobile}}" label="{{curAddress.province +curAddress.city +curAddress.district + curAddress.remark}}"
           wx:for="{{addrlist}}" wx:key="index" clickable data-name="{{item.id}}" bind:click="onClickAddr">
           <van-radio slot="right-icon" name="{{item.id}}" />
         </van-cell>

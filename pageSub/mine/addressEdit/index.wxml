@@ -1,7 +1,7 @@
 <view class="van-address-list">
   <van-field clearable label="姓名" maxlength="10" model:value="{{ userName }}" placeholder="收货人姓名" />
   <van-field clearable label="手机" maxlength="11" type="number" model:value="{{ phone }}" placeholder="收货人手机号" />
-  <van-cell custom-class="area-cell" title="地区" is-link value="{{area? area : '选择省/市/区' }}" bindtap="togglePop" />
+  <van-cell custom-class="area-cell" title="地区" is-link value="{{area? area : '请选择省/市/区' }}" bindtap="togglePop" />
   <van-field clearable label="详细地址" maxlength="50" model:value="{{ address }}" autosize border="{{false}}"
     type="textarea" placeholder="街道门牌，楼层房间号等信息" />
 </view>

@@ -61,10 +61,15 @@
   <van-popup show="{{isShowSku}}" round closeable position="bottom" bind:close="toggleSku">
     <view class="sku-pop">
       <view class="sku-goods flex-box">
-        <image class="sku-img" mode="aspectFill" src="{{detail.banner}}" bindtap="prewiewSkuImg" />
+        <image class="sku-img" mode="aspectFill" src="{{detail.img_url}}" bindtap="prewiewSkuImg" />
         <view class="sku-price">
           <view class="price">
+            <block wx:if="{{!skuDetail.sell_price}}">
+              ￥{{filter.filterMoney(detail.fields ? detail.fields.sell_price : 0)}}
+            </block>
+            <block wx:else>
               ￥{{filter.filterMoney(detail.price)}}
+            </block>
           </view>
           <!-- 有SKU 才有选择显示 -->
           <block wx:if="{{skuList.length}}">

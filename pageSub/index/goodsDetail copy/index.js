@@ -240,9 +240,9 @@ Page({
   confirmSku () {
     const { curSkuPopType, skuDetail, skuList } = this.data
 
-    // if (!skuDetail.id && skuList.length) {
-    //   return app.toast('请选择规格')
-    // }
+    if (!skuDetail.id && skuList.length) {
+      return app.toast('请选择规格')
+    }
 
     if (curSkuPopType == 1) {
       this.addCart()
@@ -272,18 +272,28 @@ Page({
   },
   // 立即购买
   async buyIt () {
+    const { detail, quality, skuDetail, isSeckillEnd } = this.data
+
+    if (isSeckillEnd) {
+      return app.toast('团购已结束')
+    }
+    const data = {
+      "goodsJsonData": [{
+        "article_id": detail.id,
+        "goods_id": skuDetail.id || 0,
+        "quantity": quality,
+        channel_id: detail.channel_id
+      }]
+    }
     this.setData({
       isShowSku: !this.data.isShowSku
-    })  
-    const par = {
-      ...this.data.detail,
-      quality: this.data.quality
-    }
+    })
 
-    const item = encodeURIComponent(JSON.stringify(par))
+    const item = encodeURIComponent(JSON.stringify(data))
     wx.navigateTo({
       url: `/pageSub/index/submitOrder/index?item=${item}`,
     })
+    // await app.fetch({url: "BuyCartGoods.ashx", data })
   },
   // 分享
   setPoster() {

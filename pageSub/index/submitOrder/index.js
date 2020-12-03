@@ -50,14 +50,9 @@ Page({
       wx.showLoading({
         title: '加载中',
       })
-      const data = JSON.parse(decodeURIComponent(option.item));
-        
-       await app.fetch({url: "BuyCartGoods.ashx", data })
-       const detail = await app.fetch({url: "GetOrderInfo.ashx" })
-       
+      const detail = JSON.parse(decodeURIComponent(option.item));
        this.setData({
         detail,
-        goodsJsonData: data.goodsJsonData
        }, () => {
         wx.hideLoading()
       })
@@ -99,25 +94,16 @@ Page({
  // 获取地址列表
  async getAddrList() {
   let data = {
-    "page_size":"10",
-    "page_index":"0"
+    "uid": app.globalData.userInfo.id,
   }
-  const res = await app.fetch({method: 'post', url: "GetUserAddrBookList.ashx", data })
-  res.list.forEach(item => {
-    item.area = item.area.replace(/,/g, ' ')
-  })
+  const res = await app.fetch({url: "Api/Address/address_list", data })
 
-  const defaultList = res.list.filter(item => item.is_default)
-  let curAddress = {}
-  // 没有默认地址悬着第一个
-  if (!defaultList.length) {
-    curAddress = res.list[0]
-  } else {
-    curAddress = defaultList[0]
-  }
-
+  const defaultList = res.filter(item => item.is_default > 0)
+  // 没有默认地址选着第一个
+  let curAddress = !defaultList.length ? curAddress = res[0] : defaultList[0]
+  
   this.setData({
-    addrlist: res.list,
+    addrlist: res,
     curAddress,
     curAddressRadio: curAddress.id,
   })

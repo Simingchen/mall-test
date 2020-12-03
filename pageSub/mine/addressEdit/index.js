@@ -18,7 +18,7 @@ Page({
     let detail = {}
 
     console.log(options)
-    if (options.item) {
+    if (options.item != "{}") {
       detail = JSON.parse(decodeURIComponent(options.item));
       this.setData({
         "id": detail.id,
@@ -127,11 +127,10 @@ Page({
           console.log('用户点击确定')
 
           const data = {
-            check_ids: this.data.id
+            id: this.data.id
           }
           const res = await app.fetch({
-            method: 'post',
-            url: "DeleteUserAddress.ashx",
+            url: "Api/Address/address_del",
             data
           })
       
