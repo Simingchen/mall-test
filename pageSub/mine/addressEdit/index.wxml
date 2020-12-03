@@ -6,8 +6,8 @@
     type="textarea" placeholder="街道门牌，楼层房间号等信息" />
 </view>
 <view class="van-address-list">
-  <van-cell title="设为默认收货地址" center>
-    <van-switch checked="{{ checked }}" bind:change="onChange" data-checked="{{checked}}" size="24px"/>
+  <van-cell title="设为默认收货地址" center border="{{false}}">
+    <van-switch checked="{{ checked }}" bind:change="onChange" data-checked="{{checked}}" active-color="#00a5a5" size="24px"/>
   </van-cell>
 </view>
 
@@ -17,5 +17,5 @@
 </view>
 
 <van-popup show="{{ isShowArea }}" position="bottom" bind:close="togglePop">
-  <van-area area-list="{{ areaList }}" bind:cancel="togglePop" bind:confirm="confirmArea" />
+  <van-area area-list="{{ areaList }}" value="{{code}}" bind:cancel="togglePop" bind:confirm="confirmArea" />
 </van-popup>

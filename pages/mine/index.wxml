@@ -21,8 +21,8 @@
 		<view class="flex-row-center recommender-bar" >
 			<block wx:if="{{userInfo.openid}}">
 				<view class=""></view>
-				<view class="recommender">
-					推荐人：刘德华
+				<view class="recommender" wx:if="{{userInfo.promoter_user_id}}">
+					推荐人：{{userInfo.promoter_user_id}}
 				</view>
 			</block>
 		</view>

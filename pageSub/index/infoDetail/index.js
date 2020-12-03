@@ -25,10 +25,6 @@ Page({
 
   async getData (id) {
     let detail = await app.fetch({url: "Api/Article/detail", data: {id} })
-
-    detail.post_date = this.filterTime(detail.post_date)
-
-    console.log(detail)
     this.setData({
       detail
     })
@@ -83,11 +79,6 @@ Page({
       app.toast("你已点赞")
     }
   }),
-  filterTime: function (date) {
-    date = new Date()
-    console.log(date)
-    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-  },
   //转发
   onShareAppMessage1 (res) {
     console.log("button分享页面的内容")

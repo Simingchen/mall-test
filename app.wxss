@@ -4,6 +4,8 @@ page {
   color: #333;
   font: 28rpx/1 "sans-serif", "Helvetica Neue", "Hiragino Sans GB",
     "WenQuanYi Micro Hei", "Microsoft Yahei", sans-serif;
+  background: #f8f8f8;
+  min-height: 100vh;
 }
 button {
   color: #333;

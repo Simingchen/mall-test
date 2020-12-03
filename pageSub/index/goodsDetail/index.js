@@ -24,7 +24,6 @@ Page({
   async onLoad (option) {
      try {
       let detail = {}
-      console.log(option);
       // 存储邀请码
       if (option.scene) {
         wx.setStorageSync("scene", option.scene);
@@ -45,7 +44,6 @@ Page({
       if (option.id) {
         detail = {
           "id": option.id,
-          "channel_id": option.channel_id
         }
 
         this.getData(detail)
@@ -56,14 +54,6 @@ Page({
     }
 
     const userInfo = wx.getStorageSync('userInfo')
-
-    if (userInfo.id) {
-      const res = await app.fetch({ url: `GetMyCart.ashx`})
-      app.globalData.cartNum = res.GoodsList.length
-      this.setData({
-        cartNum: res.GoodsList.length
-      })
-    }
   },
   onUnload () {
     clearTimeout(this.timer)
@@ -96,10 +86,9 @@ Page({
   },
   async getData (par) {
     const data = {
-      "id": par.id,
+      "id": 1,
     }
     let detail = await app.fetch({url: "Api/Goods/detail", data })
-    // detail.fields.video_src = 'https://www.w3school.com.cn/i/movie.ogg'
 
     try {
       // 团购倒计时
@@ -127,9 +116,7 @@ Page({
     }
     console.log("detail===>", detail)
     this.setInfo(detail)
-    this.getSkuList(detail.id, detail.channel_id)
-
-
+    // this.getSkuList(detail.id, detail.channel_id)
   },
   // 商品收藏
   onCollect: app.throttle(async function({currentTarget}){  //节流
@@ -329,13 +316,12 @@ Page({
     })
   },
   setPoster2(res) {
-    console.log(res)
+    // console.log(res)
     let that = this;
     
     const globalData = app.globalData
 
     // 创建画布
-    // const ctx = canvas.getContext('2d')
     const width = res[0].width
     const height = res[0].height
 
@@ -353,14 +339,11 @@ Page({
 
     // 主图
     let img1 = canvas.createImage();
-    img1.src = this.data.detail.img_url
+    img1.src = this.data.detail.banner
 
     img1.onload = async (res) => {
       // console.log(res)
       ctx.drawImage(img1, 0, 0, 300, 300)
-      const SharePage = globalData.config.SharePage || '/pages/index/index'
-      const page = SharePage.slice(0,1) == '/' ? SharePage.slice(1) : SharePage
-
       
       // 设置字体
       ctx.font = "14px Arial";
@@ -368,7 +351,7 @@ Page({
       //  ctx.textAlign = "center";
       // 设置颜色
       ctx.fillStyle = '#333333FF' // 文字颜色：黑色
-      let title = that.data.detail.title
+      let title = that.data.detail.name
       if (title.length <= 14) {
         // 不用换行
         ctx.fillText(title, 10, 320, 180)
@@ -393,9 +376,8 @@ Page({
       }
 
       const data = {
-        // page,
-        share_type: 1,
-        channel_id: this.data.detail.channel_id,
+        page: '/pages/index/index',
+        "uid": app.globalData.userInfo.id,
         id: this.data.detail.id,
         // width: 500,
         // id: 4
@@ -405,7 +387,7 @@ Page({
       let img2 = canvas.createImage();
 
       if (!this.data.qrCode) {
-        const imgUrl = await app.fetch({ url: "CreateMiniWxCode.ashx", data })
+        const imgUrl = await app.fetch({ url: "Api/Goods/share", data })
         img2.src = imgUrl.qrcode;
 
         this.setData({

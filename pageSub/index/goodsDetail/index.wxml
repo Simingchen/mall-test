@@ -7,10 +7,10 @@
     <image wx:else class="img" mode='aspectFill' src="{{item.original_path}}" />
   </swiper-item>
 </swiper>
-<image class="banner-img" wx:if="{{!detail.albums.length}}" mode="aspectFill" src="{{detail.img_url}}"></image>
+<image class="banner-img" wx:if="{{!detail.albums.length}}" mode="aspectFill" src="{{detail.banner}}"></image>
 <view>
   <view class="flex-box">
-    <view class="goods-name">{{detail.title}}</view>
+    <view class="goods-name">{{detail.name}}</view>
     <view class="share flex-center" bindtap="setPoster">
       <van-icon name="share" />   
       分享
@@ -20,9 +20,9 @@
     <view class="flex-start">
       <view class="lab" wx:if="{{detail.channel_id == 11}}">团购价：</view>
       <view class="currency">
-        {{detail.channel_id == 12? '积分 ' : '￥'}}
+        ￥
       </view>
-      <view class="price">{{detail.fields.sell_price || detail.fields.point}}</view>
+      <view class="price">{{detail.price}}</view>
       <!-- <del class="del-price">{{}}</del> -->
     </view>
     <view class="count">销量 {{detail.fields.sales}}</view>

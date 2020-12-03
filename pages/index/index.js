@@ -189,7 +189,11 @@ Page({
       is_red: "1",
     };
     const res = await app.fetch({ url: "GetGoodsList.ashx", data });
-
+  goLocalUrl: app.throttle(function ({ currentTarget }) {
+    //节流
+    let url = currentTarget.dataset.url;
+    wx.navigateTo({ url });
+  }),
     this.setData({
       goodsList: res.list,
     });
@@ -203,11 +207,7 @@ Page({
     });
   }),
   // 专卖店列表
-  goLocalUrl: app.throttle(function ({ currentTarget }) {
-    //节流
-    let url = currentTarget.dataset.url;
-    wx.navigateTo({ url });
-  }),
+
   goDetail: app.throttle(function ({ currentTarget }) {
     //节流
     const item = encodeURIComponent(JSON.stringify(currentTarget.dataset.item));
@@ -249,5 +249,5 @@ Page({
     wx.navigateTo({
       url: '/pageSub/index/locationList/index',
     })
-  }
+  },
 });

@@ -2,10 +2,10 @@
   <view class="van-address-item" wx:for="{{curTab.list}}" data-item="{{item}}" bindtap="goUrl" wx:key="index">
     <view class="van-cell__value  van-address-item__value">
       <view class="van-address-item__name">
-        {{item.accept_name}} {{item.mobile}}
-        <text class="van-tag" wx:if="{{item.is_default}}">默认</text>
+        {{item.name}} {{item.mobile}}
+        <text class="van-tag" wx:if="{{item.is_default > 0 }}">默认</text>
       </view>
-      <view class="van-address-item__address">{{item.area1}} {{item.address}}</view>
+      <view class="van-address-item__address">{{item.province}} {{item.city}} {{item.district}} {{item.remark}}</view>
     </view>
     <van-icon name="edit"/>
   </view>

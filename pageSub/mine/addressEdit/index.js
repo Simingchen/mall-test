@@ -7,6 +7,7 @@ Page({
     phone: '',
     area: '',
     address: '',
+    code: '',
     areaValues: [],
     isShowArea: false,
     areaList: cityList,
@@ -19,14 +20,14 @@ Page({
     console.log(options)
     if (options.item) {
       detail = JSON.parse(decodeURIComponent(options.item));
-      // detail.area = detail.area.replace(/,/g, '/')
       this.setData({
         "id": detail.id,
-        userName: detail.accept_name,
-        "area": detail.area,
-        "address": detail.address,
+        userName: detail.name,
+        code: detail.code,
+        "area": `${detail.province}/${detail.city}/${detail.district}`,
+        "address": detail.remark,
         phone: detail.mobile,
-        checked: Boolean(detail.is_default)
+        checked: detail.is_default > 0
       })
     };
     wx.setNavigationBarTitle({
@@ -36,23 +37,6 @@ Page({
       isEdit: detail.id > 0,
     })
   },
-  // 获取数据
-  getData: app.throttle(async function ({
-    id
-  }) { //节流
-    const res = await app.fetch({
-      url: "/Api/Address/address_edit",
-      data: {
-        Id: id
-      }
-    })
-    this.setData({
-      userName: '',
-      phone: '',
-      area: '',
-      address: '',
-    })
-  }),
   togglePop() {
     this.setData({
       isShowArea: !this.data.isShowArea
@@ -99,11 +83,10 @@ Page({
     }
 
     if (!par.areaValues.length) {
-      const area = par.area.split('/')
       par.areaValues = [
-        {name: area[0]},
-        {name: area[1]},
-        {name: area[2]},
+        {name: par.area[0]},
+        {name: par.area[1]},
+        {name: par.area[2]},
       ]
     }
 
@@ -111,14 +94,15 @@ Page({
       return app.toast('请选择地区')
     }
     const data = {
-      "id": par.id,
+      "uid": app.globalData.userInfo.id,
       "name": par.userName,
-      "provinceid": par.areaValues[0].id,
-      "cityid": par.areaValues[1].id,
-      "districtid": par.areaValues[2].id,
+      "code": par.areaValues[2].code || this.data.code,
       "remark": par.address,
       "mobile": par.phone,
-      is_default: Number(par.checked),
+      is_default: par.checked,
+    }
+    if (par.id) {
+      data.id = par.id
     }
     const res = await app.fetch({
       url: "Api/Address/address_edit",
