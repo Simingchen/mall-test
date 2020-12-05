@@ -10,16 +10,16 @@
       src="{{info.banner}}">
     </image>
     <view class="con">
-      <view class="name">{{info.title}}</view>
+      <view class="name ellipsis2">{{info.title}}</view>
       <view class="flex-row-center">
         <view class="time">{{info.post_date_formal}}</view>
         <view class="flex-box">
           <view class="c9">
-            <text class="iconfont iconchakan primary"></text>
+            <text class="iconfont iconchakan"></text>
             {{info.visit}}
           </view>
           <view class="ml30 c9">
-            <text class="iconfont icondianzan primary"></text>
+            <text class="iconfont icondianzan"></text>
             {{info.zan}}
           </view>
         </view>

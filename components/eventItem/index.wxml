@@ -1,0 +1,18 @@
+<!-- 活动 -->
+<block wx:for="{{list}}" wx:key="index" >
+	<view class="event-item {{item.StatusDesc == '进行中' ? 'active' : ''}} {{item.StatusDesc == '已结束' ? 'end' : ''}}" bindtap="goUrl" data-item="{{item}}">
+		<image class="img" mode="aspectFill" lazy-load src="{{item.MainImg}}"/>
+		<view class="tit flex-box">
+			<view class="name flex-item ellipsis2">{{item.Theme || item.Title}}</view>
+			<view class="tag">{{item.StatusDesc}}</view>
+		</view>
+		<view class="desc" wx:if="{{item.SubTitle}}">{{item.SubTitle}}</view>
+		<view class="avator-box flex-start">
+			<view class="time">{{item.EndTime}}</view>
+			<view class="flex-box company" wx:if="{{item.Organizer && item.Organizer.length}}">
+				<!-- <image class="logo" src="{{item.Organizer[0].src}}"/> -->
+				{{item.Organizer[0].Name}}
+			</view>
+		</view>
+	</view>
+</block>

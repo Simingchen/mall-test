@@ -1,0 +1,112 @@
+/* 我的订单 S ========== */
+page {
+  background: #f6f7fa;
+  min-height: 100vh;
+}
+.van-tab__pane{
+  display: none;
+}
+/* 
+.tab-list {
+  height: 100rpx;
+}
+
+.van-tabs__nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  height: 100rpx;
+  padding-bottom: 0;
+  z-index: 50;
+} */
+.van-tabs__nav {
+  width: 100%;
+  position: fixed!important;
+  top: 0;
+  background: #fff;
+  /* height: 100rpx; */
+  padding-bottom: 0;
+  z-index: 50;
+} 
+.order-item {
+  padding: 0 30rpx 30rpx;
+  margin-top: 20rpx;
+}
+.panel{
+  width: 690rpx;
+  margin: 20rpx auto 40rpx;
+    background: #fff;
+    border-radius: 16rpx;
+    overflow: hidden
+}
+.order-item .status {
+  font-size: 24rpx;
+  line-height: 92rpx;
+}
+
+.order-item .primary {
+  font-size: 26rpx;
+}
+
+.order-item .goods {
+  padding-left: 0;
+}
+
+.order-item .goods .van-card__title {
+  width: 460rpx;
+}
+
+.order-item .tool-bar {
+  /* padding-top: 20rpx; */
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+
+.order-item .all-price {
+  margin: 30rpx 0;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.order-item .all-price .price {
+  color: #333;
+  margin-left: 10rpx;
+}
+
+.order-item .all-price .primary {
+  font-weight: 500;
+  font-size: 24rpx;
+}
+.van-card{
+  padding-left:0!important;
+  padding-right:0!important;
+  background: #fff!important;
+  border-bottom: 1rpx solid #f6f7fa;
+}
+/* .goods {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 690rpx;
+  padding-left: 30rpx;
+  margin: 0 auto 0.45rem;
+  border-radius: 16rpx;
+  background: #fff;
+} */
+/* 我的订单 e ========== */
+.tool-bar .van-button{
+  margin: 0 10rpx;
+}
+.state-btn{
+  min-width: 140rpx!important;
+}

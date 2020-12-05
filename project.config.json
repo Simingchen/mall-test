@@ -246,6 +246,12 @@
         {
           "name": "添加客户",
           "pathName": "pageSub/mine/customerEdit/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "公告",
+          "pathName": "pageSub/mine/newsList/index",
           "scene": null
         }
       ]

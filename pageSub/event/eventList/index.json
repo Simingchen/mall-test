@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "活动",
+  "usingComponents": {
+    "van-search": "../../../@vant/search/index"
+  }
+}

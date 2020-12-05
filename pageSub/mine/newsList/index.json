@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "公告",
+  "usingComponents": {
+    "van-tabs": "../../../@vant/tabs/index",
+    "van-loading": "../../../@vant/loading/index",
+    "van-tab": "../../../@vant/tab/index",
+    "van-cell": "../../../@vant/cell/index",
+    "van-empty": "../../../@vant/empty/index"
+  }
+}

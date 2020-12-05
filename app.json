@@ -20,11 +20,27 @@
       "pages": [
         "addressList/index",
         "addressEdit/index",
-        "share/index",
         "setting/index",
         "orderList/index",
         "orderDetail/index",
+        
+        "newsList/index",
+        "aboutUs/index"
+      ]
+    },
+    {
+      "root": "pageSub/event",
+      "pages": [
         "signUp/index",
+        "eventList/index",
+        "eventDetail/index"
+      ]
+    },
+    {
+      "root": "pageSub/customer",
+      "pages": [
+        "signUp/index",
+        "customerList/index",
         "customerEdit/index"
       ]
     },
@@ -98,6 +114,7 @@
   "usingComponents": {
     "loading": "./components/loading/index",
     "goodsItem": "./components/goodsItem/index",
+    "eventItem": "./components/eventItem/index",
     "tabBar": "./components/tabBar/index"
   },
   "permission": {

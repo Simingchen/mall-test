@@ -1,9 +1,0 @@
-<view>｜规则说明</view>
-
-<view class="con">
-  <view>1、{{detail.title}}会员时间为一年，年费为{{detail.sell_price}}元，到期续费；</view>
-  <view>2、加入{{detail.title}}后，签到积分番倍；</view>
-  <view>3、商品将以会员价出售；</view>
-</view>
-
-<van-button custom-class="confirm-btn" bind:click="buyIt" plain round color="#F06f48" type="info">购买会员</van-button>

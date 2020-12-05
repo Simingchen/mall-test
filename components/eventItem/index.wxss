@@ -1,0 +1,58 @@
+.event-item{
+  padding:25rpx;
+  border-bottom: 20rpx solid #f2f2f2;
+}
+.event-item:last-child{
+  border:0;
+}
+.event-item .img{
+  width: 700rpx;
+  height: 240rpx;
+  background: #eee;
+}
+.event-item .tit{
+  justify-content: space-between;
+  font-size: 32rpx;
+  margin-top:36rpx;
+  margin-bottom:20rpx;
+  line-height: 1.2;
+  font-weight: 500;
+}
+.event-item .tag{
+  color:#fba22e;
+  width: 120rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+.event-item.active .tag{
+  color:#ee5535;
+}
+.event-item.end .tag{
+  color:#a8a8a8;
+}
+.event-item.end .tit,
+.event-item.end .desc,
+.event-item.end .time,
+.event-item.end .company
+{
+  color:#a8a8a8;
+}
+.event-item .desc{
+  color:#636363;
+  line-height: 74rpx;
+}
+.event-item .avator-box{
+  line-height: 36rpx;
+  font-size: 24rpx;
+}
+.event-item .logo{
+  display: block;
+  width:36rpx;
+  height: 36rpx;
+  margin-left:42rpx;
+  margin-right: 10rpx;
+  border-radius: 36rpx;
+}
+.company{
+  margin-left: 40rpx;
+}

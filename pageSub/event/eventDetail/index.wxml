@@ -1,0 +1,120 @@
+<block wx:if="{{loadStatus != 'empty'}}">
+  <import src="../../../wxParse/wxParse.wxml"/> 
+  <image class="banner" mode="aspectFill" src="{{detail.MainImg}}"/>
+  <view class="top-box">
+    <view class="title">{{detail.Theme}}</view>
+    <view class="desc" wx:if="{{detail.SubTitle}}">{{detail.SubTitle}}</view>
+    <view class="tag-box">
+      <!-- <view class="item" wx:for="{{detail.Lables}}" wx:key="index"># {{item}}</view> -->
+      <view class="item">{{detail.TypeDesc}}</view>
+    </view>
+    <view class="sub-tit flex-box">
+      <view class="item" wx:if="{{detail.ClickNumber > config.ClickShowNumber}}">查看：{{detail.ClickNumber}}</view>
+      <view class="item" wx:if="{{detail.CollectNumber > config.CollectShowNumber}}">收藏：{{detail.CollectNumber}}</view>
+      <view class="item" wx:if="{{detail.ShareNumber > config.ShareShowNumber}}">分享：{{detail.ShareNumber}}</view>
+    </view>
+  </view>
+  <view class="time-box flex-row-center">
+    <view class="company c9">
+      <!-- <image class="logo" src=""></image> -->
+      {{detail.Lables}}
+    </view>
+    <view class="time c9">{{detail.ReleaseTime}}</view>
+  </view>
+  <view class="btns flex-row-center">
+    <view class="btn {{(detail.ApplyStatus == -2 || detail.ApplyStatus == 1 || detail.ApplyStatus == 2 || detail.StatusDesc == '已结束')? 'disabled' : ''}}" bindtap="signUp">
+      <block wx:if="{{detail.StatusDesc == '已结束'}}">
+        活动已结束
+      </block>
+      <block wx:else>
+        <block wx:if="{{detail.ApplyStatus == -100 || detail.ApplyStatus == 100}}">我要报名</block>
+        <block wx:if="{{detail.ApplyStatus == -2}}">已经截止报名</block>
+        <block wx:if="{{detail.ApplyStatus == 0}}">确认报名</block>
+        <block wx:if="{{detail.ApplyStatus == 1}}">报名成功</block>
+        <block wx:if="{{detail.ApplyStatus == 2}}">平台审核中</block>
+      </block>
+    </view>
+    <view class="btn collect {{detail.IsCollect ? 'diasbled' : ''}}" bindtap="collect">{{detail.IsCollect ? '已收藏' : '收藏活动'}}</view>
+  </view>
+  <view class="event-info">
+    <view class="line">
+      <view class="lab">活动时间：</view>
+      <view class="con">{{detail.EndTime}}</view>
+    </view>
+    <view class="line">
+      <view class="lab">会议地点：</view>
+      <view class="con">{{detail.PczName}}{{detail.Address}}</view>
+    </view>
+    <view class="line">
+      <view class="lab">会议规模：</view>
+      <view class="con">{{detail.MeetingSize}}</view>
+    </view>
+    <view class="line" wx:if="{{detail.Mentors && detail.Mentors.length}}">
+      <view class="lab">指导单位：</view>
+      <view class="con">
+        <view class="company" wx:for="{{detail.Mentors}}" bindtap="goCompany" data-item="{{item}}" wx:key="index">
+          {{item.Name}}
+        </view>
+      </view>
+    </view>
+    <view class="line">
+      <view class="lab">主办单位：</view>
+      <view class="con">
+        <view class="company" wx:for="{{detail.Organizer}}" bindtap="goCompany" data-item="{{item}}" wx:key="index">
+          {{item.Name}}
+        </view>
+      </view>
+    </view>
+    <view class="line" wx:if="{{detail.Support && detail.Support.length}}">
+      <view class="lab">支持单位：</view>
+      <view class="con">
+        <view class="company" wx:for="{{detail.Support}}" bindtap="goCompany" data-item="{{item}}" wx:key="index">
+          {{item.Name}}
+        </view>
+      </view>
+    </view>
+    <view class="line" wx:if="{{detail.Sponsors && detail.Sponsors.length}}">
+      <view class="lab">媒体单位：</view>
+      <view class="con">
+        <view class="company" wx:for="{{detail.Sponsors}}" bindtap="goCompany" data-item="{{item}}" wx:key="index">
+          {{item.Name}}
+        </view>
+      </view>
+    </view>
+    <view class="line">活动类型：{{detail.TypeDesc}}</view>
+  </view>
+  <view class="content">
+    <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+  </view>
+
+  <van-tabs active="{{ active }}" bind:change="onChange" if="{{detail.IsHasDown}}">
+    <van-tab title="活动资料">
+      <view class="file-box">
+        <view class="file" wx:for="{{fileList1}}" wx:key="index" bindtap="downFile" data-item="{{item}}">
+          {{index + 1}}.<text class="c05">{{item.SourceFileName}}</text> (大小：{{item.Size}})
+        </view>
+        <view class="empty" wx:if="{{!fileList1.length}}">暂无活动资料~</view>
+      </view>
+    </van-tab>
+    <van-tab title="其他相关资料">
+      <view class="file-box">
+        <view class="file" wx:for="{{fileList0}}" wx:key="index" bindtap="downFile" data-item="{{item}}">
+          {{index + 1}}.<text class="c05">{{item.SourceFileName}}</text> (大小：{{item.Size}})
+        </view>
+        <view class="empty" wx:if="{{!fileList0.length}}">暂无其他相关资料~</view>
+      </view>
+    </van-tab>
+  </van-tabs>
+  <!-- 推荐 -->
+  <recommend id="recommend"/>
+
+  <!-- 分享 -->
+  <share type="{{5}}" 
+    targetId="{{detail.MeetingId}}" 
+    isCollect="{{detail.IsCollect}}" 
+    shareTitle="{{detail.Theme}}"
+  shareImg="{{detail.MainImg}}"
+    bind:onCollect="onCollect"/>
+</block>
+<!-- 加载状态 -->
+<loading status="{{loadStatus}}"/>

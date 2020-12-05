@@ -49,11 +49,11 @@
 				<view class="iconfont icondingdan-"></view>
 				<view class="txt">客户订单</view>
 			</view>
-			<view class="item flex-start">
+			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/customer/customerList/index">
 				<view class="iconfont iconkehu"></view>
 				<view class="txt">渠道客户</view>
 			</view>
-			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/customerEdit/index">
+			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/customer/customerEdit/index">
 				<view class="iconfont iconkehu1"></view>
 				<view class="txt">添加客户</view>
 			</view>
@@ -65,7 +65,7 @@
 				<view class="iconfont iconfenxiang"></view>
 				<view class="txt">每日分享</view>
 			</button>
-			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/signUp/index">
+			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/event/eventList/index">
 				<view class="iconfont icondingdan-"></view>
 				<view class="txt">活动报名</view>
 			</view>
@@ -75,11 +75,11 @@
 	<view class="panel">
 		<van-cell title="关于我们" border="{{false}}"></van-cell>
 		<view class="tool-list flex-box">
-			<view class="item flex-start">
+			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/aboutUs/index">
 				<view class="iconfont icongonggao"></view>
 				<view class="txt">丽合三元</view>
 			</view>
-			<view class="item flex-start">
+			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/newsList/index">
 				<view class="iconfont icongonggao"></view>
 				<view class="txt">公告</view>
 			</view>

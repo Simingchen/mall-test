@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "分享好友",
-  "usingComponents": {
-    "van-button": "../../../@vant/button/index"
-  }
-}

@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "渠道客户",
+  "usingComponents": {
+    "van-loading": "../../../@vant/loading/index",
+    "van-cell": "../../../@vant/cell/index",
+    "van-empty": "../../../@vant/empty/index",
+    "van-button": "../../../@vant/button/index",
+    "van-search": "../../../@vant/search/index"
+  }
+}
