@@ -18,21 +18,21 @@
   </view>
   <view class="goods-price-line flex-row-center">
     <view class="flex-start">
-      <view class="lab" wx:if="{{detail.channel_id == 11}}">团购价：</view>
+      <!-- <view class="lab" wx:if="{{detail.channel_id == 11}}">团购价：</view> -->
       <view class="currency">
         ￥
       </view>
       <view class="price">{{detail.price}}</view>
       <!-- <del class="del-price">{{}}</del> -->
     </view>
-    <view class="count">销量 {{detail.fields.sales}}</view>
+    <!-- <view class="count">销量 {{detail.fields.sales}}</view> -->
   </view>
-  <view class="time-box flex-start" wx:if="{{detail.channel_id == 11}}">
+  <!-- <view class="time-box flex-start" wx:if="{{detail.channel_id == 11}}">
       <view class="txt">倒计时：</view>
       <van-progress custom-class="process" percentage="{{detail.percentDay}}" color="#ff0000" pivot-color="#ff0000" stroke-width="26rpx"
         show-pivot="{{false}}" />
-    </view>
-  <van-cell title="产品参数" ></van-cell>
+    </view> -->
+  <!-- <van-cell title="产品参数" ></van-cell>
     <view class="fields-list flex-row-center">
       <view class="item" wx:if="{{detail.fields.goods_no}}">产品货号：{{detail.fields.goods_no}}</view>
       <view class="item" wx:if="{{detail.fields.product_size}}">产品尺寸：{{detail.fields.product_size}}</view>
@@ -41,8 +41,8 @@
       <view class="item" wx:if="{{detail.fields.gross_net_weight}}">净重/毛重：{{detail.fields.gross_net_weight}}</view>
       <view class="item" wx:if="{{detail.fields.packing_method}}">包装方式：{{detail.fields.packing_method}}</view>
       <view class="item" wx:if="{{detail.fields.package_spec}}">包装规格：{{detail.fields.package_spec}}</view>
-    </view>
-  <van-cell title="产品描述" wx:if="{{detail.content}}"></van-cell>
+    </view> -->
+  <van-cell title="产品描述"></van-cell>
   <view class="content">
     <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
   </view>
@@ -50,10 +50,10 @@
   <!-- 底部栏 -->
   <van-goods-action>
     <van-goods-action-icon icon="chat-o" text="客服" open-type="contact" />
-    <van-goods-action-icon icon="cart-o" text="购物车" url="/pages/cart/index" link-type='switchTab' info="{{cartNum || ''}}"/>
-    <van-goods-action-icon icon="{{detail.is_collect ? 'star': 'star-o'}}" text="{{detail.is_collect ? '已收藏': '收藏'}}" bind:click="onCollect" wx:if="{{detail.channel_id==2}}"/>
+    <!-- <van-goods-action-icon icon="cart-o" text="购物车" url="/pages/cart/index" link-type='switchTab' info="{{cartNum || ''}}"/>
+    <van-goods-action-icon icon="{{detail.is_collect ? 'star': 'star-o'}}" text="{{detail.is_collect ? '已收藏': '收藏'}}" bind:click="onCollect" wx:if="{{detail.channel_id==2}}"/> -->
     <!-- 团购不能加入购物车 -->
-    <van-goods-action-button text="加入购物车" type="warning" bind:click="toggleSku" data-type="1" wx:if="{{detail.channel_id != 11}}"/>
+    <!-- <van-goods-action-button text="加入购物车" type="warning" bind:click="toggleSku" data-type="1" wx:if="{{detail.channel_id != 11}}"/> -->
     <van-goods-action-button text="立即购买" bind:click="toggleSku" data-type="2" />
   </van-goods-action>
 

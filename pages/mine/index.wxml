@@ -8,21 +8,21 @@
 				分享码
 			</view>
 		</view>
-		<view class="flex-center avatar-box" >
-			<image class="avatar" mode="aspectFill" src="{{userInfo.headimgurl}}" />
+		<view class="flex-center avatar-box">
+			<image class="avatar" mode="aspectFill" src="{{userInfo.headimg}}" />
 			<view class="name-box flex-start" wx:if="{{userInfo.openid}}">
-				{{userInfo.nickname}} <view class="label flex-center">普通会员</view>
-				<view class="iconfont iconzuanshi"></view>
+				{{userInfo.nickname}} <view class="label flex-center">{{['普通用户', '经销商'][userInfo.type - 1]}}</view>
+				<view class="iconfont iconzuanshi" wx:if="{{userInfo.is_vip > 0}}"></view>
 			</view>
 			<navigator url="/pages/login/index" class="name-box flex-start" wx:if="{{!userInfo.openid}}">
 				登录
 			</navigator>
 		</view>
-		<view class="flex-row-center recommender-bar" >
+		<view class="flex-row-center recommender-bar">
 			<block wx:if="{{userInfo.openid}}">
 				<view class=""></view>
-				<view class="recommender" wx:if="{{userInfo.promoter_user_id}}">
-					推荐人：{{userInfo.promoter_user_id}}
+				<view class="recommender" wx:if="{{userInfo.promoter_user}}">
+					推荐人：{{userInfo.promoter_user}}
 				</view>
 			</block>
 		</view>
@@ -43,7 +43,7 @@
 	</view>
 
 	<view class="panel">
-		<van-cell title="我的工作" border="{{false}}" ></van-cell>
+		<van-cell title="我的工作" border="{{false}}"></van-cell>
 		<view class="tool-list flex-box">
 			<view class="item flex-start">
 				<view class="iconfont iconwodedingdan0101"></view>
@@ -64,7 +64,7 @@
 			<button class="item flex-start noborder" open-type="share">
 				<view class="iconfont iconwodedingdan0101"></view>
 				<view class="txt">每日分享</view>
-  		</button>
+			</button>
 			<view class="item flex-start">
 				<view class="iconfont iconwodedingdan0101"></view>
 				<view class="txt">活动报名</view>
@@ -73,7 +73,7 @@
 	</view>
 
 	<view class="panel">
-		<van-cell title="关于我们" border="{{false}}" ></van-cell>
+		<van-cell title="关于我们" border="{{false}}"></van-cell>
 		<view class="tool-list flex-box">
 			<view class="item flex-start">
 				<view class="iconfont iconwodedingdan0101"></view>
@@ -88,16 +88,11 @@
 
 </view>
 
-
-<view class='share' wx:if="{{isShowShare}}" catchtouchmove="ture">
-  <view class="mask" bindtap='closeShare'></view>
-  <view class='share-moment'>
-    <canvas type="2d" id="canvas" canvas-id="shareCanvas" class="canvas"
-    style="width: 300px; height: 340px;"></canvas>
-    <view class="iconfont iconshanchu" bindtap='closeShare'></view>
-    <!-- <view class="save-btn flex-center" bindtap="saveCanvas">保存到相册</view> -->
-  </view>
-</view>
+<van-popup show="{{ isShowShare }}" bind:close="closeShare" round closeable close-icon="close" z-index="{{101}}">
+	<view class='share-moment flex-center'>
+		<canvas type="2d" id="canvas" canvas-id="shareCanvas" class="canvas" style="width: 200px; height: 200px;"></canvas>
+	</view>
+</van-popup>
 
 <!-- tabbar -->
 <tabBar selected="3" cartNum="{{cartNum}}" />

@@ -264,7 +264,7 @@ page {
   right: 10rpx;
 }
 .content{
-  padding: 0 10rpx;
+  padding: 10rpx;
 }
 .wxParse-img{
   display: flex;

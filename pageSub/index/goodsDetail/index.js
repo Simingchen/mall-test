@@ -66,23 +66,14 @@ Page({
     }
     
     this.setData({ detail})
-    if (detail.content) {
-      wxparse.wxParse('content', 'html', detail.content, this, 5)
+    if (detail.msg) {
+      wxparse.wxParse('content', 'html', detail.msg, this, 5)
     }
   },
   swiperChange ({detail}) {
     // console.log(detail)
     // if (detail.current != 0) {
-      this.playVideo()
     // }
-  },
-  playVideo () {
-    if (!this.data.detail.fields.video_src) return;
-
-    if (!this.videoContext) {
-      this.videoContext = wx.createVideoContext("video")
-    }
-    this.videoContext.pause()
   },
   async getData (par) {
     const data = {
@@ -386,7 +377,6 @@ Page({
       } else {
         img2.src = this.data.qrCode;
       }
-
       img2.onload = (res) => {
         console.log(res)
         let qrImgSize = 70

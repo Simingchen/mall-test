@@ -3,7 +3,7 @@
   <view class="panel">
     <van-cell title="{{curAddress.id ? (curAddress.name + ' ' + curAddress.mobile) : '请添加地址'}}"
       label="{{curAddress.id ? (curAddress.province +curAddress.city +curAddress.district + curAddress.remark) : ''}}"
-      is-link border="{{false}}" bind:click="toggleAddrPop">
+      is-link border="{{false}}" bind:click="toggleAddrPop" center>
     </van-cell>
   </view>
   <!-- <view class="panel">
@@ -21,6 +21,17 @@
       <text class="cf5">¥ {{filter.filterMoney(detail.quality * detail.price)}}</text>
     </van-cell>
   </view>
+  <view class="panel">
+  <van-cell title="支付方式">
+  <view >
+    <van-radio-group class="flex-row-center" value="{{ radio }}" bind:change="onChange">
+    <van-radio name="1" checked-color="#07c160">单选框</van-radio>
+  <van-radio name="2" checked-color="#07c160">单选框</van-radio>
+</van-radio-group>
+
+  </view>
+</van-cell>
+</view>
   <view class="panel">
     <van-cell title="支付方式"></van-cell>
     <van-radio-group value="{{ curPayRadio }}">
@@ -52,7 +63,7 @@
       <van-cell-group border="{{false}}">
         <van-cell title="{{item.name + ' ' + item.mobile}}"
           label="{{curAddress.province +curAddress.city +curAddress.district + curAddress.remark}}"
-          wx:for="{{addrlist}}" wx:key="index" clickable data-name="{{item.id}}" bind:click="onClickAddr">
+          wx:for="{{addrlist}}" wx:key="index" clickable data-name="{{item.id}}" bind:click="onClickAddr" center>
           <van-radio slot="right-icon" name="{{item.id}}" />
         </van-cell>
       </van-cell-group>

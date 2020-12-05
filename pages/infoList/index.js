@@ -74,20 +74,17 @@ Page({
     let par = this.data
 
     let data = {
-      // Keywords: par.searchTxt,
+      keyword: par.searchTxt,
       Page: curTabItem.page.page,
       PageSize: curTabItem.page.size,
     }
 
-    if (!!par.searchTxt.length) {data.Keywords = par.searchTxt }
+    // if (!!par.searchTxt.length) {data.Keywords = par.searchTxt }
     
 
     this.loading = true
     const res = await app.fetch({url: "Api/Article/alist", data })
     this.loading = false
-    res.forEach(item =>{
-      item.post_date = this.filterTime(item.post_date)
-    })
 
     const curTab = `curTab`
     this.setData({

@@ -20,6 +20,7 @@ Page({
       this.getData(detail.id)
       this.getDig(detail.id)
       this.getIsDig(detail.id)
+      this.dataReport(detail.id)
     };
   },
 
@@ -35,11 +36,15 @@ Page({
   },
   // 数据上报
   async dataReport (id) {
-    let detail = await app.fetch({url: "/Api/Article/zan", data: {id} })
+    const data = {
+      article_id: id,
+      "uid": app.globalData.userInfo.id || '',
+    }
+    let detail = await app.fetch({url: "Api/Article/visit ", data })
   },
   // 点赞数
   async getDig (id) {
-    let digNum = await app.fetch({url: "/Api/Article/zan", data: {aid: id} })
+    let digNum = await app.fetch({url: "Api/Article/zan", data: {aid: id} })
     this.setData({
       digNum
     })
