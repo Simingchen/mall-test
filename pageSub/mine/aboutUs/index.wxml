@@ -11,3 +11,4 @@
     </image>
   <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
 </view>
+
