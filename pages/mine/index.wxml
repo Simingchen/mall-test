@@ -76,7 +76,9 @@
 		<van-cell title="关于我们" border="{{false}}"></van-cell>
 		<view class="tool-list flex-box">
 			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/aboutUs/index">
-				<view class="iconfont icongonggao"></view>
+				<view class="iconfont">
+					<image src="../../static/logo1.jpg" class="img" mode="aspectFill"></image>
+				</view>
 				<view class="txt">丽合三元</view>
 			</view>
 			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/newsList/index">

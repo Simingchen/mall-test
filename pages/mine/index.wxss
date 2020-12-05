@@ -114,6 +114,11 @@ page{
   height: 50rpx;
   font-size: 50rpx;
 }
+.tool-list .iconfont .img{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 60rpx;
+}
 .noborder:after{
   border:0;
 }
