@@ -1,7 +1,7 @@
 
 
 .addr-box {
-  padding: 80rpx 20rpx 40rpx;
+  padding: 0rpx 20rpx 40rpx;
   font-weight: normal;
 }
 .pay-pop{
@@ -27,4 +27,11 @@
 }
 .pay-pop-btn{
   margin-top: 40rpx;
+}
+.express-cell .van-cell__title{
+  flex:none;
+  width: 250rpx;
+}
+.express-cell .van-radio__label{
+  margin-left: 5px;
 }

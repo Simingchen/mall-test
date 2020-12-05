@@ -27,13 +27,13 @@ Page({
     curExprsssRadio: '',
     isShowExpressPop: false,
     curPay: {},
-    curPayRadio: 3,
+    curPayRadio: 1,
     isShowPayPop: false,
     isShowAddrList: false,
     isShowAddrEdit: false,
     payList: [
-      {id: 4, title: '微信支付'},
-      {id: 3, title: '余额支付'},
+      {id: 1, title: '微信支付', iconfont: 'iconweixin', color: "#02be03"},
+      {id: 2, title: '余额支付', iconfont: 'iconyue', color: "#ffbd29"},
     ],
     payPhone: "",   // 支付号码
     payPassword: '',
@@ -41,7 +41,9 @@ Page({
     isSendCode: false,  // 是否已经发送支付验证码
     seconds: 60,
     imgCode: '',
-    verifyCode: ''
+    verifyCode: '',
+    curExpressRadio: 1,
+    order_no: '',    // 提交表单后的支付订单号
   },
   async onLoad (option) {
     try {
@@ -115,9 +117,10 @@ Page({
   })
  },
  // 支付弹窗
- togglePayPop() {
+ togglePayPop(order_no) {
   this.setData({
-    isShowPayPop: true
+    isShowPayPop: true,
+    order_no
   })
  },
  
@@ -149,14 +152,10 @@ Page({
     });
   },
   // 支付方式更改
-  onClickPay ({currentTarget}) {
-    const id = currentTarget.dataset.name
-    const curPay = this.data.payList.filter(item => item.id == id)[0]
-    console.log(curPay)
+  onChangePay ({detail}) {
+    console.log(detail)
     this.setData({
-      curPayRadio: id,
-      curPay: curPay,
-      isShowPayPop: false,
+      curPayRadio: detail,
     });
   },
   // 物流更改
@@ -169,32 +168,35 @@ Page({
       isShowExpressPop: false,
     });
   },
+  // 选择提货方式
+  onChangeExpress({detail}) {
+    console.log(detail)
+    this.setData({
+      curExpressRadio: detail,
+    });
+  },
   // 提交订单
   async onSubmit () {
-    this.togglePayPop()
-    return false
-    const { curAddress, curExpress, curPay, goodsJsonData, message } = this.data
+    
+    const { curAddress, detail, message, curExpressRadio, curPayRadio} = this.data
 
-    console.log(goodsJsonData)
     const data = {
-      goodsJsonData,
-      "payment_id": curPay.id,
-      "express_id": curExpress.id,
-      "accept_name": curAddress.accept_name,
-      "mobile": curAddress.mobile,
-      "province": area[0],
-      "city": area[1],
-      "area": area[2],
-      "address": curAddress.address,
+      "payway": curPayRadio,
+      "good_id": detail.id,
+      "uid": app.globalData.userInfo.id,
+      pickup: curExpressRadio,
+      address_id: curAddress.id,
+      buy_num: detail.quality,
+      buy_price: detail.price,
+      total_price: detail.price * 100 * detail.quality / 100,
       remark: message
     }
-    const resOrder = await app.fetch({url: "SaveOrder.ashx", data })
-
-    console.log(resOrder)
+    console.log(curPayRadio)
+    const order_no = await app.fetch({url: "Api/Order/submit", data })
 
     // 余额支付
-    if (curPay.id == 3) {
-      this.togglePayPop()
+    if (curPayRadio == 2) {
+      this.togglePayPop(order_no)
       // const par2 = {
       //   pay_order_no: resOrder.order_no
       // }
@@ -209,14 +211,14 @@ Page({
       // }, 1000)
     }
     // 微信支付
-    if (curPay.id == 4) {
-      this.wxPay(resOrder)
+    if (curPayRadio == 1) {
+      this.wxPay(order_no)
     }
     
   },
-  async wxPay (resOrder) {
+  async wxPay (order_no) {
     const par = {
-      "pay_order_no": resOrder.order_no,
+      "pay_order_no": order_no,
 	    "pay_order_amount":"1"
     }
     console.log(par)

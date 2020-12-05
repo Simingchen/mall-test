@@ -18,7 +18,7 @@ Page({
     let detail = {}
 
     console.log(options)
-    if (options.item != "{}") {
+    if (options.item && options.item != "{}") {
       detail = JSON.parse(decodeURIComponent(options.item));
       this.setData({
         "id": detail.id,

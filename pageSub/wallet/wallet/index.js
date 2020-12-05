@@ -11,7 +11,7 @@ Page({
     }
   },
   onShow () {
-    this.getData()
+    // this.getData()
   },
   async getData () {
     const detail = await app.fetch({method: 'post', url: "GetUserInfo.ashx"})

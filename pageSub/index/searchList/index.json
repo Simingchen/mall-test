@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "商品列表",
-  "usingComponents": {
-    "van-search": "../../../@vant/search/index",
-    "van-tabs": "../../../@vant/tabs/index",
-    "van-loading": "../../../@vant/loading/index",
-    "van-tab": "../../../@vant/tab/index"
-  }
-}

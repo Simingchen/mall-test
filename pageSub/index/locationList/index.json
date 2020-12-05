@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "澳米特专卖店",
-  "usingComponents": {
-    "van-empty": "../../../@vant/empty/index"
-  }
-}

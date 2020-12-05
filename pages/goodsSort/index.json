@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "产品大全",
-  "usingComponents": {
-    "van-tree-select": "../../@vant/tree-select/index",
-    "van-empty": "../../@vant/empty/index"
-  }
-}

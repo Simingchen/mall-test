@@ -230,6 +230,11 @@
           "pathName": "pageSub/index/submitOrder/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "钱包",
+          "pathName": "pageSub/wallet/wallet/index",
+          "scene": null
         }
       ]
     }
