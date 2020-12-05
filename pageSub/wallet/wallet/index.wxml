@@ -21,7 +21,7 @@
 
 	<view class="mb20">
 		<van-cell title="提现" is-link url="/pageSub/wallet/withdraw/index"></van-cell>
-		<van-cell title="提现记录" is-link url="/pageSub/wallet/withdrawList/index" border="{{false}}"></van-cell>
+		<van-cell title="提现记录" is-link url="/pageSub/wallet/withdrawList/index"></van-cell>
 		<van-cell title="银行卡" is-link url="/pageSub/wallet/cardList/index" border="{{false}}"></van-cell>
 	</view>
 

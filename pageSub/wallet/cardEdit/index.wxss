@@ -1,0 +1,42 @@
+page{
+  background: #f8f8f8;
+  min-height: 100vh;
+}
+.van-address-list {
+  border-radius: 16rpx;
+  width: 710rpx;
+  margin: 20rpx auto;
+  overflow: hidden;
+}
+.bottom-btn{
+  position: fixed;
+  bottom:0;
+  padding: 20rpx;
+  width: 100%;
+  background: #fff;
+}
+.van-field__label,
+.van-cell__title{
+  color:#646566!important;
+  flex:none!important;
+  min-width: 130rpx!important;
+}
+.area-cell .van-cell__value{
+  text-align: left;
+  padding-left:10px;
+  color:#323233;
+}
+
+.btns{
+  margin-top: 20rpx;
+  padding: 20rpx;
+}
+.delete-btn{
+  margin-top: 20rpx;
+}
+.van-picker__confirm{
+  color:#00a5a5!important;
+}
+.van-popup{
+  border-radius: 20px 20px 0 0!important;
+}

@@ -234,6 +234,18 @@
         {
           "name": "钱包",
           "pathName": "pageSub/wallet/wallet/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "新增银行卡",
+          "pathName": "pageSub/wallet/cardEdit/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "添加客户",
+          "pathName": "pageSub/mine/customerEdit/index",
           "scene": null
         }
       ]

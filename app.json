@@ -24,8 +24,8 @@
         "setting/index",
         "orderList/index",
         "orderDetail/index",
-        "goodsList/index",
-        "changePhone/index"
+        "signUp/index",
+        "customerEdit/index"
       ]
     },
     {
@@ -34,7 +34,8 @@
         "wallet/index",
         "withdraw/index",
         "withdrawList/index",
-        "cardList/index"
+        "cardList/index",
+        "cardEdit/index"
       ]
     },
     {

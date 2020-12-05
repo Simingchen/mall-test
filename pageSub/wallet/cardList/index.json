@@ -1,3 +1,9 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "银行卡",
+  "usingComponents": {
+    "van-button": "../../../@vant/button/index",
+    "van-empty": "../../../@vant/empty/index",
+    "van-loading": "../../../@vant/loading/index",
+    "van-icon": "../../../@vant/icon/index"
+  }
 }

@@ -45,28 +45,28 @@
 	<view class="panel">
 		<van-cell title="我的工作" border="{{false}}"></van-cell>
 		<view class="tool-list flex-box">
-			<view class="item flex-start">
-				<view class="iconfont iconwodedingdan0101"></view>
+			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/orderList/index">
+				<view class="iconfont icondingdan-"></view>
 				<view class="txt">客户订单</view>
 			</view>
 			<view class="item flex-start">
-				<view class="iconfont iconwodedingdan0101"></view>
+				<view class="iconfont iconkehu"></view>
 				<view class="txt">渠道客户</view>
 			</view>
-			<view class="item flex-start">
-				<view class="iconfont iconwodedingdan0101"></view>
+			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/customerEdit/index">
+				<view class="iconfont iconkehu1"></view>
 				<view class="txt">添加客户</view>
 			</view>
 			<button class="item flex-start noborder" open-type="contact">
-				<view class="iconfont iconwodedingdan0101"></view>
+				<view class="iconfont iconzixun"></view>
 				<view class="txt">我的咨询</view>
 			</button>
 			<button class="item flex-start noborder" open-type="share">
-				<view class="iconfont iconwodedingdan0101"></view>
+				<view class="iconfont iconfenxiang"></view>
 				<view class="txt">每日分享</view>
 			</button>
-			<view class="item flex-start">
-				<view class="iconfont iconwodedingdan0101"></view>
+			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/signUp/index">
+				<view class="iconfont icondingdan-"></view>
 				<view class="txt">活动报名</view>
 			</view>
 		</view>
@@ -76,11 +76,11 @@
 		<van-cell title="关于我们" border="{{false}}"></van-cell>
 		<view class="tool-list flex-box">
 			<view class="item flex-start">
-				<view class="iconfont iconwodedingdan0101"></view>
+				<view class="iconfont icongonggao"></view>
 				<view class="txt">丽合三元</view>
 			</view>
 			<view class="item flex-start">
-				<view class="iconfont iconwodedingdan0101"></view>
+				<view class="iconfont icongonggao"></view>
 				<view class="txt">公告</view>
 			</view>
 		</view>

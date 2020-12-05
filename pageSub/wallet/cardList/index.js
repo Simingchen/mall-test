@@ -1,66 +1,66 @@
-// pageSub/wallet/cardList/index.js
+const app = getApp()
+const regeneratorRuntime = app.runtime
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    list: [],
+    curTab: {
+      isLoaded: false,
+      loadStatus: "loading",   // 加载状态
+      page: {   // 页码
+        page: 0,
+        size: 10,
+        finished: false
+      },
+      list: []
+    },
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onShow () {
+    this.getList(true)
   },
+  async getList (init) {
+    const { curTab } = this.data
+    
+    const curTabItem = curTab
+    // 初始化
+    if (init) {
+      curTabItem.page.page = 0;
+      curTabItem.list = [];
+      curTabItem.page.finished = false;
+      this.loading = false
+      // 清空数据
+      this.setData({
+        'curTab.list': []
+      })
+    }
+    if (this.loading || curTabItem.page.finished) return;
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+    curTabItem.page.page ++
 
+    let data = {
+      "uid": app.globalData.userInfo.id,
+    }
+    
+    this.loading = true
+    const res = await app.fetch({url: "Api/Address/address_list", data })
+    this.loading = false
+
+    this.setData({
+      ['curTab.isLoaded']: true,
+      ['curTab.page']: {...curTabItem.page, finished: true},
+      ['curTab.list']: [...curTabItem.list, ...(res || []) ],
+      ['curTab.loadStatus']: 'noMore',
+    }, () => {
+      console.log(this.data.curTab)
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  // 上拉加载
+  onReachBottom() {
+    this.getList();
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  goUrl ({currentTarget}) {
+    const item = currentTarget.dataset.item ? encodeURIComponent(JSON.stringify(currentTarget.dataset.item)) : "{}"
+    wx.navigateTo({
+      url: `/pageSub/wallet/cardEdit/index?item=${item}`,
+    })
   }
-})
+});
