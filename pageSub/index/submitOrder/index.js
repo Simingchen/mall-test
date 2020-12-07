@@ -192,11 +192,11 @@ Page({
       remark: message
     }
     console.log(curPayRadio)
-    const order_no = await app.fetch({url: "Api/Order/submit", data })
+    const res = await app.fetch({url: "Api/Order/submit", data })
 
     // 余额支付
     if (curPayRadio == 2) {
-      this.togglePayPop(order_no)
+      this.togglePayPop(res.order_no)
       // const par2 = {
       //   pay_order_no: resOrder.order_no
       // }
@@ -212,17 +212,20 @@ Page({
     }
     // 微信支付
     if (curPayRadio == 1) {
-      this.wxPay(order_no)
+      this.wxPay(res.order_no, data.total_price)
     }
     
   },
-  async wxPay (order_no) {
+  async wxPay (order_no, fee) {
+    const userInfo = wx.getStorageSync('userInfo') || {}
     const par = {
-      "pay_order_no": order_no,
-	    "pay_order_amount":"1"
+      fee: fee,
+      openid: userInfo.openid,
+      "out_trade_no": order_no,
+      body: '宫颜之禧-购物'
     }
     console.log(par)
-    const respay = await app.fetch({url: "api/payment/wxapipay/index.ashx", data: par })
+    const respay = await app.fetch({url: "Api/Pay/pay", data: par })
     console.log("123456")
     // 触发微信支付
     wx.requestPayment({

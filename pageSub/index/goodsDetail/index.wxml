@@ -57,7 +57,7 @@
     <view style="padding: 10px 0px 10px 20px;margin-right: 100rpx;">
       <van-stepper v-model="buyNum" min="1" max="8" integer bind:change="changeGoodsNum" />
     </view>
-    <van-goods-action-button text="立即购买" bindtap="confirmSku" data-type="2" />
+    <van-goods-action-button text="立即购买" bind:click="confirmSku" data-type="2" />
   </van-goods-action>
 
   <!-- sku -->

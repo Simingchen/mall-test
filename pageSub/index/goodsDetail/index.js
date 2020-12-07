@@ -235,12 +235,13 @@ Page({
     //   return app.toast('请选择规格')
     // }
 
-    if (curSkuPopType == 1) {
-      this.addCart()
-    }
-    if (curSkuPopType == 2) {
-      this.buyIt()
-    }
+    // if (curSkuPopType == 1) {
+    //   this.addCart()
+    // }
+    // if (curSkuPopType == 2) {
+      
+    // }
+    this.buyIt()
     
   },
   // 加入购物车
