@@ -3,7 +3,18 @@ const regeneratorRuntime = app.runtime
 
 Page({
   data: {
-    userInfo: {}
+    userInfo: {
+      sex: ''
+    },
+    isShowSexPop: false,
+    columnsSex: [
+      {id: 0, text: '男'},
+      {id: 1, text: '女' },
+    ],
+    isShowBrithDayPop: false,
+    minDate: new Date().getTime(),
+    maxDate: new Date(2019, 10, 1).getTime(),
+    currentDate: new Date().getTime(),
   },
   async onLoad() {
     // console.log(app.globalData.userInfo)
@@ -12,6 +23,23 @@ Page({
     this.setData({
       userInfo
     })
+  },
+  onClose() {
+    this.setData({
+      isShowSexPop: false
+    })
+  },
+  openPop({currentTarget}) {
+    const type = currentTarget.dataset.type
+    this.setData({
+      [type]: true
+    })
+  },
+  onConfirmSex({detail}) {
+    this.setData({
+      ['userInfo.sex']: detail.value.text
+    })
+    this.onClose()
   },
   logout() {
     wx.showModal({

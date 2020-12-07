@@ -2,7 +2,9 @@
 <view class="member-page">
 	<view class="top-panel">
 		<view class="flex-row-center">
-			<view class="iconfont iconshezhi"></view>
+			<navigator hover-class="none" url="/pageSub/mine/setting/index" wx:if="{{userInfo.openid}}">
+				<view class="iconfont iconshezhi"></view>
+			</navigator>
 			<view class="share-code flex-start" bindtap="setPoster" wx:if="{{userInfo.openid}}">
 				<text class="iconfont iconico"></text>
 				分享码
