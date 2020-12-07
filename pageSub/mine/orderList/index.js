@@ -76,51 +76,16 @@ Page({
     let data = {
       "page_size": curTab.page.size,
       "page_index": curTab.page.page,
-      // "status": curTabType,
-      // "payment_status": "0",
-      // "express_status": "0"
-    }
-    let par = {}
-    // 待付款
-    if (curTabType == 0) {
-      par = {
-        status: 1,
-        payment_status:1,
-        express_status:0
-      }
-    }
-    // 待发货
-    if (curTabType == 1) {
-      par = {
-        status:0,
-        payment_status:0,
-        express_status:1,
-      }
-    }
-    // 待收货
-    if (curTabType == 2) {
-      par = {
-        status:0,
-        payment_status:0,
-        express_status:2,
-      }
-    }
-    // 已完成
-    if (curTabType == 3) {
-      par = {
-        status:3,
-        payment_status:0,
-        express_status:0,
-      }
+      "uid": app.globalData.userInfo.id || '',
+      keyword: '',
+      "status": curTabType,
+      is_fx: 0,
     }
 
     this.loading = true
     const res = await app.fetch({
-      url: "GetUserOrderList.ashx",
-      data: {
-       ...data,
-        ...par
-      } 
+      url: "Api/Order/mylist",
+      data
     })
 
     curTab.page.page++
@@ -130,8 +95,8 @@ Page({
     this.setData({
       ['curTab.isLoaded']: true,
       ['curTab.page']: { ...curTab.page, finished: curTab.page.page >= res.total_page },
-      ['curTab.isEmpty']: ![...curTab.list, ...res.list].length,
-      ['curTab.list[' + (curTab.page.page - 2) + ']']: res.list,
+      ['curTab.isEmpty']: ![...curTab.list, ...res].length,
+      ['curTab.list[' + (curTab.page.page - 2) + ']']: res,
       ['curTab.loadStatus']: (curTab.page.page >= res.total_page) ? 'noMore' : 'loading'
     }, () => {
       console.log(this.data.curTab)

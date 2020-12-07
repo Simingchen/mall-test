@@ -165,7 +165,6 @@ Page({
     const { detail } = this.data
     const item = encodeURIComponent(JSON.stringify({
       "id": detail.id,
-	    "channel_id": detail.channel_id
     }))
 
     const userInfo = app.globalData.userInfo || {}

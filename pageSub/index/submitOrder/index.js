@@ -178,14 +178,14 @@ Page({
   // 提交订单
   async onSubmit () {
     
-    const { curAddress, detail, message, curExpressRadio, curPayRadio} = this.data
+    const { curAddressRadio, detail, message, curExpressRadio, curPayRadio} = this.data
 
     const data = {
       "payway": curPayRadio,
       "good_id": detail.id,
       "uid": app.globalData.userInfo.id,
       pickup: curExpressRadio,
-      address_id: curAddress.id,
+      address_id: curAddressRadio,
       buy_num: detail.quality,
       buy_price: detail.price,
       total_price: detail.price * 100 * detail.quality / 100,

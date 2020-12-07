@@ -13,25 +13,23 @@
     </view>
     <view bindtap="goDetail" data-item="{{order}}">
       <view>
-        <block wx:for="{{order.order_goods}}" wx:key="index">
-          <van-card lazy-load class="goods" num="{{item.quantity}}" price="{{filter.filterMoney(item.goods_price)}}"
-            desc="{{item.spec_text}}" title="{{item.goods_title}}" thumb="{{item.img_url}}"> 
-            <view slot="footer">
-              <van-button size="mini"  custom-class="state-btn" type="default" round wx:if="{{item.is_refund}}">
-                  {{item.refund_way + item.refund_status}}   
+        <van-card lazy-load thumb-mode="aspectFill" class="goods" num="{{order.buy_num}}" price="{{filter.filterMoney(order.total_price)}}"
+          desc="{{order.spec_text}}" title="{{order.good_name}}" thumb="{{order.good_pic}}"> 
+          <view slot="footer">
+            <van-button size="mini"  custom-class="state-btn" type="default" round wx:if="{{order.is_refund}}">
+                {{order.refund_way + order.refund_status}}   
+            </van-button>
+            <!-- <block wxif="{{(order.status == 1 || order.status == 2) && order.payment_status==2 && !order.is_refund}}">
+              <van-button type="default" round size="mini" catchtap="refund" data-item="{{item}}" data-order="{{order}}">申请售后
               </van-button>
-              <block wxif="{{(order.status == 1 || order.status == 2) && order.payment_status==2 && !item.is_refund}}">
-                <van-button type="default" round size="mini" catchtap="refund" data-item="{{item}}" data-order="{{order}}">申请售后
-                </van-button>
-              </block>
-            </view>
-          </van-card>
-        </block>
+            </block> -->
+          </view>
+        </van-card>
       </view>
       <view class="all-price flex-box">
         <view class="price flex-box">
           合计：
-          <view class="primary">¥{{filter.filterMoney(order.payable_amount)}}</view>
+          <view class="primary">¥{{filter.filterMoney(order.total_price)}}</view>
         </view>
         共1件
       </view>
