@@ -234,7 +234,11 @@ form {
 }
 
 .primary{
-  color:#00a5a5;
+  color:#87a1a1;
+}
+
+.van-picker__confirm{
+  color:#00a5a5!important;
 }
 
 .iconmagnifier{

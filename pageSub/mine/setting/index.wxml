@@ -1,31 +1,34 @@
 <view class="me-page">
 	<view class="avatar-box flex-box" bindtap="chooseImg">
 		<image class="avatar" mode="aspectFill" src="{{userInfo.headimg}}" />
-		<view class="txt">{{userInfo.nickname}}</view>
+		<!-- <view class="txt">{{userInfo.nickname}}</view> -->
 	</view>
-	<van-field label="昵称" value="{{userInfo.nickname}}" placeholder="请输入昵称" border="{{ false }}" maxlength="15" clearable
+	<van-field label="姓名" required value="{{userInfo.nickname}}" placeholder="请输入姓名" maxlength="15" clearable
 		data-type="userInfo.nickname" bind:change="onChangeInput" />
-	<van-cell title="性别" is-link border="{{false}}" value="{{userInfo.sex}}" bind:click="openPop"
-		data-type="isShowSexPop"></van-cell>
-		
-	<van-cell title="生日" is-link border="{{false}}" value="{{userInfo.brithday}}" bind:click="openPop"
-		data-type="isShowBrithDayPop"></van-cell>
-	<van-cell title="城市" is-link border="{{false}}" value="{{userInfo.city}}"></van-cell>
-	<van-field label="手机号" value="{{userInfo.phone}}" placeholder="请输入手机号" border="{{ false }}" maxlength="15" clearable
+	<van-cell title="性别" is-link value="{{userInfo.sex? (userInfo.sex == 1?'男': '女') : '选择性别'}}" bind:click="openPop" data-type="isShowSexPop"></van-cell>
+
+	<van-cell title="生日" is-link value="{{userInfo.brithday? userInfo.brithday : '选择生日'}}" bind:click="openPop" data-type="isShowBrithDayPop">
+	</van-cell>
+	<van-cell title="城市" is-link value="{{userInfo.city? userInfo.city : '选择城市'}}" bind:click="openPop" data-type="isShowAreaPop"></van-cell>
+	<van-field label="手机号" required type="number" value="{{userInfo.phone}}" placeholder="请输入手机号" maxlength="11" clearable
 		data-type="userInfo.phone" bind:change="onChangeInput" />
-	<van-field label="微信号" value="{{userInfo.wxid}}" placeholder="请输入微信号" border="{{ false }}" maxlength="15" clearable
-		data-type="userInfo.wxid" bind:change="onChangeInput" />
+	<van-field label="微信号" value="{{userInfo.wxid}}" placeholder="请输入微信号" maxlength="20" clearable
+		data-type="userInfo.wxid" bind:change="onChangeInput" border="{{false}}" />
 </view>
 <view class="flex-center">
-	<van-button round type="info" custom-class="confirm-btn" color="#ff0000" bindtap="save">提交</van-button>
+	<van-button round type="info" custom-class="confirm-btn" color="#00a5a5" bindtap="save">提交</van-button>
 </view>
 
 <!-- 性别 -->
-<van-popup show="{{ isShowSexPop }}" bind:close="onClose" round position="bottom" >
-	<van-picker show-toolbar title="标题" columns="{{ columnsSex }}" bind:cancel="onClose" bind:confirm="onConfirmSex" />
+<van-popup show="{{ isShowSexPop }}" bind:close="onClose" round position="bottom">
+	<van-picker show-toolbar title="选择性别" columns="{{ columnsSex }}" bind:cancel="onClose" bind:confirm="onConfirmSex" />
 </van-popup>
 <!-- 生日 -->
 <van-popup show="{{ isShowBrithDayPop }}" bind:close="onClose" round position="bottom">
-	<van-datetime-picker type="date" value="{{ currentDate }}" min-date="{{ minDate }}" max-date="{{ maxDate }}"
-		bind:input="onInput" />
+	<van-datetime-picker type="date" title="选择年月日" value="{{ currentDate }}" min-date="{{ minDate }}"
+		max-date="{{ maxDate }}" bind:confirm="onConfirmBrithDay" />
+</van-popup>
+<!-- 城市 -->
+<van-popup show="{{ isShowAreaPop }}" round position="bottom" bind:close="onClose">
+	<van-area area-list="{{ areaList }}" value="{{userInfo.cityCode}}" bind:cancel="onClose" bind:confirm="confirmArea" />
 </van-popup>

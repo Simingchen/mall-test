@@ -1,32 +1,65 @@
 const app = getApp()
 const regeneratorRuntime = app.runtime
+import cityList from '../../../static/city.js'
 
 Page({
   data: {
     userInfo: {
-      sex: ''
+      nickname: '',
+      sex: '',
+      brithday: '',
+      city: '',
+      phone: '',
+      wxid: ''
     },
     isShowSexPop: false,
     columnsSex: [
-      {id: 0, text: '男'},
-      {id: 1, text: '女' },
+      {id: 1, text: '男'},
+      {id: 2, text: '女' },
     ],
     isShowBrithDayPop: false,
-    minDate: new Date().getTime(),
-    maxDate: new Date(2019, 10, 1).getTime(),
+    minDate: new Date(1920, 10, 1).getTime(),
+    maxDate: new Date().getTime(),
     currentDate: new Date().getTime(),
+    isShowAreaPop: false,
+    areaList: cityList,
+    city: '',
+    cityCode: '',
+    areaValues: [],
   },
   async onLoad() {
-    // console.log(app.globalData.userInfo)
     const userInfo = wx.getStorageSync('userInfo')
     // console.log(userInfo)
+
+    const par = {}
+    if (userInfo.brithday) {
+      par.currentDate = userInfo.brithday * 1000
+      userInfo.brithday = this.filterTime(userInfo.brithday * 1000)
+      // console.log(this.filterTime(userInfo.brithday * 1000))
+    }
+    console.log(par.currentDate)
+    if (userInfo.city) {
+      par.cityCode = userInfo.city,
+      userInfo.city = this.filterCity(userInfo.city)
+    }
+
     this.setData({
-      userInfo
+      userInfo,
+      cityCode: par.cityCode? par.cityCode : "",
+      currentDate: par.currentDate ? par.currentDate : new Date().getTime()
     })
+  },
+  filterCity (code) {
+    const province = cityList.province_list[code.slice(0,2) + '0000']
+    const city = cityList.city_list[code.slice(0,4) + '00']
+    const county = cityList.county_list[code]
+    return `${province}/${city}/${county}`
   },
   onClose() {
     this.setData({
-      isShowSexPop: false
+      isShowSexPop: false,
+      isShowAreaPop: false,
+      isShowBrithDayPop: false
     })
   },
   openPop({currentTarget}) {
@@ -38,6 +71,25 @@ Page({
   onConfirmSex({detail}) {
     this.setData({
       ['userInfo.sex']: detail.value.text
+    })
+    this.onClose()
+  },
+  onConfirmBrithDay({detail}) {
+    this.setData({
+      ['userInfo.brithday']: this.filterTime(detail)
+    })
+    this.onClose()
+  },
+  filterTime: function (date) {
+    date = new Date(date)
+    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+  },
+  confirmArea({detail}) {
+    console.log(detail.values)
+    const address = detail.values
+    this.setData({
+      areaValues: address,
+      ['userInfo.city']: `${address[0].name}/${address[1].name}/${address[2].name}`
     })
     this.onClose()
   },
@@ -60,21 +112,35 @@ Page({
       }
     });
   },
-  onChange(event) {
-    // event.detail 为当前输入的值
-    console.log(event.detail);
-    this.setData({
-      ['userInfo.nick_name']: event.detail.trim()
-    })
-  },
+     // 输入框更改
+ onChangeInput({currentTarget, detail}) {
+  this.setData({
+    [currentTarget.dataset.type]: detail.trim()
+  })
+ },
   // 保存
   save: app.throttle(async function({currentTarget}){  //节流
     const { userInfo } = this.data
-    if (!userInfo.nick_name.length) {
-      return app.toast('请输入会员名称')
+    if (!userInfo.nickname.length) {
+      return app.toast('请输入姓名')
+    }
+    if (!userInfo.phone.length) {
+      return app.toast('请输入手机号')
+    }
+    if (!/^1[3456789]\d{9}$/.test(userInfo.phone)) {
+      return app.toast('手机号格式错误')
+    }
+    const data = {
+      "uid": app.globalData.userInfo.id || '',
+      turename: userInfo.nickname,
+      sex: userInfo.sex == "男" ? 1 : 2,
+      city: this.data.areaValues.length ? this.data.areaValues[2].code : this.data.cityCode,
+      brithday: userInfo.brithday,
+      wxid: userInfo.wxid,
+      phone: userInfo.phone,
     }
 
-    let res = await app.fetch({url: "SaveUserInfo.ashx", data: {nick_name: this.data.userInfo.nick_name} })
+    let res = await app.fetch({url: "Api/User/editUserInfo", data })
 
     app.toast('修改完成')
     setTimeout(() => {
@@ -121,20 +187,4 @@ Page({
       }
     })
   },
-  async saveAvatar (fileName) {
-    const data = {
-      fileName,
-      "x": "0",
-      "y": "0",
-      "w": "0",
-      "h": "0"
-    }
-    let res = await app.fetch({url: "CropUserAvatar.ashx", data})
-    wx.hideLoading()
-
-    this.setData({
-      ['userInfo.avatar'] : res.path
-    })
-    app.toast('修改成功')
-  }
 })
