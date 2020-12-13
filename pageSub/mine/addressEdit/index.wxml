@@ -16,6 +16,6 @@
   <van-button wx:if="{{isEdit}}" custom-class="delete-btn" type="default" block round bind:click="remove">删除</van-button>
 </view>
 
-<van-popup show="{{ isShowArea }}" position="bottom" bind:close="togglePop">
+<van-popup show="{{ isShowArea }}" round position="bottom" bind:close="togglePop">
   <van-area area-list="{{ areaList }}" value="{{code}}" bind:cancel="togglePop" bind:confirm="confirmArea" />
 </van-popup>
