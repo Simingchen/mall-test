@@ -1,6 +1,7 @@
-const baseURL = "http://8.129.87.241/lhss/Root/index.php/"
+const baseURL = "http://miniapp.lhssbio.com/"
+const app = getApp()
 
-export default function fetch(options, globalData) {
+export default function fetch(options) {
   return new Promise((resolve, reject) => {
     let { url, data: reqParams, method = 'POST', isShowLoading = false } = options
 
