@@ -3,9 +3,12 @@ page {
   background: #f6f7fa;
   min-height: 100vh;
 }
-.van-tab__pane{
-  display: none;
+.van-tab__pane {
+  /* padding-top:20rpx; */
 }
+/* .van-tab__pane{
+  display: none;
+} */
 /* 
 .tab-list {
   height: 100rpx;

@@ -1,17 +1,16 @@
-<view class="tab-list">
-  <van-tabs custom-class="tab-list" active="{{ curTabType }}" bind:change="tabsChange" color="#00a5a5">
-    <van-tab title="{{item.name}}" wx:for="{{tabList}}" wx:key="index"></van-tab>
-  </van-tabs>
-</view>
-<!-- <block wx:for="{{curTab.list}}" wx:key="index" wx:for-item="items"> -->
-  <!-- wx:for="{{items}}" wx:for-item="order" wx:key="order_no" -->
-  <view class="order-item panel" bindtap="goUrl">
-    <van-cell title="sdf sdfg dg"></van-cell>
-    <view class="time-box flex-row-center">
-      <view class="time">qweterytetry</view>
-      <view>查看全文</view>
-    </view>
-  </view>
-<!-- </block> -->
-<!-- 加载状态 -->
-<loading status="{{curTab.loadStatus}}" isEmpty="{{curTab.isEmpty}}" />
+<van-tabs swipeable bind:change="tabsChange" color="#00a5a5">
+	<van-tab title="{{tab.title}}" wx:for="{{tabList}}" wx:key="index" wx:for-item="tab">
+		<block wx:for="{{tab.list}}" wx:key="title" wx:if="{{tab.list}}" wx:for-item="items">
+			<view class="order-item panel" wx:for="{{items}}" wx:key="index" bindtap="goUrl" data-item="{{item}}">
+          <van-cell title="{{item.title}}"></van-cell>
+          <view class="time-box flex-row-center">
+            <view class="time">{{item.post_date}}</view>
+            <view>查看全文</view>
+          </view>
+        </view>
+		</block>
+
+		<!-- 加载状态 -->
+		<loading status="{{tab.loadStatus}}" isEmpty="{{tab.isEmpty}}" />
+	</van-tab>
+</van-tabs>

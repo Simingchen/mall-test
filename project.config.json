@@ -49,6 +49,14 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
     "plugin": {
       "list": []
     },
@@ -124,50 +132,9 @@
           "scene": null
         },
         {
-          "name": "pages/infoList/index",
-          "pathName": "pages/infoList/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "资讯详情",
-          "pathName": "pageSub/index/infoDetail/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pageSub/index/submitOrder/index",
-          "pathName": "pageSub/index/submitOrder/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "钱包",
-          "pathName": "pageSub/wallet/wallet/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "新增银行卡",
-          "pathName": "pageSub/wallet/cardEdit/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "添加客户",
-          "pathName": "pageSub/mine/customerEdit/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "公告",
+          "id": -1,
+          "name": "公告列表",
           "pathName": "pageSub/mine/newsList/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "我的",
-          "pathName": "pages/mine/index",
           "scene": null
         }
       ]
