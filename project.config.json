@@ -49,14 +49,6 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "current": -1,
-      "list": []
-    },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
     "plugin": {
       "list": []
     },
@@ -135,6 +127,12 @@
           "id": -1,
           "name": "公告列表",
           "pathName": "pageSub/mine/newsList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "活动列表",
+          "pathName": "pageSub/event/eventList/index",
           "scene": null
         }
       ]

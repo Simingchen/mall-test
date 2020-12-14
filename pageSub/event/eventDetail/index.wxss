@@ -1,3 +1,6 @@
+page{
+  background:#fff;
+}
 .top-box{
   padding: 0 25rpx;
 }
@@ -53,7 +56,7 @@
   line-height: 80rpx;
   text-align: center;
   color:#fff;
-  background: #ff9900;
+  background: #00a5a5;
   border-radius: 6rpx;
 }
 .title-box .h1{
@@ -116,8 +119,9 @@
 }
 
 .btns{
-  width: 585rpx;
-  margin: 0 auto 40rpx;
+  padding: 0 25rpx;
+  /* width: 585rpx; */
+  /* margin: 0 auto 40rpx; */
 }
 .btns .btn{
   width: 280rpx;
@@ -125,7 +129,7 @@
   text-align: center;
   line-height: 80rpx;
   color:#fff;
-  background: #ff9900;
+  background: #00a5a5;
   border-radius: 8rpx;
 }
 .btns .btn.disabled{
@@ -133,7 +137,7 @@
 }
 .event-info{
   padding: 25rpx;
-  border-top: 1px solid #f2f2f2;
+  /* border-top: 1px solid #f2f2f2; */
   border-bottom: 1px solid #f2f2f2;
 }
 .event-info .line{

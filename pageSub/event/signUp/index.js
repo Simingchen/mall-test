@@ -2,13 +2,17 @@ const app = getApp()
 const regeneratorRuntime = app.runtime
 Page({
   data: {
+    detail: {},
     name: '',
-    cardNum: '',
-    bank: '',
     phone: '',
   },
-  onLoad(options) {
-    
+  onLoad(option) {
+    if (option.item) {
+      let detail = JSON.parse(decodeURIComponent(option.item));
+      this.setData({
+        detail
+      })
+    };
   },
     // 输入框更改
  onChangeInput({currentTarget, detail}) {
@@ -16,14 +20,12 @@ Page({
     [currentTarget.dataset.type]: detail.trim()
   })
  },
-  // 保存地址
+  // 保存
   async save() {
     const par = this.data
 
-    console.log(par)
-    
-    if (!par.userName.length) {
-      return app.toast('收货人姓名不能为空')
+    if (!par.name.length) {
+      return app.toast('姓名不能为空')
     }
     if (!par.phone.length) {
       return app.toast('手机号不能为空')
@@ -32,22 +34,20 @@ Page({
     if (!myreg.test(par.phone)) {
       return app.toast('手机号格式不正确')
     }
-
-    if (!par.address.length) {
-      return app.toast('详细地址不能为空')
-    }
-
-
-    if (!par.areaValues[0].name) {
-      return app.toast('请选择地区')
+    const userInfo = wx.getStorageSync('userInfo') || {}
+    const data = {
+      id: this.data.detail.id,
+      name: par.name,
+      phone: par.phone,
+      openid: userInfo.openid,
     }
 
     const res = await app.fetch({
-      url: "Api/Address/address_edit",
+      url: "Api/Huodong/huodong_baoming",
       data
     })
 
-    app.toast('保存成功')
+    app.toast('报名成功')
 
     setTimeout(() => {
       wx.navigateBack({

@@ -1,17 +1,16 @@
 <!-- 活动 -->
 <block wx:for="{{list}}" wx:key="index" >
-	<view class="event-item {{item.StatusDesc == '进行中' ? 'active' : ''}} {{item.StatusDesc == '已结束' ? 'end' : ''}}" bindtap="goUrl" data-item="{{item}}">
-		<image class="img" mode="aspectFill" lazy-load src="{{item.MainImg}}"/>
+	<view class="event-item {{item.huodong_status == 1 ? 'active' : ''}} {{item.huodong_status == 2 ? 'end' : ''}}" bindtap="goUrl" data-item="{{item}}">
+		<image class="img" mode="aspectFill" lazy-load wx:if="{{item.url}}" src="{{item.url}}"/>
 		<view class="tit flex-box">
-			<view class="name flex-item ellipsis2">{{item.Theme || item.Title}}</view>
-			<view class="tag">{{item.StatusDesc}}</view>
+			<view class="name flex-item ellipsis2">{{item.title}}</view>
+			<view class="tag">{{['未开始','进行中', '已结束'][item.huodong_status]}}</view>
 		</view>
-		<view class="desc" wx:if="{{item.SubTitle}}">{{item.SubTitle}}</view>
+		<view class="desc" wx:if="{{item.synopsis}}">{{item.synopsis}}</view>
 		<view class="avator-box flex-start">
-			<view class="time">{{item.EndTime}}</view>
-			<view class="flex-box company" wx:if="{{item.Organizer && item.Organizer.length}}">
-				<!-- <image class="logo" src="{{item.Organizer[0].src}}"/> -->
-				{{item.Organizer[0].Name}}
+			<view class="time">{{item.end_time}}</view>
+			<view class="flex-box company" wx:if="{{item.num}}">
+				第 {{item.num}} 期
 			</view>
 		</view>
 	</view>

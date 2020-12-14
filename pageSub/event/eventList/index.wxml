@@ -1,20 +1,20 @@
-<view class="bb20">
-  <view class="search-bar">
-    <van-search value="{{ searchTxt }}" placeholder="输入需要搜索的内容" shape="round" bind:change="onChange"
-      bind:search="onSearch" maxlength="50">
-    </van-search>
-  </view>
+<view class="search-bar">
+  <van-search value="{{ searchTxt }}" placeholder="输入需要搜索的内容" shape="round" bind:change="onChange"
+    bind:search="onSearch" maxlength="50">
+  </van-search>
 </view>
-<!-- 轮播图 -->
-<swiper class='banner-list' wx:if="{{bannerList.length}}" indicatorDots circular autoplay
-  indicatorActiveColor="rgba(255,255,255,.6)" indicatorColor="rgba(255,255,255, .8)">
-  <swiper-item class='item' wx:for="{{bannerList}}" wx:key="index" bindtap="goBannerUrl" data-item="{{item}}">
-    <image class="img" mode='aspectFill' src="{{item.Img}}" />
-  </swiper-item>
-</swiper>
-<block wx:for="{{curTab.list}}" wx:key="index">
+<van-tabs swipeable bind:change="tabsChange" color="#00a5a5">
+	<van-tab title="{{tab.title}}" wx:for="{{tabList}}" wx:key="index" wx:for-item="tab">
+		<block wx:for="{{tab.list}}" wx:key="title" wx:if="{{tab.list}}">
+			<eventItem list="{{item}}" />
+		</block>
+		<!-- 加载状态 -->
+		<loading status="{{tab.loadStatus}}" isEmpty="{{tab.isEmpty}}" />
+	</van-tab>
+</van-tabs>
+<!-- <block wx:for="{{curTab.list}}" wx:key="index">
   <eventItem list="{{item}}" />
-</block>
+</block> -->
 
 <!-- 加载状态 -->
-<loading status="{{curTab.loadStatus}}" isEmpty="{{curTab.isEmpty}}" />
+<!-- <loading status="{{curTab.loadStatus}}" isEmpty="{{curTab.isEmpty}}" /> -->

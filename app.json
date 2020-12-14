@@ -24,6 +24,7 @@
         "orderList/index",
         "orderDetail/index",
         "newsList/index",
+        "newsDetail/index",
         "aboutUs/index"
       ]
     },

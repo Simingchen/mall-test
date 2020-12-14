@@ -12,13 +12,11 @@ Page({
   },
   getData () {
     // 清空结果
-    this.initResult()
-    clearTimeout(this.timer)
-    this.timer = setTimeout(() => {
+    this.initResult(() => {
       this.getList(true)
-    }, 50)
+    })
   },
-  initResult () {
+  initResult (callback) {
     let initList = [
       {title: "公告", type: 0, api: 'Api/About/gonggao_list'},
       {title: "帮助", type: 1, api: 'Api/About/bangzhu_list'},
@@ -37,7 +35,9 @@ Page({
         list: []
       }
     })
-    this.setData({ tabList })
+    this.setData({ tabList }, () => {
+      callback && callback()
+    })
   },
   // tab 切换
   tabsChange({detail}) {
@@ -96,5 +96,12 @@ Page({
   // 上拉加载
   onReachBottom() {
     this.getList();
-  }
+  },
+  // 跳转到详情
+  goUrl({ currentTarget }) {
+    const item = encodeURIComponent(JSON.stringify(currentTarget.dataset.item))
+    wx.navigateTo({
+      url: `/pageSub/mine/newsDetail/index?item=${item}&type=${this.data.curTabType == 1 ? 'gonggao' : 'bangzhu'}`,
+    })
+  },
 });

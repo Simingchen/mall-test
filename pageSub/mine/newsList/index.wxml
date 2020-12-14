@@ -2,14 +2,14 @@
 	<van-tab title="{{tab.title}}" wx:for="{{tabList}}" wx:key="index" wx:for-item="tab">
 		<block wx:for="{{tab.list}}" wx:key="title" wx:if="{{tab.list}}" wx:for-item="items">
 			<view class="order-item panel" wx:for="{{items}}" wx:key="index" bindtap="goUrl" data-item="{{item}}">
-          <van-cell title="{{item.title}}"></van-cell>
-          <view class="time-box flex-row-center">
-            <view class="time">{{item.post_date}}</view>
-            <view>查看全文</view>
-          </view>
-        </view>
+				<image mode="aspectFill" class="img" wx:if="{{item.url}}" src="{{item.url}}"></image>
+				<van-cell title="{{item.title || item.question}}"></van-cell>
+				<view class="time-box flex-row-center">
+					<view class="time">{{item.post_date}}</view>
+					<view>查看全文</view>
+				</view>
+			</view>
 		</block>
-
 		<!-- 加载状态 -->
 		<loading status="{{tab.loadStatus}}" isEmpty="{{tab.isEmpty}}" />
 	</van-tab>

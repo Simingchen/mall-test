@@ -1,12 +1,11 @@
 <view class="van-address-list">
-  <van-field clearable label="收货人" maxlength="10" value="{{ name }}" placeholder="请输收货人姓名" bind:change="onChangeInput" data-type="name"/>
-  <van-field clearable label="身份证" maxlength="20" value="{{ cardNum }}" placeholder="请输入身份证" bind:change="onChangeInput" data-type="cardNum"/>
+  <van-field clearable label="姓名" maxlength="10" value="{{ name }}" placeholder="请输姓名" bind:change="onChangeInput" data-type="name"/>
+  <!-- <van-field clearable label="身份证" maxlength="20" value="{{ cardNum }}" placeholder="请输入身份证" bind:change="onChangeInput" data-type="cardNum"/> -->
   <!-- <van-field clearable label="持卡人" maxlength="10" value="{{ userName }}" placeholder="请输入持卡人姓名" /> -->
   <!-- <van-field clearable label="开户行" maxlength="20" value="{{ bank }}" placeholder="请输入开户行" bind:change="onChangeInput" data-type="bank"/> -->
-  <van-field clearable label="手机号" maxlength="11" type="number" value="{{ phone }}" placeholder="收货人手机号" bind:change="onChangeInput" data-type="phone"/>
+  <van-field clearable label="手机号" maxlength="11" type="number" value="{{ phone }}" placeholder="请输入手机号" bind:change="onChangeInput" data-type="phone"/>
 </view>
 
 <view class="btns">
   <van-button custom-class="add-btn" color="#00a5a5" block round bind:click="save">保存</van-button>
-  <van-button wx:if="{{isEdit}}" custom-class="delete-btn" type="default" block round bind:click="remove">删除</van-button>
 </view>
