@@ -94,7 +94,8 @@ Page({
     let data = {
       page: curTabItem.page.page,
       openid: userInfo.openid,
-      is_zj: curTabType == 2 ? 1: 0
+      is_zj: curTabType == 2 ? 1: 0,
+      title: this.data.searchTxt
     }
 
     const curTab = `tabList[${par.curTabType-1}]`
