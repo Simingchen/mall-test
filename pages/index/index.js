@@ -1,253 +1,439 @@
-const app = getApp();
-const regeneratorRuntime = app.runtime;
+const app = getApp()
+const regeneratorRuntime = app.runtime
+let wxparse = require("../../wxParse/wxParse.js");
 
 Page({
   data: {
-    bannerList: [],
-    navList: [],
-    msgList: [],
-    goodsList: [],
-    eventList: [],
-    exchangeList: [],
+    detail: {},
     cartNum: 0,
-    customParams: {}
+    isSeckillEnd: false,   // 团购未结束
+    skuSHow: '',
+    curSku: {
+      sku0: {},
+      sku1: {}
+    },
+    skuDetail: {},
+    quality: 1,
+    // 分享
+    isShowShare: false,
+    isOpend: false,
+    shareTitle: '更多优惠商品，尽在澳米特商城...',
+    userConfig: {},
+    qrCode: '',
   },
-  onLoad(option) {
-    console.log(option);
-    // 存储邀请码
-    if (option.scene) {
-      wx.setStorageSync("scene", option.scene);
-
-      // this.parseCode(option.scene)
-    }
-  },
-  async onShow() {
-    // this.getBanner();
-    // this.getMsgList();
-    // this.getNavList();
-    // this.getEventList();
-    // this.getGoodsList();
-    // // this.getExchangeList();
-    // this.getLiveList()
-    // this.setData({
-    //   cartNum: app.globalData.cartNum,
-    // });
-  },
-  // 获取直播列表
-  async getLiveList () {
-    const data = {
-      "page_size": "10",
-      "page_index": "0"
-    }
-
-    // 直播间状态。101：直播中，102：未开始，103已结束，104禁播，105：暂停，106：异常，107：已过期
-    const res = await app.fetch({ url: "GetLiveRoomList.ashx",data });
-   
-    res.list.room_info = res.list.room_info.filter(item => {
-      return item.live_status == 101 || item.live_status == 102 || item.live_status == 103
-    })
-    const liveList = res.list.room_info
-    console.log(liveList)
-    this.setData({ liveList });
-  },
-  // 跳转直播
-  goLiveDetail: app.throttle(function ({ currentTarget }) {
-      //节流
-    let item = currentTarget.dataset.item;
-    // let roomId = [直播房间id] // 填写具体的房间号，可通过下面【获取直播房间列表】 API 获取
-    let customParams = encodeURIComponent(JSON.stringify({ path: 'pages/index/index', pid: 1 })) // 开发者在直播间页面路径上携带自定义参数（如示例中的path和pid参数），后续可以在分享卡片链接和跳转至商详页时获取，详见【获取自定义参数】、【直播间到商详页面携带参数】章节（上限600个字符，超过部分会被截断）
-    wx.navigateTo({
-        url: `plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id=${item.roomid}&custom_params=${customParams}`
-    })
-  }),
-  async getBanner() {
-    const bannerList = await app.fetch({
-      url: "GetPictureList.ashx",
-      data: {
-        category_id: 2,
-      },
-    });
-    this.setData({ bannerList });
-  },
-  // 解析二维码
-  async parseCode(scene) {
-    const data = {
-      "share_type": 0,
-	    scene
-    }
-    const res = await app.fetch({ url: "GetDecryptScene.ashx", data });
-    wx.setStorageSync("scene", res.invitation_code);
-  },
-  async getMsgList() {
-    const msgList = await app.fetch({ url: "GetNewsList.ashx", data: { category_id: 12 } });
-    this.setData({ msgList });
-  },
-
-  goBannerUrl: app.throttle(function ({ currentTarget }) {
-    //节流
-    let item = currentTarget.dataset.item;
-    // 1.分类列表
-    // 2.普通商品列表
-    // 3.普通商品详情
-    // 4.拼团商品列表
-    // 5.拼团商品详情
-    // 6.兑换商品列表
-    // 7.兑换商品详情
-    // 8.直播广场
-    // 9.直播间
-    if (item.relation_type == 1) {
-      app.globalData.goodsSortId = item.link_url
-      return wx.switchTab({ url: "/pages/goodsSort/index" });
-    }
-    if (item.relation_type == 2) {
-      return wx.navigateTo({ url: "/pageSub/index/searchList/index" });
-    }
-    if (item.relation_type == 3 || item.relation_type == 5 || item.relation_type == 7) {
-      var channel_id = 12;
-      if (item.relation_type == 5) {
-        channel_id = 11;
+  async onLoad (option) {
+     try {
+      let detail = {}
+      // 存储邀请码
+      if (option.scene) {
+        wx.setStorageSync("scene", option.scene);
+        this.parseCode(option.scene)
       }
-      if (item.relation_type == 7) {
-        channel_id = 12;
-      }
-      const temp = {
-        id: item.link_url,
-        channel_id,
+     
+      if(option.item) {
+        detail = JSON.parse(decodeURIComponent(option.item));
+        // this.setInfo(detail)
+
+        this.setData({
+          detail
+        }, () => {
+          this.getData(detail)
+        })
+        
       };
-      const par = encodeURIComponent(JSON.stringify(temp));
-      wx.navigateTo({
-        url: `/pageSub/index/goodsDetail/index?item=${par}`,
-      });
-    }
-    if (item.relation_type == 4) {
-      return wx.navigateTo({ url: "/pageSub/index/seckillList/index" });
+      if (option.id) {
+        detail = {
+          "id": 1
+        }
+
+        this.getData(detail)
+      }
+      detail = {
+        "id": 1
+      }
+
+      this.getData(detail)
+      
+    } catch (e) {
+      console.error(e)
     }
 
-    if (item.relation_type == 6) {
-      return wx.navigateTo({ url: "/pageSub/mine/goodsList/index" });
-    }
-    // 跳转直播列表
-    if (item.relation_type == 8 || item.relation_type == 9) {
-      return app.toast("功能持续开放中");
-    }
-
-    // app.goDetail(item.LinkType, item.LinkUrl,item.BannerId)
-  }),
-  async getNavList() {
-    const { navList } = this.data
-
-    if (!navList.length) {
-      wx.showLoading({
-        title: '加载中',
+    const userInfo = wx.getStorageSync('userInfo')
+  },
+  onUnload () {
+    clearTimeout(this.timer)
+  },
+  setInfo (detail) {
+    if (detail.fields && detail.fields.video_src) {
+      detail.albums.unshift({
+        video_src: detail.fields.video_src
       })
     }
-    let res = await app.fetch({ url: "GetSoftwareNavigation.ashx" });
-    function setArr(data, num) {
-      let index = 0
-      let array = []
-      while(index < data.length) {
-              array.push(data.slice(index, index += num));
-          }
-        return array ;
+    
+    this.setData({ detail})
+    if (detail.msg) {
+      wxparse.wxParse('content', 'html', detail.msg, this, 5)
     }
-    const newList = setArr(res, 8)
-    this.setData({
-      navList: newList
-    }, () => {
-      wx.hideLoading()
-    });
   },
-  async getEventList() {
+  swiperChange ({detail}) {
+    // console.log(detail)
+    // if (detail.current != 0) {
+    // }
+  },
+  async getData (par) {
     const data = {
-      page_size: "10",
-      page_index: "0",
-      category_id: "0",
-    };
-    const res = await app.fetch({ url: "GetGroupGoodsList.ashx", data });
+      "id": 1,
+    }
+    let detail = await app.fetch({url: "Api/Goods/detail", data })
 
     try {
-      res.list.forEach((item) => {
-        var startDay = new Date(item.start_time).getTime();
+      // 团购倒计时
+      clearTimeout(this.timer)
+      if (detail.second && detail.second > 0) {
+        this.timer = setTimeout(() => {
 
-        var endDay = new Date(item.end_time).getTime();
+          // 团购结束
+          this.setData({
+            isSeckillEnd: true,
+            ['detail.percentDay']: 0
+          })
+        }, detail.second * 1000)
+      }
+      var startDay = new Date(detail.fields.start_time).getTime()
 
-        var nowDay = new Date().getTime();
-        
-        var leftDay = ((endDay - nowDay) / (endDay - startDay)) * 100;
-        item.percentDay = parseInt(leftDay);
-      });
-    } catch (error) {}
+      var endDay = new Date(detail.fields.end_time).getTime()
 
-    this.setData({
-      eventList: res.list,
-    });
+      var nowDay = new Date().getTime()
+
+      var leftDay = ((endDay - nowDay) / (endDay - startDay)) * 100;
+      detail.percentDay = parseInt(leftDay)
+    } catch (error) {
+      
+    }
+    console.log("detail===>", detail)
+    this.setInfo(detail)
+    // this.getSkuList(detail.id, detail.channel_id)
   },
-  async getGoodsList() {
+  // 商品收藏
+  onCollect: app.throttle(async function({currentTarget}){  //节流
+    const { detail } = this.data
     const data = {
-      page_size: "20",
-      page_index: "0",
-      is_red: "1",
-    };
-    const res = await app.fetch({ url: "GetGoodsList.ashx", data });
-  goLocalUrl: app.throttle(function ({ currentTarget }) {
-    //节流
-    let url = currentTarget.dataset.url;
-    wx.navigateTo({ url });
-  }),
+      goods_id: detail.id
+    }
+
+    let res = await app.fetch({url: "SaveUserCollectionGoods.ashx", data })
+
+    // app.toast(detail.is_collect ? )
     this.setData({
-      goodsList: res.list,
-    });
+      ['detail.is_collect']: !detail.is_collect
+    })
+  }),
+  // 获取sku列表
+  async getSkuList (article_id, channel_id) {
+    const skuList = await app.fetch({url: "GetGoodsSpec.ashx", data: {article_id, channel_id} })
+    const skuSHow = skuList.map(item => {
+      return item.title
+    }).join(' ')
+    this.setData({
+      skuList,
+      skuSHow
+    })
   },
-  // 头条跳转
-  goInfoDetail: app.throttle(function ({ currentTarget }) {
-    //节流
-    const item = encodeURIComponent(JSON.stringify(currentTarget.dataset.item));
-    wx.navigateTo({
-      url: `/pageSub/index/infoDetail/index?item=${item}`,
-    });
-  }),
-  // 专卖店列表
-
-  goDetail: app.throttle(function ({ currentTarget }) {
-    //节流
-    const item = encodeURIComponent(JSON.stringify(currentTarget.dataset.item));
-    wx.navigateTo({
-      url: `/pageSub/index/goodsDetail/index?item=${item}`,
-    });
-  }),
-  async getExchangeList() {
-    let data = {
-      page_index: 10,
-      page_size: 1,
-      category_id: "0",
-    };
-
-    const res = await app.fetch({ method: "post", url: "GetExchangeGoodsList.ashx", data });
+  // 获取sku 详情
+  async getSkuData () {
+    const { curSku, detail, skuList } = this.data
+    let spec_ids;
+    if (skuList.length == 1) {
+      spec_ids = `,${curSku.sku0.spec_id},`
+    }
+    if (skuList.length == 2) {
+      spec_ids = `,${curSku.sku0.spec_id},${curSku.sku1.spec_id},`
+    }
+    const data = {
+      channel_id: detail.channel_id,
+      article_id: detail.id,
+      spec_ids
+    }
+    const skuDetail = await app.fetch({url: "GetGoodsInfo.ashx", data })
+    
     this.setData({
-      exchangeList: res.list,
-    });
+      skuDetail
+    })
   },
   //转发
   onShareAppMessage: function (res) {
     console.log("button分享页面的内容")
     if (res.from === 'button') {
       // 来自页面内转发按钮
-      // console.log(res.target)
+      console.log(res.target)
     }
+    const { detail } = this.data
+    const item = encodeURIComponent(JSON.stringify({
+      "id": detail.id,
+    }))
+
     const userInfo = app.globalData.userInfo || {}
+
+    
+    const path = `/pageSub/index/goodsDetail/index?id=${detail.id}&channel_id=${detail.channel_id}&scene=${userInfo.invitation_code}`
+
+    console.log("userInfo=====>", path)
     return {
-      title: `${userInfo.user_name}邀请你加入商城`,
-      path: `/pages/index/index?scene=${userInfo.invitation_code}`,
-      // imageUrl: `${globalData.config.ShareImg}`,
-      success: function (res) {  // 不再支持分享回调参数 success 、fail 、complete
-        console.log('成功', res)
+      title: detail.Title,
+      path,
+    }
+  },
+  toggleSku ({currentTarget}) {
+    const type = currentTarget.dataset.type || 1
+    this.setData({
+      curSkuPopType: type,
+      isShowSku: !this.data.isShowSku
+    })
+  },
+  // 选择SKu
+  chooseSku ({currentTarget}) {
+    const item = currentTarget.dataset.item
+    // 确定行
+    const index = currentTarget.dataset.index
+
+    let tempSku = {}
+
+    tempSku['sku' + index] = item
+
+    let curSku = {
+      ...this.data.curSku,
+      ...tempSku,
+    }
+
+    this.setData({
+      curSku: curSku,
+    }, () => {
+      const { skuList } = this.data
+      if (skuList.length == 1) {
+        this.getSkuData()
+      }
+
+      if (skuList.length == 2) {
+        // 选择完 sku, 获取接口 SKU 详情
+        if (!!curSku.sku0.spec_id && !!curSku.sku1.spec_id) {
+          this.getSkuData()
+        }
+      }
+    })
+  },
+  // 更改数量
+  changeGoodsNum ({detail}) {
+    const { curSku } = this.data
+    // if (detail > curSku.stock_quantity) {
+    //   return app.toast('库存不足')
+    // }
+    this.setData({
+      quality: detail
+    })
+  },
+  // 确定sku
+  confirmSku () {
+    const { curSkuPopType, skuDetail, skuList } = this.data
+
+    // if (!skuDetail.id && skuList.length) {
+    //   return app.toast('请选择规格')
+    // }
+
+    // if (curSkuPopType == 1) {
+    //   this.addCart()
+    // }
+    // if (curSkuPopType == 2) {
+      
+    // }
+    this.buyIt()
+    
+  },
+  // 加入购物车
+  async addCart () {
+    const { detail, quality, skuDetail } = this.data
+
+    const data = {
+      "article_id": detail.id,
+      "goods_id": skuDetail.id || 0,
+      "quantity": quality
+    }
+    await app.fetch({url: "AddCartGoods.ashx", data })
+    app.toast('加入购物成功')
+
+    app.globalData.cartNum = app.globalData.cartNum + 1
+    this.setData({
+      isShowSku: !this.data.isShowSku,
+      cartNum: app.globalData.cartNum,
+    })
+  },
+  // 立即购买
+  async buyIt () {
+    this.setData({
+      isShowSku: !this.data.isShowSku
+    })  
+    const par = {
+      ...this.data.detail,
+      quality: this.data.quality
+    }
+
+    const item = encodeURIComponent(JSON.stringify(par))
+    wx.navigateTo({
+      url: `/pageSub/index/submitOrder/index?item=${item}`,
+    })
+  },
+  // 分享
+  setPoster() {
+    wx.showLoading({
+      title: '加载中',
+    })
+    this.setData({
+      isOpend: false,
+      isShowShare: true
+    }, () => {
+      // 通过 SelectorQuery 获取 Canvas 节点
+      this.createSelectorQuery()
+        .select('#canvas')
+        .fields({
+          node: true,
+          size: true,
+        })
+        // .exec(this.init.bind(this))
+        .exec(this.setPoster2.bind(this))
+    })
+  },
+  setPoster2(res) {
+    // console.log(res)
+    let that = this;
+    
+    const globalData = app.globalData
+
+    // 创建画布
+    const width = res[0].width
+    const height = res[0].height
+
+    const canvas = res[0].node
+    const ctx = canvas.getContext('2d')
+
+    const dpr = wx.getSystemInfoSync().pixelRatio
+    canvas.width = width * dpr
+    canvas.height = height * dpr
+    ctx.scale(dpr, dpr)
+
+    // 白色背景
+    ctx.fillStyle = "#fff"
+    ctx.fillRect(0, 0, 530, 1100)
+
+    // 主图
+    let img1 = canvas.createImage();
+    img1.src = this.data.detail.banner
+
+    img1.onload = async (res) => {
+      // console.log(res)
+      ctx.drawImage(img1, 0, 0, 300, 300)
+      
+      // 设置字体
+      ctx.font = "14px Arial";
+      // 设置水平对齐方式
+      //  ctx.textAlign = "center";
+      // 设置颜色
+      ctx.fillStyle = '#333333FF' // 文字颜色：黑色
+      let title = that.data.detail.name
+      if (title.length <= 14) {
+        // 不用换行
+        ctx.fillText(title, 10, 320, 180)
+      } else if (title.length <= 28) {
+        // 两行
+        let firstLine = title.substring(0, 14);
+        let secondLine = title.substring(14, 27);
+        ctx.fillText(firstLine, 10, 320, 180)
+        ctx.fillText(secondLine, 10, 340, 180)
+      } else {
+        // 超过两行
+        let firstLine = title.substring(0, 14);
+        let secondLine = title.substring(14, 28);
+        let line3 = title.substring(28);
+
+        if (title.length > 40) {
+          line3 = title.substring(28, 40) + '...'
+        }
+        ctx.fillText(firstLine, 10, 320, 180)
+        ctx.fillText(secondLine, 10, 340, 180)
+        ctx.fillText(line3, 10, 360, 180)
+      }
+
+      const data = {
+        page: '/pages/index/index',
+        "uid": app.globalData.userInfo.id,
+        id: this.data.detail.id,
+        // width: 500,
+        // id: 4
+      }
+      
+      // 下载二维码
+      let img2 = canvas.createImage();
+
+      if (!this.data.qrCode) {
+        const imgUrl = await app.fetch({ url: "Api/Goods/share", data })
+        img2.src = imgUrl.qrcode;
+
+        this.setData({
+          qrCode: imgUrl.qrcode
+        })
+      } else {
+        img2.src = this.data.qrCode;
+      }
+      img2.onload = (res) => {
+        console.log(res)
+        let qrImgSize = 70
+        ctx.drawImage(img2, 210,  310, qrImgSize, qrImgSize)
+
+        wx.hideLoading()
+        // 保存到相册
+        var that = this
+        wx.canvasToTempFilePath({
+          canvas,
+          success: function (res) {
+            wx.saveImageToPhotosAlbum({
+              filePath: res.tempFilePath,
+              success: function (res) {
+                wx.showModal({
+                  title: '提示',
+                  showCancel: false,
+                  content: '分享图片已保存到相册,请到朋友圈选择图片发布',
+                  success(res) {
+                    if (res.confirm) {
+                      console.log('用户点击确定')
+                    } else if (res.cancel) {
+                      console.log('用户点击取消')
+                    }
+                  }
+                })
+              }
+            })
+          }
+        }, this)
+      }
+      img2.error = (err) => {
+        console.log(err)
+        wx.hideLoading()
       }
     }
   },
-  // 附近专卖店列表
-  goLocationUrl() {
-    wx.navigateTo({
-      url: '/pageSub/index/locationList/index',
+  closeShare() {
+    this.setData({
+      isShowShare: false
     })
+    wx.hideLoading()
+  },
+  // 解析二维码
+  async parseCode(scene) {
+    const data = {
+      "share_type": 1,
+	    scene
+    }
+    const res = await app.fetch({ url: "GetDecryptScene.ashx", data });
+    wx.setStorageSync("scene", res.invitation_code);
+
+    this.getData(res)
   },
 });
