@@ -6,6 +6,8 @@ Page({
     cardNum: '',
     bank: '',
     phone: '',
+    isEdit: false,
+    id: 0,
   },
   onLoad(options) {
     let detail = {}
@@ -14,10 +16,10 @@ Page({
     if (options.item && options.item != "{}") {
       detail = JSON.parse(decodeURIComponent(options.item));
       this.setData({
-        name: '',
-        cardNum: '',
-        bank: '',
-        phone: '',
+        name: detail.name,
+        cardNum: detail.card,
+        bank: detail.site,
+        phone: detail.tel,
       })
     };
     wx.setNavigationBarTitle({
@@ -25,6 +27,7 @@ Page({
     })
     this.setData({
       isEdit: detail.id > 0,
+      id: detail.id,
     })
   },
   // 输入框更改
@@ -56,17 +59,16 @@ Page({
 
     const data = {
       "uid": app.globalData.userInfo.id,
-      "name": par.userName,
-      "code": par.areaValues[2].code || this.data.code,
-      "remark": par.address,
-      "mobile": par.phone,
-      is_default: par.checked,
+      "name": par.name,
+      "card": par.cardNum,
+      "site": par.bank,
+      "tel": par.phone,
     }
     if (par.id) {
       data.id = par.id
     }
     const res = await app.fetch({
-      url: "Api/Address/address_edit",
+      url: "Api/Wallet/bank_bind",
       data
     })
 
@@ -82,7 +84,7 @@ Page({
   remove() {
     wx.showModal({
       title: "提示",
-      content: "删除当前地址？",
+      content: "删除银行卡？",
       success: async(res) => {
         if (res.confirm) {
           console.log('用户点击确定')
@@ -91,7 +93,7 @@ Page({
             id: this.data.id
           }
           const res = await app.fetch({
-            url: "Api/Address/address_del",
+            url: "Api/Wallet/bank_bind",
             data
           })
       

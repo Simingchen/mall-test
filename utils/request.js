@@ -1,4 +1,4 @@
-const baseURL = "http://miniapp.lhssbio.com/"
+const baseURL = "https://miniapp.lhssbio.com/"
 const app = getApp()
 
 export default function fetch(options) {

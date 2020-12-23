@@ -89,10 +89,10 @@ Page({
     const curTab = `curTab`
     this.setData({
       [curTab + '.isLoaded']: true,
-      // [curTab + '.page']: {...curTabItem.page, finished: !res.HasNextPage},
-      [curTab + '.isEmpty']: ![...curTabItem.list, ...res ].length,
-      [curTab + '.list[' + (curTabItem.page.page - 1) + ']']: res,
-      // [curTab + '.loadStatus']: res.HasNextPage? 'loading' : 'noMore',
+      [curTab + '.page']: {...curTabItem.page, finished: curTabItem.page.page >= res.page},
+      [curTab + '.isEmpty']: ![...curTabItem.list, ...res.data ].length,
+      [curTab + '.list[' + (curTabItem.page.page - 1) + ']']: res.data,
+      [curTab + '.loadStatus']: (curTabItem.page.page >= res.page) ? 'noMore' : 'loading'
     })
   },
   // 上拉加载

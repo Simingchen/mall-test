@@ -6,17 +6,15 @@ var filters = {
     return data;
   },
   filterMoney: function (value) {
+    console.log(isNaN(value))
     if (isNaN(value)) {
       return "0.00";
     }
-    console.log(parseFloat(value))
     // 截取当前数据到小数点后三位
     var tempVal = parseFloat(value).toFixed(3);
 
     var realVal = tempVal.substring(0, tempVal.length - 1);
     return realVal;
   },
-  
-
 }
 module.exports = filters

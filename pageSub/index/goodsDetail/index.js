@@ -77,7 +77,7 @@ Page({
   },
   async getData (par) {
     const data = {
-      "id": 1,
+      "id": par.id,
     }
     let detail = await app.fetch({url: "Api/Goods/detail", data })
 

@@ -37,12 +37,12 @@ Component({
           "pagePath": "pages/infoList/index",
           "text": "美丽资讯"
         },
-        {
-          "selectedIconPath": "icontianchongxing-",
-          "iconPath": "icontianchongxing-",
-          "pagePath": "pages/cart/index",
-          "text": "美丽播"
-        },
+        // {
+        //   "selectedIconPath": "icontianchongxing-",
+        //   "iconPath": "icontianchongxing-",
+        //   "pagePath": "pages/cart/index",
+        //   "text": "美丽播"
+        // },
         {
           "selectedIconPath": "iconwode",
           "iconPath": "iconwode",

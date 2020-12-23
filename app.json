@@ -2,7 +2,6 @@
   "pages": [
     "pages/index/index",
     "pages/infoList/index",
-    "pages/cart/index",
     "pages/mine/index",
     "pages/login/index"
   ],
@@ -96,12 +95,6 @@
         "iconPath": "./static/tab/2.png",
         "pagePath": "pages/infoList/index",
         "text": "美丽资讯"
-      },
-      {
-        "selectedIconPath": "./static/tab/31.png",
-        "iconPath": "./static/tab/3.png",
-        "pagePath": "pages/cart/index",
-        "text": "美丽播"
       },
       {
         "selectedIconPath": "./static/tab/51.png",

@@ -1,3 +1,6 @@
+page{
+  background: #fff;
+}
 .title{
   font-size: 36rpx;
   line-height: 52rpx;

@@ -41,7 +41,7 @@ Page({
     }
     
     this.loading = true
-    const res = await app.fetch({url: "Api/Address/address_list", data })
+    const res = await app.fetch({url: "Api/Wallet/bank", data })
     this.loading = false
 
     this.setData({

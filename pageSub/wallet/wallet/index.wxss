@@ -91,7 +91,7 @@ page{
 }
 .account-money {
   position: relative;
-  flex: 3;
+  flex: 1.5;
   color:#fff;
   text-align: left;
 }

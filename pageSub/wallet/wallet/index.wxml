@@ -4,16 +4,20 @@
 		<view class="flex-box">
 			<view class="account-money">
 				账户金额
-				<view class="num">{{filter.filterMoney(detail.amount)}}</view>
+				<view class="num">{{filter.filterMoney(detail.sale_money)}}</view>
 			</view>
 			<view class="flex-box flex4">
 				<view class="flex-item">
-					今日红包
-					<view class="num">{{filter.filterMoney(0)}}</view>
+					在途资金
+					<view class="num">{{filter.filterMoney(detail.onway_money)}}</view>
 				</view>
 				<view class="flex-item">
-					今日预估
-					<view class="num">{{filter.filterMoney(0)}}</view>
+					可用余额
+					<view class="num">{{filter.filterMoney(detail.avail_money)}}</view>
+				</view>
+				<view class="flex-item">
+					冻结资金
+					<view class="num">{{filter.filterMoney(detail.ice_money)}}</view>
 				</view>
 			</view>
 		</view>

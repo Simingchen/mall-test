@@ -1,274 +1,55 @@
-/* 商品详情 S ========== */
-page {
+.banner-list {
+  position: relative;
+  /* width:710rpx; */
+  height:280rpx;
+  padding: 20rpx;
+  /* margin: 0 auto; */
   background: #fff;
-  min-height: 100vh;
-  padding-bottom: 300rpx;
 }
-
-.index-swipe {
-  height: 750rpx;
+.banner-list .item{
+  width:100%;
+  /* margin: 0 auto; */
+  border-radius:16rpx;
   overflow: hidden;
 }
-
-.index-swipe .img {
-  width: 100%;
-  height: 750rpx;
-  border-radius: 0;
-}
-
-.goods-name {
-  flex:1;
-  padding: 30rpx 30rpx 20rpx;
-  font-size: 28rpx;
-  line-height: 40rpx;
-  font-weight: 500;
-}
-
-.goods-price-line {
-  padding: 0 30rpx 20rpx;
-  color: #999;
-  font-size: 28rpx;
-}
-.time-box{
-  padding: 0 30rpx 0rpx;
-  color: #ee0a24;
-  font-size: 28rpx;
-}
-
-.goods-price-line .price {
-  font-weight: 500;
-  font-size: 32rpx;
-}
-.goods-price-line .lab {
-  color:#ee0a24;
-}
-.goods-price-line .currency{
-  color:#ee0a24;
-  font-size: 24rpx;
-}
-.van-icon-star{
-  color:#ee0a24;
-}
-
-.del-price {
-  margin-top: 10rpx;
-  margin-left: 20rpx;
-  color: #999;
-}
-
-.sku-pop {
-  padding: 30rpx;
-}
-
-.sku-goods {
-  margin-bottom: 30rpx;
-}
-
-.sku-goods .sku-img {
+.banner-list  .img{
   display: block;
-  width: 200rpx;
-  height: 200rpx;
-  margin-right: 40rpx;
+  width:100%;
+  margin: 0 auto;
+  height:100%;
+  background: #eee;
+}
+.goods-list{
+  padding: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.goods-item{
+  background: #fff;
+  width: 340rpx;
+  /* height: 496rpx; */
   border-radius: 16rpx;
-  border: 1rpx solid #eee;
-  background: #eee;
-}
-
-.sku-goods .sku-price {
-  margin-top: 20rpx;
-  font-size: 24rpx;
-}
-
-.price {
-  margin-bottom: 20rpx;
-  color: #ee0a24;
-  /* font-weight: 500; */
-  font-size: 32rpx;
-}
-
-.sku-goods .sku-price .integral {
-  font-size: 28rpx;
-  margin-bottom: 20rpx;
-}
-
-.sku-type .sku-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.sku-type .tit {
-  line-height: 40rpx;
-  font-size: 24rpx;
-}
-
-.sku-type .sku-list .item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  min-width: 130rpx;
-  height: 70rpx;
-  padding: 0 30rpx;
-  margin-right: 10rpx;
-  margin-bottom: 10rpx;
-  color: #333;
-  background: #f6f7fa;
-  border-radius: 70rpx;
-  font-size: 24rpx;
-}
-
-
-.sku-type .sku-list .item.active {
-  color: #fff;
-  background: #ee0a24;
-}
-
-.sku-type .sku-list .item .img {
-  width: 46rpx;
-  height: 46rpx;
-  margin-right: 14rpx;
-  border-radius: 8rpx;
-  background: #eee;
-}
-
-.mt75 {
-  margin-top: 32rpx;
-}
-
-.sku-type .van-stepper__input {
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  height: 70rpx;
-  margin: 0;
-  background-color: #f6f7fa;
-  font-size: 24rpx;
-}
-
-.sku-type .van-stepper__minus,
-.sku-type .van-stepper__plus {
-  border-radius: 0;
-  width: 70rpx;
-  height: 70rpx;
-  background-color: #f6f7fa;
-  font-size: 24rpx;
-}
-
-.sku-type {
-  margin-bottom: 30rpx;
-}
-
-.sku-type .van-stepper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 270rpx;
-  height: 70rpx;
-  border-radius: 70rpx;
   overflow: hidden;
 }
-
-/* .van-stepper__minus::before,
-.van-stepper__plus::before {
-  width: 24rpx;
+.goods-item .con{
+  padding: 20rpx;
 }
-
-.van-stepper__minus::after,
-.van-stepper__plus::after {
-  height: 24rpx;
-} */
-.fields-list{
-  padding: 40rpx 0 40rpx 40rpx;
-  flex-wrap: wrap;
-  line-height: 46rpx;
-  color:#999;
+.goods-item .name{
+  line-height: 38rpx;
+  min-height: 38rpx;
 }
-.fields-list .item{
-  margin-right: 40rpx;
-}
-.video{
-  width: 100%;
-  height: 750rpx;
-}
-.process{
-  width: 400rpx;
-}
-.banner-img{
-  display: block;
-  width: 100%;
-  height: 750rpx;
-}
-.share{
-  width: 110rpx;
-  height: 50rpx;
-  margin-top:30rpx;
-  background: #eee;
-  border-radius: 50rpx 0 0rpx 50rpx;
-  color:#666;
-  font-size: 24rpx;
-}
-.share .van-icon{
-  margin-right: 6rpx;
-  color: #989898;
+.goods-item .price{
+  margin-top:10rpx;
+  line-height: 38rpx;
+  min-height: 38rpx;
   font-size: 28rpx;
+  color:#ee0a24;
 }
-
-.share-moment {
-  width: 300px;
-  height: 360px;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 100rpx;
-  margin: auto;
-  z-index: 200;
+.goods-item .price .txt{
+  font-size: 20rpx;
 }
-.mask{
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom:0;
-  background: rgba(0,0,0,.3);
-  z-index: 20;
-}
-.share-moment .btn-box {
-  padding: 1060rpx 60rpx 0 60rpx;
-}
-
-.share-moment .bottom {
-  width: 300px;
-  height: 40px;
-  background-color: white;
-}
-.canvas{
-  /* border: 1px solid #f2f2f2; */
-}
-.iconshanchu{
-  position: absolute;
-  width: 60rpx;
-  height: 60rpx;
-  font-size: 60rpx;
-  color: #f2f2f2;
-  z-index: 10;
-  top: -84rpx;
-  right: 10rpx;
-}
-.content{
-  padding: 10rpx;
-}
-.wxParse-img{
-  display: flex;
-}
-.van-goods-action {
-  bottom: 100rpx!important;
+.goods-item .img{
+  width: 340rpx;
+  height: 340rpx;
 }

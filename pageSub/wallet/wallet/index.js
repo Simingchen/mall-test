@@ -11,12 +11,13 @@ Page({
     }
   },
   onShow () {
-    // this.getData()
+    this.getData()
   },
   async getData () {
-    const detail = await app.fetch({method: 'post', url: "GetUserInfo.ashx"})
-    app.globalData.userInfo = detail
-    wx.setStorageSync('userInfo', detail)
+    const data = {
+      uid: app.globalData.userInfo.id
+    }
+    const detail = await app.fetch({url: "Api/Wallet/index", data})
     this.setData({detail})
   },
   goUrl: app.throttle(function({currentTarget}){  //节流

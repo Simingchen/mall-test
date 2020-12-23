@@ -5,7 +5,7 @@
 			<navigator hover-class="none" url="/pageSub/mine/setting/index" wx:if="{{userInfo.openid}}">
 				<view class="iconfont iconshezhi"></view>
 			</navigator>
-			<view class="share-code flex-start" bindtap="setPoster" wx:if="{{userInfo.openid}}">
+			<view class="share-code flex-start" bindtap="setPoster" wx:if="{{userInfo.type != 1}}">
 				<text class="iconfont iconico"></text>
 				分享码
 			</view>
@@ -33,7 +33,7 @@
 				<text class="iconfont iconwodedingdan0101"></text>
 				我的订单
 			</view>
-			<view class="item  flex-center" bindtap="goUrl" data-url="/pageSub/wallet/wallet/index">
+			<view class="item  flex-center" bindtap="goUrl" data-url="/pageSub/wallet/wallet/index" wx:if="{{userInfo.type != 1}}">
 				<text class="iconfont icontianchongxing-1"></text>
 				钱包
 			</view>
@@ -47,18 +47,18 @@
 	<view class="panel">
 		<van-cell title="我的工作" border="{{false}}"></van-cell>
 		<view class="tool-list flex-box">
-			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/orderList/index">
+			<view class="item flex-start" wx:if="{{userInfo.type != 1}}" bindtap="goUrl" data-url="/pageSub/mine/orderList/index">
 				<view class="iconfont icondingdan-"></view>
 				<view class="txt">客户订单</view>
 			</view>
-			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/customer/customerList/index">
+			<view class="item flex-start" wx:if="{{userInfo.type != 1}}" bindtap="goUrl" data-url="/pageSub/customer/customerList/index">
 				<view class="iconfont iconkehu"></view>
 				<view class="txt">渠道客户</view>
 			</view>
-			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/customer/customerEdit/index">
+			<!-- <view class="item flex-start" bindtap="goUrl" data-url="/pageSub/customer/customerEdit/index">
 				<view class="iconfont iconkehu1"></view>
 				<view class="txt">添加客户</view>
-			</view>
+			</view> -->
 			<button class="item flex-start noborder" open-type="contact">
 				<view class="iconfont iconzixun"></view>
 				<view class="txt">我的咨询</view>
