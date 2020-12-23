@@ -4,7 +4,8 @@
       <view class="iconfont iconyinxingqia3"></view>
       <view>
         <view class="van-address-item__name">
-          {{item.site}}
+          <!-- {{item.site}} -->
+          农业银行
           <!-- <text class="van-tag" wx:if="{{item.is_default > 0 }}">默认</text> -->
         </view>
         <view class="van-address-item__address">{{item.card}} </view>

@@ -44,6 +44,10 @@ Page({
     const res = await app.fetch({url: "Api/Wallet/bank", data })
     this.loading = false
 
+    res.forEach(item=> {
+      item.card = '..... .... ...  ' + item.card.slice(-4)
+    })
+
     this.setData({
       ['curTab.isLoaded']: true,
       ['curTab.page']: {...curTabItem.page, finished: true},

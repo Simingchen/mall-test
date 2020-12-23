@@ -17,7 +17,6 @@ page{
 .van-address-item {
   padding: 12px;
   margin-bottom: 20rpx;
-  background-color: #fff;
   border-radius: 8px;
   position: relative;
   display: -webkit-box;
@@ -85,4 +84,7 @@ page{
   padding-top: 0;
   padding-bottom: 0;
   line-height: 1.4em;
+}
+.iconyinxingqia3{
+  margin-right: 20rpx;
 }
