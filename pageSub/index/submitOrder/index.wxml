@@ -13,12 +13,12 @@
   <view class="panel">
     <!-- <view wx:for="{{detail.GoodsList}}" wx:key="index"> -->
     <van-card lazy-load currency="¥" num="{{detail.quality}}" thumb-mode="aspectFill"
-      price="{{filter.filterMoney(detail.price)}}" title="{{detail.name}}" thumb="{{detail.banner}}"
+      price="{{filter.filterMoney(detail.realPrice)}}" title="{{detail.name}}" thumb="{{detail.banner}}"
       desc="{{detail.msg}}"></van-card>
     <!-- </view> -->
     <van-cell title="" class="fee" border="{{false}}">
       共{{detail.quality}}件 <text class="c21">商品小计：</text>
-      <text class="cf5">¥ {{filter.filterMoney(detail.quality * detail.price)}}</text>
+      <text class="cf5">¥ {{filter.filterMoney(detail.realPrice)}}</text>
     </van-cell>
   </view>
   <view class="panel">
@@ -51,7 +51,7 @@
   </view>
 
   <view class="check-bar">
-    <van-submit-bar price="{{detail.price * 100 * detail.quality}}" button-text="提交订单" bind:submit="onSubmit">
+    <van-submit-bar price="{{(detail.realPrice) * 100 * detail.quality}}" button-text="提交订单" bind:submit="onSubmit">
     </van-submit-bar>
   </view>
 </view>

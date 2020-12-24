@@ -1,5 +1,5 @@
 <wxs module="filter" src="../../../filter.wxs"></wxs>
-<import src="../../../wxParse/wxParse.wxml"/> 
+<import src="../../../wxParse/wxParse.wxml" />
 <swiper class='index-swipe' wx:if="{{detail.albums.length}}" indicatorDots circular
   indicatorActiveColor="rgba(255,255,255,.6)" indicatorColor="rgba(255,255,255, .8)" bindchange="swiperChange">
   <swiper-item class='item' wx:for="{{detail.albums}}" wx:key="index">
@@ -7,23 +7,21 @@
     <image wx:else class="img" mode='aspectFill' src="{{item.original_path}}" />
   </swiper-item>
 </swiper>
-<image class="banner-img" wx:if="{{!detail.albums.length}}" mode="aspectFill" src="{{detail.banner}}"></image>
+<image class="banner-img" wx:if="{{!detail.albums.length}}" mode="aspectFill" src="{{detail.picture}}"></image>
 <view>
+  <van-notice-bar left-icon="volume-o" text="经销商购买{{detail.jxs_low_num}} 件以上，可享受每件 ￥{{detail.jxs_price}} 优惠！！！！" />
   <view class="flex-box">
     <view class="goods-name">{{detail.name}}</view>
     <view class="share flex-center" bindtap="setPoster">
-      <van-icon name="share" color="#00a5a5"/>   
+      <van-icon name="share" color="#00a5a5" />
       分享
     </view>
   </view>
   <view class="goods-price-line flex-row-center">
     <view class="flex-start">
-      <!-- <view class="lab" wx:if="{{detail.channel_id == 11}}">团购价：</view> -->
-      <view class="currency">
-        ￥
+      <view class="price">
+        <text class="currency">￥</text>{{realPrice}}
       </view>
-      <view class="price">{{detail.price}}</view>
-      <!-- <del class="del-price">{{}}</del> -->
     </view>
     <!-- <view class="count">销量 {{detail.fields.sales}}</view> -->
   </view>
@@ -44,7 +42,7 @@
     </view> -->
   <van-cell title="产品描述"></van-cell>
   <view class="content">
-    <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+    <template is="wxParse" data="{{wxParseData:content.nodes}}" />
   </view>
 
   <!-- 底部栏 -->
@@ -55,7 +53,7 @@
     <!-- 团购不能加入购物车 -->
     <!-- <van-goods-action-button text="加入购物车" type="warning" bind:click="toggleSku" data-type="1" wx:if="{{detail.channel_id != 11}}"/> -->
     <view style="padding: 10px 0px 10px 20px;margin-right: 100rpx;">
-      <van-stepper v-model="buyNum" min="1" max="8" integer bind:change="changeGoodsNum" />
+      <van-stepper v-model="buyNum" min="1" max="{{detail.sku}}" integer bind:change="changeGoodsNum" />
     </view>
     <van-goods-action-button text="立即购买" bind:click="confirmSku" data-type="2" />
   </van-goods-action>
@@ -67,7 +65,7 @@
         <image class="sku-img" mode="aspectFill" src="{{detail.banner}}" bindtap="prewiewSkuImg" />
         <view class="sku-price">
           <view class="price">
-              ￥{{filter.filterMoney(detail.price)}}
+            ￥{{filter.filterMoney(detail.price)}}
           </view>
           <!-- 有SKU 才有选择显示 -->
           <block wx:if="{{skuList.length}}">
@@ -111,8 +109,7 @@
 <view class='share1' wx:if="{{isShowShare}}" catchtouchmove="ture">
   <view class="mask" bindtap='closeShare'></view>
   <view class='share-moment'>
-    <canvas type="2d" id="canvas" canvas-id="shareCanvas" class="canvas"
-    style="width: 300px; height: 390px;"></canvas>
+    <canvas type="2d" id="canvas" canvas-id="shareCanvas" class="canvas" style="width: 300px; height: 390px;"></canvas>
     <view class="iconfont iconshanchu" bindtap='closeShare'></view>
   </view>
 </view>

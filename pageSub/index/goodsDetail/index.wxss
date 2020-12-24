@@ -37,14 +37,13 @@ page {
 
 .goods-price-line .price {
   font-weight: 500;
-  font-size: 32rpx;
+  /* font-size: 32rpx; */
 }
 .goods-price-line .lab {
   color:#ee0a24;
 }
 .goods-price-line .currency{
-  color:#ee0a24;
-  font-size: 24rpx;
+  font-size: 20rpx;
 }
 .van-icon-star{
   color:#ee0a24;
@@ -54,6 +53,7 @@ page {
   margin-top: 10rpx;
   margin-left: 20rpx;
   color: #999;
+  text-decoration: line-through;
 }
 
 .sku-pop {
@@ -80,10 +80,10 @@ page {
 }
 
 .price {
-  margin-bottom: 20rpx;
+  /* margin-bottom: 20rpx; */
   color: #ee0a24;
   /* font-weight: 500; */
-  font-size: 32rpx;
+  font-size: 40rpx;
 }
 
 .sku-goods .sku-price .integral {

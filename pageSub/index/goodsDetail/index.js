@@ -20,6 +20,8 @@ Page({
     shareTitle: '更多优惠商品，尽在澳米特商城...',
     userConfig: {},
     qrCode: '',
+    userInfo: {},
+    realPrice: 0,   // 实际价格
   },
   async onLoad (option) {
      try {
@@ -53,19 +55,19 @@ Page({
       console.error(e)
     }
 
-    const userInfo = wx.getStorageSync('userInfo')
+    const userInfo = app.globalData.userInfo || {}
+
+    this.setData({ userInfo })
   },
   onUnload () {
     clearTimeout(this.timer)
   },
   setInfo (detail) {
-    if (detail.fields && detail.fields.video_src) {
-      detail.albums.unshift({
-        video_src: detail.fields.video_src
-      })
-    }
     
-    this.setData({ detail})
+    this.setData({ 
+      detail,
+      realPrice: detail.price
+    })
     if (detail.msg) {
       wxparse.wxParse('content', 'html', detail.msg, this, 5)
     }
@@ -80,49 +82,8 @@ Page({
       "id": par.id,
     }
     let detail = await app.fetch({url: "Api/Goods/detail", data })
-
-    try {
-      // 团购倒计时
-      clearTimeout(this.timer)
-      if (detail.second && detail.second > 0) {
-        this.timer = setTimeout(() => {
-
-          // 团购结束
-          this.setData({
-            isSeckillEnd: true,
-            ['detail.percentDay']: 0
-          })
-        }, detail.second * 1000)
-      }
-      var startDay = new Date(detail.fields.start_time).getTime()
-
-      var endDay = new Date(detail.fields.end_time).getTime()
-
-      var nowDay = new Date().getTime()
-
-      var leftDay = ((endDay - nowDay) / (endDay - startDay)) * 100;
-      detail.percentDay = parseInt(leftDay)
-    } catch (error) {
-      
-    }
-    console.log("detail===>", detail)
     this.setInfo(detail)
-    // this.getSkuList(detail.id, detail.channel_id)
   },
-  // 商品收藏
-  onCollect: app.throttle(async function({currentTarget}){  //节流
-    const { detail } = this.data
-    const data = {
-      goods_id: detail.id
-    }
-
-    let res = await app.fetch({url: "SaveUserCollectionGoods.ashx", data })
-
-    // app.toast(detail.is_collect ? )
-    this.setData({
-      ['detail.is_collect']: !detail.is_collect
-    })
-  }),
   // 获取sku列表
   async getSkuList (article_id, channel_id) {
     const skuList = await app.fetch({url: "GetGoodsSpec.ashx", data: {article_id, channel_id} })
@@ -218,57 +179,36 @@ Page({
   },
   // 更改数量
   changeGoodsNum ({detail}) {
-    const { curSku } = this.data
-    // if (detail > curSku.stock_quantity) {
-    //   return app.toast('库存不足')
-    // }
+    console.log(detail)
+    const price = this.data.detail.jxs_price
+
+    let realPrice = this.data.detail.price
+    if (price && price > 0 && detail >= this.data.detail.jxs_low_num) {
+      realPrice = price
+    }
     this.setData({
-      quality: detail
+      quality: detail,
+      realPrice,
     })
   },
   // 确定sku
   confirmSku () {
-    const { curSkuPopType, skuDetail, skuList } = this.data
-
-    // if (!skuDetail.id && skuList.length) {
-    //   return app.toast('请选择规格')
-    // }
-
-    // if (curSkuPopType == 1) {
-    //   this.addCart()
-    // }
-    // if (curSkuPopType == 2) {
-      
-    // }
     this.buyIt()
-    
-  },
-  // 加入购物车
-  async addCart () {
-    const { detail, quality, skuDetail } = this.data
-
-    const data = {
-      "article_id": detail.id,
-      "goods_id": skuDetail.id || 0,
-      "quantity": quality
-    }
-    await app.fetch({url: "AddCartGoods.ashx", data })
-    app.toast('加入购物成功')
-
-    app.globalData.cartNum = app.globalData.cartNum + 1
-    this.setData({
-      isShowSku: !this.data.isShowSku,
-      cartNum: app.globalData.cartNum,
-    })
   },
   // 立即购买
   async buyIt () {
-    this.setData({
-      isShowSku: !this.data.isShowSku
-    })  
+    // this.setData({
+    //   isShowSku: !this.data.isShowSku
+    // }) 
+    const { detail, quality, userInfo } = this.data
+    if (quality > detail.sku) {
+      return app.toast('库存不足')
+    }   
+
     const par = {
       ...this.data.detail,
-      quality: this.data.quality
+      quality: this.data.quality,
+      realPrice: this.data.realPrice
     }
 
     const item = encodeURIComponent(JSON.stringify(par))

@@ -5,14 +5,7 @@ Page({
   data: {
     goodsJsonData: {},   // 商品参数
     detail: {   // 订单信息
-      GoodsTotal: {
-        total_num: 0,
-        total_quantity: 0,
-        payable_amount: 0,
-        real_amount: 0,
-        total_point: 0
-      },
-      GoodsList: []
+
     },
     isLoaded: true,
     order: {
@@ -44,8 +37,12 @@ Page({
     verifyCode: '',
     curExpressRadio: 1,
     order_no: '',    // 提交表单后的支付订单号
+    userInfo: {},
   },
   async onLoad (option) {
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
     try {
      if(option.item) {
       wx.showLoading({
@@ -178,17 +175,17 @@ Page({
   // 提交订单
   async onSubmit () {
     
-    const { curAddressRadio, detail, message, curExpressRadio, curPayRadio} = this.data
+    const { curAddressRadio, detail, message, curExpressRadio, curPayRadio, userInfo} = this.data
 
     const data = {
       "payway": curPayRadio,
       "good_id": detail.id,
-      "uid": app.globalData.userInfo.id,
+      "uid": userInfo.id,
       pickup: curExpressRadio,
       address_id: curAddressRadio,
       buy_num: detail.quality,
       buy_price: detail.price,
-      total_price: detail.price * 100 * detail.quality / 100,
+      total_price: (userInfo.type != 1 ? detail.jxs_price : detail.price) * 100 * detail.quality / 100,
       remark: message
     }
     console.log(curPayRadio)
@@ -226,7 +223,7 @@ Page({
     }
     console.log(par)
     const respay = await app.fetch({url: "Api/Pay/pay", data: par })
-    console.log("123456")
+    
     // 触发微信支付
     wx.requestPayment({
       'timeStamp': respay.timeStamp,

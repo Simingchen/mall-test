@@ -9,6 +9,7 @@
     "van-progress": "../../../@vant/progress/index",
     "van-goods-action": "../../../@vant/goods-action/index",
     "van-goods-action-icon": "../../../@vant/goods-action-icon/index",
-    "van-goods-action-button": "../../../@vant/goods-action-button/index"
+    "van-goods-action-button": "../../../@vant/goods-action-button/index",
+    "van-notice-bar": "../../../@vant/notice-bar/index"
   }
 }
