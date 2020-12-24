@@ -149,11 +149,22 @@ Page({
     });
   },
   // 支付方式更改
-  onChangePay ({detail}) {
+  async onChangePay ({detail}) {
     console.log(detail)
     this.setData({
       curPayRadio: detail,
     });
+    // 选择了余额支付查询是否设置过密码
+    if (detail == 2) {
+
+      const par = this.data
+      const data = {
+        "uid": par.userInfo.id,
+        fee: par.detail.realPrice * 100 * par.detail.quality / 100
+      }
+      const res = await app.fetch({url: "Api/wallet/wallet_check", data })
+      console.log(res)
+    }
   },
   // 物流更改
   onClickExpress ({currentTarget}) {
@@ -184,8 +195,8 @@ Page({
       pickup: curExpressRadio,
       address_id: curAddressRadio,
       buy_num: detail.quality,
-      buy_price: detail.price,
-      total_price: (userInfo.type != 1 ? detail.jxs_price : detail.price) * 100 * detail.quality / 100,
+      buy_price: detail.realPrice,
+      total_price: detail.realPrice * 100 * detail.quality / 100,
       remark: message
     }
     console.log(curPayRadio)

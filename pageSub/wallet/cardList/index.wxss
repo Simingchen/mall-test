@@ -60,8 +60,9 @@ page{
 }
 .van-address-item__address {
   color: #323233;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 30px;
+  margin-top: 40rpx;
+  padding-left: 100rpx;
 }
 .van-tag {
   position: relative;
