@@ -4,8 +4,14 @@
   padding: 0rpx 20rpx 40rpx;
   font-weight: normal;
 }
+.pop-pay{
+  padding: 0 50rpx 60rpx;
+}
 .pay-pop{
-  padding: 0rpx 20rpx 40rpx;
+  width: 420rpx;
+  border: 1rpx solid #ccc;
+  border-radius: 6rpx;
+  padding: 0 4rpx 4rpx;
 }
 
 .addAddr-btn {
@@ -34,4 +40,19 @@
 }
 .express-cell .van-radio__label{
   margin-left: 5px;
+}
+.password-box{
+  width: 360rpx;
+  border-top: 1rpx solid #ccc;
+  border-left: 1rpx solid #ccc;
+  border-bottom: 1rpx solid #ccc;
+}
+.password-box .flex-item{
+  width: 60rpx;
+  height: 60rpx;
+  border-right: 1rpx solid #ccc;
+}
+.input-pass{
+  /* letter-spacing: 60rpx; */
+  border: 1rpx solid #ccc;
 }

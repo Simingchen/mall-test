@@ -82,8 +82,15 @@ Page({
  },
  // 输入框更改
  onChangeInput({currentTarget, detail}) {
+   const string = detail.trim()
   this.setData({
-    [currentTarget.dataset.type]: detail.trim()
+    [currentTarget.dataset.type]: string
+  }, () => {
+    if (currentTarget.dataset.type == "payPassword") {
+      if (string.length > 5) {
+        this.accountPay(string)
+      }
+    }
   })
  },
  // 关闭弹窗
@@ -225,23 +232,34 @@ Page({
     // 余额支付
     if (curPayRadio == 2) {
       this.togglePayPop(res.order_no)
-      // const par2 = {
-      //   pay_order_no: resOrder.order_no
-      // }
-      // await app.fetch({url: "api/payment/balance/index.ashx", data: par2 })
-
-      // app.toast('支付成功')
-
-      // setTimeout(() => {
-      //   wx.redirectTo({
-      //     url: '/pageSub/mine/orderList/index?index=1',
-      //   })
-      // }, 1000)
+      
     }
     // 微信支付
     if (curPayRadio == 1) {
       this.wxPay(res.order_no, data.total_price)
     }
+    
+  },
+  async accountPay(password) {
+    const par = this.data
+    const data = {
+      "uid": par.userInfo.id,
+      fee: par.detail.realPrice * 100 * par.detail.quality / 100,
+      order_no: this.data.order_no,
+      password
+    }
+    await app.fetch({url: "Api/Wallet/wallet_pay", data }).then(() => {
+      app.toast('支付成功')
+
+      setTimeout(() => {
+        wx.redirectTo({
+          url: '/pageSub/mine/orderList/index?index=1',
+        })
+      }, 1000)
+    }).catch((err) => {
+
+    })
+
     
   },
   async wxPay (order_no, fee) {
