@@ -7,8 +7,8 @@
   </view>
 </view>
 <view class="content">
-  <image mode="aspectFill" class="banner" wx:if="{{detail.banner}}" src="{{detail.banner}}">
-    </image>
+  <!-- <image mode="aspectFill" class="banner" wx:if="{{detail.banner}}" src="{{detail.banner}}">
+    </image> -->
   <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
 </view>
 <view class="dig-box flex-center {{isDig? 'primary': ''}}" bindtap="dig">

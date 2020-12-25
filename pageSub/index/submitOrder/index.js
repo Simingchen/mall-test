@@ -38,6 +38,7 @@ Page({
     curExpressRadio: 1,
     order_no: '',    // 提交表单后的支付订单号
     userInfo: {},
+    checkPay: {},   // 余额支付时检查是否设置密码，余额是否充足
   },
   async onLoad (option) {
     this.setData({
@@ -62,8 +63,22 @@ Page({
    }
   //  this.GetExpressList()
  },
- onShow() {
+ async onShow() {
   this.getAddrList()
+
+  // 选择了余额支付查询是否设置过密码
+    const par = this.data
+    const data = {
+      "uid": par.userInfo.id,
+      fee: par.detail.realPrice * 100 * par.detail.quality / 100
+    }
+    const res = await app.fetch({url: "Api/wallet/wallet_check", data })
+
+    console.log(res)
+    
+    this.setData({
+      checkPay: res
+    })
  },
  // 输入框更改
  onChangeInput({currentTarget, detail}) {
@@ -154,17 +169,7 @@ Page({
     this.setData({
       curPayRadio: detail,
     });
-    // 选择了余额支付查询是否设置过密码
-    if (detail == 2) {
-
-      const par = this.data
-      const data = {
-        "uid": par.userInfo.id,
-        fee: par.detail.realPrice * 100 * par.detail.quality / 100
-      }
-      const res = await app.fetch({url: "Api/wallet/wallet_check", data })
-      console.log(res)
-    }
+    
   },
   // 物流更改
   onClickExpress ({currentTarget}) {
@@ -185,8 +190,23 @@ Page({
   },
   // 提交订单
   async onSubmit () {
-    
-    const { curAddressRadio, detail, message, curExpressRadio, curPayRadio, userInfo} = this.data
+    const { curAddressRadio, detail, message, curExpressRadio, curPayRadio, userInfo, checkPay} = this.data
+
+    // 余额支付检查是否满足支付条件
+    if (curPayRadio == 2) {
+      if (!checkPay.IsEnoughPay) {
+        // return app.toast('余额不足~')
+      }
+      if (!checkPay.IsSetPass) {
+        app.toast('请先设置支付密码~')
+        setTimeout(() => {
+          wx.navigateTo({
+            url: '/pageSub/mine/passwordEdit/index',
+          })
+        }, 1000)
+        return false;
+      }
+    }
 
     const data = {
       "payway": curPayRadio,

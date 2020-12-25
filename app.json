@@ -20,6 +20,7 @@
         "addressList/index",
         "addressEdit/index",
         "setting/index",
+        "passwordEdit/index",
         "orderList/index",
         "orderDetail/index",
         "newsList/index",

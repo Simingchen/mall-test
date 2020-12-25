@@ -133,6 +133,12 @@
         {
           "name": "活动列表",
           "pathName": "pageSub/event/eventList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "支付密码设置",
+          "pathName": "pageSub/mine/passwordEdit/index",
           "scene": null
         }
       ]
