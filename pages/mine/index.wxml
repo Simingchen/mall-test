@@ -99,4 +99,4 @@
 </van-popup>
 
 <!-- tabbar -->
-<tabBar selected="3" cartNum="{{cartNum}}" />
+<tabBar selected="2"/>

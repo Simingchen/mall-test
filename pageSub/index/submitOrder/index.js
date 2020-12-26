@@ -232,7 +232,6 @@ Page({
     // 余额支付
     if (curPayRadio == 2) {
       this.togglePayPop(res.order_no)
-      
     }
     // 微信支付
     if (curPayRadio == 1) {
@@ -257,7 +256,14 @@ Page({
         })
       }, 1000)
     }).catch((err) => {
+      console.log(err)
+      this.onClosePop()
 
+      setTimeout(() => {
+        wx.redirectTo({
+          url: '/pageSub/mine/orderList/index?index=0',
+        })
+      }, 1000)
     })
 
     

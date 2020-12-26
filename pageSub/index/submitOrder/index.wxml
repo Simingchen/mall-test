@@ -104,7 +104,7 @@
 </van-popup> -->
 <!-- 余额支付 -->
 <!-- isShowPayPop -->
-<van-popup show="{{true}}" custom-class="pop-pay" position="center" round closeable bind:close="onClosePop">
+<van-popup show="{{isShowPayPop}}" custom-class="pop-pay" position="center" round closeable bind:close="onClosePop">
   <van-cell title="支付" class="tac" border="{{false}}"></van-cell>
   <view class="pay-pop">
     <!-- <van-cell title="手机号码" value="{{payPhone}}"></van-cell> -->

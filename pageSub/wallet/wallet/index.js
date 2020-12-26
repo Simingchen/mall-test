@@ -3,7 +3,8 @@ const regeneratorRuntime = app.runtime
 
 Page({
   data: {
-    detail: app.globalData.userInfo,
+    detail: {},
+    isAddCard: false
   },
   onLoad (option) {
     if (option.scene) {
@@ -19,21 +20,40 @@ Page({
     }
     const detail = await app.fetch({url: "Api/Wallet/index", data})
     this.setData({detail})
-  },
-  goUrl: app.throttle(function({currentTarget}){  //节流
-    // console.log("登录1111");
-    const url = currentTarget.dataset.url
-    if (!this.data.detail.WxAvatarUrl) {
-      if (url.indexOf('login') == -1) {
-        app.toast("请先登录")
-      }
-      
-      this.timer = setTimeout(() => {
-        wx.navigateTo({url: "/pages/login/index"})
-      }, 800)
-      return false
+
+    let par = {
+      "uid": app.globalData.userInfo.id,
     }
     
-    wx.navigateTo({ url })
+    const res = await app.fetch({url: "Api/Wallet/bank", data: par })
+
+    this.setData({
+      isAddCard: res.length > 0
+    })
+  },
+  goUrl: app.throttle(function({currentTarget}){  //节流
+    const url = currentTarget.dataset.url
+    // 添加了银行卡才可提现
+    if (this.data.isAddCard) {
+      return wx.navigateTo({ url })
+    }
+
+    wx.showModal({
+      // title: "提示",
+      content: "使用提现功能需要添加一张支持提现的储蓄卡",
+      confirmText: '去添加',
+      confirmColor: "#00a5a5",
+      success: async(res) => {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.navigateTo({
+            url: `/pageSub/wallet/cardEdit/index?item={}`,
+          })
+          
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   }),
 });

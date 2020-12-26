@@ -49,6 +49,14 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
     "plugin": {
       "list": []
     },
@@ -131,14 +139,23 @@
           "scene": null
         },
         {
-          "name": "活动列表",
-          "pathName": "pageSub/event/eventList/index",
+          "id": -1,
+          "name": "银行卡列表",
+          "pathName": "pageSub/wallet/cardList/index",
           "query": "",
           "scene": null
         },
         {
-          "name": "支付密码设置",
-          "pathName": "pageSub/mine/passwordEdit/index",
+          "id": -1,
+          "name": "钱包",
+          "pathName": "pageSub/wallet/wallet/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "提现",
+          "pathName": "pageSub/wallet/withdraw/index",
           "scene": null
         }
       ]

@@ -3,22 +3,45 @@ const regeneratorRuntime = app.runtime
 
 Page({
   data: {
-    detail: app.globalData.userInfo,
+    detail: {},
     value: '',
+    isShowCardPop: false,
+    curCardRadio: 1,
+    cardList: []
   },
   onLoad (option) {
-    this.setData({
-      detail: app.globalData.userInfo
-    })
+    // this.setData({
+    //   detail: app.globalData.userInfo
+    // })
   },
   onShow () {
-    // this.getData()
+    this.getData()
+  },
+  openPop() {
+    this.setData({
+      isShowCardPop: true
+    })
+  },
+  onClosePop() {
+    this.setData({
+      isShowCardPop: false
+    })
+  },
+  onChangeRadio(event) {
+    this.setData({
+      curCardRadio: event.detail,
+    });
   },
   async getData () {
-    const detail = await app.fetch({url: "GetUserInfo.ashx"})
-    app.globalData.userInfo = detail
-    wx.setStorageSync('userInfo', detail)
-    this.setData({detail})
+    let par = {
+      "uid": app.globalData.userInfo.id,
+    }
+    
+    const res = await app.fetch({url: "Api/Wallet/bank", data: par })
+
+    this.setData({
+      cardList: res
+    })
   },
   goUrl: app.throttle(function({currentTarget}){  //节流
     // console.log("登录1111");

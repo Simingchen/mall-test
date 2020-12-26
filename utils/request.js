@@ -50,12 +50,13 @@ export default function fetch(options) {
 
 
           if (response.code != 200 && url.indexOf('Api/addUse') == -1 && url.indexOf('Article/zan') == -1) {
-
+            
             wx.showToast({
               title: response.msg || '',
               icon: "none"
             })
             
+            reject(response)
             return false
           }
 

@@ -46,6 +46,12 @@ Page({
     if (!par.cardNum.length) {
       return app.toast('请输入卡号')
     }
+
+    var regExp = /^([1-9]{1})(\d{15}|\d{18})$/; 
+    if (!regExp.test(par.cardNum)) {
+      return app.toast('银行卡长度格式有误')
+    }
+
     if (!par.bank.length) {
       return app.toast('请输入开户行')
     }
@@ -90,20 +96,22 @@ Page({
           console.log('用户点击确定')
 
           const data = {
-            id: this.data.id
+            id: this.data.id,
+            "uid": app.globalData.userInfo.id,
           }
-          const res = await app.fetch({
+          app.fetch({
             url: "Api/Wallet/bank_bind",
             data
+          }).then(res=> {}).catch(res => {
+            // app.toast('删除成功')
+      
+            setTimeout(() => {
+              wx.navigateBack({
+                delta: 1,
+              })
+            }, 500)
           })
-      
-          app.toast('删除成功')
-      
-          setTimeout(() => {
-            wx.navigateBack({
-              delta: 1,
-            })
-          }, 500)
+          
         } else if (res.cancel) {
           console.log('用户点击取消')
         }

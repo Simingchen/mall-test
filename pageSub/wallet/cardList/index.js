@@ -45,7 +45,7 @@ Page({
     this.loading = false
 
     res.forEach(item=> {
-      item.card = '····    ····    ···· 000' + item.card.slice(-4)
+      item.card1 = '····    ····    ···· ' + item.card.slice(-4)
     })
 
     this.setData({
