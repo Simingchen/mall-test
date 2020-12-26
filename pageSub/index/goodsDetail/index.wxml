@@ -9,7 +9,7 @@
 </swiper>
 <image class="banner-img" wx:if="{{!detail.albums.length}}" mode="aspectFill" src="{{detail.picture}}"></image>
 <view>
-  <van-notice-bar left-icon="volume-o" text="经销商购买{{detail.jxs_low_num}} 件以上，可享受每件 ￥{{detail.jxs_price}} 优惠！！！！" />
+  <van-notice-bar wx:if="{{detail.jxs_price && detail.jxs_price > 0}}" left-icon="volume-o" text="经销商购买{{detail.jxs_low_num}} 件以上，可享受每件 ￥{{detail.jxs_price}} 优惠！！！！" />
   <view class="flex-box">
     <view class="goods-name">{{detail.name}}</view>
     <view class="share flex-center" bindtap="setPoster">

@@ -13,7 +13,7 @@
     </view>
     <view bindtap="goDetail" data-item="{{order}}">
       <view>
-        <van-card lazy-load thumb-mode="aspectFill" class="goods" num="{{order.buy_num}}" price="{{filter.filterMoney(order.total_price)}}"
+        <van-card lazy-load thumb-mode="aspectFill" class="goods" num="{{order.buy_num}}" price="{{filter.filterMoney(order.buy_price)}}"
           desc="{{order.spec_text}}" title="{{order.good_name}}" thumb="{{order.good_pic}}"> 
           <view slot="footer">
             <van-button size="mini"  custom-class="state-btn" type="default" round wx:if="{{order.is_refund}}">

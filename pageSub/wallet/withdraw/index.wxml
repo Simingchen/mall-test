@@ -1,9 +1,10 @@
 <wxs module="filter" src="../../../filter.wxs"></wxs>
 <view class="panel">
-	<van-cell title="单元格" value="内容" bind:click="openPop" is-link />
+
 	<view class="input-box">
 		<van-field model:value="{{ value }}" type="number" label="￥" placeholder="输入提现金额" maxlength="5" />
 	</view>
+	<van-cell title="银行卡" value="{{curCard.site+ ' '+ curCard.card}}" bind:click="openPop" is-link />
 	<view class="p30">
 		<view class="txt">可提现金额：￥{{filter.filterMoney(detail.amount)}}</view>
 		<view class="flex-center">
@@ -18,15 +19,10 @@
 	<van-cell title="选择银行卡" class="tac" border="{{false}}"></van-cell>
 	<view class="addr-box">
 		<van-radio-group value="{{ curCardRadio }}" bind:change="onChangeRadio">
-			<van-cell-group border="{{false}}">
-				<van-cell title="{{item.site + ' ' + item.card}}" wx:for="{{cardList}}" wx:key="index" clickable
-					data-name="{{item.id}}" center>
-					<van-radio slot="right-icon" name="{{item.id}}" checked-color="#00a5a5" icon-size="18px" />
-				</van-cell>
-				<van-cell title="单选框 2" clickable data-name="2">
-      <van-radio slot="right-icon" name="2" />
-    </van-cell>
-			</van-cell-group>
+			<van-cell title="{{item.site + ' ' + item.card}}" wx:for="{{cardList}}" wx:key="index" clickable
+				data-name="{{item.id}}" center>
+				<van-radio slot="right-icon" name="{{item.id}}" checked-color="#00a5a5" icon-size="18px" />
+			</van-cell>
 		</van-radio-group>
 	</view>
 </van-popup>

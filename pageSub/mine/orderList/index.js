@@ -94,10 +94,10 @@ Page({
 
     this.setData({
       ['curTab.isLoaded']: true,
-      ['curTab.page']: { ...curTab.page, finished: curTab.page.page >= res.total_page },
+      ['curTab.page']: { ...curTab.page, finished: res.data.length < 10 },
       ['curTab.isEmpty']: ![...curTab.list, ...res].length,
-      ['curTab.list[' + (curTab.page.page - 2) + ']']: res,
-      ['curTab.loadStatus']: (curTab.page.page >= res.total_page) ? 'noMore' : 'loading'
+      ['curTab.list[' + (curTab.page.page - 2) + ']']: res.data,
+      ['curTab.loadStatus']: res.data.length < 10 ? 'noMore' : 'loading'
     }, () => {
       console.log(this.data.curTab)
     })

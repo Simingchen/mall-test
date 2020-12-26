@@ -20,15 +20,6 @@ page{
   color:#999;
   font-size: 24rpx;
 }
-.input-box{
-  margin-top:30rpx;
-}
-.van-field__label{
-  color:#222!important;
-  font-weight: 600;
-  font-size: 36rpx;
-}
-.van-cell__title{
-  min-width: 0!important;
-  flex:none !important;
+.addr-box{
+  padding-bottom: 30rpx;
 }

@@ -6,7 +6,10 @@ Page({
     detail: {},
     value: '',
     isShowCardPop: false,
-    curCardRadio: 1,
+    curCardRadio: 0,
+    curCard: {
+      card: ''
+    },
     cardList: []
   },
   onLoad (option) {
@@ -28,8 +31,11 @@ Page({
     })
   },
   onChangeRadio(event) {
+    const curCard = this.data.cardList.filter(i => i.id == event.detail)
     this.setData({
       curCardRadio: event.detail,
+      curCard: curCard[0],
+      isShowCardPop: false
     });
   },
   async getData () {
@@ -40,7 +46,8 @@ Page({
     const res = await app.fetch({url: "Api/Wallet/bank", data: par })
 
     this.setData({
-      cardList: res
+      cardList: res,
+      curCard: res[0]
     })
   },
   goUrl: app.throttle(function({currentTarget}){  //节流

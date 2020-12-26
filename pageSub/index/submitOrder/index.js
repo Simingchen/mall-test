@@ -202,7 +202,7 @@ Page({
     // 余额支付检查是否满足支付条件
     if (curPayRadio == 2) {
       if (!checkPay.IsEnoughPay) {
-        // return app.toast('余额不足~')
+        return app.toast('余额不足~')
       }
       if (!checkPay.IsSetPass) {
         app.toast('请先设置支付密码~')
