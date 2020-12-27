@@ -1,24 +1,24 @@
 const app = getApp()
 const regeneratorRuntime = app.runtime
-
+    // <!-- 订单状态：1、待付款；2、待发货；3、待收货；4、已完成；5、已退款； -->
 Page({
   data: {
     searchTxt: '',
     curTabType: 0,
     tabList: [{
-        type: 0,
+        type: 1,
         name: '待付款'
       },
       {
-        type: 1,
+        type: 2,
         name: '待发货'
       },
       {
-        type: 2,
+        type: 3,
         name: '待收货'
       },
       {
-        type: 3,
+        type: 4,
         name: '已完成'
       },
     ], // 类别
@@ -66,21 +66,24 @@ Page({
       curTab.page.page = 1;
       curTab.list = [];
       curTab.page.finished = false
-      this.loading = false
+      this.loading = true
 
       // 清空数据
       this.setData({
-        'curTab.list': []
+        ['curTab.list']: [],
+        ['curTab.page.finished']: false,
+        ['curTab.page.page']: 1,
+        ['curTab.loadStatus']: 'loading'
       })
     }
-    if (this.loading || curTab.page.finished) return;
+    if (curTab.page.finished) return;
 
     let data = {
       "page_size": curTab.page.size,
       "page_index": curTab.page.page,
       "uid": app.globalData.userInfo.id || '',
       keyword: '',
-      "status": curTabType,
+      "status": this.data.tabList[curTabType].type,
       is_fx: 0,
     }
 
@@ -93,6 +96,11 @@ Page({
     curTab.page.page++
 
     this.loading = false
+
+    res.data.forEach(item => {
+      console.log(item.status - 1)
+      item.statusStr = ['待付款','待发货','待收货','已完成','已退款'][item.status - 1 ]
+    })
 
     this.setData({
       ['curTab.isLoaded']: true,

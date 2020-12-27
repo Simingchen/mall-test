@@ -5,30 +5,30 @@
     {{detail.order_status}}
   </view>
   <view class="page-con">
-    <view class="address-show flex-box panel">
+    <view class="address-show flex-box panel" wx:if="{{detail.addressInfo}}">
       <van-icon class="img" name="location" />
       <view class="flex-item van-hairline--bottom">
         <view class="name-line">
-          <text class="name">{{detail.accept_name}}</text>
-          {{detail.mobile}}
+          <text class="name">{{detail.addressInfo.name}}</text>
+          {{detail.addressInfo.mobile}}
         </view>
         <view>{{detail.area}}</view>
-        <view>{{detail.address}}</view>
+        <view>{{detail.addressInfo.remark}}</view>
       </view>
     </view>
     <view class="panel">
-      <block wx:for="{{detail.order_goods}}" wx:key="index">
-        <van-card lazy-load class="goods" num="{{item.quantity}}" price="{{filter.filterMoney(item.goods_price)}}"
-          desc="{{item.spec_text}}" title="{{item.goods_title}}" thumb="{{item.img_url}}">
+      <block wx:if="{{detail.goodsInfo}}">
+        <van-card lazy-load thumb-mode="aspectFill" class="goods" num="{{detail.buy_num}}" price="{{filter.filterMoney(detail.buy_price)}}"
+          itle="{{detail.goodsInfo.name}}" thumb="{{detail.goodsInfo.picture}}">
           <view slot="footer">
-            <van-button custom-class="state-btn" size="mini" type="default" round wx:if="{{item.is_refund}}">
+            <!-- <van-button custom-class="state-btn" size="mini" type="default" round wx:if="{{item.is_refund}}">
               {{item.refund_way + item.refund_status}}
-            </van-button>
-            <block wx:if="{{(detail.status == 1 || detail.status == 2) && detail.payment_status==2 && !item.is_refund}}">
+            </van-button> -->
+            <!-- <block wx:if="{{(detail.status == 1 || detail.status == 2) && detail.payment_status==2 && !item.is_refund}}">
               <van-button type="default" round size="mini" bindtap="refund" data-item="{{item}}" data-order="{{detail}}">
                 申请售后
               </van-button>
-            </block>
+            </block> -->
           </view>
         </van-card>
       </block>
