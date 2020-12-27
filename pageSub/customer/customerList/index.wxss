@@ -3,110 +3,90 @@ page {
   background: #f6f7fa;
   min-height: 100vh;
 }
-.van-tab__pane{
-  display: none;
+
+.top-panel {
+  position: relative;
+  padding: 30rpx 0 30rpx 30rpx;
+  margin-bottom: 30rpx;
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 500;
+  background: #ee5020;
 }
-/* 
-.tab-list {
-  height: 100rpx;
+.avatar-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 30rpx;
+  text-align: center;
+}
+.avatar-box .avatar {
+  display: block;
+  width: 120rpx;
+  height: 120rpx;
+  
+  margin-bottom: 10rpx;
+  border-radius: 110rpx;
+  background: #eee;
+  /* border: 1rpx solid #ccc; */
 }
 
-.van-tabs__nav {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  height: 100rpx;
-  padding-bottom: 0;
-  z-index: 50;
-} */
-.van-tabs__nav {
-  width: 100%;
-  position: fixed!important;
-  top: 0;
-  background: #fff;
-  /* height: 100rpx; */
-  padding-bottom: 0;
-  z-index: 50;
-} 
+.top-panel .name {
+  font-size: 30rpx;
+  line-height: 40rpx;
+  margin-top: 8rpx;
+}
+
+.top-panel .name-box {
+  position: relative;
+  width: 485rpx;
+  min-height: 145rpx;
+  /* line-height: 46rpx; */
+  /* padding-right: 160rpx; */
+}
+.top-panel .mt20{
+  margin-top: 16rpx;
+}
+.top-panel .name-box  .point-line{
+  margin-top: 20rpx;
+  justify-content: space-between;
+}
+
 .order-item {
   padding: 0 30rpx 30rpx;
   margin-top: 20rpx;
 }
 .panel{
   width: 690rpx;
-  margin: 20rpx auto 40rpx;
+  margin: 20rpx auto 20rpx;
     background: #fff;
     border-radius: 16rpx;
     overflow: hidden
 }
-.order-item .status {
-  font-size: 24rpx;
-  line-height: 92rpx;
+.share-code{
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  height: 40rpx;
+  padding: 0 10rpx;
+  background: rgba(0,0,0,.5);
+  border-radius: 40rpx;
+  color: #fff;
 }
-
-.order-item .primary {
-  font-size: 26rpx;
+.share-code .iconfont{
+  margin-right: 6rpx;
 }
-
-.order-item .goods {
-  padding-left: 0;
+.order-item .user-info{
+  padding-top:20rpx;
 }
-
-.order-item .goods .van-card__title {
-  width: 460rpx;
+.order-item .img{
+  display: block;
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 20rpx;
+  border-radius: 90rpx;
+  background: #eee;
 }
-
-.order-item .tool-bar {
-  /* padding-top: 20rpx; */
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-  -ms-flex-direction: row-reverse;
-  flex-direction: row-reverse;
-}
-
-
-.order-item .all-price {
-  margin: 30rpx 0;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-  -ms-flex-direction: row-reverse;
-  flex-direction: row-reverse;
-  font-size: 24rpx;
-  color: #999;
-}
-
-.order-item .all-price .price {
-  color: #333;
-  margin-left: 10rpx;
-}
-
-.order-item .all-price .primary {
-  font-weight: 500;
-  font-size: 24rpx;
-}
-.van-card{
-  padding-left:0!important;
-  padding-right:0!important;
-  background: #fff!important;
-  border-bottom: 1rpx solid #f6f7fa;
-}
-/* .goods {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  width: 690rpx;
-  padding-left: 30rpx;
-  margin: 0 auto 0.45rem;
-  border-radius: 16rpx;
-  background: #fff;
-} */
-/* 我的订单 e ========== */
-.tool-bar .van-button{
-  margin: 0 10rpx;
-}
-.state-btn{
-  min-width: 140rpx!important;
+.order-item .name{
+  padding-top:20rpx;
 }

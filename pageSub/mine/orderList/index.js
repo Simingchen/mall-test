@@ -122,7 +122,7 @@ Page({
     this.setData({
       curOrder: item
     }, () => {
-      if (item.way == 1) {
+      if (item.payway == 1) {
         return this.wxPay(item)
       }
   
@@ -180,17 +180,10 @@ Page({
       'paySign': respay.paySign,
       'success': function (res) {
         app.toast('恭喜您，订单已成功提交！')
-        setTimeout(() => {
-          wx.redirectTo({
-            url: '/pageSub/mine/orderList/index?index=1',
-          })
-        }, 1000)
+        this.getLit(true)
       },
       'fail': function (res) {
-          app.toast('支付未完成')
-          wx.redirectTo({
-            url: '/pageSub/mine/orderList/index?index=0',
-          })
+        app.toast('支付未完成')
       }
     })
   },
@@ -206,9 +199,9 @@ Page({
       success: async (res) => {
         if (res.confirm) {
           const data = {
-            "order_no": item.order_no,
+            id: item.id,
           }
-          await app.fetch({ url: "CancelOrder.ashx", data })
+          await app.fetch({ url: "Api/Order/order_cancel", data })
           this.getList(true);
           app.toast('取消成功')
 

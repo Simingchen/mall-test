@@ -17,17 +17,17 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    let res = await app.fetch({url: "GetUserOrderDetails.ashx", data: {id} })
+    let res = await app.fetch({url: "Api/Order/detail", data: {id} })
 
     wx.hideLoading()
     if (res.expressdetail) {
       wxparse.wxParse('content', 'html', res.expressdetail, this, 5)
     }
 
-    res.order_details.add_time = this.dateFormat("YYYY-mm-dd HH:MM:SS", res.order_details.add_time)
+    // res.order_details.add_time = this.dateFormat("YYYY-mm-dd HH:MM:SS", res.order_details.add_time)
 
     this.setData({
-      detail: res.order_details,
+      detail: res,
       expressdetail: res.expressdetail
     }, () => {
       console.log(this.data.detail)

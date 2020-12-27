@@ -40,8 +40,8 @@
       <block wx:if="{{curTabType==0 && order.status == 1}}">
         <van-button type="default" round size="small" bindtap="pay" data-item="{{order}}">支付
         </van-button>
-        <!-- <van-button type="default" round size="small" bindtap="cancel" data-item="{{order}}">取消订单
-        </van-button> -->
+        <van-button type="default" round size="small" bindtap="cancel" data-item="{{order}}">取消订单
+        </van-button>
       </block>
     </view>
   </view>

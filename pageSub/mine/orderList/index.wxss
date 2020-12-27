@@ -46,6 +46,7 @@ page {
 
 .order-item .primary {
   font-size: 26rpx;
+  color: #ee0a24;
 }
 
 .order-item .goods {

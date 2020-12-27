@@ -1,10 +1,12 @@
 {
-  "navigationBarTitleText": "渠道客户",
+  "navigationBarTitleText": "会员中心",
   "usingComponents": {
+    "van-tabs": "../../../@vant/tabs/index",
     "van-loading": "../../../@vant/loading/index",
-    "van-cell": "../../../@vant/cell/index",
+    "van-tab": "../../../@vant/tab/index",
+    "van-card": "../../../@vant/card/index",
     "van-empty": "../../../@vant/empty/index",
     "van-button": "../../../@vant/button/index",
-    "van-search": "../../../@vant/search/index"
+    "van-popup": "../../../@vant/popup/index"
   }
 }

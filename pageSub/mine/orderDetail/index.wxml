@@ -35,7 +35,7 @@
       <!-- <van-cell title="运费" border="{{false}}">
       </van-cell> -->
       <view class="all-price flex-box">
-        <view class="price flex-box">合计：￥{{filter.filterMoney(detail.payable_amount)}}
+        <view class="price flex-box">合计：￥{{filter.filterMoney(detail.total_price)}}
         </view>
         共1件
       </view>
@@ -52,13 +52,14 @@
         <view>订单编号：{{detail.order_no}}</view>
         <van-button round size="mini" plain type="info" bind:click="copy">复制</van-button>
       </view>
-      <view>创建时间：{{detail.add_time}}</view>
+      <view>创建时间：{{detail.post_date}}</view>
+      <view>支付方式：{{detail.payway == 1 ? '微信' : '账户余额'}}</view>
     </view>
-    <view class="tool-box">
+    <!-- <view class="tool-box">
       <view class="tool-bar flex-box">
         <view class="btn" wx:if="{{detail.order_status == '待付款'}}" bindtap="pay">支付</view>
         <view class="btn" wx:if="{{detail.order_status == '待收货'}}" bindtap="confirmIt">确认收货</view>
       </view>
-    </view>
+    </view> -->
   </view>
 </view>

@@ -3,8 +3,6 @@ const regeneratorRuntime = app.runtime
 
 Page({
   data: {
-    searchTxt: '',
-    curTabType: 0,
     curTab: {
       isLoaded: false,
       loadStatus: "loading", // 加载状态
@@ -14,8 +12,10 @@ Page({
         size: 10,
         finished: false
       },
-      list: []
-    }
+      list: [],
+    },
+    isShowShare: false,
+    detail: {}
   },
   async onLoad(options) {
     console.log(options.index)
@@ -24,6 +24,15 @@ Page({
     }, () => {
       this.getList(true)
     });
+
+    // this.getData()
+  },
+  async getData () {
+    const detail = await app.fetch({method: 'post', url: "GetUserInfo.ashx"})
+    app.globalData.userInfo = detail
+    wx.setStorageSync('userInfo', detail)
+    console.log(detail)
+    this.setData({detail})
   },
   async getList(init) {
     const {
@@ -48,9 +57,11 @@ Page({
     let data = {
       "page_size": curTab.page.size,
       "page_index": curTab.page.page,
+      // "status": curTabType,
+      // "payment_status": "0",
+      // "express_status": "0"
     }
     let par = {}
-
     this.loading = true
     const res = await app.fetch({
       url: "GetUserOrderList.ashx",
@@ -78,11 +89,96 @@ Page({
   onReachBottom() {
     this.getList();
   },
-  // 跳转到详情
-  goDetail({ currentTarget }) {
-    const item = currentTarget.dataset.item
-    wx.navigateTo({
-      url: `/pageSub/mine/orderDetail/index?id=${item.id}`,
+  closeShare() {
+    this.setData({
+      isShowShare: false
     })
+    wx.hideLoading()
+  },
+  setPoster() {
+    if (!this.data.shareCode) {
+      wx.showLoading({
+        title: '加载中',
+      })
+    }
+    
+    this.setData({
+      isOpend: false,
+      isShowShare: true
+    }, () => {
+      // 通过 SelectorQuery 获取 Canvas 节点
+      setTimeout(() => {
+        this.createSelectorQuery()
+        .select('#canvas')
+        .fields({
+          node: true,
+          size: true,
+        })
+        // .exec(this.init.bind(this))
+        .exec(this.setPoster2.bind(this))
+      }, 1000)
+    })
+  },
+  async setPoster2(res) {
+    // 创建画布
+    // const ctx = canvas.getContext('2d')
+    const width = res[0].width
+    const height = res[0].height
+
+    const canvas = res[0].node
+    const ctx = canvas.getContext('2d')
+
+    const dpr = wx.getSystemInfoSync().pixelRatio
+    canvas.width = width * dpr
+    canvas.height = height * dpr
+    ctx.scale(dpr, dpr)
+
+    // 白色背景
+    ctx.fillStyle = "#fff"
+    ctx.fillRect(0, 0, 530, 1100)
+
+    let imgUrl = ""
+    if (!this.data.shareCode) {
+      imgUrl = await app.fetch({
+        url: "Api/User/promote",
+        data: {uid: this.data.userInfo.id}
+      })
+      this.setData({
+        shareCode: imgUrl
+      })
+    }
+    
+    // 下载二维码
+    let img2 = canvas.createImage();
+    img2.src = imgUrl || this.data.shareCode;
+
+    img2.onload = (res) => {
+      ctx.drawImage(img2, 0,  0, 200, 200)
+
+      wx.hideLoading()
+      // 保存到相册
+      wx.canvasToTempFilePath({
+        canvas,
+        success: function (res) {
+          wx.saveImageToPhotosAlbum({
+            filePath: res.tempFilePath,
+            success: function (res) {
+              wx.showModal({
+                title: '提示',
+                showCancel: false,
+                content: '分享码图片已保存到相册',
+                success(res) {
+                  if (res.confirm) {
+                    console.log('用户点击确定')
+                  } else if (res.cancel) {
+                    console.log('用户点击取消')
+                  }
+                }
+              })
+            }
+          })
+        }
+      }, this)
+    }
   },
 });
