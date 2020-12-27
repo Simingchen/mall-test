@@ -32,7 +32,9 @@ Page({
         finished: false
       },
       list: []
-    }
+    },
+    isShowPayPop: false,
+    payPassword: ''
   },
   async onLoad(options) {
     console.log(options.index)
@@ -116,18 +118,26 @@ Page({
   // 支付
   async pay({ currentTarget }) {
     const item = currentTarget.dataset.item
-    if (item.way == 1) {
-      return this.wxPay(item)
-    }
 
-    this.accountPay(item)
+    this.setData({
+      curOrder: item
+    }, () => {
+      if (item.way == 1) {
+        return this.wxPay(item)
+      }
+  
+      this.setData({
+        isShowPayPop: true
+      })
+    })
   },
   async accountPay(password) {
     const par = this.data
+    const userInfo = wx.getStorageSync('userInfo') || {}
     const data = {
-      "uid": par.userInfo.id,
-      fee: par.detail.realPrice * 100 * par.detail.quality / 100,
-      order_no: this.data.order_no,
+      "uid": userInfo.id,
+      fee: par.curOrder.total_price,
+      order_no: par.curOrder.order_no,
       password
     }
     await app.fetch({url: "Api/Wallet/wallet_pay", data }).then(() => {
@@ -141,12 +151,11 @@ Page({
     }).catch((err) => {
       console.log(err)
       this.onClosePop()
-
-      setTimeout(() => {
-        wx.redirectTo({
-          url: '/pageSub/mine/orderList/index?index=0',
-        })
-      }, 1000)
+      // setTimeout(() => {
+      //   wx.redirectTo({
+      //     url: '/pageSub/mine/orderList/index?index=0',
+      //   })
+      // }, 1000)
     })
 
     
@@ -154,7 +163,7 @@ Page({
   async wxPay (item) {
     const userInfo = wx.getStorageSync('userInfo') || {}
     const par = {
-      fee: total_price.fee,
+      fee: item.total_price,
       openid: userInfo.openid,
       "out_trade_no": item.order_no,
       body: '宫颜之禧-购物'
@@ -231,5 +240,25 @@ Page({
           console.log("订单号复制成功")
       }
     })
-  }
+  },
+  // 关闭支付密码
+  onClosePop() {
+    this.setData({
+      isShowPayPop: false,
+      payPassword: ''
+    })
+  },
+  // 输入框更改
+ onChangeInput({currentTarget, detail}) {
+  const string = detail.trim()
+ this.setData({
+   [currentTarget.dataset.type]: string
+ }, () => {
+   if (currentTarget.dataset.type == "payPassword") {
+     if (string.length > 5) {
+       this.accountPay(string)
+     }
+   }
+ })
+},
 });

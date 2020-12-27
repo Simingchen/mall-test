@@ -111,3 +111,12 @@ page {
 .state-btn{
   min-width: 140rpx!important;
 }
+.pop-pay{
+  padding: 0 50rpx 60rpx;
+}
+.pay-pop{
+  width: 420rpx;
+  border: 1rpx solid #ccc;
+  border-radius: 6rpx;
+  padding: 0 4rpx 4rpx;
+}

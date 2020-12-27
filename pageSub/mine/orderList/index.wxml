@@ -48,3 +48,13 @@
 </block>
 <!-- 加载状态 -->
 <loading status="{{curTab.loadStatus}}" isEmpty="{{curTab.isEmpty}}" />
+
+<!-- 余额支付 -->
+<!-- isShowPayPop -->
+<van-popup show="{{isShowPayPop}}" custom-class="pop-pay" position="center" round closeable bind:close="onClosePop">
+  <van-cell title="支付" class="tac" border="{{false}}"></van-cell>
+  <view class="pay-pop">
+    <van-field value="{{ payPassword }}" input-class="input-pass" type="password" placeholder="请输入支付密码" bind:change="onChangeInput"
+      data-type="payPassword" border="{{false}}" maxlength="6" size="mini"/>
+  </view>
+</van-popup>
