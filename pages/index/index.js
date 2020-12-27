@@ -6,7 +6,8 @@ Page({
     bannerList: [],
     msgList: [],
   },
-  async onLoad () {
+  async onLoad (option) {
+    console.log(option)
     this.getBanner()
 
     this.getList()

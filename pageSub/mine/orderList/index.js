@@ -116,12 +116,52 @@ Page({
   // 支付
   async pay({ currentTarget }) {
     const item = currentTarget.dataset.item
+    if (item.way == 1) {
+      return this.wxPay(item)
+    }
+
+    this.accountPay(item)
+  },
+  async accountPay(password) {
+    const par = this.data
+    const data = {
+      "uid": par.userInfo.id,
+      fee: par.detail.realPrice * 100 * par.detail.quality / 100,
+      order_no: this.data.order_no,
+      password
+    }
+    await app.fetch({url: "Api/Wallet/wallet_pay", data }).then(() => {
+      app.toast('支付成功')
+
+      setTimeout(() => {
+        wx.redirectTo({
+          url: '/pageSub/mine/orderList/index?index=1',
+        })
+      }, 1000)
+    }).catch((err) => {
+      console.log(err)
+      this.onClosePop()
+
+      setTimeout(() => {
+        wx.redirectTo({
+          url: '/pageSub/mine/orderList/index?index=0',
+        })
+      }, 1000)
+    })
+
+    
+  },
+  async wxPay (item) {
+    const userInfo = wx.getStorageSync('userInfo') || {}
     const par = {
-      "pay_order_no": item.order_no,
-	    "pay_order_amount":"1"
+      fee: total_price.fee,
+      openid: userInfo.openid,
+      "out_trade_no": item.order_no,
+      body: '宫颜之禧-购物'
     }
     console.log(par)
-    const respay = await app.fetch({url: "api/payment/wxapipay/index.ashx", data: par })
+    const respay = await app.fetch({url: "Api/Pay/pay", data: par })
+    
     // 触发微信支付
     wx.requestPayment({
       'timeStamp': respay.timeStamp,
@@ -129,11 +169,19 @@ Page({
       'package': respay.package,
       'signType': 'MD5',
       'paySign': respay.paySign,
-      'success': (res) => {
-        app.toast('支付成功')
-        this.getList(true);
+      'success': function (res) {
+        app.toast('恭喜您，订单已成功提交！')
+        setTimeout(() => {
+          wx.redirectTo({
+            url: '/pageSub/mine/orderList/index?index=1',
+          })
+        }, 1000)
       },
       'fail': function (res) {
+          app.toast('支付未完成')
+          wx.redirectTo({
+            url: '/pageSub/mine/orderList/index?index=0',
+          })
       }
     })
   },

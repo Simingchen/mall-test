@@ -83,6 +83,7 @@ page {
 .order-item .all-price .primary {
   font-weight: 500;
   font-size: 24rpx;
+  color: #ee0a24;
 }
 .van-card{
   padding-left:0!important;
