@@ -1,7 +1,7 @@
 const app = getApp()
 const regeneratorRuntime = app.runtime
 let wxparse = require("../../../wxParse/wxParse.js");
-
+import {roundRectColor} from "../../../utils/util.js"
 Page({
   data: {
     detail: {},
@@ -236,11 +236,10 @@ Page({
         .exec(this.setPoster2.bind(this))
     })
   },
+  
   setPoster2(res) {
     // console.log(res)
     let that = this;
-    
-    const globalData = app.globalData
 
     // 创建画布
     const width = res[0].width
@@ -254,9 +253,26 @@ Page({
     canvas.height = height * dpr
     ctx.scale(dpr, dpr)
 
-    // 白色背景
-    ctx.fillStyle = "#fff"
-    ctx.fillRect(0, 0, 530, 1100)
+    // 顶部头像
+    const userInfo = app.globalData.userInfo || {}
+    let avatar = canvas.createImage();
+    avatar.src = userInfo.headimg
+
+    avatar.onload = () => {
+      ctx.drawImage(avatar, 14, 14, 30, 30);
+      
+      // name
+      ctx.font = "14px";
+      ctx.fillText(userInfo.nickname, 56, 24, 100)
+      ctx.font = "12px";
+      ctx.fillText("为你挑选了一个好物", 56, 40, 150)
+    }
+
+    // 红色背景
+    roundRectColor(ctx, 0, 0, 290, 468, 18, "#fc7b51")
+
+    // 变色背景
+    roundRectColor(ctx, 15, 57, 260, 395, 18, "#fff")
 
     // 主图
     let img1 = canvas.createImage();
@@ -264,40 +280,45 @@ Page({
 
     img1.onload = async (res) => {
       // console.log(res)
-      ctx.drawImage(img1, 0, 0, 300, 300)
+      ctx.drawImage(img1, 28, 68, 235, 235)
       
       // 设置字体
       ctx.font = "14px Arial";
       // 设置水平对齐方式
       //  ctx.textAlign = "center";
       // 设置颜色
-      ctx.fillStyle = '#333333FF' // 文字颜色：黑色
-      let title = that.data.detail.name
+      ctx.fillStyle = '#333' // 文字颜色：黑色
+      let title = that.data.detail.name 
+      let txtWidth = 235
       if (title.length <= 14) {
         // 不用换行
-        ctx.fillText(title, 10, 320, 180)
+        ctx.fillText(title, 30, 325, txtWidth)
       } else if (title.length <= 28) {
         // 两行
         let firstLine = title.substring(0, 14);
         let secondLine = title.substring(14, 27);
-        ctx.fillText(firstLine, 10, 320, 180)
-        ctx.fillText(secondLine, 10, 340, 180)
+        ctx.fillText(firstLine, 30, 325, txtWidth)
+        ctx.fillText(secondLine, 30, 340, txtWidth)
       } else {
         // 超过两行
-        let firstLine = title.substring(0, 14);
-        let secondLine = title.substring(14, 28);
-        let line3 = title.substring(28);
+        let firstLine = title.substring(0, 16);
+        let secondLine = title.substring(16, 34);
+        let line3 = title.substring(34);
 
         if (title.length > 40) {
-          line3 = title.substring(28, 40) + '...'
+          line3 = title.substring(34, 40) + '...'
         }
-        ctx.fillText(firstLine, 10, 320, 180)
-        ctx.fillText(secondLine, 10, 340, 180)
-        ctx.fillText(line3, 10, 360, 180)
+        ctx.fillText(firstLine, 30, 320, txtWidth)
+        ctx.fillText(secondLine, 30, 340, txtWidth)
+        ctx.fillText(line3, 30, 360, txtWidth)
       }
 
+      // price
+      ctx.fillStyle = '#ca000e'
+      ctx.fillText("￥" + that.data.detail.price, 30, 420, 100)
+
       const data = {
-        page: '/pages/index/index',
+        page: 'pages/index/index',
         "uid": app.globalData.userInfo.id,
         id: this.data.detail.id,
         // width: 500,
@@ -309,10 +330,12 @@ Page({
 
       if (!this.data.qrCode) {
         const imgUrl = await app.fetch({ url: "Api/Goods/share", data })
-        img2.src = imgUrl.qrcode;
+        var codeUrl = "https://miniapp.lhssbio.com/" + (imgUrl.qrcode || "Public/Uploads/Qrcode/uid2qrcode.jpg")
+        img2.src = codeUrl;
 
+        console.log(codeUrl)
         this.setData({
-          qrCode: imgUrl.qrcode
+          qrCode: codeUrl
         })
       } else {
         img2.src = this.data.qrCode;
@@ -320,9 +343,10 @@ Page({
       img2.onload = (res) => {
         console.log(res)
         let qrImgSize = 70
-        ctx.drawImage(img2, 210,  310, qrImgSize, qrImgSize)
+        ctx.drawImage(img2, 195,  370, qrImgSize, qrImgSize)
 
         wx.hideLoading()
+
         // 保存到相册
         var that = this
         wx.canvasToTempFilePath({

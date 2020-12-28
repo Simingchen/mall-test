@@ -105,10 +105,11 @@ Page({
 
     let imgUrl = ""
     if (!this.data.shareCode) {
-      imgUrl = await app.fetch({
+      var code = await app.fetch({
         url: "Api/User/promote",
         data: {uid: this.data.userInfo.id}
       })
+      imgUrl = "https://miniapp.lhssbio.com/" + code
       this.setData({
         shareCode: imgUrl
       })
