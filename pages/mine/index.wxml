@@ -85,7 +85,7 @@
 				<view class="iconfont">
 					<image src="../../static/logo1.jpg" class="img" mode="aspectFill"></image>
 				</view>
-				<view class="txt">丽合三元</view>
+				<view class="txt">丽合三生</view>
 			</view>
 			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/newsList/index">
 				<view class="iconfont icongonggao"></view>

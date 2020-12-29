@@ -1,3 +1,6 @@
+page{
+  background:#fff;
+}
 .title{
   font-size: 36rpx;
   line-height: 52rpx;
@@ -18,7 +21,7 @@
   padding: 20rpx 40rpx 60rpx;
 }
 .content{
-  padding: 0 20rpx;
+  padding: 20rpx;
   font-size: 28rpx;
   line-height: 46rpx;
 }
