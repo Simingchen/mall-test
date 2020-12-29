@@ -13,14 +13,15 @@ page{
   top:0;
   left: 50%;
   transform: translate(-50%);
-  height: 500rpx;
+  height: 426rpx;
   filter: blur(5px);
 }
 .filter{
   position: absolute;
   width: 100%;
   top:0;
-  height: 500rpx;
+  /* height: 500rpx; */
+  height: 426rpx;
   background: rgba(0,0,0,.3);
 }
 .content{
