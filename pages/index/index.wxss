@@ -1,15 +1,11 @@
 .banner-list {
   position: relative;
-  /* width:710rpx; */
-  height:280rpx;
-  padding: 20rpx;
-  /* margin: 0 auto; */
+  height:750rpx;
   background: #fff;
 }
 .banner-list .item{
   width:100%;
   /* margin: 0 auto; */
-  border-radius:16rpx;
   overflow: hidden;
 }
 .banner-list  .img{

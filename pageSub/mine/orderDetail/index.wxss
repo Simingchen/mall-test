@@ -1,27 +1,25 @@
 /* 订单详情 S ========== */
 .orderDetail-page {
-  background: #fff;
+  /* background: #f8f8f8; */
   min-height: 100vh;
 }
 .van-card{
-  background-color: #fff;
+  padding-top: 30rpx!important;
+  background-color: #fff!important;
 }
-.orderDetail-page .page-bg {
+/* .orderDetail-page .page-bg {
   height: 280rpx;
   padding-top: 60rpx;
   padding-left: 30rpx;
   color: #fff;
   font-size: 32rpx;
-  background: linear-gradient(to bottom, #ec3c50, #fdc2b8);
-  /* background: #ec3c50; */
-  /* border-radius: 0 0 40rpx 40rpx; */
-  font-weight: 600;
-}
+  background: linear-gradient(to bottom, #00a5a5, #00a5a5);
+} */
 
 .orderDetail-page .page-con {
-  position: absolute;
-  width: 100%;
-  top: 100rpx;
+  /* position: absolute; */
+  /* width: 100%; */
+  /* top: 40rpx; */
 }
 
 .orderDetail-page .address-show .flex-item {
@@ -33,7 +31,7 @@
 }
 
 .orderDetail-page .all-price {
-  margin: 30rpx 0;
+  padding: 30rpx 0;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
   -ms-flex-direction: row-reverse;
@@ -57,6 +55,7 @@
 }
 
 .orderDetail-page .order-info {
+  position: relative;
   font-size:24rpx;
   color: #999;
   line-height: 40rpx;
@@ -70,6 +69,7 @@
 
 .orderDetail-page .order-info {
   padding: 30rpx;
+  margin-top:20rpx;
 }
 
 .orderDetail-page .tool-box {
@@ -111,10 +111,13 @@
 }
 
 .address-show {
+  position: relative;
   padding: 30rpx;
   font-size:24rpx;
   color: #333;
   line-height: 40rpx;
+  background:#fff;
+  margin-bottom: 20rpx;
 }
 
 .address-show .img {
@@ -122,9 +125,11 @@
   height: 40rpx;
   margin-left: 10rpx;
   margin-right: 20rpx;
-  margin-top: 40rpx;
-  color:#fff;
+  color:#00a5a5;
   font-size: 40rpx;
+}
+.panel{
+  background:#fff;
 }
 
 .address-show .flex-item {
@@ -135,7 +140,6 @@
   font-size: 24rpx;
   font-weight: 500;
   line-height: 1;
-  color: #333;
 }
 
 .address-show .name-line {

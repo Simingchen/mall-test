@@ -14,7 +14,7 @@
     <!-- <view wx:for="{{detail.GoodsList}}" wx:key="index"> -->
     <van-card lazy-load currency="¥" num="{{detail.quality}}" thumb-mode="aspectFill"
       price="{{filter.filterMoney(detail.realPrice)}}" title="{{detail.name}}" thumb="{{detail.banner}}"
-      desc="{{detail.msg}}"></van-card>
+      ></van-card>
     <!-- </view> -->
     <van-cell title="" class="fee" border="{{false}}">
       共{{detail.quality}}件 <text class="c21">商品小计：</text>

@@ -49,12 +49,6 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
     "plugin": {
       "list": []
     },
@@ -154,6 +148,12 @@
           "id": -1,
           "name": "提现",
           "pathName": "pageSub/wallet/withdraw/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "渠道客户",
+          "pathName": "pageSub/customer/customerList/index",
           "scene": null
         }
       ]

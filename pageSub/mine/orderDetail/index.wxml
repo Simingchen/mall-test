@@ -5,7 +5,7 @@
     {{detail.order_status}}
   </view>
   <view class="page-con">
-    <view class="address-show flex-box panel" wx:if="{{detail.addressInfo}}">
+    <view class="address-show flex-box flex-start panel" wx:if="{{detail.addressInfo}}">
       <van-icon class="img" name="location" />
       <view class="flex-item van-hairline--bottom">
         <view class="name-line">
@@ -19,7 +19,7 @@
     <view class="panel">
       <block wx:if="{{detail.goodsInfo}}">
         <van-card lazy-load thumb-mode="aspectFill" class="goods" num="{{detail.buy_num}}" price="{{filter.filterMoney(detail.buy_price)}}"
-          itle="{{detail.goodsInfo.name}}" thumb="{{detail.goodsInfo.picture}}">
+          itle="{{detail.goodsInfo.name}}" thumb="{{detail.goodsInfo.banner}}">
           <view slot="footer">
             <!-- <van-button custom-class="state-btn" size="mini" type="default" round wx:if="{{item.is_refund}}">
               {{item.refund_way + item.refund_status}}

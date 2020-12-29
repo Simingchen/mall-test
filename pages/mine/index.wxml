@@ -1,5 +1,9 @@
 <wxs module="filter" src="../../filter.wxs"></wxs>
 <view class="member-page">
+	<image class="top-bg" src="../../static/1970758993.jpg" mode="aspectFill"></image>
+	<view class="filter"></view>
+</view>
+<view class="content">
 	<view class="top-panel">
 		<view class="flex-row-center">
 			<navigator hover-class="none" url="/pageSub/mine/setting/index" wx:if="{{userInfo.openid}}">
@@ -47,7 +51,7 @@
 	<view class="panel">
 		<van-cell title="我的工作" border="{{false}}"></van-cell>
 		<view class="tool-list flex-box">
-			<view class="item flex-start" wx:if="{{userInfo.type != 1}}" bindtap="goUrl" data-url="/pageSub/mine/orderList/index">
+			<view class="item flex-start" wx:if="{{userInfo.type != 1}}" bindtap="goUrl" data-url="/pageSub/mine/orderList/index?is_fx=1">
 				<view class="iconfont icondingdan-"></view>
 				<view class="txt">客户订单</view>
 			</view>
@@ -89,7 +93,6 @@
 			</view>
 		</view>
 	</view>
-
 </view>
 
 <van-popup show="{{ isShowShare }}" bind:close="closeShare" round closeable close-icon="close" z-index="{{101}}">

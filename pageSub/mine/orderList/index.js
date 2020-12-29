@@ -37,9 +37,10 @@ Page({
     payPassword: ''
   },
   async onLoad(options) {
-    console.log(options.index)
+    console.log(options.is_fx)
     this.setData({
       curTabType: parseInt(options.index) || 0,
+      is_fx: options.is_fx || ''
     }, () => {
       this.getList(true)
     });
@@ -84,7 +85,7 @@ Page({
       "uid": app.globalData.userInfo.id || '',
       keyword: '',
       "status": this.data.tabList[curTabType].type,
-      is_fx: 0,
+      is_fx: this.data.is_fx,
     }
 
     this.loading = true
@@ -105,7 +106,7 @@ Page({
     this.setData({
       ['curTab.isLoaded']: true,
       ['curTab.page']: { ...curTab.page, finished: res.data.length < 10 },
-      ['curTab.isEmpty']: ![...curTab.list, ...res].length,
+      ['curTab.isEmpty']: ![...curTab.list, ...res.data].length,
       ['curTab.list[' + (curTab.page.page - 2) + ']']: res.data,
       ['curTab.loadStatus']: res.data.length < 10 ? 'noMore' : 'loading'
     }, () => {
