@@ -1,6 +1,7 @@
 const app = getApp()
 const regeneratorRuntime = app.runtime
 let wxparse = require("../../../wxParse/wxParse.js");
+import cityList from '../../../static/city.js'
 
 Page({
   data: {
@@ -24,7 +25,7 @@ Page({
       wxparse.wxParse('content', 'html', res.expressdetail, this, 5)
     }
 
-    // res.order_details.add_time = this.dateFormat("YYYY-mm-dd HH:MM:SS", res.order_details.add_time)
+    res.city = this.filterCity(res.addressInfo.districtid)
 
     this.setData({
       detail: res,
@@ -53,7 +54,15 @@ Page({
     };
     return fmt;
 },
-
+filterCity (code) {
+  if (!code) {
+    return ''
+  }
+  const province = cityList.province_list[code.slice(0,2) + '0000']
+  const city = cityList.city_list[code.slice(0,4) + '00']
+  const county = cityList.county_list[code]
+  return `${province} ${city} ${county}`
+},
   // 确认收货
   confirmIt() {
     // order_no

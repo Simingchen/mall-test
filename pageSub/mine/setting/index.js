@@ -50,6 +50,9 @@ Page({
     })
   },
   filterCity (code) {
+    if (!code) {
+      return ''
+    }
     const province = cityList.province_list[code.slice(0,2) + '0000']
     const city = cityList.city_list[code.slice(0,4) + '00']
     const county = cityList.county_list[code]

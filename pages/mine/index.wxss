@@ -46,7 +46,9 @@ page{
   font-size: 24rpx;
   font-weight: 500;
 }
-
+.name-box{
+  margin-top: 10rpx;
+}
 .avatar-box{
   flex-direction: column;
   text-align: center;
@@ -63,7 +65,7 @@ page{
 .top-panel .label{
   padding: 8rpx 10rpx;
   background: rgba(0,0,0,.4);
-  margin: 10rpx 10rpx 0;
+  margin: 0rpx 10rpx 0;
   border-radius: 99rpx;
   font-size: 20rpx;
   color:#ffff80;

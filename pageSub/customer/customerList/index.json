@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "会员中心",
+  "navigationBarTitleText": "渠道客户",
   "usingComponents": {
     "van-tabs": "../../../@vant/tabs/index",
     "van-loading": "../../../@vant/loading/index",

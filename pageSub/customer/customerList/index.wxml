@@ -2,12 +2,12 @@
 <view class="top-panel">
   <view class="flex-box">
     <view class="avatar-box">
-      <image class="avatar" mode="aspectFill" src="{{detail.avatar}}" />
+      <image class="avatar" mode="aspectFill" src="{{userInfo.headimg}}" />
     </view>
     <view class="name-box">
       <view class="name" style="padding-top:16rpx;">
-        {{detail.nick_name}}
-        <view style="font-size: 24rpx;margin-top:10rpx;">推荐人：12345</view>
+        {{userInfo.nickname}}
+        <view style="font-size: 24rpx;margin-top:10rpx;"  wx:if="{{userInfo.promoter_user}}">推荐人：{{userInfo.promoter_user}}</view>
       </view>
     </view>
   </view>

@@ -10,16 +10,15 @@
       <view class="flex-item van-hairline--bottom">
         <view class="name-line">
           <text class="name">{{detail.addressInfo.name}}</text>
-          {{detail.addressInfo.mobile}}
+           {{detail.addressInfo.mobile}}
         </view>
-        <view>{{detail.area}}</view>
-        <view>{{detail.addressInfo.remark}}</view>
+        <view>{{detail.city}}  {{detail.addressInfo.remark}}</view>
       </view>
     </view>
     <view class="panel">
       <block wx:if="{{detail.goodsInfo}}">
         <van-card lazy-load thumb-mode="aspectFill" class="goods" num="{{detail.buy_num}}" price="{{filter.filterMoney(detail.buy_price)}}"
-          itle="{{detail.goodsInfo.name}}" thumb="{{detail.goodsInfo.banner}}">
+          title="{{detail.goodsInfo.name}}" thumb="{{detail.goodsInfo.banner}}">
           <view slot="footer">
             <!-- <van-button custom-class="state-btn" size="mini" type="default" round wx:if="{{item.is_refund}}">
               {{item.refund_way + item.refund_status}}

@@ -15,7 +15,7 @@ Page({
       list: [],
     },
     isShowShare: false,
-    detail: {}
+    userInfo: {}
   },
   async onLoad(options) {
     console.log(options.index)
@@ -25,14 +25,11 @@ Page({
       this.getList(true)
     });
 
-    // this.getData()
+    this.getData()
   },
   async getData () {
-    const detail = await app.fetch({method: 'post', url: "GetUserInfo.ashx"})
-    app.globalData.userInfo = detail
-    wx.setStorageSync('userInfo', detail)
-    console.log(detail)
-    this.setData({detail})
+    const userInfo = await app.fetch({url: "Api/User/userInfo", data: {uid: app.globalData.userInfo.id}})
+    this.setData({userInfo})
   },
   async getList(init) {
     const {
@@ -55,16 +52,12 @@ Page({
     if (this.loading || curTab.page.finished) return;
 
     let data = {
-      "page_size": curTab.page.size,
-      "page_index": curTab.page.page,
-      // "status": curTabType,
-      // "payment_status": "0",
-      // "express_status": "0"
+      uid: app.globalData.userInfo.id
     }
     let par = {}
     this.loading = true
     const res = await app.fetch({
-      url: "GetUserOrderList.ashx",
+      url: "Api/user/promoterUserList",
       data: {
        ...data,
         ...par
@@ -139,10 +132,11 @@ Page({
 
     let imgUrl = ""
     if (!this.data.shareCode) {
-      imgUrl = await app.fetch({
+      var code = await app.fetch({
         url: "Api/User/promote",
         data: {uid: this.data.userInfo.id}
       })
+      imgUrl = "https://miniapp.lhssbio.com/" + code
       this.setData({
         shareCode: imgUrl
       })
