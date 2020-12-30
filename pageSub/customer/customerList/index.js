@@ -67,13 +67,20 @@ Page({
     curTab.page.page++
 
     this.loading = false
+    console.log(res)
 
     this.setData({
       ['curTab.isLoaded']: true,
-      ['curTab.page']: { ...curTab.page, finished: curTab.page.page >= res.total_page },
-      ['curTab.isEmpty']: ![...curTab.list, ...res.list].length,
-      ['curTab.list[' + (curTab.page.page - 2) + ']']: res.list,
-      ['curTab.loadStatus']: (curTab.page.page >= res.total_page) ? 'noMore' : 'loading'
+      // ['curTab.page']: { ...curTab.page, finished: curTab.page.page >= res.total_page },
+      ['curTab.isEmpty']: ![...curTab.list, ...res].length,
+      ['curTab.list[' + (curTab.page.page - 2) + ']']: res,
+      ['curTab.loadStatus']: 'noMore'
+
+      // ['curTab.isLoaded']: true,
+      // ['curTab.page']: { ...curTab.page, finished: res.data.length < 10 },
+      // ['curTab.isEmpty']: ![...curTab.list, ...res.data].length,
+      // ['curTab.list[' + (curTab.page.page - 2) + ']']: res.data,
+      // ['curTab.loadStatus']: res.data.length < 10 ? 'noMore' : 'loading'
     }, () => {
       console.log(this.data.curTab)
     })

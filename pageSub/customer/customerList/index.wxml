@@ -16,19 +16,20 @@
     分享码
   </view>
 </view>
-<block wx:for="{{10}}" wx:key="index" wx:for-item="items">
-  <view class="order-item panel" wx:for="{{items}}" wx:for-item="order" wx:key="order_no">
+<!-- <van-cell title="客户列表" value=""></van-cell> -->
+<block wx:for="{{curTab.list}}" wx:key="index" wx:for-item="items">
+  <view class="order-item panel" wx:for="{{items}}" wx:key="id">
     <view class="flex-row-center">
       <view class="user-info flex-box">
-        <image class="img" mode="aspectFill" src="{{detail.avatar}}" />
+        <image class="img" mode="aspectFill" src="{{item.headimg}}" />
         <view class="name">
-          小胡子
+          {{item.name}}
         </view>
       </view>
-      <view>13926012343</view>
+      <view>{{item.phone}}</view>
     </view>
     <view class="flex-row-center" style="margin-top:20rpx;color:#999">
-      <view class="time">2020-12-16</view>
+      <view class="time">{{item.post_date}}</view>
       <van-button round type="info" size="mini">详情</van-button>
     </view>
   </view>
