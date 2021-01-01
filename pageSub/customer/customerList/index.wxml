@@ -30,7 +30,10 @@
     </view>
     <view class="flex-row-center" style="margin-top:20rpx;color:#999">
       <view class="time">{{item.post_date}}</view>
-      <van-button round type="info" size="mini">详情</van-button>
+      <view>
+        <van-button round size="mini" style="margin-right:10rpx;">跟进</van-button>
+        <van-button round size="mini">详情</van-button>
+      </view>
     </view>
   </view>
 </block>

@@ -237,7 +237,6 @@ Page({
     if (curPayRadio == 1) {
       this.wxPay(res.order_no, data.total_price)
     }
-    
   },
   async accountPay(password) {
     const par = this.data

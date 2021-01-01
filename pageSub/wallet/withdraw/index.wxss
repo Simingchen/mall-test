@@ -11,10 +11,10 @@ page{
   overflow: hidden;
 }
 .comfirm-btn{
+  display: block;
   width: 630rpx;
   height: 86rpx;
-  margin-top: 56rpx;
-  border-radius: 10rpx!important;
+  margin-top: 50rpx;
 }
 .txt{
   color:#999;
@@ -22,4 +22,7 @@ page{
 }
 .addr-box{
   padding-bottom: 30rpx;
+}
+.van-cell__value{
+  overflow: visible!important;
 }

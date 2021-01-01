@@ -247,8 +247,6 @@ form {
   text-align: center;
 }
 
-
-
 .van-loading{
   margin-top:20rpx;
   width: 100%;

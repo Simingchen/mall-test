@@ -25,7 +25,6 @@ Page({
         this.getReasonList()
         this.getWayList()
       })
-      
     };
   },
 

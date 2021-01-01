@@ -66,9 +66,27 @@ Page({
     
     wx.navigateTo({ url })
   }),
+  // 关闭弹窗
+ onClosePop () {
+  this.setData({
+    isShowPayPop: false
+  })
+ },
+ // 输入框更改
+ onChangeInput({currentTarget, detail}) {
+  const string = detail.trim()
+ this.setData({
+   [currentTarget.dataset.type]: string
+ }, () => {
+   if (currentTarget.dataset.type == "payPassword") {
+     if (string.length > 5) {
+       this.submit(string)
+     }
+   }
+ })
+},
   async confirm () {
-    console.log(this.data.value)
-    const { detail, value } = this.data
+    const { detail, value, } = this.data
     if (!value.length) {
       return app.toast('提现金额不能为空')
     }
@@ -79,16 +97,24 @@ Page({
       return app.toast('提现金额范围 1~5000')
     }
 
+    this.setData({
+      isShowPayPop: true
+    })
+  },
+  async submit(password) {
+    const { value, curCard } = this.data
     const data = {
-      amount: value
+      fee: value,
+      "uid": app.globalData.userInfo.id,
+      bank_id: curCard.id,
+      password,
     }
-    await app.fetch({url: "WxTransfers.ashx", data})
+    await app.fetch({url: "Api/wallet/cashOut", data})
 
     app.toast('提现申请成功，请耐心等待！')
 
     this.timer = setTimeout(() => {
       wx.navigateTo({url: "/pageSub/wallet/withdrawList/index"})
     }, 800)
-    
   }
 });

@@ -2,17 +2,18 @@
 <view class="panel">
 
 	<view class="input-box">
-		<van-field model:value="{{ value }}" type="number" label="￥" placeholder="输入提现金额" maxlength="5" />
+		<van-field model:value="{{ value }}" bind:change="onChangeInput"
+      data-type="value" type="number" label="金额数" placeholder="输入提现金额" maxlength="5" />
 	</view>
 	<van-cell title="银行卡" value="{{curCard.site+ ' '+ curCard.card}}" bind:click="openPop" is-link />
-	<view class="p30">
+	<view class="flex-center">
+		<van-button custom-class="comfirm-btn" color="#00a5a5" bindtap="confirm">确认提现</van-button>
+	</view>
+	<view class="p30" style="line-height: 40rpx;">
 		<view class="txt">可提现金额：￥{{filter.filterMoney(detail.amount)}}</view>
-		<view class="flex-center">
-			<van-button custom-class="comfirm-btn" color="#00a5a5" bindtap="confirm">确认提现</van-button>
-		</view>
+		<view class="txt">手续费：0.6%</view>
 	</view>
 </view>
-
 
 <!-- 地址选择 -->
 <van-popup show="{{isShowCardPop}}" position="bottom" round closeable bind:close="onClosePop">
@@ -25,4 +26,12 @@
 			</van-cell>
 		</van-radio-group>
 	</view>
+</van-popup>
+
+<van-popup show="{{isShowPayPop}}" custom-class="pop-pay" position="center" round closeable bind:close="onClosePop">
+  <van-cell title="支付" class="tac" border="{{false}}"></van-cell>
+  <view class="pay-pop">
+    <van-field value="{{ payPassword }}" input-class="input-pass" type="password" placeholder="请输入支付密码" bind:change="onChangeInput"
+      data-type="payPassword" border="{{false}}" maxlength="6" size="mini"/>
+  </view>
 </van-popup>
