@@ -24,6 +24,7 @@
         <image class="img" mode="aspectFill" src="{{item.headimg}}" />
         <view class="name">
           {{item.name}}
+          <view class="type" style="margin-top:10rpx;font-size:24rpx;color:#ccc">{{['普通用户', '经销商'][item.type -1]}}</view>
         </view>
       </view>
       <view>{{item.phone}}</view>
@@ -31,7 +32,7 @@
     <view class="flex-row-center" style="margin-top:20rpx;color:#999">
       <view class="time">{{item.post_date}}</view>
       <view>
-        <van-button round size="mini" style="margin-right:10rpx;">跟进</van-button>
+        <van-button round size="mini" style="margin-right:10rpx;" bindtap="followUp" data-item="{{item}}">跟进</van-button>
         <van-button round size="mini">详情</van-button>
       </view>
     </view>

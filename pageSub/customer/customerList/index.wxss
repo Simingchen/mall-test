@@ -88,5 +88,5 @@ page {
   background: #eee;
 }
 .order-item .name{
-  padding-top:20rpx;
+  padding-top:15rpx;
 }

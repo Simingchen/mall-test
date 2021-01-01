@@ -29,11 +29,14 @@
 </van-popup>
 
 <van-popup show="{{isShowPayPop}}" custom-class="pop-pay" position="center" round closeable bind:close="onClosePop">
-	<van-cell title="输入支付密码" class="tac" border="{{false}}"></van-cell>
+	<van-cell title="输入支付密码" custom-class="pop-input" style="font-size: 34rpx;" class="tac" border="{{false}}"></van-cell>
 	<view class="pay-pop">
-		<view class="txt">提现金额：￥{{filter.filterMoney(value)}}</view>
-		<view class="txt">手续费：￥{{filter.filterMoney(serviceFee)}}</view>
-		<view class="txt">手续费率：0.6%</view>
+		<view class="flex-center" style="font-size: 32rpx;">提现</view>
+		<view class="txt price"><text class="i">￥</text>{{filter.filterMoney(value)}}</view>
+		<view class="tips">
+			<view class="txt flex-row-center"><view class="c">手续费</view>￥{{filter.filterMoney(serviceFee)}}</view>
+			<view class="txt flex-row-center"><view class="c">手续费率</view>0.6%</view>
+		</view>
 		<view class="input-pass">
 			<van-field value="{{ payPassword }}"  type="password" placeholder="请输入支付密码"
 			bind:change="onChangeInput" data-type="payPassword" border="{{false}}" maxlength="6" size="mini" />

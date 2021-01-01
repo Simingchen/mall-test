@@ -11,6 +11,7 @@ Page({
       card: ''
     },
     cardList: [],
+    isShowPayPop: false,
     serviceFee: 0, // 手续费
   },
   onLoad (option) {
@@ -117,7 +118,7 @@ Page({
     }
     await app.fetch({url: "Api/wallet/cashOut", data})
 
-    app.toast('提现申请成功，请耐心等待！')
+    app.toast('提现申请成功，具体到账时间视后台人工审核及银行到账时间而定!')
 
     this.timer = setTimeout(() => {
       wx.navigateTo({url: "/pageSub/wallet/withdrawList/index"})

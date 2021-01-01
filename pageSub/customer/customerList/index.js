@@ -95,6 +95,21 @@ Page({
     })
     wx.hideLoading()
   },
+  async followUp ({currentTarget}) {
+    const item = currentTarget.dataset.item
+    const data = {
+      "uid": app.globalData.userInfo.id,
+      puid: item.id,
+    }
+    const res = await app.fetch({ url: "Api/user/promoterUserGjList", data })
+    console.log(res)
+  },
+  goUrl ({currentTarget}) {
+    const item = currentTarget.dataset.item ? encodeURIComponent(JSON.stringify(currentTarget.dataset.item)) : "{}"
+    wx.navigateTo({
+      url: `/pageSub/wallet/cardEdit/index?item=${item}`,
+    })
+  },
   setPoster() {
     if (!this.data.shareCode) {
       wx.showLoading({

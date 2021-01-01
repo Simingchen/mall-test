@@ -17,7 +17,6 @@ page{
   margin-top: 50rpx;
 }
 .txt{
-  color:#999;
   font-size: 24rpx;
 }
 .addr-box{
@@ -28,13 +27,37 @@ page{
 }
 
 .pop-pay{
+  width: 638rpx;
+  height: 580rpx;
   padding: 0 50rpx 60rpx;
 }
-.pay-pop{
-  width: 420rpx;
+.pop-pay.van-popup--round{
+  border-radius: 20rpx!important;
+  top:40%!important;
 }
-.pay-pop .txt{
-  line-height: 40rpx;
+.pay-pop{
+  /* width: 420rpx; */
+}
+.pop-input .van-cell__title{
+  font-size: 32rpx;
+}
+.pay-pop .price{
+  font-size: 60rpx;
+  font-weight: 600;
+  text-align: center;
+  line-height: 160rpx;
+}
+.pay-pop .price .i{
+  font-size: 38rpx;
+}
+.tips{
+  height: 127rpx;
+  padding-top: 24rpx;
+  border-top: 1rpx solid #e5e5e5;
+  line-height: 46rpx;
+}
+.tips .txt .c{
+  color:#999;
 }
 .password-box{
   width: 360rpx;
@@ -42,16 +65,11 @@ page{
   border-left: 1rpx solid #ccc;
   border-bottom: 1rpx solid #ccc;
 }
-.password-box .flex-item{
-  width: 60rpx;
-  height: 60rpx;
-  border-right: 1rpx solid #ccc;
-}
+
 .input-pass{
   padding: 4rpx;
   margin-top: 20rpx;
-  border: 1rpx solid #ccc;
-  border: 1rpx solid #ccc;
+  border: 1rpx solid #e5e5e5;
   border-radius: 6rpx;
 }
 .pay-pop .van-cell{
