@@ -105,7 +105,7 @@
 <!-- 余额支付 -->
 <!-- isShowPayPop -->
 <van-popup show="{{isShowPayPop}}" custom-class="pop-pay" position="center" round closeable bind:close="onClosePop">
-  <van-cell title="支付" class="tac" border="{{false}}"></van-cell>
+  <van-cell title="输入支付密码" class="tac" border="{{false}}"></van-cell>
   <view class="pay-pop">
     <!-- <van-cell title="手机号码" value="{{payPhone}}"></van-cell> -->
     <!-- <van-field value="{{ imgCode }}" center clearable placeholder="请输入图像验证码" bind:change="onChangeInput"

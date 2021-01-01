@@ -26,3 +26,34 @@ page{
 .van-cell__value{
   overflow: visible!important;
 }
+
+.pop-pay{
+  padding: 0 50rpx 60rpx;
+}
+.pay-pop{
+  width: 420rpx;
+}
+.pay-pop .txt{
+  line-height: 40rpx;
+}
+.password-box{
+  width: 360rpx;
+  border-top: 1rpx solid #ccc;
+  border-left: 1rpx solid #ccc;
+  border-bottom: 1rpx solid #ccc;
+}
+.password-box .flex-item{
+  width: 60rpx;
+  height: 60rpx;
+  border-right: 1rpx solid #ccc;
+}
+.input-pass{
+  padding: 4rpx;
+  margin-top: 20rpx;
+  border: 1rpx solid #ccc;
+  border: 1rpx solid #ccc;
+  border-radius: 6rpx;
+}
+.pay-pop .van-cell{
+  padding: 10rpx 16rpx;
+}

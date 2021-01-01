@@ -10,12 +10,11 @@ Page({
     curCard: {
       card: ''
     },
-    cardList: []
+    cardList: [],
+    serviceFee: 0, // 手续费
   },
   onLoad (option) {
-    // this.setData({
-    //   detail: app.globalData.userInfo
-    // })
+    
   },
   onShow () {
     this.getData()
@@ -27,7 +26,8 @@ Page({
   },
   onClosePop() {
     this.setData({
-      isShowCardPop: false
+      isShowCardPop: false,
+      isShowPayPop: false
     })
   },
   onChangeRadio(event) {
@@ -38,12 +38,15 @@ Page({
       isShowCardPop: false
     });
   },
+  // 银行卡，金额数
   async getData () {
-    let par = {
-      "uid": app.globalData.userInfo.id,
+    const data = {
+      uid: app.globalData.userInfo.id
     }
-    
-    const res = await app.fetch({url: "Api/Wallet/bank", data: par })
+    const detail = await app.fetch({url: "Api/Wallet/index", data})
+    this.setData({detail})
+
+    const res = await app.fetch({url: "Api/Wallet/bank", data })
 
     this.setData({
       cardList: res,
@@ -66,39 +69,42 @@ Page({
     
     wx.navigateTo({ url })
   }),
-  // 关闭弹窗
- onClosePop () {
-  this.setData({
-    isShowPayPop: false
-  })
- },
  // 输入框更改
  onChangeInput({currentTarget, detail}) {
   const string = detail.trim()
- this.setData({
-   [currentTarget.dataset.type]: string
- }, () => {
-   if (currentTarget.dataset.type == "payPassword") {
-     if (string.length > 5) {
-       this.submit(string)
-     }
-   }
- })
-},
+  this.setData({
+    [currentTarget.dataset.type]: string
+  }, () => {
+    if (currentTarget.dataset.type == "payPassword") {
+      if (string.length > 5) {
+        this.submit(string)
+      }
+    }
+  })
+  },
   async confirm () {
     const { detail, value, } = this.data
     if (!value.length) {
-      return app.toast('提现金额不能为空')
+      return app.toast('提现金额数不能为空')
     }
-    if (value > detail.amount) {
-      return app.toast('提现金额大于可提现数额')
+    if (value < 100) {
+      return app.toast('提现金额数不能小于100')
     }
-    if (value > 5000 || value < 1) {
-      return app.toast('提现金额范围 1~5000')
+    if (detail.avail_money < 100) {
+      return app.toast('当前可提现金额小于100')
+    }
+
+    if (value > 30000 || value < 100) {
+      return app.toast('提现金额数范围 100~30000')
+    }
+
+    if (value > detail.avail_money) {
+      return app.toast('提现金额数不能大于可提现数额')
     }
 
     this.setData({
-      isShowPayPop: true
+      isShowPayPop: true,
+      serviceFee: parseFloat(value) * 6 / 1000
     })
   },
   async submit(password) {

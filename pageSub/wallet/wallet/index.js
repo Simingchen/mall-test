@@ -20,12 +20,8 @@ Page({
     }
     const detail = await app.fetch({url: "Api/Wallet/index", data})
     this.setData({detail})
-
-    let par = {
-      "uid": app.globalData.userInfo.id,
-    }
     
-    const res = await app.fetch({url: "Api/Wallet/bank", data: par })
+    const res = await app.fetch({url: "Api/Wallet/bank", data })
 
     this.setData({
       isAddCard: res.length > 0
