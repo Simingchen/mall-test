@@ -1,0 +1,28 @@
+
+<view class="top-panel">
+  <view class="flex-box">
+    <view class="avatar-box">
+      <image class="avatar" mode="aspectFill" src="{{userInfo.headimg}}" />
+    </view>
+    <view class="name-box">
+      <view class="name" style="padding-top:16rpx;">
+        {{userInfo.nickname}}
+        <view style="font-size: 24rpx;margin-top:10rpx;"  wx:if="{{userInfo.promoter_user}}">推荐人：{{userInfo.promoter_user}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="share-code flex-start" bindtap="setPoster">
+    <text class="iconfont iconico"></text>
+    分享码
+  </view>
+</view>
+<view class="panel">
+  <van-cell title="业务员列表" is-link url="/pageSub/salesman/menList/index"/>
+  <!-- <van-cell title="业务员申请" is-link url="/pageSub/salesman/apply/index"></van-cell> -->
+</view>
+
+<van-popup show="{{ isShowShare }}" bind:close="closeShare" round closeable close-icon="close" z-index="{{101}}">
+	<view class='share-moment flex-center'>
+		<canvas type="2d" id="canvas" canvas-id="shareCanvas" class="canvas" style="width: 200px; height: 200px;"></canvas>
+	</view>
+</van-popup>

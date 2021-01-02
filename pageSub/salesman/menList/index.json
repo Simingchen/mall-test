@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "业务员列表",
+  "usingComponents": {
+    "van-loading": "../../../@vant/loading/index",
+    "van-button": "../../../@vant/button/index"
+  }
+}

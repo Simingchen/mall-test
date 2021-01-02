@@ -1,9 +1,9 @@
 <wxs module="filter" src="../../../filter.wxs"></wxs>
-<view class="tab-list">
+<!-- <view class="tab-list">
   <van-tabs custom-class="tab-list" active="{{ curTabType }}" bind:change="tabsChange">
     <van-tab title="{{item.name}}" wx:for="{{tabList}}" wx:key="index"></van-tab>
   </van-tabs>
-</view>
+</view> -->
 <view class="goods-list">
   <block wx:for="{{curTab.list}}" wx:key="index">
     <view class="goodsCard" wx:for="{{item}}" wx:key="index" wx:for-item="goods" bindtap="goUrl" data-item="{{goods}}">

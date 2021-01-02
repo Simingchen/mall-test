@@ -34,7 +34,8 @@ App({
   
   globalData: {
     userInfo: wx.getStorageSync('userInfo') || {},
-    openData: {}
+    openData: {},
+    followUpId: 0,   // 跟进记录ID
   },
   // async await
   runtime,

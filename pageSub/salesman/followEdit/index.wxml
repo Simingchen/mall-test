@@ -1,0 +1,9 @@
+<view class="panel">
+  <van-field type="textarea" maxlength="200" value="{{ message }}" bind:change="onChangeInput"
+      data-type="message" placeholder="请输入跟进信息" show-word-limit/>
+</view>
+
+<view class="btns">
+  <van-button custom-class="add-btn" color="#00a5a5" block round bind:click="save">保存</van-button>
+  <van-button wx:if="{{isEdit}}" custom-class="delete-btn" type="default" block round bind:click="remove">删除</van-button>
+</view>

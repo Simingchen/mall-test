@@ -153,7 +153,26 @@
         },
         {
           "name": "渠道客户",
-          "pathName": "pageSub/customer/customerList/index",
+          "pathName": "pageSub/salesman/home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "跟进列表",
+          "pathName": "pageSub/salesman/followList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "业务员列表",
+          "pathName": "pageSub/salesman/menList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "编辑跟进",
+          "pathName": "pageSub/salesman/followEdit/index",
+          "query": "",
           "scene": null
         }
       ]

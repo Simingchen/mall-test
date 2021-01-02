@@ -1,0 +1,86 @@
+.top-panel {
+  position: relative;
+  padding: 30rpx 0 30rpx 30rpx;
+  margin-bottom: 30rpx;
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 500;
+  background: #ee5020;
+}
+.avatar-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 30rpx;
+  text-align: center;
+}
+.avatar-box .avatar {
+  display: block;
+  width: 120rpx;
+  height: 120rpx;
+  
+  margin-bottom: 10rpx;
+  border-radius: 110rpx;
+  background: #eee;
+  /* border: 1rpx solid #ccc; */
+}
+
+.top-panel .name {
+  font-size: 30rpx;
+  line-height: 40rpx;
+  margin-top: 8rpx;
+}
+
+.top-panel .name-box {
+  position: relative;
+  width: 485rpx;
+  min-height: 145rpx;
+  /* line-height: 46rpx; */
+  /* padding-right: 160rpx; */
+}
+.top-panel .mt20{
+  margin-top: 16rpx;
+}
+.top-panel .name-box  .point-line{
+  margin-top: 20rpx;
+  justify-content: space-between;
+}
+
+.order-item {
+  padding: 0 30rpx 30rpx;
+  margin-top: 20rpx;
+}
+.panel{
+  width: 690rpx;
+  margin: 20rpx auto 20rpx;
+    background: #fff;
+    border-radius: 16rpx;
+    overflow: hidden
+}
+.share-code{
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  height: 40rpx;
+  padding: 0 10rpx;
+  background: rgba(0,0,0,.5);
+  border-radius: 40rpx;
+  color: #fff;
+}
+.share-code .iconfont{
+  margin-right: 6rpx;
+}
+.order-item .user-info{
+  padding-top:20rpx;
+}
+.order-item .img{
+  display: block;
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 20rpx;
+  border-radius: 90rpx;
+  background: #eee;
+}
+.order-item .name{
+  padding-top:20rpx;
+}

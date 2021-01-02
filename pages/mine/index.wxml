@@ -55,7 +55,7 @@
 				<view class="iconfont icondingdan-"></view>
 				<view class="txt">客户订单</view>
 			</view>
-			<view class="item flex-start" wx:if="{{userInfo.type != 1}}" bindtap="goUrl" data-url="/pageSub/customer/customerList/index">
+			<view class="item flex-start" wx:if="{{userInfo.type != 1}}" bindtap="goUrl" data-url="/pageSub/salesman/home/index">
 				<view class="iconfont iconkehu"></view>
 				<view class="txt">渠道客户</view>
 			</view>

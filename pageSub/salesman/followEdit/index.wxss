@@ -1,0 +1,32 @@
+.bottom-btn{
+  position: fixed;
+  bottom:0;
+  padding: 20rpx;
+  width: 100%;
+  background: #fff;
+}
+.van-field__label,
+.van-cell__title{
+  color:#646566!important;
+  flex:none!important;
+  min-width: 130rpx!important;
+}
+
+.btns{
+  margin-top: 20rpx;
+  padding: 20rpx;
+}
+.delete-btn{
+  margin-top: 20rpx;
+}
+
+.van-field__input{
+  height: 300rpx!important;
+}
+.panel{
+  width: 690rpx;
+  margin: 20rpx auto 20rpx;
+    background: #fff;
+    border-radius: 16rpx;
+    overflow: hidden
+}

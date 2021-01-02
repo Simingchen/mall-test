@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "渠道客户",
+  "usingComponents": {
+    "van-tabs": "../../../@vant/tabs/index",
+    "van-cell": "../../../@vant/cell/index",
+    "van-button": "../../../@vant/button/index",
+    "van-popup": "../../../@vant/popup/index"
+  }
+}

@@ -1,0 +1,17 @@
+
+<block wx:for="{{curTab.list}}" wx:key="index" wx:for-item="items">
+  <view class="order-item panel" wx:for="{{items}}" wx:key="id" bindtap="goUrl" data-item="{{item}}">
+    <view class="flex-row-center" style="padding-top: 30rpx;line-height: 40rpx;">
+      {{item.content}}
+    </view>
+    <view class="flex-row-center" style="margin-top:20rpx;color:#999">
+      <view class="time">{{item.post_date}}</view>
+    </view>
+  </view>
+</block>
+<!-- 加载状态 -->
+<loading status="{{curTab.loadStatus}}" isEmpty="{{curTab.isEmpty}}" />
+
+<view class="bottom-btn">
+  <van-button custom-class="add-btn" block round bind:click="goUrl" color="#00a5a5">新增跟进信息</van-button>
+</view>

@@ -1,0 +1,13 @@
+<view class="van-address-list">
+  <van-field clearable label="姓名" maxlength="10" model:value="{{ userName }}" placeholder="请输入姓名" />
+  <van-field clearable label="手机" maxlength="11" type="number" model:value="{{ phone }}" placeholder="请输入手机号" />
+  <van-cell custom-class="area-cell" title="地区" is-link value="{{area? area : '选择省/市/区' }}" bindtap="togglePop" />
+</view>
+
+<view class="btns">
+  <van-button custom-class="add-btn" type="danger" block round bind:click="save">保存</van-button>
+</view>
+
+<van-popup show="{{ isShowArea }}" position="bottom" bind:close="togglePop" round>
+  <van-area area-list="{{ areaList }}" bind:cancel="togglePop" bind:confirm="confirmArea" />
+</van-popup>

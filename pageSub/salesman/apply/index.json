@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "业务员申请",
+  "usingComponents": {
+    "van-button": "../../../@vant/button/index",
+    "van-field": "../../../@vant/field/index",
+    "van-area": "../../../@vant/area/index",
+    "van-popup": "../../../@vant/popup/index",
+    "van-cell": "../../../@vant/cell/index"
+    
+  }
+}

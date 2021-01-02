@@ -37,14 +37,6 @@
       ]
     },
     {
-      "root": "pageSub/customer",
-      "pages": [
-        "signUp/index",
-        "customerList/index",
-        "customerEdit/index"
-      ]
-    },
-    {
       "root": "pageSub/wallet",
       "pages": [
         "wallet/index",
@@ -63,10 +55,13 @@
       ]
     },
     {
-      "root": "pageSub/live",
+      "root": "pageSub/salesman",
       "pages": [
-        "post/index",
-        "list/index"
+        "apply/index",
+        "home/index",
+        "followList/index",
+        "followEdit/index",
+        "menList/index"
       ]
     }
   ],

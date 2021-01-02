@@ -1,0 +1,32 @@
+.order-item {
+  padding: 0 30rpx 30rpx;
+  margin-top: 20rpx;
+}
+.panel{
+  width: 690rpx;
+  margin: 20rpx auto 20rpx;
+    background: #fff;
+    border-radius: 16rpx;
+    overflow: hidden
+}
+.order-item .user-info{
+  padding-top:20rpx;
+}
+.order-item .img{
+  display: block;
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 20rpx;
+  border-radius: 90rpx;
+  background: #eee;
+}
+.order-item .name{
+  padding-top:20rpx;
+}
+.bottom-btn{
+  position: fixed;
+  bottom:0;
+  padding: 20rpx;
+  width: 100%;
+  background: #fff;
+}

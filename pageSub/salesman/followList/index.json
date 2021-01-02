@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "跟进列表",
+  "usingComponents": {
+    "van-loading": "../../../@vant/loading/index",
+    "van-button": "../../../@vant/button/index"
+  }
+}
