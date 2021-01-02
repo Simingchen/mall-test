@@ -49,7 +49,7 @@ Page({
     // scene=ICode%3Dbf9871%26id%3D99
   },
   async getData(id) {
-    const userInfo = wx.getStorageSync('userInfo') || {}
+    const userInfo = app.globalData.userInfo
     let detail = await app.fetch({
       url: "Api/Huodong/huodong_detail",
       data: {

@@ -1,9 +1,9 @@
 <view class="van-address-list">
-  <van-field clearable label="姓名" maxlength="10" model:value="{{ userName }}" placeholder="收货人姓名" />
-  <van-field clearable label="手机" maxlength="11" type="number" model:value="{{ phone }}" placeholder="收货人手机号" />
+  <van-field clearable label="姓名" maxlength="10" value="{{ userName }}" placeholder="收货人姓名" bind:change="onChangeInput" data-type="userName"/>
+  <van-field clearable label="手机" maxlength="11" type="number" value="{{ phone }}" placeholder="收货人手机号" bind:change="onChangeInput" data-type="phone"/>
   <van-cell custom-class="area-cell" title="地区" is-link value="{{area? area : '请选择省/市/区' }}" bindtap="togglePop" />
-  <van-field clearable label="详细地址" maxlength="50" model:value="{{ address }}" autosize border="{{false}}"
-    type="textarea" placeholder="街道门牌，楼层房间号等信息" />
+  <van-field clearable label="详细地址" maxlength="50" value="{{ address }}" autosize border="{{false}}"
+    type="textarea" placeholder="街道门牌，楼层房间号等信息" bind:change="onChangeInput" data-type="address"/>
 </view>
 <view class="van-address-list">
   <van-cell title="设为默认收货地址" center border="{{false}}">
@@ -12,7 +12,7 @@
 </view>
 
 <view class="btns">
-  <van-button custom-class="add-btn" color="#00a5a5" block round bind:click="save">保存</van-button>
+  <van-button custom-class="add-btn" color="#00a5a5" block round bind:click="save" loading="{{isSubmiting}}" loading-text="保存中">保存</van-button>
   <van-button wx:if="{{isEdit}}" custom-class="delete-btn" type="default" block round bind:click="remove">删除</van-button>
 </view>
 

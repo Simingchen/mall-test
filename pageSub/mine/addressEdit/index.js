@@ -12,12 +12,12 @@ Page({
     isShowArea: false,
     areaList: cityList,
     checked: false, // 默认地址
-    isEdit: false
+    isEdit: false,
+    isSubmiting: false
   },
   onLoad(options) {
     let detail = {}
 
-    console.log(options)
     if (options.item && options.item != "{}") {
       detail = JSON.parse(decodeURIComponent(options.item));
       this.setData({
@@ -37,6 +37,12 @@ Page({
       isEdit: detail.id > 0,
     })
   },
+  // 输入框更改
+ onChangeInput({currentTarget, detail}) {
+  this.setData({
+    [currentTarget.dataset.type]: detail.trim()
+  })
+ },
   togglePop() {
     this.setData({
       isShowArea: !this.data.isShowArea
@@ -63,9 +69,11 @@ Page({
   },
   // 保存地址
   async save() {
-    const par = this.data
+    if (this.data.isSubmiting) {
+      return false
+    }
 
-    console.log(par)
+    const par = this.data
     
     if (!par.userName.length) {
       return app.toast('收货人姓名不能为空')
@@ -76,10 +84,6 @@ Page({
     var myreg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
     if (!myreg.test(par.phone)) {
       return app.toast('手机号格式不正确')
-    }
-
-    if (!par.address.length) {
-      return app.toast('详细地址不能为空')
     }
 
     if (!par.areaValues.length) {
@@ -93,20 +97,52 @@ Page({
     if (!par.areaValues[0].name) {
       return app.toast('请选择地区')
     }
+
+    if (!par.address.length) {
+      return app.toast('详细地址不能为空')
+    }
+
     const data = {
       "uid": app.globalData.userInfo.id,
       "name": par.userName,
       "code": par.areaValues[2].code || this.data.code,
       "remark": par.address,
       "mobile": par.phone,
-      is_default: par.checked,
+      is_default: par.checked ? 1 : 0,
     }
     if (par.id) {
       data.id = par.id
     }
+    // *** NOTE ** 有默认地址清除别的地址默认标记
+    if(par.checked) {
+      let par = {
+        "uid": app.globalData.userInfo.id,
+      }
+      const addressList = await app.fetch({url: "Api/Address/address_list", data: par })
+      const templist = addressList.filter(item => item.is_default > 0)
+
+      if (templist.length) {
+        let curAddress = templist[0]
+        curAddress.is_default = 0
+        curAddress.uid = app.globalData.userInfo.id
+        const res = await app.fetch({
+          url: "Api/Address/address_edit",
+          data: curAddress
+        })
+      }
+    }
+
+    this.setData({
+      isSubmiting: true
+    })
+
     const res = await app.fetch({
       url: "Api/Address/address_edit",
       data
+    })
+
+    this.setData({
+      isSubmiting: false
     })
 
     app.toast('保存成功')

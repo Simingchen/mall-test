@@ -1,12 +1,14 @@
 <view class="van-address-list">
   <view class="van-address-item" wx:for="{{curTab.list}}" data-item="{{item}}" bindtap="goUrl" wx:key="index">
     <view class="van-cell__value  van-address-item__value flex-box">
-      <view class="iconfont iconyinxingqia3"></view>
+      <image class="icon" mode="aspectFill" src="{{item.cardInfo.bankImg}}"></image>
       <view>
-        <view class="van-address-item__name">
-          {{item.site}}
+        <view class="van-address-item__name" wx:if="{{item.cardInfo.validated}}">
+          {{item.cardInfo.bankName}}
+          <view class="i">{{item.cardInfo.cardTypeName}}</view>
           <!-- <text class="van-tag" wx:if="{{item.is_default > 0 }}">默认</text> -->
         </view>
+        <view wx:else>此卡校验不合法</view>
         <view class="van-address-item__address">{{item.card1}} </view>
       </view>
     </view>

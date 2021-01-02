@@ -8,7 +8,10 @@ Page({
     isShowCardPop: false,
     curCardRadio: 0,
     curCard: {
-      card: ''
+      card: '',
+      cardInfo: {
+        bankName: ""
+      }
     },
     cardList: [],
     isShowPayPop: false,

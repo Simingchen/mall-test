@@ -1,0 +1,10 @@
+<import src="../../../wxParse/wxParse.wxml"/> 
+<!-- <view class="title">{{detail.title}}</view>
+<view class="time-box flex-row-center">
+  <view class="time">{{detail.post_date_formal}}</view>
+</view> -->
+<view class="content">
+  <!-- <image mode="aspectFill" class="banner" src="{{detail.banner}}">
+    </image> -->
+  <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+</view>

@@ -90,7 +90,7 @@ Page({
 
     let par = this.data
 
-    const userInfo = wx.getStorageSync('userInfo') || {}
+    const userInfo = app.globalData.userInfo
     let data = {
       page: curTabItem.page.page,
       openid: userInfo.openid,
@@ -133,7 +133,7 @@ Page({
 
     let par = this.data
 
-    const userInfo = wx.getStorageSync('userInfo') || {}
+    const userInfo = app.globalData.userInfo
     let data = {
       page: curTabItem.page.page,
       openid: userInfo.openid,

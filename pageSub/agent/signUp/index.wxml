@@ -1,0 +1,20 @@
+<van-cell title="代发合同" border="{{false}}"/>
+<view class="bgf" style="line-height:46rpx;padding: 0 40rpx;color:#666;">
+  <view>签署状态：待签署</view>
+  <view>签署方：丽合三生（广州）生物科技有限公司</view>
+  <view>说明：代发费用需要代发费用需要代发费用需要代发费用需要代发费用需要代发费用需要</view>
+</view>
+<van-cell title="合同文件" border="{{false}}"/>
+<view class="bgf" style="line-height:40rpx;padding: 0 40rpx 40rpx;color:#666;">
+  <view class="flex-row-center">
+    丽合三生代发签署合同
+    <view class="" bindtap="openFile" style="color:#1989fa">查看</view>
+  </view>
+</view>
+
+<van-submit-bar button-text="确认签署" bind:submit="onSubmit" >
+  <van-checkbox icon-size="16" value="{{ checked }}" bind:change="onChange"></van-checkbox>
+  <view style="margin: 0 80rpx 0 10rpx; color:#999;">
+    确认签署代表同意协议信息
+  </view>
+</van-submit-bar>

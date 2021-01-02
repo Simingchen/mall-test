@@ -52,7 +52,7 @@ Page({
       const detail = JSON.parse(decodeURIComponent(option.item));
        this.setData({
         detail,
-        payPhone: wx.getStorageSync('userInfo').phone
+        payPhone: app.globalData.userInfo.phone
        }, () => {
         wx.hideLoading()
       })
@@ -268,7 +268,7 @@ Page({
     
   },
   async wxPay (order_no, fee) {
-    const userInfo = wx.getStorageSync('userInfo') || {}
+    const userInfo = app.globalData.userInfo
     const par = {
       fee: fee,
       openid: userInfo.openid,

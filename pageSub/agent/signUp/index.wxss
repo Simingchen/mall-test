@@ -1,0 +1,4 @@
+.van-button--danger{
+  background:#00a5a5!important;
+  border-color: #00a5a5!important;
+}

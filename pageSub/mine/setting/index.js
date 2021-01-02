@@ -28,7 +28,7 @@ Page({
     areaValues: [],
   },
   async onLoad() {
-    const userInfo = wx.getStorageSync('userInfo')
+    const userInfo = app.globalData.userInfo
     // console.log(userInfo)
 
     const par = {}

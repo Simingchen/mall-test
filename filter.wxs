@@ -6,7 +6,6 @@ var filters = {
     return data;
   },
   filterMoney: function (value) {
-    console.log(isNaN(value))
     if (isNaN(value)) {
       return "0.00";
     }

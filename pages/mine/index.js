@@ -29,7 +29,12 @@ Page({
   },
   goUrl: app.throttle(function({currentTarget}){  //节流
     const url = currentTarget.dataset.url
-    if (!this.data.detail.WxAvatarUrl) {
+    const islink = currentTarget.dataset.islink
+    if (islink) {
+      return wx.navigateTo({ url })
+    }
+
+    if (!this.data.detail.openid) {
       if (url.indexOf('login') == -1) {
         app.toast("请先登录")
       }
@@ -53,11 +58,7 @@ Page({
       url: `/pageSub/mine/orderList/index?index=${detail}`
     })
   }),
-  goUrl: app.throttle(function ({ currentTarget }) {
-    //节流
-    let url = currentTarget.dataset.url;
-    wx.navigateTo({ url });
-  }),
+  
   togglePopup () {
     this.setData({isOpend: !this.data.isOpend})
   },

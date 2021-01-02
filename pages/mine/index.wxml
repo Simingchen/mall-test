@@ -5,11 +5,11 @@
 </view>
 <view class="content">
 	<view class="top-panel">
-		<view class="flex-row-center">
+		<view class="flex-row-center" style="height: 50rpx;">
 			<navigator hover-class="none" url="/pageSub/mine/setting/index" wx:if="{{userInfo.openid}}">
 				<view class="iconfont iconshezhi"></view>
 			</navigator>
-			<view class="share-code flex-start" bindtap="setPoster" wx:if="{{userInfo.type != 1}}">
+			<view class="share-code flex-start" bindtap="setPoster" wx:if="{{userInfo.type == 2}}">
 				<text class="iconfont iconico"></text>
 				分享码
 			</view>
@@ -37,7 +37,7 @@
 				<text class="iconfont iconwodedingdan0101"></text>
 				我的订单
 			</view>
-			<view class="item  flex-center" bindtap="goUrl" data-url="/pageSub/wallet/wallet/index" wx:if="{{userInfo.type != 1}}">
+			<view class="item  flex-center" bindtap="goUrl" data-url="/pageSub/wallet/wallet/index" wx:if="{{userInfo.type == 2}}">
 				<text class="iconfont icontianchongxing-1"></text>
 				钱包
 			</view>
@@ -51,11 +51,11 @@
 	<view class="panel">
 		<van-cell title="我的工作" border="{{false}}"></van-cell>
 		<view class="tool-list flex-box">
-			<view class="item flex-start" wx:if="{{userInfo.type != 1}}" bindtap="goUrl" data-url="/pageSub/mine/orderList/index?is_fx=1">
+			<view class="item flex-start" wx:if="{{userInfo.type == 2}}" bindtap="goUrl" data-url="/pageSub/mine/orderList/index?is_fx=1">
 				<view class="iconfont icondingdan-"></view>
 				<view class="txt">客户订单</view>
 			</view>
-			<view class="item flex-start" wx:if="{{userInfo.type != 1}}" bindtap="goUrl" data-url="/pageSub/salesman/home/index">
+			<view class="item flex-start" wx:if="{{userInfo.type == 2}}" bindtap="goUrl" data-url="/pageSub/salesman/home/index">
 				<view class="iconfont iconkehu"></view>
 				<view class="txt">渠道客户</view>
 			</view>
@@ -72,8 +72,12 @@
 				<view class="txt">每日分享</view>
 			</button>
 			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/event/eventList/index">
-				<view class="iconfont icondingdan-"></view>
+				<view class="iconfont iconshouye1"></view>
 				<view class="txt">活动报名</view>
+			</view>
+			<view class="item flex-start" wx:if="{{userInfo.type == 1}}" bindtap="goUrl" data-url="/pageSub/agent/signUp/index">
+				<view class="iconfont iconjingxiaoshanghetongshenpi-"></view>
+				<view class="txt">成为经销商</view>
 			</view>
 		</view>
 	</view>
@@ -81,13 +85,13 @@
 	<view class="panel">
 		<van-cell title="关于我们" border="{{false}}"></van-cell>
 		<view class="tool-list flex-box">
-			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/aboutUs/index">
+			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/aboutUs/index" data-islink="{{true}}">
 				<view class="iconfont">
 					<image src="../../static/logo1.jpg" class="img" mode="aspectFill"></image>
 				</view>
 				<view class="txt">丽合三生</view>
 			</view>
-			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/newsList/index">
+			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/newsList/index" data-islink="{{true}}">
 				<view class="iconfont icongonggao"></view>
 				<view class="txt">公告</view>
 			</view>

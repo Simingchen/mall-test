@@ -5,7 +5,7 @@
 		<van-field model:value="{{ value }}" bind:change="onChangeInput" data-type="value" type="number" label="金额数"
 			placeholder="输入提现金额(100起提)" maxlength="5" />
 	</view>
-	<van-cell title="银行卡" value="{{curCard.site+ ' '+ curCard.card}}" bind:click="openPop" is-link />
+	<van-cell title="银行卡" value="{{curCard.cardInfo.bankName+ ' '+ curCard.card}}" bind:click="openPop" is-link />
 	<view class="flex-center">
 		<van-button custom-class="comfirm-btn" color="#00a5a5" bindtap="confirm">确认提现</van-button>
 	</view>
@@ -15,7 +15,7 @@
 	</view>
 </view>
 
-<!-- 地址选择 -->
+<!-- 选择银行卡 -->
 <van-popup show="{{isShowCardPop}}" position="bottom" round closeable bind:close="onClosePop">
 	<van-cell title="选择银行卡" class="tac" border="{{false}}"></van-cell>
 	<view class="addr-box">

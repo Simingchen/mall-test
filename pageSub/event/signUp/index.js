@@ -34,7 +34,7 @@ Page({
     if (!myreg.test(par.phone)) {
       return app.toast('手机号格式不正确')
     }
-    const userInfo = wx.getStorageSync('userInfo') || {}
+    const userInfo = app.globalData.userInfo
     const data = {
       id: this.data.detail.id,
       name: par.name,

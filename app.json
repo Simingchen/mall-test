@@ -63,6 +63,13 @@
         "followEdit/index",
         "menList/index"
       ]
+    },
+    {
+      "root": "pageSub/agent",
+      "pages": [
+        "agreement/index",
+        "signUp/index"
+      ]
     }
   ],
   "window": {

@@ -142,7 +142,7 @@ Page({
   },
   async accountPay(password) {
     const par = this.data
-    const userInfo = wx.getStorageSync('userInfo') || {}
+    const userInfo = app.globalData.userInfo
     const data = {
       "uid": userInfo.id,
       fee: par.curOrder.total_price,
@@ -170,7 +170,7 @@ Page({
     
   },
   async wxPay (item) {
-    const userInfo = wx.getStorageSync('userInfo') || {}
+    const userInfo = app.globalData.userInfo
     const par = {
       fee: item.total_price,
       openid: userInfo.openid,
