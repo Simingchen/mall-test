@@ -17,7 +17,7 @@
 		<view class="flex-center avatar-box">
 			<image class="avatar" mode="aspectFill" src="{{userInfo.headimg}}" />
 			<view class="name-box flex-start" wx:if="{{userInfo.openid}}">
-				{{userInfo.nickname}} <view class="label flex-center">{{['普通用户', '经销商'][userInfo.type - 1]}}</view>
+				{{userInfo.truename}} <view class="label flex-center">{{['普通用户', '经销商'][userInfo.type - 1]}}</view>
 				<view class="iconfont iconzuanshi" wx:if="{{userInfo.is_vip > 0}}"></view>
 			</view>
 			<navigator url="/pages/login/index" class="name-box flex-start" wx:if="{{!userInfo.openid}}">

@@ -203,6 +203,16 @@ Page({
   },
   // 确定sku
   confirmSku () {
+    const userInfo = app.globalData.userInfo || {}
+    if (!userInfo.id) {
+      app.toast("请先登录")
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '/pages/login/index',
+        })
+      }, 1000)
+      return false
+    }
     this.buyIt()
   },
   // 立即购买
