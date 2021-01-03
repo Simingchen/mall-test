@@ -9,8 +9,11 @@ Page({
     shareCode: ''
   },
   onLoad (option) {
+    // 存储邀请码
     if (option.scene) {
-      wx.setStorageSync('scene', option.scene)
+      const par = decodeURIComponent(option.scene)
+      const ICode = app.getQueryString(par, 'uid')
+      wx.setStorageSync('ICode', ICode)
     }
   },
   onShow () {
