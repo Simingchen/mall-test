@@ -67,10 +67,10 @@
 				<view class="iconfont iconzixun"></view>
 				<view class="txt">我的咨询</view>
 			</button>
-			<button class="item flex-start noborder" open-type="share">
+			<!-- <button class="item flex-start noborder" open-type="share">
 				<view class="iconfont iconfenxiang"></view>
 				<view class="txt">每日分享</view>
-			</button>
+			</button> -->
 			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/event/eventList/index">
 				<view class="iconfont iconshouye1"></view>
 				<view class="txt">活动报名</view>

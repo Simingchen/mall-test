@@ -3,8 +3,8 @@
 		<image class="avatar" mode="aspectFill" src="{{userInfo.headimg}}" />
 		<!-- <view class="txt">{{userInfo.nickname}}</view> -->
 	</view>
-	<van-field label="姓名" required value="{{userInfo.nickname}}" placeholder="请输入姓名" maxlength="15" clearable
-		data-type="userInfo.nickname" bind:change="onChangeInput" />
+	<van-field label="姓名" required value="{{userInfo.turename}}" placeholder="请输入姓名" maxlength="15" clearable
+		data-type="userInfo.turename" bind:change="onChangeInput" />
 	<van-cell title="性别" is-link value="{{userInfo.sex? (userInfo.sex == 1?'男': '女') : '选择性别'}}" bind:click="openPop" data-type="isShowSexPop"></van-cell>
 
 	<van-cell title="生日" is-link value="{{userInfo.brithday? userInfo.brithday : '选择生日'}}" bind:click="openPop" data-type="isShowBrithDayPop">

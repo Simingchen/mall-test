@@ -11,7 +11,7 @@
   width: 420rpx;
   border: 1rpx solid #ccc;
   border-radius: 6rpx;
-  padding: 0 4rpx 4rpx;
+  padding: 4rpx;
 }
 
 .addAddr-btn {
@@ -55,4 +55,8 @@
 .input-pass{
   /* letter-spacing: 60rpx; */
   border: 1rpx solid #ccc;
+}
+.pop-pay.van-popup--round{
+  border-radius: 20rpx!important;
+  top:40%!important;
 }

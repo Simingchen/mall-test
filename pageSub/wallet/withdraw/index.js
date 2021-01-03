@@ -88,6 +88,13 @@ Page({
   },
   async confirm () {
     const { detail, value, } = this.data
+
+    if (!detail.isSetPw) {
+      app.toast('请先设置支付密码')
+
+      wx.navigateTo({url: "/pageSub/mine/passwordEdit/index"})
+      return false
+    }
     if (!value.length) {
       return app.toast('提现金额数不能为空')
     }
@@ -120,10 +127,17 @@ Page({
       password,
     }
     await app.fetch({url: "Api/wallet/cashOut", data})
+    this.setData({
+      isShowPayPop: false,
+    })
 
     app.toast('提现申请成功，具体到账时间视后台人工审核及银行到账时间而定!')
 
     this.timer = setTimeout(() => {
+      this.setData({
+        payPassword: "",
+        value: ""
+      })
       wx.navigateTo({url: "/pageSub/wallet/withdrawList/index"})
     }, 800)
   }

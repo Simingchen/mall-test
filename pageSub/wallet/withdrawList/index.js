@@ -58,35 +58,33 @@ Page({
     }
     if (this.loading || curTab.page.finished) return;
 
-    
-
-    let par = this.data
-
     let data = {
-      page_index: curTab.page.page,
-      page_size: curTab.page.size,
+      uid: app.globalData.userInfo.id,
+      page: curTab.page.page,
     }
 
     this.loading = true
-    const res = await app.fetch({method: "post", url: "GetWxTransfersList.ashx", data })
+    const res = await app.fetch({method: "post", url: "Api/Wallet/cashOutList", data })
     this.loading = false
+
+    res.data.forEach(item=> {
+      try {
+        item.card = '····    ····    ···· ' + item.card.slice(-4)
+      } catch (err) {}
+
+      item.fee = Math.floor(item.money) * 6 / 1000
+    })
+
+    console.log(res)
 
     curTab.page.page ++
 
-    res.list.forEach(item => {
-      item.add_time = this.dateFormat("YYYY-mm-dd HH:MM:SS", item.add_time)
-    })
-
-    console.log(res.list)
-    
     this.setData({
       ['curTab.isLoaded']: true,
-      ['curTab.page']: {...curTab.page, finished: curTab.page.page >= res.total_page},
-      ['curTab.isEmpty']: ![...curTab.list, ...res.list].length,
-      ['curTab.list[' + (curTab.page.page - 2) + ']']: res.list,
-      ['curTab.loadStatus']: (curTab.page.page >= res.total_page)? 'noMore' : 'loading'
-    }, () => {
-      console.log(this.data.curTab)
+      ['curTab.page']: {...curTab.page, finished: res.data.length < 10},
+      ['curTab.isEmpty']: ![...curTab.list, ...res.data].length,
+      ['curTab.list[' + (curTab.page.page - 2) + ']']: res.data,
+      ['curTab.loadStatus']: (res.data.length < 10)? 'noMore' : 'loading'
     })
   },
   // 上拉加载
@@ -100,25 +98,4 @@ Page({
       url: `/pageSub/index/goodsDetail/index?item=${item}`,
     })
   }),
-  // 格式化时间
-  dateFormat(fmt, date) {
-    let ret;
-    date = new Date(date)
-    const opt = {
-        "Y+": date.getFullYear().toString(),        // 年
-        "m+": (date.getMonth() + 1).toString(),     // 月
-        "d+": date.getDate().toString(),            // 日
-        "H+": date.getHours().toString(),           // 时
-        "M+": date.getMinutes().toString(),         // 分
-        "S+": date.getSeconds().toString()          // 秒
-        // 有其他格式化字符需求可以继续添加，必须转化成字符串
-    };
-    for (let k in opt) {
-        ret = new RegExp("(" + k + ")").exec(fmt);
-        if (ret) {
-            fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
-        };
-    };
-    return fmt;
-},
 });

@@ -24,25 +24,39 @@ Page({
     realPrice: 0,   // 实际价格
   },
   async onLoad (option) {
+    console.log(option)
+    
      try {
       let detail = {}
       // 存储邀请码
       if (option.scene) {
-        wx.setStorageSync("scene", option.scene);
-        this.parseCode(option.scene)
-      }
-     
-      if(option.item) {
-        detail = JSON.parse(decodeURIComponent(option.item));
-        // this.setInfo(detail)
+        const par = decodeURIComponent(option.scene)
+        const ICode = app.getQueryString(par, 'uid')
+        detail.id = app.getQueryString(par, 'id')
+        wx.setStorageSync('ICode', ICode)
 
         this.setData({
           detail
         }, () => {
           this.getData(detail)
         })
-        
+        return false
+      }
+
+      if(option.ICode) {
+        wx.setStorageSync('ICode', option.ICode)
+      }
+     
+      if(option.item) {
+        detail = JSON.parse(decodeURIComponent(option.item));
+
+        this.setData({
+          detail
+        }, () => {
+          this.getData(detail)
+        })
       };
+
       if (option.id) {
         detail = {
           "id": option.id,
@@ -124,18 +138,14 @@ Page({
       console.log(res.target)
     }
     const { detail } = this.data
-    const item = encodeURIComponent(JSON.stringify({
-      "id": detail.id,
-    }))
 
     const userInfo = app.globalData.userInfo || {}
-
     
-    const path = `/pageSub/index/goodsDetail/index?id=${detail.id}&channel_id=${detail.channel_id}&scene=${userInfo.invitation_code}`
+    const path = `/pageSub/index/goodsDetail/index?id=${detail.id}&ICode=${userInfo.id}`
 
     console.log("userInfo=====>", path)
     return {
-      title: detail.Title,
+      title: detail.name,
       path,
     }
   },
@@ -383,16 +393,5 @@ Page({
       isShowShare: false
     })
     wx.hideLoading()
-  },
-  // 解析二维码
-  async parseCode(scene) {
-    const data = {
-      "share_type": 1,
-	    scene
-    }
-    const res = await app.fetch({ url: "GetDecryptScene.ashx", data });
-    wx.setStorageSync("scene", res.invitation_code);
-
-    this.getData(res)
   },
 });

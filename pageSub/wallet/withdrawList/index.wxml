@@ -4,17 +4,20 @@
     <van-tab title="{{item.name}}" wx:for="{{tabList}}" wx:key="index"></van-tab>
   </van-tabs>
 </view> -->
+<van-notice-bar left-icon="volume-o" text="到账金额将扣除千分之六的手续费，具体到账时间视后台人工审核及银行到账时间而定，详情可联系客服！" />
 <view class="goods-list">
   <block wx:for="{{curTab.list}}" wx:key="index">
     <view class="goodsCard" wx:for="{{item}}" wx:key="index" wx:for-item="goods" bindtap="goUrl" data-item="{{goods}}">
-      <van-cell value="+{{filter.filterMoney(goods.amount)}}" center>
+      <van-cell value="+ ￥{{filter.filterMoney(goods.money - goods.fee)}}" center>
         <view slot="title">
-          <view class="van-cell-text">{{goods.statusStr}}</view>
-          <view class="time c9">{{goods.add_time}}</view>
+          <view class="van-cell-text" style="font-size:32rpx;">提现卡 {{goods.card}}</view>
+          <view class="c9">提现额度：￥{{goods.money}}</view>
+          <view class="c9">扣除手续费：￥{{goods.fee}}</view>
+          <view class="time c9">{{goods.post_date}}</view>
         </view>
       </van-cell>
     </view>
   </block>
 </view>
 <!-- 加载状态 -->
-<!-- <loading status="{{curTab.loadStatus}}" isEmpty="{{curTab.isEmpty}}" /> -->
+<loading status="{{curTab.loadStatus}}" isEmpty="{{curTab.isEmpty}}" />

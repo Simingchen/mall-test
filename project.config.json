@@ -180,6 +180,17 @@
           "pathName": "pageSub/agent/signUp/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pageSub/mine/passwordEdit/index",
+          "pathName": "pageSub/mine/passwordEdit/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "提现明细",
+          "pathName": "pageSub/wallet/withdrawList/index",
+          "scene": null
         }
       ]
     }

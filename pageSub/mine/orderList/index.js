@@ -89,29 +89,35 @@ Page({
     }
 
     this.loading = true
-    const res = await app.fetch({
+    app.fetch({
       url: "Api/Order/mylist",
       data
+    }).then(res => {
+      curTab.page.page++
+      this.loading = false
+
+      res.data.forEach(item => {
+        console.log(item.status - 1)
+        item.statusStr = ['待付款','待发货','待收货','已完成','已退款'][item.status - 1 ]
+      })
+
+      this.setData({
+        ['curTab.isLoaded']: true,
+        ['curTab.page']: { ...curTab.page, finished: res.data.length < 10 },
+        ['curTab.isEmpty']: ![...curTab.list, ...res.data].length,
+        ['curTab.list[' + (curTab.page.page - 2) + ']']: res.data,
+        ['curTab.loadStatus']: res.data.length < 10 ? 'noMore' : 'loading'
+      })
+    }).catch(err => {
+      this.setData({
+        ['curTab.isLoaded']: true,
+        ['curTab.page']: { ...curTab.page, finished: true },
+        ['curTab.list']: [],
+        ['curTab.loadStatus']: 'noMore'
+      })
     })
 
-    curTab.page.page++
-
-    this.loading = false
-
-    res.data.forEach(item => {
-      console.log(item.status - 1)
-      item.statusStr = ['待付款','待发货','待收货','已完成','已退款'][item.status - 1 ]
-    })
-
-    this.setData({
-      ['curTab.isLoaded']: true,
-      ['curTab.page']: { ...curTab.page, finished: res.data.length < 10 },
-      ['curTab.isEmpty']: ![...curTab.list, ...res.data].length,
-      ['curTab.list[' + (curTab.page.page - 2) + ']']: res.data,
-      ['curTab.loadStatus']: res.data.length < 10 ? 'noMore' : 'loading'
-    }, () => {
-      console.log(this.data.curTab)
-    })
+    
   },
   // 上拉加载
   onReachBottom() {

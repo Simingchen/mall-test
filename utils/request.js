@@ -55,7 +55,6 @@ export default function fetch(options) {
               title: response.msg || '',
               icon: "none"
             })
-            
             reject(response)
             return false
           }

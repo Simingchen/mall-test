@@ -91,6 +91,7 @@ Page({
     wx.showModal({
       title: "提示",
       content: "删除银行卡？",
+      confirmColor: "#00a5a5",
       success: async(res) => {
         if (res.confirm) {
           console.log('用户点击确定')

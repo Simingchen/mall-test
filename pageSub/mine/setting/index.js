@@ -38,7 +38,7 @@ Page({
       // console.log(this.filterTime(userInfo.brithday * 1000))
     }
     console.log(par.currentDate)
-    if (userInfo.city) {
+    if (userInfo.city > 0) {
       par.cityCode = userInfo.city,
       userInfo.city = this.filterCity(userInfo.city)
     }
@@ -72,8 +72,11 @@ Page({
     })
   },
   onConfirmSex({detail}) {
+    const temp = detail.value.text == "男" ? 1 : 2
+
+    console.log(detail.value.text == "男")
     this.setData({
-      ['userInfo.sex']: detail.value.text
+      ['userInfo.sex']: temp
     })
     this.onClose()
   },
@@ -124,7 +127,7 @@ Page({
   // 保存
   save: app.throttle(async function({currentTarget}){  //节流
     const { userInfo } = this.data
-    if (!userInfo.nickname.length) {
+    if (!userInfo.truename.length) {
       return app.toast('请输入姓名')
     }
     if (!userInfo.phone.length) {
@@ -135,8 +138,8 @@ Page({
     }
     const data = {
       "uid": app.globalData.userInfo.id || '',
-      turename: userInfo.nickname,
-      sex: userInfo.sex == "男" ? 1 : 2,
+      turename: userInfo.turename,
+      sex: userInfo.sex,
       city: this.data.areaValues.length ? this.data.areaValues[2].code : this.data.cityCode,
       brithday: userInfo.brithday,
       wxid: userInfo.wxid,

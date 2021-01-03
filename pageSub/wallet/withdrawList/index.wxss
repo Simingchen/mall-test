@@ -1,10 +1,8 @@
-page{
-  background: #f8f8f8;
-}
-.van-tab__pane{
-  display: none;
-}
-
 .tab-list{
   margin-bottom: 10rpx;
+}
+.van-cell__value {
+  color:#ed6a0c!important;
+  font-size: 32rpx;
+  font-weight: 500;
 }
