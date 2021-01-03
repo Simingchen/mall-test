@@ -25,6 +25,7 @@ Page({
     const detail = await app.fetch({url: "Api/User/userInfo", data: {uid: this.data.userInfo.id}})
     app.globalData.userInfo = detail
     wx.setStorageSync('userInfo', detail)
+
     this.setData({detail})
   },
   goUrl: app.throttle(function({currentTarget}){  //节流

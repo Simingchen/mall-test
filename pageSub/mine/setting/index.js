@@ -138,7 +138,7 @@ Page({
     }
     const data = {
       "uid": app.globalData.userInfo.id || '',
-      turename: userInfo.truename,
+      truename: userInfo.truename,
       sex: userInfo.sex,
       city: this.data.areaValues.length ? this.data.areaValues[2].code : this.data.cityCode,
       brithday: userInfo.brithday,
