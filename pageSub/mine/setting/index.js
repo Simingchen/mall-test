@@ -5,7 +5,7 @@ import cityList from '../../../static/city.js'
 Page({
   data: {
     userInfo: {
-      nickname: '',
+      turename: '',
       sex: '',
       brithday: '',
       city: '',
@@ -138,7 +138,7 @@ Page({
     }
     const data = {
       "uid": app.globalData.userInfo.id || '',
-      turename: userInfo.turename,
+      turename: userInfo.truename,
       sex: userInfo.sex,
       city: this.data.areaValues.length ? this.data.areaValues[2].code : this.data.cityCode,
       brithday: userInfo.brithday,
