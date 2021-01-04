@@ -15,7 +15,7 @@
       <view class="time">{{item.post_date}}</view>
       <view>
         <van-button round size="mini" style="margin-right:10rpx;" bindtap="goUrl" data-item="{{item}}">跟进</van-button>
-        <van-button round size="mini">详情</van-button>
+        <!-- <van-button round size="mini">详情</van-button> -->
       </view>
     </view>
   </view>

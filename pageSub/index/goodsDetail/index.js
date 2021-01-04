@@ -33,7 +33,9 @@ Page({
         const par = decodeURIComponent(option.scene)
         const ICode = app.getQueryString(par, 'uid')
         detail.id = app.getQueryString(par, 'id')
-        wx.setStorageSync('ICode', ICode)
+        if (ICode) {
+          wx.setStorageSync('ICode', ICode)
+        }
 
         this.setData({
           detail
@@ -141,7 +143,11 @@ Page({
 
     const userInfo = app.globalData.userInfo || {}
     
-    const path = `/pageSub/index/goodsDetail/index?id=${detail.id}&ICode=${userInfo.id}`
+    let path = `/pageSub/index/goodsDetail/index?id=${detail.id}`
+    // 经销商才有邀请注册
+    if (userInfo.type == 2) {
+      path = path + `&ICode=${userInfo.id}`
+    }
 
     console.log("userInfo=====>", path)
     return {
@@ -338,7 +344,8 @@ Page({
       ctx.fillText("￥" + that.data.detail.price, 30, 420, 100)
 
       const data = {
-        page: 'pages/index/index',
+        // page: 'pages/index/index',
+        page: 'pageSub/index/goodsDetail/index',
         "uid": app.globalData.userInfo.id,
         id: this.data.detail.id,
         // width: 500,
