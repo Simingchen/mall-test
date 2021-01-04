@@ -56,15 +56,10 @@ Page({
 
     this.setData({
       ['curTab.isLoaded']: true,
-      // ['curTab.page']: { ...curTab.page, finished: curTab.page.page >= res.total_page },
-      ['curTab.isEmpty']: ![...curTab.list, ...res].length,
-      ['curTab.list[' + (curTab.page.page - 2) + ']']: res,
-      ['curTab.loadStatus']: 'noMore'
-      // ['curTab.isLoaded']: true,
-      // ['curTab.page']: { ...curTab.page, finished: res.data.length < 10 },
-      // ['curTab.isEmpty']: ![...curTab.list, ...res.data].length,
-      // ['curTab.list[' + (curTab.page.page - 2) + ']']: res.data,
-      // ['curTab.loadStatus']: res.data.length < 10 ? 'noMore' : 'loading'
+      ['curTab.page']: { ...curTab.page, finished: res.data.length < 10 },
+      ['curTab.isEmpty']: ![...curTab.list, ...res.data].length,
+      ['curTab.list[' + (curTab.page.page - 2) + ']']: res.data,
+      ['curTab.loadStatus']: res.data.length < 10 ? 'noMore' : 'loading'
     })
   },
   // 上拉加载

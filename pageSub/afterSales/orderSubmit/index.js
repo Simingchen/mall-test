@@ -44,16 +44,17 @@ Page({
   },
   // 获取退款原因
   async getReasonList() {
-    let { list } = await app.fetch({url: "GetOrderRefundReasonList.ashx" })
+    var list = { "list": [{ "key": 1, "value": "不想要或拍多" }, { "key": 2, "value": "商品信息拍错（规格/尺码/颜色等）" }, { "key": 3, "value": "地址/电话信息填写错误" }, { "key": 4, "value": "退货纠纷" }] }
+          
     this.setData({
-      reasonList: list
+      reasonList: list.list
     })
   },
   // 获取退款方式
   async getWayList() {
-    let { list } = await app.fetch({url: "GetOrderRefundWayList.ashx" })
+    var list = { "list": [{ "key": 1, "value": "退款" }, { "key": 2, "value": "退货退款" }] }
     this.setData({
-      wayList: list
+      wayList: list.list
     })
   },
   onClose() {
@@ -182,12 +183,12 @@ Page({
   },
   async confirm() {
     const { detail, reasonRadio, wayRadio, message, fileList} = this.data
-    // if (!reasonRadio) {
-    //   return app.toast('请选择退款原因')
-    // }
-    // if (!wayRadio) {
-    //   return app.toast('请选择退款方式')
-    // }
+    if (!reasonRadio) {
+      return app.toast('请选择退款原因')
+    }
+    if (!wayRadio) {
+      return app.toast('请选择退款方式')
+    }
 
     // 上传视图提交
     let token = wx.getStorageSync('token')
@@ -210,24 +211,6 @@ Page({
 
     wx.redirectTo({
       url: '/pageSub/afterSales/orderList/index',
-    })
-  },
-  // 确认收货
-  confirmIt() {
-    // order_no
-    wx.showModal({
-      title: '提示',
-      content: ' 是否确认收货',
-      success: async(res) =>{
-        if (res.confirm) {
-          console.log('用户点击确定')
-          let res = await app.fetch({url: "ConfirmTrade.ashx", data: {order_no: this.data.detail.order_no} })
-          app.$toast('确认收货成功')
-          this.getData()
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
     })
   },
 });

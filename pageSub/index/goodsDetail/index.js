@@ -96,6 +96,7 @@ Page({
   async getData (par) {
     const data = {
       "id": par.id,
+      uid: app.globalData.userInfo.id
     }
     let detail = await app.fetch({url: "Api/Goods/detail", data })
     this.setInfo(detail)

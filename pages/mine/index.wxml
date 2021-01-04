@@ -55,6 +55,10 @@
 				<view class="iconfont icondingdan-"></view>
 				<view class="txt">客户订单</view>
 			</view>
+			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/afterSales/orderList/index?is_fx=1">
+				<view class="iconfont iconshouhou"></view>
+				<view class="txt">退款/售后</view>
+			</view>
 			<view class="item flex-start" wx:if="{{detail.type == 2}}" bindtap="goUrl" data-url="/pageSub/salesman/home/index">
 				<view class="iconfont iconkehu"></view>
 				<view class="txt">渠道客户</view>

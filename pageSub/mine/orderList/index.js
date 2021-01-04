@@ -81,7 +81,7 @@ Page({
 
     let data = {
       "page_size": curTab.page.size,
-      "page_index": curTab.page.page,
+      "page": curTab.page.page,
       "uid": app.globalData.userInfo.id || '',
       keyword: '',
       "status": this.data.tabList[curTabType].type,
@@ -94,10 +94,11 @@ Page({
       data
     }).then(res => {
       curTab.page.page++
+
+      console.log(curTab.page.page)
       this.loading = false
 
       res.data.forEach(item => {
-        console.log(item.status - 1)
         item.statusStr = ['待付款','待发货','待收货','已完成','已退款'][item.status - 1 ]
       })
 
@@ -107,6 +108,8 @@ Page({
         ['curTab.isEmpty']: ![...curTab.list, ...res.data].length,
         ['curTab.list[' + (curTab.page.page - 2) + ']']: res.data,
         ['curTab.loadStatus']: res.data.length < 10 ? 'noMore' : 'loading'
+      }, () => {
+        console.log(this.data.curTab.page)
       })
     }).catch(err => {
       this.setData({
@@ -157,12 +160,12 @@ Page({
     }
     await app.fetch({url: "Api/Wallet/wallet_pay", data }).then(() => {
       app.toast('支付成功')
-
-      setTimeout(() => {
-        wx.redirectTo({
-          url: '/pageSub/mine/orderList/index?index=1',
-        })
-      }, 1000)
+      this.getList(true)
+      // setTimeout(() => {
+      //   wx.redirectTo({
+      //     url: '/pageSub/mine/orderList/index?index=1',
+      //   })
+      // }, 1000)
     }).catch((err) => {
       console.log(err)
       this.onClosePop()
@@ -194,11 +197,11 @@ Page({
       'signType': 'MD5',
       'paySign': respay.paySign,
       'success': function (res) {
-        app.toast('恭喜您，订单已成功提交！')
+        app.toast('支付成功')
         this.getLit(true)
       },
       'fail': function (res) {
-        app.toast('支付未完成')
+        // app.toast('支付未完成')
       }
     })
   },

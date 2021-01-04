@@ -2,30 +2,30 @@
 <view class="panel">
   <van-cell title="退款商品" border="{{false}}" />
   <block >
-    <van-card lazy-load class="goods" num="{{detail.quantity}}" price="{{filter.filterMoney(detail.goods_price)}}"
-      desc="{{detail.spec_text}}" title="{{detail.goods_title}}" thumb="{{detail.img_url}}"> </van-card>
+    <van-card lazy-load thumb-mode="aspectFill" class="goods" num="{{detail.buy_num}}" price="{{filter.filterMoney(detail.buy_price)}}"
+      title="{{detail.good_name}}" thumb="{{detail.good_pic}}"> </van-card>
   </block>
 </view>
 <view class="panel">
   <van-cell title="退款信息" border="{{false}}" />
   <van-cell custom-class="mini-cell" title="退款原因" value="{{reasonName}}" border="{{false}}" is-link bind:click="openPop" />
   <van-cell custom-class="mini-cell" title="退款方式" value="{{wayName}}" border="{{false}}" is-link bind:click="openPop2" />
-  <van-cell custom-class="mini-cell money-cell" title="退款金额" value="￥{{filter.filterMoney(detail.order_amount)}}"
+  <van-cell custom-class="mini-cell money-cell" title="退款金额" value="￥{{filter.filterMoney(detail.total_price)}}"
     border="{{false}}" />
 </view>
 <view class="panel">
-  <van-cell title="补充描述与凭证" border="{{false}}" />
+  <van-cell title="补充描述" border="{{false}}" />
   <view class="input-box">
     <van-field model:value="{{ message }}" type="textarea" placeholder="补充描述，有助于商家更好的处理售后问题" maxlength="200" show-word-limit
       border="{{ false }}" />
-    <view class="ml20">
+    <!-- <view class="ml20">
       <van-uploader file-list="{{ fileList }}" multiple max-count="{{4}}" image-fit="aspectFill" bind:after-read="upload" bind:delete="removePic"/>
-    </view>
+    </view> -->
   </view>
 </view>
 
 <view class="bot flex-center">
-  <van-button round block type="danger" bindtap="confirm">提交</van-button>
+  <van-button round block type="danger" bindtap="confirm" color="#00a5a5">提交</van-button>
 </view>
 
 <van-popup show="{{ isShowPop }}" closeable position="bottom" bind:close="onClose" round>
@@ -39,7 +39,7 @@
     </van-cell-group>
   </van-radio-group>
   <view class="bot1 flex-center">
-    <van-button round block type="danger" bind:click="onClose">确定</van-button>
+    <van-button round block type="danger" bind:click="onClose" color="#00a5a5">确定</van-button>
   </view>
 </van-popup>
 <!-- 退款方式 -->
@@ -54,6 +54,6 @@
     </van-cell-group>
   </van-radio-group>
   <view class="bot1 flex-center">
-    <van-button round block type="danger" bind:click="onClose">确定</van-button>
+    <van-button round block type="danger" bind:click="onClose" color="#00a5a5">确定</van-button>
   </view>
 </van-popup>

@@ -264,8 +264,6 @@ Page({
         })
       }, 1000)
     })
-
-    
   },
   async wxPay (order_no, fee) {
     const userInfo = app.globalData.userInfo
@@ -286,7 +284,7 @@ Page({
       'signType': 'MD5',
       'paySign': respay.paySign,
       'success': function (res) {
-        app.toast('恭喜您，订单已成功提交！')
+        app.toast('支付成功')
         setTimeout(() => {
           wx.redirectTo({
             url: '/pageSub/mine/orderList/index?index=1',

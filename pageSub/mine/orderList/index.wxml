@@ -20,10 +20,6 @@
             <van-button size="mini"  custom-class="state-btn" type="default" round wx:if="{{order.is_refund}}">
                 {{order.refund_way + order.refund_status}}   
             </van-button>
-            <!-- <block wxif="{{(order.status == 1 || order.status == 2) && order.payment_status==2 && !order.is_refund}}">
-              <van-button type="default" round size="mini" catchtap="refund" data-item="{{item}}" data-order="{{order}}">申请售后
-              </van-button>
-            </block> -->
           </view>
         </van-card>
       </view>
@@ -41,6 +37,10 @@
         <van-button type="default" round size="small" bindtap="pay" data-item="{{order}}">支付
         </van-button>
         <van-button type="default" round size="small" bindtap="cancel" data-item="{{order}}">取消订单
+        </van-button>
+      </block>
+      <block>
+        <van-button type="default" round size="small" catchtap="refund" data-item="{{order}}" data-order="{{order}}">申请售后
         </van-button>
       </block>
     </view>
