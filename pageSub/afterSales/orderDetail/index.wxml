@@ -2,16 +2,16 @@
 <view class="orderDetail-page">
   <view class="page-bg">
     <view class="panel flex-column-center">
-      <view>{{detail.wayStr + detail.statusStr}}</view>
-      <view class="time c9">{{detail.confirm_time}}</view>
+      <view>{{['已申请售后', '售后审核中', '售后审核通过', '售后审核不通过'][detail.postsaleInfo.status - 1]}}</view>
+      <view class="time c9">{{detail.postsaleInfo.post_date}}</view>
     </view>
   </view>
-
   <view class="page-con">
-    <van-cell title="退款总金额" value="￥{{filter.filterMoney(detail.apply_amount)}}" />
+    <van-cell title="退款总金额" value="￥{{filter.filterMoney(detail.orderInfo.buy_price * detail.orderInfo.buy_num)}}" />
     <view class="panel">
-      <van-card lazy-load class="goods" num="{{detail.order_good.quantity}}" price="{{filter.filterMoney(detail.order_good.goods_price)}}"
-          desc="{{detail.order_good.spec_text}}" title="{{detail.order_good.goods_title}}" thumb="{{detail.order_good.img_url}}"> </van-card>
+      <van-card lazy-load thumb-mode="aspectFill" class="goods" num="{{detail.orderInfo.buy_num}}"
+          price="{{filter.filterMoney(detail.orderInfo.buy_price)}}"
+          title="{{detail.goodsInfo.name}}" thumb="{{detail.goodsInfo.banner}}"> </van-card>
       <!-- <view class="all-price flex-box">
         <view class="price flex-box">合计：￥{{filter.filterMoney(detail.payable_amount)}}
         </view>
@@ -24,10 +24,10 @@
         <view>订单编号：{{detail.order_no}}</view>
         <van-button round size="mini" plain type="info" bind:click="copy">复制</van-button>
       </view> -->
-      <view>创建时间：<text class="c3">{{detail.confirm_time}}</text></view>
-      <view>退款原因：<text class="c3">{{detail.reasonStr}}</text></view>
-      <view>备注信息：<text class="c3">{{detail.remark}}</text></view>
-      <view>退款金额：<text class="c3">￥{{filter.filterMoney(detail.apply_amount)}}</text></view>
+      <view>创建时间：<text class="c3">{{detail.postsaleInfo.post_date}}</text></view>
+      <view>退款原因：<text class="c3">{{detail.postsaleInfo.reason}}</text></view>
+      <view>备注信息：<text class="c3">{{detail.postsaleInfo.description}}</text></view>
+      <view>退款金额：<text class="c3">￥{{filter.filterMoney(detail.orderInfo.buy_price * detail.orderInfo.buy_num)}}</text></view>
     </view>
   </view>
 </view>

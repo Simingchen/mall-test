@@ -10,7 +10,7 @@
   height: 214rpx;
   padding-top: 20rpx;
   font-size: 32rpx;
-  background: linear-gradient(to right, #fdc2b8, #ec3c50);
+  background: linear-gradient(to right, #8dd6d6, #00a5a5);
 }
 .page-bg .panel{
   width: 710rpx;
@@ -139,4 +139,7 @@
 /* 订单详情 E ========== */
 .c3{
   color:#333;
+}
+.van-card{
+  background:#fff!important;
 }

@@ -206,7 +206,7 @@ Page({
       "description": message,
       // "images": `,${keyListData.join(',')},`,
       "reason": reason[0].value,
-      "postsale_type": way[0].value
+      "postsale_type": wayRadio
     }
 
     

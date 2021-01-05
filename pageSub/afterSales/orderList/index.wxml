@@ -3,17 +3,17 @@
   <view class="order-item panel" wx:for="{{item}}" wx:for-item="order" wx:key="id">
     <view bindtap="goDetail" data-item="{{order}}">
       <view class="status flex-row-center">
-        <view>退款时间: {{order.confirm_time}}</view>
-        <view class="primary">{{order.wayStr}}</view>
+        <view>退款单号: {{order.postsaleInfo.postsale_no}}</view>
+        <!-- <view class="primary">{{order.wayStr}}</view> -->
       </view>
       <view>
-        <van-card lazy-load class="goods" num="{{order.order_good.quantity}}"
-          price="{{filter.filterMoney(order.order_good.goods_price)}}" desc="{{order.order_good.spec_text}}"
-          title="{{order.order_good.goods_title}}" thumb="{{order.order_good.img_url}}"> </van-card>
+        <van-card lazy-load thumb-mode="aspectFill" class="goods" num="{{order.orderInfo.buy_num}}"
+          price="{{filter.filterMoney(order.orderInfo.buy_price)}}"
+          title="{{order.goodsInfo.name}}" thumb="{{order.goodsInfo.banner}}"> </van-card>
       </view>
       <view class="flex-row-center state-line">
-        <view>退款：￥{{filter.filterMoney(order.apply_amount)}}</view>
-        <view>{{order.statusStr}}</view>
+        <view>退款：￥{{filter.filterMoney(order.orderInfo.buy_price * order.orderInfo.buy_num)}}</view>
+        <view>{{['已申请售后', '售后审核中', '售后审核通过', '售后审核不通过'][order.postsaleInfo.status - 1]}}</view>
       </view>
     </view>
     <view class="tool-bar flex-box">

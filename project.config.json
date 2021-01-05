@@ -190,6 +190,12 @@
         {
           "name": "提现明细",
           "pathName": "pageSub/wallet/withdrawList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "售后",
+          "pathName": "pageSub/afterSales/orderList/index",
           "scene": null
         }
       ]

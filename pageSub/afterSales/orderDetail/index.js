@@ -7,8 +7,11 @@ Page({
     detail: {},
   },
   onLoad (option) {
-    if(option.id) {
-      this.getData(option.id)
+    if(option.item) {
+      let detail = JSON.parse(decodeURIComponent(option.item));
+      this.setData({
+        detail
+      })
     };
   },
 
