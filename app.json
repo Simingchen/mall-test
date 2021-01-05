@@ -22,6 +22,7 @@
         "setting/index",
         "passwordEdit/index",
         "orderList/index",
+        "shareList/index",
         "orderDetail/index",
         "newsList/index",
         "newsDetail/index",

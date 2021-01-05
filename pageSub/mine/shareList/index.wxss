@@ -1,0 +1,107 @@
+
+page{
+  background:#4c545f;
+}
+.poster-box{
+  position: relative;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  color:#fff;
+  padding: 20rpx;
+  width: 710rpx;
+  height: 720rpx;
+  margin: 20rpx auto;
+  font-size: 30rpx;
+} 
+.poster-box .date .txt{
+  margin-bottom: 10rpx;
+  font-size: 40rpx;
+  text-align: right;
+}
+.time{
+  margin-top: 100rpx;
+}
+.time .txt{
+  font-size: 52rpx;
+  line-height: 100rpx;
+}
+
+.poster-code{
+  position: absolute;
+  top: 500rpx;
+  left:535rpx;
+  width: 140rpx;
+  height: 140rpx;
+}
+.share-btn{
+  position: fixed;
+  bottom: 10rpx;
+  left: 50%;
+  transform:translate(-50%);
+  width: 450rpx;
+  height: 80rpx;
+  border-radius: 80rpx;
+  color:#fff;
+  background: rgba(0,165,165,0.7);
+}
+.img-list-box{
+  background: #fff;
+  border-radius: 20rpx 20rpx 0 0;
+}
+.img-list-box .tit{
+  height: 80rpx;
+}
+.img-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left:15rpx;
+  padding-bottom: 50rpx;
+}
+.img-list .img{
+  width: 175rpx;
+  height: 175rpx;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+  border-radius: 10rpx;
+}
+.share-moment {
+  width: 300px;
+  height: 360px;
+  position: fixed;
+  top: 40%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  z-index: 200;
+}
+.mask{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom:0;
+  background: rgba(0,0,0,.3);
+  z-index: 20;
+}
+.share-moment .btn-box {
+  padding: 1060rpx 60rpx 0 60rpx;
+}
+
+.share-moment .bottom {
+  width: 300px;
+  height: 40px;
+  background-color: white;
+}
+.canvas{
+  /* border: 1px solid #f2f2f2; */
+}
+.iconshanchu{
+  position: absolute;
+  width: 60rpx;
+  height: 60rpx;
+  font-size: 60rpx;
+  color: #f2f2f2;
+  z-index: 10;
+  top: -84rpx;
+  right: 10rpx;
+}

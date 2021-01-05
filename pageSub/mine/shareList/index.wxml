@@ -1,0 +1,38 @@
+<wxs module="filter" src="../../../filter.wxs"></wxs>
+<view class="poster-box" style="background-image:url(https://img.lhssbio.com/images/20201229/5fea1ee848b61.jpg)">
+  <view class="flex-row-center">
+    <view></view>
+    <view class="date">
+      <view class="txt">05</view>
+      2020.01
+    </view>
+  </view>
+  <view class="time">
+    今日分享
+    <view class="txt">19:12</view>
+  </view>
+  <view class="poster-txt flex-box">
+    <view>
+      珍惜健康才会拥有健康，好运从扫码互道早安开始
+    </view>
+  </view>
+  <image class="poster-code" src="https://img.lhssbio.com/images/20201229/5fea1ee848b61.jpg" mode="aspectFill"></image>
+</view>
+<view class="img-list-box">
+  <view class="tit flex-center">图片素材</view>
+  <view class="img-list">
+    <view wx:for="{{10}}">
+      <image class="img" src="https://img.lhssbio.com/images/20201229/5fea1ee848b61.jpg" mode="aspectFill"></image>
+    </view>
+  </view>
+</view>
+<view class="share-btn flex-center" bindtap="setPoster">立即分享</view>
+
+<!-- 分享 -->
+<view class='share1' wx:if="{{isShowShare}}" catchtouchmove="ture">
+  <view class="mask" bindtap='closeShare'></view>
+  <view class='share-moment'>
+    <canvas type="2d" id="canvas" canvas-id="shareCanvas" class="canvas" style="width: 580rpx; height: 936rpx;"></canvas>
+    <view class="iconfont iconshanchu" bindtap='closeShare'></view>
+  </view>
+</view>

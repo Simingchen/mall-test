@@ -55,10 +55,6 @@
 				<view class="iconfont icondingdan-"></view>
 				<view class="txt">客户订单</view>
 			</view>
-			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/afterSales/orderList/index?is_fx=1">
-				<view class="iconfont iconshouhou"></view>
-				<view class="txt">退款/售后</view>
-			</view>
 			<view class="item flex-start" wx:if="{{detail.type == 2}}" bindtap="goUrl" data-url="/pageSub/salesman/home/index">
 				<view class="iconfont iconkehu"></view>
 				<view class="txt">渠道客户</view>
@@ -78,6 +74,14 @@
 			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/event/eventList/index">
 				<view class="iconfont iconshouye1"></view>
 				<view class="txt">活动报名</view>
+			</view>
+			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/shareList/index">
+				<view class="iconfont iconfenxiang"></view>
+				<view class="txt">每日分享</view>
+			</view>
+			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/afterSales/orderList/index?is_fx=1">
+				<view class="iconfont iconshouhou"></view>
+				<view class="txt">退款/售后</view>
 			</view>
 			<view class="item flex-start" wx:if="{{detail.type == 1}}" bindtap="goUrl" data-url="/pageSub/agent/signUp/index">
 				<view class="iconfont iconjingxiaoshanghetongshenpi-"></view>

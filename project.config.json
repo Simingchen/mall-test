@@ -196,6 +196,12 @@
         {
           "name": "售后",
           "pathName": "pageSub/afterSales/orderList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "每日分享",
+          "pathName": "pageSub/mine/shareList/index",
           "scene": null
         }
       ]
