@@ -31,7 +31,8 @@
         共1件
       </view>
     </view>
-    <view class="tool-bar flex-box">
+    <!-- 非客户订单 -->
+    <view class="tool-bar flex-box" wx:if="{{!is_fx}}">
       <!-- 订单状态：1、待付款；2、待发货；3、待收货；4、已完成；5、已退款； -->
       <block wx:if="{{curTabType==0 && order.status == 1}}">
         <van-button type="default" round size="small" bindtap="pay" data-item="{{order}}">支付

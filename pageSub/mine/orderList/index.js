@@ -44,6 +44,10 @@ Page({
     }, () => {
       this.getList(true)
     });
+
+    wx.setNavigationBarTitle({
+      title: options.is_fx ? '客户订单' : '我的订单',
+    })
   },
   // tab 切换
   tabsChange: app.throttle(function ({
