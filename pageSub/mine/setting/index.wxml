@@ -4,15 +4,15 @@
 		<!-- <view class="txt">{{userInfo.nickname}}</view> -->
 	</view>
 	<van-field label="姓名" required value="{{userInfo.turename}}" placeholder="请输入姓名" maxlength="15" clearable
-		data-type="userInfo.truename" bind:change="onChangeInput" />
+		data-type="userInfo.truename" bind:change="onChangeInput" input-align="right"/>
 	<van-cell title="性别" is-link value="{{userInfo.sex? (userInfo.sex == 1?'男': '女') : '请选择性别'}}" bind:click="openPop" data-type="isShowSexPop"></van-cell>
 	<van-cell title="生日" is-link value="{{userInfo.brithday? userInfo.brithday : '请选择生日'}}" bind:click="openPop" data-type="isShowBrithDayPop">
 	</van-cell>
 	<van-cell title="城市" is-link value="{{userInfo.city? userInfo.city : '请选择城市'}}" bind:click="openPop" data-type="isShowAreaPop"></van-cell>
 	<van-field label="手机号" required type="number" value="{{userInfo.phone}}" placeholder="请输入手机号" maxlength="11" clearable
-		data-type="userInfo.phone" bind:change="onChangeInput" />
+		data-type="userInfo.phone" bind:change="onChangeInput" input-align="right"/>
 	<van-field label="微信号" value="{{userInfo.wxid}}" placeholder="请输入微信号" maxlength="20" clearable
-		data-type="userInfo.wxid" bind:change="onChangeInput" border="{{false}}" />
+		data-type="userInfo.wxid" bind:change="onChangeInput" border="{{false}}" input-align="right"/>
 </view>
 <view class="flex-center">
 	<van-button round type="info" custom-class="confirm-btn" color="#00a5a5" bindtap="save">提交</van-button>
