@@ -42,3 +42,17 @@ export function roundRectColor(context, x, y, w, h, r, bg) {  //绘制圆角矩�
   context.closePath();
 }
 
+// r: 半径
+export function circleImg(ctx, img, x, y, r) {
+  ctx.save();
+
+  ctx.beginPath(); //开始绘制
+  //先画个圆  前两个参数确定了圆心 （x,y） 坐标 第三个参数是圆的半径 四参数是绘图方向 默认是false，即顺时针
+  ctx.arc(r / 2 + x, r / 2 + y, r / 2, 0, Math.PI * 2, false);
+
+  ctx.clip(); //画好了圆 剪切 原始画布中剪切任意形状和尺寸。一旦剪切了某个区域，则所有之后的绘图都会被限制在被剪切的区域内 这也是我们要save上下文的原因
+  ctx.drawImage(img, x, y, r, r);
+  ctx.restore();
+
+} 
+

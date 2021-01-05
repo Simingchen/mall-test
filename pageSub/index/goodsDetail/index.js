@@ -1,7 +1,7 @@
 const app = getApp()
 const regeneratorRuntime = app.runtime
 let wxparse = require("../../../wxParse/wxParse.js");
-import {roundRectColor} from "../../../utils/util.js"
+import {roundRectColor, circleImg} from "../../../utils/util.js"
 Page({
   data: {
     detail: {},
@@ -285,8 +285,12 @@ Page({
     let avatar = canvas.createImage();
     avatar.src = userInfo.headimg
 
-    avatar.onload = () => {
-      ctx.drawImage(avatar, 14, 14, 30, 30);
+    avatar.onload = (scaleBy = 2) => {
+      const avatarX = 14
+      const avatarY = 14
+      const avatarW = 30
+      // ctx.drawImage(avatar, avatarX, avatarX, avatarW, avatarW);
+      circleImg(ctx, avatar, avatarX, avatarY, avatarW);
       
       // name
       ctx.font = "14px";
@@ -307,8 +311,8 @@ Page({
 
     img1.onload = async (res) => {
       // console.log(res)
-      ctx.drawImage(img1, 28, 68, 235, 235)
-      
+      ctx.drawImage(img1, 28, 68, 235, 235, 28, 68, 235, 235)
+
       // 设置字体
       ctx.font = "14px Arial";
       // 设置水平对齐方式

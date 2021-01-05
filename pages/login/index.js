@@ -35,6 +35,7 @@ Page({
       nickname: detail.userInfo.nickName, 
       headimg: detail.userInfo.avatarUrl, 
       openid: this.data.loginRes.openid,
+      promoter_user_id: wx.getStorageSync('ICode') || ""
       // unionid
     };
 

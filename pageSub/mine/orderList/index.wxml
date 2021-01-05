@@ -39,7 +39,12 @@
         <van-button type="default" round size="small" bindtap="cancel" data-item="{{order}}">取消订单
         </van-button>
       </block>
-      <block>
+      <block wx:if="{{order.postsale_status}}">
+        <van-button type="default" round size="small">
+          {{['已申请售后', '售后审核中', '售后审核通过', '售后审核不通过'][order.postsale_status - 1]}}
+        </van-button>
+      </block>
+      <block wx:if="{{order.status > 1 && order.status < 5 && !order.postsale_status}}">
         <van-button type="default" round size="small" catchtap="refund" data-item="{{order}}" data-order="{{order}}">申请售后
         </van-button>
       </block>

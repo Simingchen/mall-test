@@ -182,7 +182,7 @@ Page({
     });
   },
   async confirm() {
-    const { detail, reasonRadio, wayRadio, message, fileList} = this.data
+    const { detail, reasonRadio, wayRadio, message, wayList, reasonList} = this.data
     if (!reasonRadio) {
       return app.toast('请选择退款原因')
     }
@@ -190,22 +190,30 @@ Page({
       return app.toast('请选择退款方式')
     }
 
-    // 上传视图提交
-    let token = wx.getStorageSync('token')
-    let promiseList = fileList.map(item => this.uploadFile(item.url, token))
-    
-    let keyListData = await this.asyncAlls(promiseList)
-    
-    const data = {
-      "order_no": detail.order_no,
-      "order_goods_id": detail.id,
-      "remark": message,
-      "images": `,${keyListData.join(',')},`,
-      "reason": reasonRadio,
-      "way": wayRadio
+    if(!message.length) {
+      return app.toast('请补充描述')
     }
+
+    // 上传视图提交
+    // let token = wx.getStorageSync('token')
+    // let promiseList = fileList.map(item => this.uploadFile(item.url, token))
+    
+    // let keyListData = await this.asyncAlls(promiseList)
+    const reason = reasonList.filter(item => item.key == reasonRadio)
+    const way = wayList.filter(item => item.key == wayRadio)
+    const data = {
+      "order_id": detail.id,
+      "description": message,
+      // "images": `,${keyListData.join(',')},`,
+      "reason": reason[0].value,
+      "postsale_type": way[0].value
+    }
+
+    
+// 参数：、（1:退款；2:退货退款）、reason、
+
     console.log(data)
-    await app.fetch({url: "ApplyRefund.ashx", data})
+    await app.fetch({url: "Api/Order/postsale", data})
     
     app.toast('提交成功，平台会第一时间处理')
 
