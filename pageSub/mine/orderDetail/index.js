@@ -31,7 +31,8 @@ Page({
       detail: res,
       expressdetail: res.expressdetail
     }, () => {
-      console.log(this.data.detail)
+      // console.log(this.data.detail)
+      this.getExpress()
     })
   },
   dateFormat(fmt, date) {
@@ -53,6 +54,13 @@ Page({
         };
     };
     return fmt;
+},
+async getExpress() {
+  const data = {
+    order_no: this.data.detail.order_no,
+    openid: app.globalData.userInfo.openid,
+  }
+  let res = await app.fetch({url: "Api/Express/getOrder", data })
 },
 filterCity (code) {
   if (!code) {

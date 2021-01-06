@@ -5,10 +5,10 @@ Page({
   data: {
     searchTxt: '',
     isShowShare: false,
-    shareTitle: '更多优惠商品，尽在澳米特商城...',
     qrCode: '',
-    name: "珍惜健康才会拥有健康，好运从扫码互道早安开始",
-    banner: "https://img.lhssbio.com/images/20201229/5fea1ee848b61.jpg",
+    name: "",
+    nameList: [],
+    curItem: {},
     curTab: {
       isLoaded: false,
       loadStatus: "loading", // 加载状态
@@ -20,9 +20,45 @@ Page({
       },
       list: []
     },
+    day: "",
+    time: "",
+    dateTime: ""
   },
   async onLoad(options) {
     this.getList(true)
+
+    this.getCode()
+
+    this.getDate()
+  },
+  getDate() {
+    function formatNumber (n) {
+      n = n.toString()
+      return n[1] ? n : '0' + n
+    }
+
+    const date = new Date()
+
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+    
+    this.setData({
+      day: formatNumber(day),
+      dateTime: year + "." + formatNumber(month),
+      time: formatNumber(hour) + ":" + formatNumber(minute),
+    })
+  },
+  async getCode() {
+    var code = await app.fetch({
+      url: "Api/User/promote",
+      data: {uid: app.globalData.userInfo.id}
+    })
+    this.setData({
+      qrCode: "https://miniapp.lhssbio.com/" + code
+    })
   },
   // tab 切换
   tabsChange: app.throttle(function ({
@@ -30,9 +66,12 @@ Page({
   }) {
     this.getList(true)
   }),
+  // getRandomNumber
+  getRandomInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
   async getList(init) {
     const {
-      curTabType,
       curTab
     } = this.data
 
@@ -56,27 +95,25 @@ Page({
     let data = {
       "page_size": curTab.page.size,
       "page": curTab.page.page,
-      "uid": app.globalData.userInfo.id || '',
+      "uid": app.globalData.userInfo.id || 0,
     }
 
     this.loading = true
-    app.fetch({
-      url: "Api/Order/mylist",
-      data
+    app.fetch({ url: "Api/DaylyShare/index",
     }).then(res => {
       curTab.page.page++
 
-      console.log(curTab.page.page)
+      console.log(res)
       this.loading = false
 
       this.setData({
         ['curTab.isLoaded']: true,
-        ['curTab.page']: { ...curTab.page, finished: res.data.length < 10 },
-        ['curTab.isEmpty']: ![...curTab.list, ...res.data].length,
-        ['curTab.list[' + (curTab.page.page - 2) + ']']: res.data,
-        ['curTab.loadStatus']: res.data.length < 10 ? 'noMore' : 'loading'
-      }, () => {
-        console.log(this.data.curTab.page)
+        ['curTab.isEmpty']: ![...curTab.list, ...res.pic].length,
+        ['curTab.list[' + (curTab.page.page - 2) + ']']: res.pic,
+        ['curTab.loadStatus']: 'noMore',
+        curItem: res.pic[0],
+        nameList: res.content,
+        name: res.content
       })
     }).catch(err => {
       this.setData({
@@ -115,6 +152,13 @@ Page({
           this.accountPay(string)
         }
       }
+    })
+  },
+  // 图片更改
+  changeImg({ currentTarget }) {
+    const item = currentTarget.dataset.item
+    this.setData({
+      curItem: item
     })
   },
   // 分享
@@ -170,22 +214,40 @@ Page({
       ctx.font = "14px";
       ctx.fillText(userInfo.nickname, 56, 24, 100)
       ctx.font = "12px";
-      ctx.fillText("为你挑选了一个好物", 56, 40, 150)
+      ctx.fillText("每日分享", 56, 40, 150)
     }
 
     // 红色背景
-    roundRectColor(ctx, 0, 0, 290, 468, 18, "#fc7b51")
+    roundRectColor(ctx, 0, 0, 290, 448, 18, "#00a5a5")
 
     // 变色背景
-    roundRectColor(ctx, 15, 57, 260, 395, 18, "#fff")
+    roundRectColor(ctx, 15, 57, 260, 375, 18, "#fff")
 
     // 主图
     let img1 = canvas.createImage();
-    img1.src = this.data.banner
+    img1.src = this.data.curItem.picture
 
     img1.onload = async (res) => {
-      // console.log(res)
-      ctx.drawImage(img1, 28, 68, 235, 235, 28, 68, 235, 235)
+      // 实现 cover 效果
+      let imgRatio = img1.width / img1.height;
+      let canvasRatio = 235 / 235
+      let sw = 0
+      let sh = 0
+      let sx = 0
+      let sy = 0
+  　　if(imgRatio <= canvasRatio){
+  　　　　sw = img1.width
+  　　　　sh = sw / canvasRatio
+  　　　　sx = 0
+  　　　　sy = (img1.height - sh) / 2
+  　　}else{
+  　　　 sh = img1.height
+  　　　　sw = sh * canvasRatio
+  　　　　sx = (img1.width - sw) / 2
+  　　　　sy = 0
+  　　} 　　
+  　　ctx.drawImage(img1, sx, sy, sw, sh, 28, 68, 235, 235)
+      // ctx.drawImage(img1, 28, 68, 235, 235, 28, 68, 235, 235)
 
       // 设置字体
       ctx.font = "14px Arial";
@@ -218,30 +280,22 @@ Page({
         ctx.fillText(line3, 30, 360, txtWidth)
       }
 
-      // price
-      ctx.fillStyle = '#ca000e'
-      // ctx.fillText("￥" + that.data.detail.price, 30, 420, 100)
+      // 时间
+      ctx.font = "20px Arial";
+      ctx.fillStyle = '#333'
+      // + that.data.time
+      ctx.fillText(that.data.dateTime + "." + that.data.day, 30, 400, 200)
 
-      const data = {
-        // page: 'pages/index/index',
-        page: 'pageSub/index/goodsDetail/index',
-        "uid": app.globalData.userInfo.id,
-        id: this.data.id,
-        // width: 500,
-        // id: 4
-      }
-      
       // 下载二维码
       let img2 = canvas.createImage();
 
       if (!this.data.qrCode) {
-        const imgUrl = await app.fetch({ url: "Api/Goods/share", data })
-        var codeUrl = "https://miniapp.lhssbio.com/" + (imgUrl.qrcode || "Public/Uploads/Qrcode/uid2qrcode.jpg")
-        img2.src = codeUrl;
-
-        console.log(codeUrl)
+        var code = await app.fetch({
+          url: "Api/User/promote",
+          data: {uid: app.globalData.userInfo.id || 0}
+        })
         this.setData({
-          qrCode: codeUrl
+          qrCode: "https://miniapp.lhssbio.com/" + code
         })
       } else {
         img2.src = this.data.qrCode;
@@ -249,7 +303,7 @@ Page({
       img2.onload = (res) => {
         console.log(res)
         let qrImgSize = 70
-        ctx.drawImage(img2, 195,  370, qrImgSize, qrImgSize)
+        ctx.drawImage(img2, 195,  350, qrImgSize, qrImgSize)
 
         wx.hideLoading()
 

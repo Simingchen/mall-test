@@ -33,6 +33,7 @@ page{
   left:535rpx;
   width: 140rpx;
   height: 140rpx;
+  border-radius: 140rpx;
 }
 .share-btn{
   position: fixed;
@@ -104,4 +105,8 @@ page{
   z-index: 10;
   top: -84rpx;
   right: 10rpx;
+}
+.scroll-view{
+  height:calc(100vh - 760rpx - 60rpx);
+  overflow-y: auto;
 }

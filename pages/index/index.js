@@ -7,7 +7,12 @@ Page({
     msgList: [],
   },
   async onLoad (option) {
-    console.log(option)
+    // 存储邀请码
+    if (option.scene) {
+      const par = decodeURIComponent(option.scene)
+      const ICode = app.getQueryString(par, 'uid')
+      wx.setStorageSync('ICode', ICode)
+    }
     this.getBanner()
 
     this.getList()

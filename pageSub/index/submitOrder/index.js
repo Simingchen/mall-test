@@ -258,11 +258,9 @@ Page({
       console.log(err)
       this.onClosePop()
 
-      setTimeout(() => {
         wx.redirectTo({
           url: '/pageSub/mine/orderList/index?index=0',
         })
-      }, 1000)
     })
   },
   async wxPay (order_no, fee) {
