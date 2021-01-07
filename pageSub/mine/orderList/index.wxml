@@ -57,7 +57,7 @@
           确认收货
         </van-button>
       </block>
-      <block wx:if="{{order.status > 1 && order.status < 5 && !order.postsale_status && order.recive_time}}">
+      <block wx:if="{{order.status > 1 && order.status < 4 && !order.postsale_status && order.recive_time}}">
         <van-button type="default" round size="small" catchtap="refund" data-item="{{order}}" data-order="{{order}}">申请售后
         </van-button>
       </block>
