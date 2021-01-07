@@ -46,7 +46,7 @@
   color:#999;
 }
 .hr100{
-  height: 120rpx;
+  height: 98rpx;
 }
 .tabbar-box .active{
   color:#00a5a5;
