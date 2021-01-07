@@ -1,6 +1,5 @@
 const app = getApp()
 const regeneratorRuntime = app.runtime
-let wxparse = require("../../../wxParse/wxParse.js");
 import cityList from '../../../static/city.js'
 
 Page({
@@ -61,14 +60,30 @@ async getExpress() {
     openid: app.globalData.userInfo.openid,
   }
   let res = await app.fetch({url: "Api/Express/getOrder", data })
+
   this.setData({
     expressId: res.order_id
   })
+
   await app.fetch({url: "Api/Express/getPath", data: {
     order_no: this.data.detail.order_no,
     openid: app.globalData.userInfo.openid,
-    express_no: "2021010622958481793657_1609929844_waybill_id"
-  } })
+    express_no: res.waybill_id
+  } }).then(res => {
+
+    const steps = res.path_item_list.map(item =>{
+      return {
+        text: item.action_type_name,
+        desc: item.action_msg,
+        // inactiveIcon: 'location-o',
+        // activeIcon: 'success',
+      }
+    })
+    this.setData({
+      steps,
+      active: res.path_item_num - 1
+    })
+  })
 },
 filterCity (code) {
   if (!code) {

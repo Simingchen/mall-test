@@ -39,10 +39,15 @@
         共1件
       </view>
     </view>
-    <view class="order-info panel" wx:if="{{expressdetail}}">
+    <view class="order-info panel" wx:if="{{steps.length}}">
       <view class="tit">物流信息</view>
       <view class="content">
-        <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+        <van-steps
+          steps="{{ steps }}"
+          active="{{ active }}"
+          direction="vertical"
+          active-color="#ee0a24"
+        />
       </view>
     </view>
     <view class="order-info panel">
