@@ -23,15 +23,22 @@
           </view>
         </van-card>
       </view>
-      <view class="all-price flex-box">
-        <view class="price flex-box">
-          合计：
-          <view class="primary">¥{{filter.filterMoney(order.total_price)}}</view>
+      <view class="flex-row-center">
+        <view style="font-size:24rpx;">
+          <block wx:if="{{is_fx}}">
+            客户名称：{{order.fx_name}}
+          </block>
         </view>
-        共1件
+        <view class="all-price flex-box">
+          <view class="price flex-box">
+            合计：
+            <view class="primary">¥{{filter.filterMoney(order.total_price)}}</view>
+          </view>
+          共1件
+        </view>
       </view>
     </view>
-    <!-- 非客户订单 -->
+    <!-- 客户订单没有操作按钮 -->
     <view class="tool-bar flex-box" wx:if="{{!is_fx}}">
       <!-- 订单状态：1、待付款；2、待发货；3、待收货；4、已完成；5、已退款； -->
       <block wx:if="{{curTabType==0 && order.status == 1}}">
@@ -43,6 +50,11 @@
       <block wx:if="{{order.postsale_status}}">
         <van-button type="default" round size="small">
           {{['已申请售后', '售后审核中', '售后审核通过', '售后审核不通过'][order.postsale_status - 1]}}
+        </van-button>
+      </block>
+      <block wx:if="{{order.status == 3 && !order.postsale_status}}">
+        <van-button type="default" round size="small" bindtap="confirmIt" data-item="{{order}}">
+          确认收货
         </van-button>
       </block>
       <block wx:if="{{order.status > 1 && order.status < 5 && !order.postsale_status}}">

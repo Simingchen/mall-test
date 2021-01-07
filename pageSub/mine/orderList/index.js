@@ -123,8 +123,6 @@ Page({
         ['curTab.loadStatus']: 'noMore'
       })
     })
-
-    
   },
   // 上拉加载
   onReachBottom() {
@@ -266,14 +264,33 @@ Page({
   // 输入框更改
  onChangeInput({currentTarget, detail}) {
   const string = detail.trim()
- this.setData({
-   [currentTarget.dataset.type]: string
- }, () => {
-   if (currentTarget.dataset.type == "payPassword") {
-     if (string.length > 5) {
-       this.accountPay(string)
-     }
-   }
- })
-},
+  this.setData({
+    [currentTarget.dataset.type]: string
+    }, () => {
+      if (currentTarget.dataset.type == "payPassword") {
+        if (string.length > 5) {
+          this.accountPay(string)
+        }
+      }
+    })
+  },
+  // 确认收货
+  confirmIt({ currentTarget }) {
+    const item = currentTarget.dataset.item
+    wx.showModal({
+      title: '提示',
+      content: ' 是否确认收货',
+      success: async(res) =>{
+        if (res.confirm) {
+          console.log('用户点击确定')
+          let res = await app.fetch({url: "Api/order/order_finish", data: {id: item.id} })
+          app.$toast('确认收货成功')
+          this.getLit(true)
+          this.getData()
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
 });

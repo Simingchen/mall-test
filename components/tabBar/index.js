@@ -28,8 +28,14 @@ Component({
         {
           "selectedIconPath": "iconshouye",
           "iconPath": "iconshouye",
+          "pagePath": "pages/show/index",
+          "text": "宫颜之禧"
+        },
+        {
+          "selectedIconPath": "icongoods-copy",
+          "iconPath": "icongoods-copy",
           "pagePath": "pages/index/index",
-          "text": "宫颜禧"
+          "text": "美丽商城"
         },
         {
           "selectedIconPath": "iconweibiaoti35",

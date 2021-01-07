@@ -114,4 +114,4 @@
 </van-popup>
 
 <!-- tabbar -->
-<tabBar selected="2"/>
+<tabBar selected="3"/>

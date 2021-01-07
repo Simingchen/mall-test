@@ -32,4 +32,4 @@
 <loading status="{{curTab.loadStatus}}" isEmpty="{{curTab.isEmpty}}" />
 
 <!-- tabbar -->
-<tabBar selected="1" />
+<tabBar selected="2" />

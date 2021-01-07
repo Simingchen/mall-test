@@ -1,0 +1,8 @@
+<image class="img" src="../../static/s1.jpg" mode="aspectFill" style="height: 1066rpx"></image>
+<image class="img" src="../../static/s2.jpg" mode="aspectFill" style="height: 1000rpx"></image>
+<image class="img" src="../../static/s3.jpg" mode="aspectFill" style="height: 900rpx"></image>
+<image class="img" src="../../static/s1.jpg" mode="aspectFill" style="height: 1066rpx"></image>
+<!-- 加载状态 -->
+<!-- <loading status="noMore"/> -->
+<!-- tabbar -->
+<tabBar selected="0" />

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/show/index",
     "pages/index/index",
     "pages/infoList/index",
     "pages/mine/index",
@@ -88,6 +89,12 @@
     "backgroundColor": "#fff",
     "selectedColor": "#f4a240",
     "list": [
+      {
+        "selectedIconPath": "./static/tab/11.png",
+        "iconPath": "./static/tab/1.png",
+        "pagePath": "pages/show/index",
+        "text": "宫颜禧"
+      },
       {
         "selectedIconPath": "./static/tab/11.png",
         "iconPath": "./static/tab/1.png",

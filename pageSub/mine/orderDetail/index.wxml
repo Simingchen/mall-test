@@ -51,7 +51,9 @@
         <view>订单编号：{{detail.order_no}}</view>
         <van-button round size="mini" plain type="info" bind:click="copy">复制</van-button>
       </view>
-      <view>创建时间：{{detail.post_date}}</view>
+      <view>订单备注：{{detail.remark || '暂无'}}</view>
+      <view wx:if="{{detail.shipping_time}}">发货时间：{{detail.shipping_time}}</view>
+      <view wx:if="{{detail.recive_time}}">收货时间：{{detail.recive_time}}</view>
       <view>支付方式：{{detail.payway == 1 ? '微信' : '账户余额'}}</view>
     </view>
     <!-- <view class="tool-box">
