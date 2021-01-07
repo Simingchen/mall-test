@@ -73,17 +73,29 @@ async getExpress() {
 
     const steps = res.path_item_list.map(item =>{
       return {
-        text: item.action_type_name,
-        desc: item.action_msg,
+        text: item.action_type_name + " " + item.action_msg,
+        desc: this.formatMoney(item.action_time),
         // inactiveIcon: 'location-o',
         // activeIcon: 'success',
       }
     })
     this.setData({
       steps,
-      active: res.path_item_num - 1
+      active: res.path_item_list.length - res.path_item_num
     })
   })
+},
+formatMoney(date) {
+  date = new Date(date * 1000)
+  const opt = {
+    "Y": date.getFullYear().toString(),        // 年
+    "m": (date.getMonth() + 1).toString(),     // 月
+    "d": date.getDate().toString(),            // 日
+    "H": date.getHours().toString(),           // 时
+    "M": date.getMinutes().toString(),         // 分
+  };
+
+  return `${opt.Y}-${opt.m}-${opt.d} ${opt.H}:${opt.M}`
 },
 filterCity (code) {
   if (!code) {
