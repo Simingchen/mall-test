@@ -22,6 +22,8 @@ page {
   font-size: 28rpx;
   line-height: 40rpx;
   font-weight: 500;
+  color:#222;
+  font-size: 30rpx;
 }
 
 .goods-price-line {

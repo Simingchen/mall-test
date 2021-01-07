@@ -279,7 +279,8 @@ Page({
     const item = currentTarget.dataset.item
     wx.showModal({
       title: '提示',
-      content: ' 是否确认收货',
+      content: ' 是否确认收货?',
+      confirmColor: "#ee0a24",
       success: async(res) =>{
         if (res.confirm) {
           console.log('用户点击确定')

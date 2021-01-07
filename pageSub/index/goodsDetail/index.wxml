@@ -25,12 +25,13 @@
     </view>
     <!-- <view class="count">销量 {{detail.fields.sales}}</view> -->
   </view>
+  <van-cell title="商品保障" value="支持7天内无理由退货" border="{{false}}"></van-cell>
   <!-- <view class="time-box flex-start" wx:if="{{detail.channel_id == 11}}">
       <view class="txt">倒计时：</view>
       <van-progress custom-class="process" percentage="{{detail.percentDay}}" color="#ff0000" pivot-color="#ff0000" stroke-width="26rpx"
         show-pivot="{{false}}" />
     </view> -->
-  <!-- <van-cell title="产品参数" ></van-cell>
+  <!-- <van-cell title="产品参数" value="支持7天内无理由退货"></van-cell>
     <view class="fields-list flex-row-center">
       <view class="item" wx:if="{{detail.fields.goods_no}}">产品货号：{{detail.fields.goods_no}}</view>
       <view class="item" wx:if="{{detail.fields.product_size}}">产品尺寸：{{detail.fields.product_size}}</view>
