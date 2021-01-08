@@ -39,16 +39,6 @@
         共1件
       </view>
     </view>
-    <view class="order-info panel" wx:if="{{steps.length}}">
-      <view class="tit">物流信息</view>
-      <view class="content">
-        <van-steps
-          steps="{{ steps }}"
-          active="{{ active }}"
-          direction="vertical"
-        />
-      </view>
-    </view>
     <view class="order-info panel">
       <view class="tit">订单信息</view>
       <view class="flex-row-center">
@@ -59,6 +49,16 @@
       <view wx:if="{{detail.shipping_time}}">发货时间：{{detail.shipping_time}}</view>
       <view wx:if="{{detail.recive_time}}">收货时间：{{detail.recive_time}}</view>
       <view>支付方式：{{detail.payway == 1 ? '微信' : '账户余额'}}</view>
+    </view>
+    <view class="order-info panel" wx:if="{{steps.length}}">
+      <view class="tit">物流信息</view>
+      <view class="content">
+        <van-steps
+          steps="{{ steps }}"
+          active="{{ active }}"
+          direction="vertical"
+        />
+      </view>
     </view>
     <!-- <view class="tool-box">
       <view class="tool-bar flex-box">

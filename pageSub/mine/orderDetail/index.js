@@ -5,33 +5,29 @@ import cityList from '../../../static/city.js'
 Page({
   data: {
     detail: {},
-    expressdetail: ''
+    express_no: ''
   },
   onLoad (option) {
     if(option.id) {
-      this.getData(option.id)
+      this.getData(option.id, option.express_no)
     };
   },
 
-  async getData (id) {
+  async getData (id, express_no) {
     wx.showLoading({
       title: '加载中',
     })
     let res = await app.fetch({url: "Api/Order/detail", data: {id} })
 
     wx.hideLoading()
-    if (res.expressdetail) {
-      wxparse.wxParse('content', 'html', res.expressdetail, this, 5)
-    }
 
     res.city = this.filterCity(res.addressInfo.districtid)
 
     this.setData({
       detail: res,
-      expressdetail: res.expressdetail
     }, () => {
       // console.log(this.data.detail)
-      this.getExpress()
+      this.getExpress(express_no)
     })
   },
   dateFormat(fmt, date) {
@@ -54,23 +50,18 @@ Page({
     };
     return fmt;
 },
-async getExpress() {
-  const data = {
-    order_no: this.data.detail.order_no,
-    openid: app.globalData.userInfo.openid,
-  }
-  let res = await app.fetch({url: "Api/Express/getOrder", data })
-
-  this.setData({
-    expressId: res.order_id
-  })
+async getExpress(express_no) {
+  // const data = {
+  //   order_no: this.data.detail.order_no,
+  //   openid: app.globalData.userInfo.openid,
+  // }
+  // let res = await app.fetch({url: "Api/Express/getOrder", data })
 
   await app.fetch({url: "Api/Express/getPath", data: {
     order_no: this.data.detail.order_no,
     openid: app.globalData.userInfo.openid,
-    express_no: res.waybill_id
+    express_no
   } }).then(res => {
-
     const steps = res.path_item_list.map(item =>{
       return {
         text: item.action_type_name + " " + item.action_msg,

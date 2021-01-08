@@ -132,7 +132,7 @@ Page({
   goDetail({ currentTarget }) {
     const item = currentTarget.dataset.item
     wx.navigateTo({
-      url: `/pageSub/mine/orderDetail/index?id=${item.id}`,
+      url: `/pageSub/mine/orderDetail/index?id=${item.id}&express_no=${item.express_no}`,
     })
   },
   // 支付
