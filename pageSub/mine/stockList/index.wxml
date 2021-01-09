@@ -6,6 +6,7 @@
         title="{{item.goodinfo.name}}" thumb="{{item.goodinfo.banner}}"> 
         <view slot="desc">
           <view style="padding-top:20rpx;">库存：{{item.sku}} </view>
+          <view style="padding-top:20rpx;color:#ee0a24;" wx:if="{{ item.sku < 10}}">商品即将售罄，请尽快补货</view>
         </view>
       </van-card>
     </view>
