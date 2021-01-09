@@ -15,35 +15,15 @@
   position: relative;
   flex: 1;
   font-size: 20rpx;
-  color:#333333FF;
+  color:#333;
   line-height: 30rpx;
 }
-.cartNum {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-    top: 0;
-    right: 0;
-    min-width: 16px;
-    padding: 0 3px;
-    color: #fff;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 1.2;
-    text-align: center;
-    background-color: #ee0a24;
-    border: 1px solid #fff;
-    border-radius: 16px;
-    transform: translate(-100%, 0);
-    transform-origin: 100%;
-}
-.tabbar-box .iconfont{
-  margin-top: 10rpx;
-  height: 52rpx;
-  font-size: 52rpx;
-  line-height: 52rpx;
-  color:#999;
+
+.iconfont{
+  margin-bottom: 8rpx;
+  height: 46rpx;
+  font-size: 46rpx;
+  line-height: 46rpx;
 }
 .hr100{
   height: 98rpx;
@@ -53,4 +33,12 @@
 }
 .tabbar-box .active .iconfont{
   color:#00a5a5;
+}
+
+.van-tabbar--safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.van-tabbar {
+  height: var(--tabbar-height,50px);
+  box-sizing: content-box;
 }

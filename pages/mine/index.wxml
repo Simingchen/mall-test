@@ -55,6 +55,10 @@
 				<view class="iconfont icondingdan-"></view>
 				<view class="txt">客户订单</view>
 			</view>
+			<view class="item flex-start" wx:if="{{detail.type == 2}}" bindtap="goUrl" data-url="/pageSub/mine/stockList/index">
+				<view class="iconfont iconkucunguanli"></view>
+				<view class="txt">库存列表</view>
+			</view>
 			<view class="item flex-start" wx:if="{{detail.type == 2}}" bindtap="goUrl" data-url="/pageSub/salesman/home/index">
 				<view class="iconfont iconkehu"></view>
 				<view class="txt">渠道客户</view>
@@ -114,4 +118,4 @@
 </van-popup>
 
 <!-- tabbar -->
-<tabBar selected="3"/>
+<tabBar selected="{{3}}"/>

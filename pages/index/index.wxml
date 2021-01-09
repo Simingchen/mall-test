@@ -17,6 +17,6 @@
   </block>
 </view>
 <!-- 加载状态 -->
-<loading status="noMore"/>
+<!-- <loading status="noMore"/> -->
 <!-- tabbar -->
-<tabBar selected="1" />
+<tabBar selected="{{1}}" />

@@ -21,7 +21,7 @@
     "checkSiteMap": false,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
+    "useMultiFrameRuntime": true,
     "useApiHook": true,
     "babelSetting": {
       "ignore": [],
@@ -32,11 +32,11 @@
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "enableEngineNative": false,
-    "userConfirmedBundleSwitch": false,
-    "minifyWXSS": true
+    "minifyWXSS": true,
+    "useApiHostProcess": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.13.1",
@@ -202,6 +202,12 @@
         {
           "name": "每日分享",
           "pathName": "pageSub/mine/shareList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "库存列表",
+          "pathName": "pageSub/mine/stockList/index",
           "scene": null
         }
       ]

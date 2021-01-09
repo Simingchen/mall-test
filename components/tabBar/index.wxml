@@ -1,4 +1,4 @@
-<view>
+<!-- <view>
   <view class="hr100"></view>
   <view class="tabbar-box">
     <view class="item {{selected == index?'active':''}}" wx:for="{{tabBar.list}}" wx:key="index" bindtap="goUrl" data-index="{{index}}">
@@ -7,6 +7,19 @@
       {{item.text}}
     </view>
   </view>
-</view>
+</view> -->
+<view class="van-tabbar van-tabbar--safe"></view>
+<van-tabbar active="{{ selected }}" active-color="#00a5a5"
+  inactive-color="#999" z-index="100" placeholder="{{true}}" bind:change="onChange">
+  <van-tabbar-item  wx:for="{{tabBar.list}}" wx:key="index" >
+    <view class="tac">
+      <view class="iconfont {{item.iconPath}}"></view>
+      {{item.text}}
+    </view>
+  </van-tabbar-item>
+  <!-- <van-tabbar-item name="search" icon="search">标签</van-tabbar-item>
+  <van-tabbar-item name="friends" icon="friends-o">标签</van-tabbar-item>
+  <van-tabbar-item name="setting" icon="setting-o">标签</van-tabbar-item> -->
+</van-tabbar>
 
 <!-- globalData.cartNum -->

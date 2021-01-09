@@ -5,13 +5,13 @@ Component({
   },
   properties: {
     selected: {
-      type: String,
+      type: Number,
       value: '',
     },
-    cartNum: {
-      type: String,
-      value: '',
-    },
+    // cartNum: {
+    //   type: String,
+    //   value: '',
+    // },
     // isLogin: {
     //   type: Boolean,
     //   value: false,
@@ -74,6 +74,17 @@ Component({
   //   }
   // },
   methods: {
+    onChange(event) {
+      console.log(event)
+      // this.setData({ active: event.detail });
+      let index = event.detail
+      const { selected, tabBar } = this.data
+      if (index == selected) return;
+
+      wx.switchTab({
+        url: `/${tabBar.list[index].pagePath}`,
+      })
+    },
     goUrl: app.throttle(function({currentTarget}){  //节流
       let index = currentTarget.dataset.index
       const { selected, tabBar } = this.data

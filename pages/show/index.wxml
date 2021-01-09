@@ -5,4 +5,4 @@
 <!-- 加载状态 -->
 <!-- <loading status="noMore"/> -->
 <!-- tabbar -->
-<tabBar selected="0" />
+<tabBar selected="{{0}}" />

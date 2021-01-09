@@ -1,0 +1,15 @@
+<wxs module="filter" src="../../../filter.wxs"></wxs>
+<block wx:for="{{curTab.list}}" wx:key="index" wx:for-item="items">
+  <view class="order-item panel" wx:for="{{items}}" wx:key="order_no">
+    <view bindtap="goDetail" data-item="{{item}}">
+      <van-card lazy-load thumb-mode="aspectFill" class="goods" 
+        title="{{item.goodinfo.name}}" thumb="{{item.goodinfo.banner}}"> 
+        <view slot="desc">
+          <view style="padding-top:20rpx;">库存：{{item.sku}} </view>
+        </view>
+      </van-card>
+    </view>
+  </view>
+</block>
+<!-- 加载状态 -->
+<loading status="{{curTab.loadStatus}}" isEmpty="{{curTab.isEmpty}}" />

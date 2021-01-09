@@ -1,10 +1,17 @@
 
 page{
-  width: 750rpx;
-  overflow: hidden;
+  padding-bottom: 100rpx;
   min-height: 100vh;
+  box-sizing: content-box;
+  /* overflow: hidden;
+  min-height: 100vh; */
 }
-
+.member-page{
+  position: relative;
+  width: 750rpx;
+  height: 426rpx;
+  overflow: hidden;
+}
 .van-tabbar-item__icon .img {
   width: 54rpx;
   height: 44rpx;
