@@ -75,8 +75,6 @@ Component({
   // },
   methods: {
     onChange(event) {
-      console.log(event)
-      // this.setData({ active: event.detail });
       let index = event.detail
       const { selected, tabBar } = this.data
       if (index == selected) return;
