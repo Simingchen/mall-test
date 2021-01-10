@@ -1,5 +1,5 @@
 <!-- 轮播图 -->
-<swiper class='banner-list' wx:if="{{bannerList.length}}" indicatorDots circular autoplay indicatorActiveColor="rgba(255,255,255,.6)" indicatorColor="rgba(255,255,255, .8)">
+<swiper class='banner-list' wx:if="{{bannerList.length}}" indicatorDots circular autoplay indicatorActiveColor="rgba(255,255,255,.6)" indicatorColor="rgba(255,255,255, .8)" duration="{{200}}">
 	<swiper-item class='item' wx:for="{{bannerList}}" wx:key="index" bindtap="goBannerUrl" data-item="{{item}}">
 		<image class="img" mode='aspectFill' src="{{item.picture}}" />
 	</swiper-item>
