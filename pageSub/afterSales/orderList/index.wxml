@@ -13,13 +13,13 @@
       </view>
       <view class="flex-row-center state-line">
         <view>退款：￥{{filter.filterMoney(order.orderInfo.buy_price * order.orderInfo.buy_num)}}</view>
-        <view>{{['已申请售后', '售后审核中', '售后审核通过', '售后审核不通过'][order.postsaleInfo.status - 1]}}</view>
+        <view wx:if="{{order.postsaleInfo.express_no}}">已填写快递单号</view>
       </view>
     </view>
     <view class="tool-bar flex-box">
       <van-button color="#666" plain round size="small" bindtap="goDetail" data-item="{{order}}">查看详情
       </van-button>
-      <van-button wx:if="{{order.postsaleInfo.status == 3}}" color="#666" plain round size="small" bindtap="returnGoods" data-item="{{order}}">填写退货单
+      <van-button wx:if="{{order.postsaleInfo.status == 3 && !order.postsaleInfo.express_no}}" color="#666" plain round size="small" bindtap="returnGoods" data-item="{{order}}">填写退货单
       </van-button>
     </view>
   </view>
