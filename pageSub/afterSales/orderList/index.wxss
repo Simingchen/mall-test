@@ -46,6 +46,7 @@ page {
 
 .order-item .primary {
   font-size: 26rpx;
+  color:#ee0a24;
 }
 
 .order-item .goods {
@@ -97,4 +98,22 @@ page {
 /* 我的订单 e ========== */
 .tool-bar .van-button{
   margin: 0 10rpx;
+}
+.pay-pop-tit{
+  line-height: 100rpx;
+}
+.pay-pop-btn{
+  margin-top: 40rpx;
+}
+.bot van-button{
+  width: 95%!important;
+}
+.bot1{
+  padding: 20rpx 0;
+}
+.bot1 van-button{
+  width: 95%!important;
+}
+.pop-tit{
+  line-height: 100rpx;
 }

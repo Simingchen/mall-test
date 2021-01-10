@@ -37,7 +37,6 @@ Page({
     payPassword: ''
   },
   async onLoad(options) {
-    console.log(options.is_fx)
     this.setData({
       curTabType: parseInt(options.index) || 0,
       is_fx: options.is_fx || ''
@@ -99,7 +98,6 @@ Page({
     }).then(res => {
       curTab.page.page++
 
-      console.log(curTab.page.page)
       this.loading = false
 
       res.data.forEach(item => {
@@ -112,8 +110,6 @@ Page({
         ['curTab.isEmpty']: ![...curTab.list, ...res.data].length,
         ['curTab.list[' + (curTab.page.page - 2) + ']']: res.data,
         ['curTab.loadStatus']: res.data.length < 10 ? 'noMore' : 'loading'
-      }, () => {
-        console.log(this.data.curTab.page)
       })
     }).catch(err => {
       this.setData({
