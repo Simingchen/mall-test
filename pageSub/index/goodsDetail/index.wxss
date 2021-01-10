@@ -270,3 +270,6 @@ page {
 .wxParse-img{
   display: flex;
 }
+.tip-cell .van-cell__title{
+  flex: none;
+}

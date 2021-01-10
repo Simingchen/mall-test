@@ -9,7 +9,7 @@
 </swiper>
 <image class="banner-img" wx:if="{{!detail.albums.length}}" mode="aspectFill" src="{{detail.picture}}"></image>
 <view>
-  <van-notice-bar wx:if="{{detail.jxs_price && detail.jxs_price > 0}}" left-icon="volume-o" text="经销商购买{{detail.jxs_low_num}} 件以上，可享受每件 ￥{{detail.jxs_price}} 优惠！！！！" />
+  <!-- <van-notice-bar wx:if="{{detail.jxs_price && detail.jxs_price > 0}}" left-icon="volume-o" text="经销商购买{{detail.jxs_low_num}} 件以上，可享受每件 ￥{{detail.jxs_price}} 优惠！！！！" /> -->
   <view class="flex-box">
     <view class="goods-name">{{detail.name}}</view>
     <view class="share flex-center" bindtap="setPoster">
@@ -21,11 +21,12 @@
     <view class="flex-start">
       <view class="price">
         <text class="currency">￥</text>{{realPrice}}
+        <text wx:if="{{detail.jxs_low_num > 0}}" style="color:#999;margin-left: 20rpx;font-size:24rpx;">最低购买数{{detail.jxs_low_num}}件</text>
       </view>
     </view>
     <!-- <view class="count">销量 {{detail.fields.sales}}</view> -->
   </view>
-  <van-cell title="商品保障" value="支持7天内无理由退货" border="{{false}}"></van-cell>
+  <van-cell custom-class="tip-cell" title="商品保障" value="商品包邮并支持7天内无理由退货" border="{{false}}"></van-cell>
   <!-- <view class="time-box flex-start" wx:if="{{detail.channel_id == 11}}">
       <view class="txt">倒计时：</view>
       <van-progress custom-class="process" percentage="{{detail.percentDay}}" color="#ff0000" pivot-color="#ff0000" stroke-width="26rpx"
@@ -54,7 +55,7 @@
     <!-- 团购不能加入购物车 -->
     <!-- <van-goods-action-button text="加入购物车" type="warning" bind:click="toggleSku" data-type="1" wx:if="{{detail.channel_id != 11}}"/> -->
     <view style="padding: 10px 0px 10px 20px;margin-right: 100rpx;">
-      <van-stepper v-model="buyNum" min="1" max="{{detail.sku}}" integer bind:change="changeGoodsNum" />
+      <van-stepper v-model="buyNum" min="{{detail.jxs_low_num ? detail.jxs_low_num : 1}}" max="{{detail.sku}}" integer bind:change="changeGoodsNum" />
     </view>
     <van-goods-action-button text="立即购买" bind:click="confirmSku" data-type="2" />
   </van-goods-action>

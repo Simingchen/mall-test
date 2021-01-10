@@ -80,8 +80,10 @@ Page({
   },
   setInfo (detail) {
     
+    
     this.setData({ 
       detail,
+      quality: detail.jxs_low_num > 0 ? detail.jxs_low_num : 1,   // 经销商取最低购买数
       realPrice: detail.price
     })
     if (detail.msg) {
@@ -227,8 +229,9 @@ Page({
     // this.setData({
     //   isShowSku: !this.data.isShowSku
     // }) 
-    const { detail, quality, userInfo } = this.data
-    if (quality > detail.sku) {
+    const { detail, quality } = this.data
+    
+    if (parseFloat(quality) > parseFloat(detail.sku)) {
       return app.toast('库存不足')
     }   
 

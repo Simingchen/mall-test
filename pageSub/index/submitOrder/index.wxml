@@ -64,7 +64,7 @@
       <van-cell-group border="{{false}}">
         <van-cell title="{{item.name + ' ' + item.mobile}}"
           label="{{curAddress.province +curAddress.city +curAddress.district + curAddress.remark}}"
-          wx:for="{{addrlist}}" wx:key="{{item.id}}" clickable data-name="{{item.id}}" bind:click="onClickAddr" center>
+          wx:for="{{addrlist}}" wx:key="id" clickable data-name="{{item.id}}" bind:click="onClickAddr" center>
           <van-radio slot="right-icon" name="{{item.id}}" checked-color="#00a5a5" icon-size="18px"/>
         </van-cell>
       </van-cell-group>
