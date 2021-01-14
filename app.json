@@ -46,6 +46,7 @@
         "withdraw/index",
         "withdrawList/index",
         "cardList/index",
+        "tranList/index",
         "cardEdit/index"
       ]
     },

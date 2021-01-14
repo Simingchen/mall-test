@@ -1,0 +1,22 @@
+<wxs module="filter" src="../../../filter.wxs"></wxs>
+<view class="tab-list">
+  <van-tabs custom-class="tab-list" active="{{ curTabType }}" bind:change="tabsChange">
+    <van-tab title="{{item.name}}" wx:for="{{tabList}}" wx:key="index"></van-tab>
+  </van-tabs>
+</view>
+<!-- <van-notice-bar left-icon="volume-o" text="到账金额将扣除千分之六的手续费，具体到账时间视后台人工审核及银行到账时间而定，详情可联系客服！" /> -->
+<view class="goods-list">
+  <block wx:for="{{curTab.list}}" wx:key="index">
+    <view class="goodsCard" wx:for="{{item}}" wx:key="index" wx:for-item="goods" bindtap1="goUrl" data-item="{{goods}}">
+      <van-cell value="￥{{filter.filterMoney(goods.money)}}" center>
+        <view slot="title">
+          <view class="van-cell-text" style="font-size:32rpx;">{{goods.type_name}}</view>
+          <!-- <view class="c9">提现额度：￥{{goods.money}}</view> -->
+          <view class="time c9">{{goods.post_date}}</view>
+        </view>
+      </van-cell>
+    </view>
+  </block>
+</view>
+<!-- 加载状态 -->
+<loading status="{{curTab.loadStatus}}" isEmpty="{{curTab.isEmpty}}" />

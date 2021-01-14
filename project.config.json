@@ -208,6 +208,12 @@
         {
           "name": "库存列表",
           "pathName": "pageSub/mine/stockList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "钱包明细",
+          "pathName": "pageSub/wallet/tranList/index",
           "scene": null
         }
       ]
