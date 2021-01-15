@@ -79,12 +79,10 @@ Page({
     clearTimeout(this.timer)
   },
   setInfo (detail) {
-    
-    
     this.setData({ 
       detail,
       quality: detail.jxs_low_num > 0 ? detail.jxs_low_num : 1,   // 经销商取最低购买数
-      realPrice: detail.price
+      realPrice: detail.jxs_price > 0 ? detail.jxs_price : detail.price,
     })
     if (detail.msg) {
       wxparse.wxParse('content', 'html', detail.msg, this, 5)
