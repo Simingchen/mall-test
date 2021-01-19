@@ -98,8 +98,8 @@
 		<van-cell title="关于我们" border="{{false}}"></van-cell>
 		<view class="tool-list flex-box">
 			<view class="item flex-start" bindtap="goUrl" data-url="/pageSub/mine/aboutUs/index" data-islink="{{true}}">
-				<view class="iconfont">
-					<image src="../../static/logo1.jpg" class="img" mode="aspectFill"></image>
+				<view class="iconfont logo">
+					<image src="../../static/logo1.png" class="img" mode="aspectFill"></image>
 				</view>
 				<view class="txt">丽合三生</view>
 			</view>
