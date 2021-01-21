@@ -59,7 +59,7 @@ export default function fetch(options) {
             return false
           }
 
-          resolve(response.data || response)
+          resolve(response.data)
         },
         fail(err) {
           console.error(err)

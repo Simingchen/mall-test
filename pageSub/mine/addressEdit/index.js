@@ -60,7 +60,6 @@ Page({
     detail
   }) {
     this.togglePop()
-    console.log(detail.values)
     const address = detail.values
     this.setData({
       areaValues: address,
@@ -118,7 +117,8 @@ Page({
       let par = {
         "uid": app.globalData.userInfo.id,
       }
-      const addressList = await app.fetch({url: "Api/Address/address_list", data: par })
+      let resA = await app.fetch({url: "Api/Address/address_list", data: par })
+      const addressList = resA|| []
       const templist = addressList.filter(item => item.is_default > 0)
 
       if (templist.length) {

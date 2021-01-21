@@ -117,8 +117,8 @@ Page({
   let data = {
     "uid": app.globalData.userInfo.id,
   }
-  const res = await app.fetch({url: "Api/Address/address_list", data })
-
+  let res1 = await app.fetch({url: "Api/Address/address_list", data })
+  let res = res1 || []
   const defaultList = res.filter(item => item.is_default > 0)
   // 没有默认地址选着第一个
   let curAddress = !defaultList.length ? curAddress = res[0] : defaultList[0]
@@ -198,7 +198,9 @@ Page({
   // 提交订单
   async onSubmit () {
     const { curAddressRadio, detail, message, curExpressRadio, curPayRadio, userInfo, checkPay} = this.data
-
+    if (!curAddressRadio) {
+      return app.toast('请添加地址~')
+    }
     // 余额支付检查是否满足支付条件
     if (curPayRadio == 2) {
       if (!checkPay.IsEnoughPay) {
