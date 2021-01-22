@@ -41,7 +41,10 @@ Page({
       curTabType: parseInt(options.index) || 0,
       is_fx: options.is_fx || ''
     }, () => {
-      this.getList(true)
+      // edit curTabType will invoke tabsChnge
+      if (parseInt(options.index) == 0) {
+        this.getList(true)
+      }
     });
 
     wx.setNavigationBarTitle({

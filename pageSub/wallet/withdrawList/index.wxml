@@ -11,6 +11,7 @@
       <van-cell value="+ ￥{{filter.filterMoney(goods.money - goods.fee)}}" center>
         <view slot="title">
           <view class="van-cell-text" style="font-size:32rpx;">提现卡 {{goods.card}}</view>
+          <view class="c9">提现状态：{{['待转账', '已转账'][goods.is_cashOut]}}</view>
           <view class="c9">提现额度：￥{{goods.money}}</view>
           <view class="c9">扣除手续费：￥{{goods.fee}}</view>
           <view class="time c9">{{goods.post_date}}</view>
