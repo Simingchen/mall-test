@@ -56,3 +56,27 @@ export function circleImg(ctx, img, x, y, r) {
 
 } 
 
+// img cover view
+export function coverImg(width, height, canvasRatio) {
+  // 实现 cover 效果
+  let imgRatio = width / height;
+  let sw = 0
+  let sh = 0
+  let sx = 0
+  let sy = 0
+　　if(imgRatio <= canvasRatio){
+　　　　sw = width
+　　　　sh = sw / canvasRatio
+　　　　sx = 0
+　　　　sy = (height - sh) / 2
+　　}else{
+　　　 sh = height
+　　　　sw = sh * canvasRatio
+　　　　sx = (width - sw) / 2
+　　　　sy = 0
+　　}
+  return {
+    sw, sh, sx, sy
+  }
+} 
+

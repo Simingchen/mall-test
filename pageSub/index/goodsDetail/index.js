@@ -1,7 +1,7 @@
 const app = getApp()
 const regeneratorRuntime = app.runtime
 let wxparse = require("../../../wxParse/wxParse.js");
-import {roundRectColor, circleImg} from "../../../utils/util.js"
+import {roundRectColor, circleImg, coverImg} from "../../../utils/util.js"
 Page({
   data: {
     detail: {},
@@ -311,8 +311,9 @@ Page({
     img1.src = this.data.detail.banner
 
     img1.onload = async (res) => {
-      // console.log(res)
-      ctx.drawImage(img1, 28, 68, 235, 235, 28, 68, 235, 235)
+      // 实现 cover 效果
+      let imgDta = coverImg(img1.width, img1.height, 235 / 235)　
+  　　ctx.drawImage(img1, imgDta.sx, imgDta.sy, imgDta.sw, imgDta.sh, 28, 68, 235, 235)
 
       // 设置字体
       ctx.font = "14px Arial";

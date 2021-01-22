@@ -1,6 +1,6 @@
 const app = getApp()
 const regeneratorRuntime = app.runtime
-import {roundRectColor, circleImg} from "../../../utils/util.js"
+import {roundRectColor, circleImg, coverImg} from "../../../utils/util.js"
 Page({
   data: {
     searchTxt: '',
@@ -229,24 +229,9 @@ Page({
 
     img1.onload = async (res) => {
       // 实现 cover 效果
-      let imgRatio = img1.width / img1.height;
-      let canvasRatio = 235 / 235
-      let sw = 0
-      let sh = 0
-      let sx = 0
-      let sy = 0
-  　　if(imgRatio <= canvasRatio){
-  　　　　sw = img1.width
-  　　　　sh = sw / canvasRatio
-  　　　　sx = 0
-  　　　　sy = (img1.height - sh) / 2
-  　　}else{
-  　　　 sh = img1.height
-  　　　　sw = sh * canvasRatio
-  　　　　sx = (img1.width - sw) / 2
-  　　　　sy = 0
-  　　} 　　
-  　　ctx.drawImage(img1, sx, sy, sw, sh, 28, 68, 235, 235)
+      let imgDta = coverImg(img1.width, img1.height, 235 / 235)　
+  　　ctx.drawImage(img1, imgDta.sx, imgDta.sy, imgDta.sw, imgDta.sh, 28, 68, 235, 235)
+     
       // ctx.drawImage(img1, 28, 68, 235, 235, 28, 68, 235, 235)
 
       // 设置字体
