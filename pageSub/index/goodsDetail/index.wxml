@@ -1,7 +1,7 @@
 <wxs module="filter" src="../../../filter.wxs"></wxs>
 <import src="../../../wxParse/wxParse.wxml" />
 <swiper class='index-swipe' wx:if="{{detail.albums.length}}" indicatorDots circular
-  indicatorActiveColor="rgba(255,255,255,.6)" indicatorColor="rgba(255,255,255, .8)" bindchange="swiperChange">
+  indicatorActiveColor="rgba(255,255,255,.6)" indicatorColor="rgba(255,255,255, .8)">
   <swiper-item class='item' wx:for="{{detail.albums}}" wx:key="index">
     <video class="video" wx:if="{{item.video_src}}" src="{{item.video_src}}"></video>
     <image wx:else class="img" mode='aspectFill' src="{{item.original_path}}" />
@@ -26,7 +26,7 @@
     </view>
     <!-- <view class="count">销量 {{detail.fields.sales}}</view> -->
   </view>
-  <van-cell custom-class="tip-cell" title="商品保障" value="商品包邮并支持7天内无理由退货" border="{{false}}"></van-cell>
+  <van-cell custom-class="tip-cell" title="商品保障" value="商品包邮并支持7天内无理由退货" border="{{false}}" is-link bind:click="openTipsPop"></van-cell>
   <!-- <view class="time-box flex-start" wx:if="{{detail.channel_id == 11}}">
       <view class="txt">倒计时：</view>
       <van-progress custom-class="process" percentage="{{detail.percentDay}}" color="#ff0000" pivot-color="#ff0000" stroke-width="26rpx"
@@ -49,19 +49,19 @@
 
   <!-- 底部栏 -->
   <van-goods-action>
-    <!-- <van-goods-action-icon icon="chat-o" text="客服" open-type="contact" /> -->
     <!-- <van-goods-action-icon icon="cart-o" text="购物车" url="/pages/cart/index" link-type='switchTab' info="{{cartNum || ''}}"/>
     <van-goods-action-icon icon="{{detail.is_collect ? 'star': 'star-o'}}" text="{{detail.is_collect ? '已收藏': '收藏'}}" bind:click="onCollect" wx:if="{{detail.channel_id==2}}"/> -->
     <!-- 团购不能加入购物车 -->
     <!-- <van-goods-action-button text="加入购物车" type="warning" bind:click="toggleSku" data-type="1" wx:if="{{detail.channel_id != 11}}"/> -->
-    <view style="padding: 10px 0px 10px 20px;margin-right: 100rpx;">
+    <view style="padding: 10px 0px 10px 20px;margin-right: 20rpx;">
       <van-stepper v-model="buyNum" min="{{detail.jxs_low_num ? detail.jxs_low_num : 1}}" max="{{detail.sku}}" integer bind:change="changeGoodsNum" />
     </view>
+    <van-goods-action-icon icon="chat-o" text="客服" open-type="contact" />
     <van-goods-action-button text="立即购买" bind:click="confirmSku" data-type="2" />
   </van-goods-action>
 
   <!-- sku -->
-  <van-popup show="{{isShowSku}}" round closeable position="bottom" bind:close="toggleSku">
+  <!-- <van-popup show="{{isShowSku}}" round closeable position="bottom" bind:close="toggleSku">
     <view class="sku-pop">
       <view class="sku-goods flex-box">
         <image class="sku-img" mode="aspectFill" src="{{detail.banner}}" bindtap="prewiewSkuImg" />
@@ -69,7 +69,6 @@
           <view class="price">
             ￥{{filter.filterMoney(detail.price)}}
           </view>
-          <!-- 有SKU 才有选择显示 -->
           <block wx:if="{{skuList.length}}">
             <block wx:if="{{skuList.length}}">
               <block wx:if="{{!curSku.sku0.spec_id && !curSku.sku1.spec_id}}">
@@ -82,7 +81,6 @@
           </block>
         </view>
       </view>
-      <!-- sku 列表 -->
       <view wx:for="{{skuList}}" wx:key="index" wx:for-index="itemIndex">
         <view class="sku-type sku-stand-list">
           <view class="tit">{{item.title}}</view>
@@ -105,14 +103,35 @@
       </view>
       <van-button block round type="danger" bindtap="confirmSku">确定</van-button>
     </view>
-  </van-popup>
+  </van-popup> -->
 </view>
+<van-popup show="{{ isShowTips }}" bind:close="onCloseTips" round closeable>
+  <view class="tips-box">
+    <view class="tit flex-center">退换货规则</view>
+    <view class="con">
+      一、消费者在本平台购物，签收货物后7天内，如因“不喜欢/不想要了”等主观原因不愿意完成本次交易
+      <view>1.可以提出“7天无理由退换货”的申请（部分商品及类目除外）</view>
+      <view>2.买家退的货物不得影响二次销售</view>
+
+      二、申请时间
+      <view>1.买家需在签收商品之时起7天内（按照物流签收时间起计算时间，满168小时为7天）提出申请</view>
+
+      三、运费说明
+      <view>1.提供无理由退货服务的商品，买家以无理由形式退货或拒签的，来回运费均由买家承担。若商品提供包邮服务，买家仅承担退货运费</view>
+      <view>2.如果是商品质量问题，收到的货物与网上描述不符而导致的退货，退货费用则应由卖家承担</view>
+
+      四、其他说明
+      <view>1.申请金额仅以买家实际支付的商品价款为限</view>
+      <view>2.买家的赔付申请在形式上符合相关法律法规的规定</view>
+    </view>
+  </view>
+</van-popup>
 <!-- 分享 -->
 <!-- isShowShare -->
 <view class='share1' wx:if="{{isShowShare}}" catchtouchmove="ture">
   <view class="mask" bindtap='closeShare'></view>
   <view class='share-moment'>
-    <canvas type="2d" id="canvas" canvas-id="shareCanvas" class="canvas" style="width: 580rpx; height: 936rpx;"></canvas>
+    <canvas type="2d" id="canvas" canvas-id="shareCanvas" class="canvas" style="height: 936rpx;"></canvas>
     <view class="iconfont iconshanchu" bindtap='closeShare'></view>
   </view>
 </view>

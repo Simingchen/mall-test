@@ -32,7 +32,8 @@
 <view class='share1' wx:if="{{isShowShare}}" catchtouchmove="ture">
   <view class="mask" bindtap='closeShare'></view>
   <view class='share-moment'>
-    <canvas type="2d" id="canvas" canvas-id="shareCanvas" class="canvas" style="width: 580rpx; height: 896rpx;"></canvas>
+    <!-- width: 580rpx; height: 896rpx; -->
+    <canvas type="2d" id="canvas" canvas-id="shareCanvas" class="canvas" style="height: 896rpx;"></canvas>
     <view class="iconfont iconshanchu" bindtap='closeShare'></view>
   </view>
 </view>

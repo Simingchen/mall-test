@@ -22,6 +22,7 @@ Page({
     qrCode: '',
     userInfo: {},
     realPrice: 0,   // 实际价格
+    isShowTips: false,
   },
   async onLoad (option) {
     console.log(option)
@@ -78,6 +79,16 @@ Page({
   onUnload () {
     clearTimeout(this.timer)
   },
+  openTipsPop() {
+    this.setData({
+      isShowTips: true
+    })
+  },
+  onCloseTips(){
+    this.setData({
+      isShowTips: false
+    })
+  },
   setInfo (detail) {
     this.setData({ 
       detail,
@@ -87,11 +98,6 @@ Page({
     if (detail.msg) {
       wxparse.wxParse('content', 'html', detail.msg, this, 5)
     }
-  },
-  swiperChange ({detail}) {
-    // console.log(detail)
-    // if (detail.current != 0) {
-    // }
   },
   async getData (par) {
     const data = {
@@ -270,8 +276,10 @@ Page({
     let that = this;
 
     // 创建画布
-    const width = res[0].width
-    const height = res[0].height
+    // const width = res[0].width
+    // const height = res[0].height
+    const width = 290
+    const height = 468
 
     const canvas = res[0].node
     const ctx = canvas.getContext('2d')
@@ -301,7 +309,7 @@ Page({
     }
 
     // 红色背景
-    roundRectColor(ctx, 0, 0, 290, 468, 18, "#fc7b51")
+    roundRectColor(ctx, 0, 0, width, height, 18, "#fc7b51")
 
     // 变色背景
     roundRectColor(ctx, 15, 57, 260, 395, 18, "#fff")

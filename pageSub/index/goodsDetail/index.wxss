@@ -273,3 +273,15 @@ page {
 .tip-cell .van-cell__title{
   flex: none;
 }
+.tips-box{
+  width: 690rpx;
+  padding: 0 20rpx 60rpx 30rpx;
+  line-height: 52rpx;
+}
+.tips-box .tit{
+  height: 100rpx;
+}
+.tips-box .con{
+  height: 860rpx;
+  overflow: auto;
+}

@@ -42,7 +42,7 @@ Page({
       is_fx: options.is_fx || ''
     }, () => {
       // edit curTabType will invoke tabsChnge
-      if (parseInt(options.index) == 0) {
+      if (this.data.curTabType == 0) {
         this.getList(true)
       }
     });

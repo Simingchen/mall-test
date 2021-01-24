@@ -181,14 +181,15 @@ Page({
         .exec(this.setPoster2.bind(this))
     })
   },
-  
-  setPoster2(res) {
+  async setPoster2(res) {
     // console.log(res)
     let that = this;
 
     // 创建画布
-    const width = res[0].width
-    const height = res[0].height
+    // const width = res[0].width
+    // const height = res[0].height
+    const width = 290
+    const height = 448
 
     const canvas = res[0].node
     const ctx = canvas.getContext('2d')
@@ -197,6 +198,8 @@ Page({
     canvas.width = width * dpr
     canvas.height = height * dpr
     ctx.scale(dpr, dpr)
+
+    // console.log(width, dpr)
 
     // 顶部头像
     const userInfo = app.globalData.userInfo || {}
@@ -218,7 +221,7 @@ Page({
     }
 
     // 红色背景
-    roundRectColor(ctx, 0, 0, 290, 448, 18, "#00a5a5")
+    roundRectColor(ctx, 0, 0, width, height, 18, "#00a5a5")
 
     // 变色背景
     roundRectColor(ctx, 15, 57, 260, 375, 18, "#fff")
@@ -226,6 +229,9 @@ Page({
     // 主图
     let img1 = canvas.createImage();
     img1.src = this.data.curItem.picture
+
+    // const t = await this.compressImage(this.data.curItem.picture)
+    // console.log(t)
 
     img1.onload = async (res) => {
       // 实现 cover 效果
@@ -329,4 +335,21 @@ Page({
     })
     wx.hideLoading()
   },
+  compressImage(picture) {
+    console.log(picture)
+    return new Promise((resolve, reject) => {
+      wx.compressImage({
+        src: picture, // 图片路径
+        quality: 80, // 压缩质量
+        success: function(res) {
+          console.log(res)
+          resolve(res)
+        },
+        fail(res) {
+          console.log(res)
+          resolve(res)
+        }
+      })
+    })
+  }
 });

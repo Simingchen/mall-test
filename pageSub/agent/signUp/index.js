@@ -29,17 +29,17 @@ Page({
     await app.fetch({ url: "Api/user/upJxs", data })
 
     // 更改用户状态
-    app.globalData.userInfo.type = 2
+    // app.globalData.userInfo.type = 2
 
-    wx.setStorageSync("userInfo", app.globalData.userInfo);
+    // wx.setStorageSync("userInfo", app.globalData.userInfo);
 
-    app.toast('签署成功')
+    app.toast('请耐心等待等待客服人员审核通过，或主动联系客服人员处理（【我的】--【我的咨询】即可联系客服）')
 
     setTimeout(() => {
       wx.navigateBack({
         delta: 1,
       })
-    }, 500)
+    }, 1000)
   },
   // 下载文件
   openFile: app.throttle(function () { //节流

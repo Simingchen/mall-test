@@ -44,7 +44,7 @@ Page({
   },
   // 获取退款原因
   async getReasonList() {
-    var list = { "list": [{ "key": 1, "value": "不想要或拍多" }, { "key": 2, "value": "商品信息拍错（规格/尺码/颜色等）" }, { "key": 3, "value": "地址/电话信息填写错误" }, { "key": 4, "value": "退货纠纷" }] }
+    var list = { "list": [{ "key": 1, "value": "不想要或拍多" }, { "key": 2, "value": "商品信息拍错（规格/尺码/颜色等）" }, { "key": 3, "value": "地址/电话信息填写错误" }, { "key": 4, "value": "退货纠纷" }, { "key": 5, "value": "其他" }] }
           
     this.setData({
       reasonList: list.list
@@ -215,10 +215,12 @@ Page({
     console.log(data)
     await app.fetch({url: "Api/Order/postsale", data})
     
-    app.toast('提交成功，平台会第一时间处理')
+    app.toast('提交成功')
 
-    wx.redirectTo({
-      url: '/pageSub/afterSales/orderList/index',
-    })
+    setTimeout(() => {
+      wx.redirectTo({
+        url: '/pageSub/afterSales/orderList/index',
+      })
+    }, 1000)
   },
 });
