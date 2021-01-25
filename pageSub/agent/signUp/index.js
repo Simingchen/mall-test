@@ -1,5 +1,6 @@
 const app = getApp()
 const regeneratorRuntime = app.runtime
+import Dialog from '../../../@vant/dialog/dialog';
 Page({
   data: {
     detail: {},
@@ -33,13 +34,15 @@ Page({
 
     // wx.setStorageSync("userInfo", app.globalData.userInfo);
 
-    app.toast('请耐心等待等待客服人员审核通过，或主动联系客服人员处理（【我的】--【我的咨询】即可联系客服）')
-
-    setTimeout(() => {
+    Dialog.alert({
+      title: '提示',
+      message: '请耐心等待客服人员审核通过，或主动联系客服人员处理（【我的】--【我的咨询】即可联系客服）',
+      theme: 'round-button',
+    }).then(() => {
       wx.navigateBack({
         delta: 1,
       })
-    }, 1000)
+    });
   },
   // 下载文件
   openFile: app.throttle(function () { //节流

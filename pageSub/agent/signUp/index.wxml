@@ -18,3 +18,4 @@
     确认签署代表同意协议信息
   </view>
 </van-submit-bar>
+<van-dialog id="van-dialog" />

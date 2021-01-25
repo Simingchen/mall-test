@@ -1,10 +1,12 @@
-<import src="../../../wxParse/wxParse.wxml"/> 
+<!-- <import src="../../../wxParse/wxParse.wxml"/>  -->
 <!-- <view class="title">{{detail.title}}</view>
 <view class="time-box flex-row-center">
   <view class="time">{{detail.post_date_formal}}</view>
 </view> -->
-<view class="content">
-  <!-- <image mode="aspectFill" class="banner" src="{{detail.banner}}">
-    </image> -->
+<!-- <view class="content">
   <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
-</view>
+</view> -->
+<image mode="aspectFill" class="banner" style="height: 600rpx;" src="../../../static/about/1.png"/>
+<image mode="aspectFill" class="banner" style="height: 630rpx;" src="../../../static/about/2.png"/>
+<image mode="aspectFill" class="banner" style="height: 560rpx;" src="../../../static/about/3.png"/>
+<image mode="aspectFill" class="banner" style="height: 602rpx;" src="../../../static/about/4.png"/>

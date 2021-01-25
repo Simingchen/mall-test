@@ -5,6 +5,7 @@
     "van-field": "../../../@vant/field/index",
     "van-cell": "../../../@vant/cell/index",
     "van-submit-bar": "../../../@vant/submit-bar/index",
-    "van-checkbox": "../../../@vant/checkbox/index"
+    "van-checkbox": "../../../@vant/checkbox/index",
+    "van-dialog": "../../../@vant/dialog/index"
   }
 }
