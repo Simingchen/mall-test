@@ -11,6 +11,7 @@
       </view>
       <view>{{item.phone}}</view>
     </view>
+    
     <view class="flex-row-center" style="margin-top:20rpx;color:#999">
       <view class="time">{{item.post_date}}</view>
       <view>

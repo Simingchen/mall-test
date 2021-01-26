@@ -1,29 +1,18 @@
 <block wx:if="{{loadStatus != 'empty'}}">
   <import src="../../../wxParse/wxParse.wxml"/> 
-  <image class="banner" mode="aspectFill" wx:if="{{detail.banner_url}}" src="{{detail.banner_url}}"/>
+  <!-- <image class="banner" mode="aspectFill" wx:if="{{detail.banner_url}}" src="{{detail.banner_url}}"/> -->
   <view class="top-box">
     <view class="title">{{detail.title}}</view>
-    <view class="desc" wx:if="{{detail.synopsis}}">{{detail.synopsis}}</view>
-    <view class="tag-box">
+    <view class="desc" wx:if="{{detail.synopsis}}" style="padding: 10rpx 0">{{detail.synopsis}}</view>
+    <view class="tag-box flex-row-center">
       <view class="item">第 {{detail.num}} 期</view>
+      <view class="time c9">{{detail.post_date}}</view>
     </view>
     <!-- <view class="sub-tit flex-box">
       <view class="item" wx:if="{{detail.ClickNumber > config.ClickShowNumber}}">查看：{{detail.ClickNumber}}</view>
       <view class="item" wx:if="{{detail.CollectNumber > config.CollectShowNumber}}">收藏：{{detail.CollectNumber}}</view>
       <view class="item" wx:if="{{detail.ShareNumber > config.ShareShowNumber}}">分享：{{detail.ShareNumber}}</view>
     </view> -->
-  </view>
-  <view class="time-box flex-row-center">
-    <view class="company c9">
-      <!-- <image class="logo" src=""></image> -->
-    </view>
-    <view class="time c9">{{detail.post_date}}</view>
-  </view>
-  <view class="btns flex-row-center">
-    <view class="btn {{detail.huodong_status == 2? 'disabled' : ''}}" bindtap="signUp">
-      {{['未开始',(detail.is_baoming == 0 ? '开始报名' : '已报名'), '已结束'][detail.huodong_status]}}
-    </view>
-    <!-- <view class="btn collect {{detail.IsCollect ? 'diasbled' : ''}}" bindtap="collect">{{detail.IsCollect ? '已收藏' : '收藏活动'}}</view> -->
   </view>
   <view class="event-info">
     <view class="line">
@@ -33,6 +22,12 @@
   </view>
   <view class="content">
     <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+  </view>
+  <view style="height:130rpx"></view>
+  <view class="bottom-btn">
+    <van-button custom-class="add-btn {{detail.huodong_status == 2? 'disabled' : ''}}" block round bind:click="signUp" color="#00a5a5">
+      {{['未开始',(detail.is_baoming == 0 ? '开始报名' : '已报名'), '已结束'][detail.huodong_status]}}
+    </van-button>
   </view>
 
   <!-- 分享 -->

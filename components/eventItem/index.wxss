@@ -11,7 +11,7 @@
   border:0;
 } */
 .event-item .img{
-  width: 700rpx;
+  width: 670rpx;
   height: 240rpx;
   background: #eee;
 }

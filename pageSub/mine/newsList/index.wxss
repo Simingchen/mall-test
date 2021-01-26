@@ -50,7 +50,7 @@ page {
 	-webkit-box-orient: vertical;
 }
 .time-box{
-  padding: 30rpx 16px;
+  margin: 30rpx 16px;
   color:#999;
 }
 .img{

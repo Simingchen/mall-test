@@ -107,6 +107,7 @@ page{
 .tag-box{
   display: flex;
   padding-top: 20rpx;
+  margin-bottom: 10rpx;
 }
 .tag-box .item{
   line-height: 50rpx;
@@ -114,7 +115,6 @@ page{
   color:#0595f6;
   border-radius: 6rpx;
   margin-right: 28rpx;
-  margin-bottom: 28rpx;
   border: 2rpx solid #0595f6;
 }
 
@@ -142,7 +142,6 @@ page{
 }
 .event-info .line{
   display: flex;
-  margin-bottom: 40rpx;
   line-height: 40rpx;
 }
 .event-info .line .lab{
@@ -170,4 +169,11 @@ page{
   padding: 40px;
   text-align: center;
   color:#999;
+}
+.bottom-btn{
+  position: fixed;
+  bottom:0;
+  padding: 20rpx;
+  width: 100%;
+  background: #fff;
 }

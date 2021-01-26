@@ -16,10 +16,34 @@
     分享码
   </view>
 </view>
-<view class="panel">
+<!-- <view class="panel">
   <van-cell title="业务员列表" is-link url="/pageSub/salesman/menList/index"/>
-  <!-- <van-cell title="业务员申请" is-link url="/pageSub/salesman/apply/index"></van-cell> -->
-</view>
+  <van-cell title="业务员申请" is-link url="/pageSub/salesman/apply/index"></van-cell>
+</view> -->
+<block wx:for="{{curTab.list}}" wx:key="index" wx:for-item="items">
+  <view class="order-item panel" wx:for="{{items}}" wx:key="id">
+    <view class="flex-row-center">
+      <view class="user-info flex-box">
+        <image class="img" mode="aspectFill" src="{{item.headimg}}" />
+        <view class="name">
+          {{item.name}}
+          <view class="type" style="margin-top:10rpx;font-size:24rpx;color:#ccc">{{['普通用户', '经销商'][item.type -1]}}</view>
+        </view>
+      </view>
+      <view>{{item.phone}}</view>
+    </view>
+    
+    <view class="flex-row-center" style="margin-top:20rpx;color:#999">
+      <view class="time">{{item.post_date}}</view>
+      <view>
+        <van-button round size="mini" style="margin-right:10rpx;" bindtap="goUrl" data-item="{{item}}">跟进</van-button>
+        <!-- <van-button round size="mini">详情</van-button> -->
+      </view>
+    </view>
+  </view>
+</block>
+<!-- 加载状态 -->
+<loading status="{{curTab.loadStatus}}" isEmpty="{{curTab.isEmpty}}" />
 
 <van-popup show="{{ isShowShare }}" bind:close="closeShare" round closeable close-icon="close" z-index="{{101}}">
 	<view class='share-moment flex-center'>
