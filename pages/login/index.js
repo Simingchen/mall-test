@@ -8,6 +8,7 @@ Page({
     wxUserInfo: {}, // 微信授权登陆用户信息
     loginCode: "", // 登陆code
     loginRes: {},
+    phoneNumber: "",
   },
   async onShow() {
     let loginRes = await wx.login({});
@@ -22,6 +23,24 @@ Page({
       }
     );
   },
+  async getPhoneNumber({ detail }) {
+    console.log(detail);
+    if (detail.errMsg == "getUserInfo:fail auth deny") {
+      app.toast("用户取消授权");
+      return false;
+    }
+
+    const par = {
+      sessionKey: this.data.loginRes.session_key,
+      encryptedData: detail.encryptedData,
+      iv: detail.iv
+    }
+    const res1 = await app.fetch({ url: `Api/api/decryptData`, data: par });
+
+    this.setData({
+      phoneNumber: JSON.parse(res1).phoneNumber
+    })
+  },
   //获取用户信息
   async onGetUserInfo({ detail }) {
     console.log(detail);
@@ -35,7 +54,8 @@ Page({
       nickname: detail.userInfo.nickName, 
       headimg: detail.userInfo.avatarUrl, 
       openid: this.data.loginRes.openid,
-      promoter_user_id: wx.getStorageSync('ICode') || ""
+      promoter_user_id: wx.getStorageSync('ICode') || "",
+      phone: this.data.phoneNumber
       // unionid
     };
 
@@ -76,6 +96,7 @@ Page({
       url: "Api/Api/getOpenId",
       data
     })
+    // console.log(res)
     this.setData({
       loginRes: res,
     });
