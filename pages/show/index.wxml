@@ -1,8 +1,13 @@
-<image class="img" src="../../static/s1.jpg" mode="aspectFill" style="height: 1066rpx"></image>
-<image class="img" src="../../static/s2.jpg" mode="aspectFill" style="height: 1000rpx"></image>
-<image class="img" src="../../static/s3.jpg" mode="aspectFill" style="height: 900rpx"></image>
-<image class="img" src="../../static/s1.jpg" mode="aspectFill" style="height: 1066rpx"></image>
+<!-- <image class="img" src="https://img.lhssbio.com/images/gyxstatic/WechatIMG375_01.png" mode="aspectFill" style="height: 1046rpx"></image>
+<image class="img" src="https://img.lhssbio.com/images/gyxstatic/WechatIMG375_02.png" mode="aspectFill" style="height: 1708rpx"></image>
+<image class="img" lazy-load src="https://img.lhssbio.com/images/gyxstatic/WechatIMG375_03.png" mode="aspectFill" style="height: 1476rpx"></image>
+<image class="img" lazy-load src="https://img.lhssbio.com/images/gyxstatic/WechatIMG375_04.png" mode="aspectFill" style="height: 1424rpx"></image>
+<image class="img" lazy-load src="https://img.lhssbio.com/images/gyxstatic/WechatIMG375_05.png" mode="aspectFill" style="height: 1800rpx"></image>
+<image class="img" lazy-load src="https://img.lhssbio.com/images/gyxstatic/WechatIMG375_06.png" mode="aspectFill" style="height: 1670rpx"></image>
+<image class="img" lazy-load src="https://img.lhssbio.com/images/gyxstatic/WechatIMG375_07.png" mode="aspectFill" style="height: 1450rpx"></image> -->
+
+
+<image class="img" lazy-load wx:for="{{imgList}}" src="https://img.lhssbio.com/images/gyxstatic/index_{{item}}.png" wx:key="index" mode="aspectFill"></image>
 <!-- 加载状态 -->
 <!-- <loading status="noMore"/> -->
-<!-- tabbar -->
 <tabBar selected="{{0}}" />

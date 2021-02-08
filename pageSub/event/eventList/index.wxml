@@ -3,7 +3,7 @@
     bind:search="onSearch" maxlength="50">
   </van-search>
 </view>
-<van-tabs swipeable bind:change="tabsChange" color="#00a5a5">
+<van-tabs swipeable bind:change="tabsChange" color="#272c4c">
 	<van-tab title="{{tab.title}}" wx:for="{{tabList}}" wx:key="index" wx:for-item="tab">
 		<block wx:for="{{tab.list}}" wx:key="title" wx:if="{{tab.list}}">
 			<eventItem list="{{item}}" />

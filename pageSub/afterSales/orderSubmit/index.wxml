@@ -25,7 +25,7 @@
 </view>
 
 <view class="bot flex-center">
-  <van-button round block type="danger" bindtap="confirm" color="#00a5a5">提交</van-button>
+  <van-button round block type="danger" bindtap="confirm" color="#272c4c">提交</van-button>
 </view>
 
 <van-popup show="{{ isShowPop }}" closeable position="bottom" bind:close="onClose" round>
@@ -39,7 +39,7 @@
     </van-cell-group>
   </van-radio-group>
   <view class="bot1 flex-center">
-    <van-button round block type="danger" bind:click="onClose" color="#00a5a5">确定</van-button>
+    <van-button round block type="danger" bind:click="onClose" color="#272c4c">确定</van-button>
   </view>
 </van-popup>
 <!-- 退款方式 -->
@@ -54,6 +54,6 @@
     </van-cell-group>
   </van-radio-group>
   <view class="bot1 flex-center">
-    <van-button round block type="danger" bind:click="onClose" color="#00a5a5">确定</van-button>
+    <van-button round block type="danger" bind:click="onClose" color="#272c4c">确定</van-button>
   </view>
 </van-popup>

@@ -7,7 +7,7 @@
 	</view>
 	<van-cell title="银行卡" value="{{curCard.cardInfo.bankName+ ' '+ curCard.card}}" bind:click="openPop" is-link />
 	<view class="flex-center">
-		<van-button custom-class="comfirm-btn" color="#00a5a5" bindtap="confirm">确认提现</van-button>
+		<van-button custom-class="comfirm-btn" color="#272c4c" bindtap="confirm">确认提现</van-button>
 	</view>
 	<view class="p30" style="line-height: 40rpx;">
 		<view class="txt">可提现金额：￥{{filter.filterMoney(detail.avail_money)}}</view>
@@ -22,7 +22,7 @@
 		<van-radio-group value="{{ curCardRadio }}" bind:change="onChangeRadio">
 			<van-cell title="{{item.site + ' ' + item.card}}" wx:for="{{cardList}}" wx:key="index" clickable
 				data-name="{{item.id}}" center>
-				<van-radio slot="right-icon" name="{{item.id}}" checked-color="#00a5a5" icon-size="18px" />
+				<van-radio slot="right-icon" name="{{item.id}}" checked-color="#272c4c" icon-size="18px" />
 			</van-cell>
 		</van-radio-group>
 	</view>

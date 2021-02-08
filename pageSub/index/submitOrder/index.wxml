@@ -24,9 +24,9 @@
   <view class="panel">
     <van-cell title="提货方式" custom-class="express-cell">
       <van-radio-group class="flex-row-center" value="{{ curExpressRadio }}" bind:change="onChangeExpress">
-        <van-radio name="{{1}}" checked-color="#00a5a5" icon-size="18px">上门自提</van-radio>
+        <van-radio name="{{1}}" checked-color="#272c4c" icon-size="18px">上门自提</van-radio>
         <view class="ml30">
-          <van-radio name="{{2}}" checked-color="#00a5a5" icon-size="18px">物流配送</van-radio>
+          <van-radio name="{{2}}" checked-color="#272c4c" icon-size="18px">物流配送</van-radio>
         </view>
       </van-radio-group>
     </van-cell>
@@ -39,7 +39,7 @@
           <view slot="icon">
             <view class="iconfont {{item.iconfont}}" style="margin-right: 5px; color:{{item.color}}"></view>
           </view>
-          <van-radio slot="right-icon" name="{{item.id}}" checked-color="#00a5a5" icon-size="18px" />
+          <van-radio slot="right-icon" name="{{item.id}}" checked-color="#272c4c" icon-size="18px" />
         </van-cell>
       </van-cell-group>
     </van-radio-group>
@@ -65,13 +65,13 @@
         <van-cell title="{{item.name + ' ' + item.mobile}}"
           label="{{curAddress.province +curAddress.city +curAddress.district + curAddress.remark}}"
           wx:for="{{addrlist}}" wx:key="id" clickable data-name="{{item.id}}" bind:click="onClickAddr" center>
-          <van-radio slot="right-icon" name="{{item.id}}" checked-color="#00a5a5" icon-size="18px"/>
+          <van-radio slot="right-icon" name="{{item.id}}" checked-color="#272c4c" icon-size="18px"/>
         </van-cell>
       </van-cell-group>
     </van-radio-group>
   </view>
   <view style="padding: 0 10px 10px;">
-    <van-button v-if="addrlist.length < 7" custom-class="addAddr-btn" color="#00a5a5" round block bind:click="goUrl">
+    <van-button v-if="addrlist.length < 7" custom-class="addAddr-btn" color="#272c4c" round block bind:click="goUrl">
     添加地址</van-button>
   </view>
 </van-popup>
@@ -132,7 +132,7 @@
       data-type="payPassword" border="{{false}}" maxlength="6" size="mini"/>
     <!-- <van-field value="{{ payPassword2 }}" type="password" placeholder="请再次输入支付密码" bind:change="onChangeInput"
       data-type="payPassword2" />
-    <van-button round type="info" block color="#00a5a5" custom-class="pay-pop-btn" bind:click="confirmPay">确认支付
+    <van-button round type="info" block color="#272c4c" custom-class="pay-pop-btn" bind:click="confirmPay">确认支付
     </van-button> -->
   </view>
 </van-popup>

@@ -18,12 +18,12 @@ page{
 }
 .top-bg{
   position: absolute;
-  width: 1000rpx;
+  width: 100%;
   top:0;
   left: 50%;
   transform: translate(-50%);
   height: 426rpx;
-  filter: blur(5px);
+  /* filter: blur(5px); */
 }
 .filter{
   position: absolute;

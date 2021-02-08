@@ -238,7 +238,7 @@ form {
 }
 
 .van-picker__confirm{
-  color:#00a5a5!important;
+  color:#272c4c!important;
 }
 
 .iconmagnifier{

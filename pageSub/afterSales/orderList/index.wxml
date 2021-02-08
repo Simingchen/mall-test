@@ -31,6 +31,6 @@
   <view class="pop-tit flex-center">快递单号</view>
   <van-field clearable label="快递单号" maxlength="40" value="{{ orderNo }}" placeholder="请输入快递单号" bind:change="onChangeInput" data-type="orderNo"/>
   <view class="bot1 flex-center">
-    <van-button round block type="danger" bind:click="comfirmReturn" color="#00a5a5">确定</van-button>
+    <van-button round block type="danger" bind:click="comfirmReturn" color="#272c4c">确定</van-button>
   </view>
 </van-popup>

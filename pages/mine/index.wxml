@@ -1,6 +1,6 @@
 <wxs module="filter" src="../../filter.wxs"></wxs>
 <view class="member-page">
-	<image class="top-bg" src="../../static/1970758993.jpg" mode="aspectFill"></image>
+	<image class="top-bg" src="../../static/1970758993.jpeg" mode="aspectFill"></image>
 	<view class="filter"></view>
 </view>
 <view class="content">

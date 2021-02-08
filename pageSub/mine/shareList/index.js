@@ -221,7 +221,7 @@ Page({
     }
 
     // 红色背景
-    roundRectColor(ctx, 0, 0, width, height, 18, "#00a5a5")
+    roundRectColor(ctx, 0, 0, width, height, 18, "#272c4c")
 
     // 变色背景
     roundRectColor(ctx, 15, 57, 260, 375, 18, "#fff")

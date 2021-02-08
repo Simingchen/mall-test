@@ -9,7 +9,7 @@
   </view>
 </view> -->
 <view class="van-tabbar van-tabbar--safe"></view>
-<van-tabbar active="{{ selected }}" active-color="#00a5a5"
+<van-tabbar active="{{ selected }}" active-color="#272c4c"
   inactive-color="#999" z-index="100" placeholder="{{true}}" bind:change="onChange">
   <van-tabbar-item  wx:for="{{tabBar.list}}" wx:key="index" >
     <view class="tac">

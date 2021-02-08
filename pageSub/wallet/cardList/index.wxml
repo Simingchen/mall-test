@@ -18,5 +18,5 @@
   <van-empty description="暂无银行卡~" wx:if="{{!curTab.list.length && curTab.isLoaded}}"/>
 </view>
 <view class="bottom-btn" wx:if="{{curTab.list.length < 7}}">
-  <van-button custom-class="add-btn" block round bind:click="goUrl" color="#00a5a5">添加银行卡</van-button>
+  <van-button custom-class="add-btn" block round bind:click="goUrl" color="#272c4c">添加银行卡</van-button>
 </view>

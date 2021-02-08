@@ -3,6 +3,7 @@ const regeneratorRuntime = app.runtime
 Page({
   data: {
     isEdit: false, // 是否是编辑状态
+    imgList: ['01', '02','03', '04','05', '06','07', '08','09', '10']
   },
   onLoad (option) {
     // 存储邀请码

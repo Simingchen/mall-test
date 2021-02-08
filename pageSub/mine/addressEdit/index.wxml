@@ -7,12 +7,12 @@
 </view>
 <view class="van-address-list">
   <van-cell title="设为默认收货地址" center border="{{false}}">
-    <van-switch checked="{{ checked }}" bind:change="onChange" data-checked="{{checked}}" active-color="#00a5a5" size="24px"/>
+    <van-switch checked="{{ checked }}" bind:change="onChange" data-checked="{{checked}}" active-color="#272c4c" size="24px"/>
   </van-cell>
 </view>
 
 <view class="btns">
-  <van-button custom-class="add-btn" color="#00a5a5" block round bind:click="save" loading="{{isSubmiting}}" loading-text="保存中">保存</van-button>
+  <van-button custom-class="add-btn" color="#272c4c" block round bind:click="save" loading="{{isSubmiting}}" loading-text="保存中">保存</van-button>
   <van-button wx:if="{{isEdit}}" custom-class="delete-btn" type="default" block round bind:click="remove">删除</van-button>
 </view>
 

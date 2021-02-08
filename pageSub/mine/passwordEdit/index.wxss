@@ -35,7 +35,7 @@ page{
   margin-top: 20rpx;
 }
 .van-picker__confirm{
-  color:#00a5a5!important;
+  color:#272c4c!important;
 }
 .van-popup{
   border-radius: 20px 20px 0 0!important;

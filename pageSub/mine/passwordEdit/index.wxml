@@ -3,5 +3,5 @@
   <van-field clearable label="支付密码" maxlength="6" type="password" model:value="{{ password }}" bindinput="changeInput" data-tag="password" placeholder="请输入支付密码" />
 </view>
 <view class="btns">
-  <van-button custom-class="add-btn" color="#00a5a5" block round bind:click="save">保存</van-button>
+  <van-button custom-class="add-btn" color="#272c4c" block round bind:click="save">保存</van-button>
 </view>

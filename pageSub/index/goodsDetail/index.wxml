@@ -13,7 +13,7 @@
   <view class="flex-box">
     <view class="goods-name">{{detail.name}}</view>
     <view class="share flex-center" bindtap="setPoster">
-      <van-icon name="share" color="#00a5a5" />
+      <van-icon name="share" color="#272c4c" />
       分享
     </view>
   </view>
@@ -131,7 +131,10 @@
 <view class='share1' wx:if="{{isShowShare}}" catchtouchmove="ture">
   <view class="mask" bindtap='closeShare'></view>
   <view class='share-moment'>
-    <canvas type="2d" id="canvas" canvas-id="shareCanvas" class="canvas" style="height: 936rpx;"></canvas>
+    <canvas type="2d" id="canvas" canvas-id="shareCanvas" class="canvas" style="height: 856rpx;"></canvas>
     <view class="iconfont iconshanchu" bindtap='closeShare'></view>
+    <view wx:if="{{canvas}}">
+      <van-button type="primary" block round bind:click="savePic" color="#272c4c" custom-style="margin: 40rpx auto 0">保存图片</van-button>
+    </view>
   </view>
 </view>

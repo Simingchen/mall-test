@@ -13,7 +13,7 @@
   padding-left: 30rpx;
   color: #fff;
   font-size: 32rpx;
-  background: linear-gradient(to bottom, #00a5a5, #00a5a5);
+  background: linear-gradient(to bottom, #272c4c, #272c4c);
 } */
 
 .orderDetail-page .page-con {
@@ -125,7 +125,7 @@
   height: 40rpx;
   margin-left: 10rpx;
   margin-right: 20rpx;
-  color:#00a5a5;
+  color:#272c4c;
   font-size: 40rpx;
 }
 .panel{

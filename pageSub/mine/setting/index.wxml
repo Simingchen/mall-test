@@ -15,7 +15,7 @@
 		data-type="userInfo.wxid" bind:change="onChangeInput" border="{{false}}" input-align="right"/>
 </view>
 <view class="flex-center">
-	<van-button round type="info" custom-class="confirm-btn" color="#00a5a5" bindtap="save">提交</van-button>
+	<van-button round type="info" custom-class="confirm-btn" color="#272c4c" bindtap="save">提交</van-button>
 </view>
 
 <!-- 性别 -->

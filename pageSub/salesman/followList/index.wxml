@@ -13,5 +13,5 @@
 <loading status="{{curTab.loadStatus}}" isEmpty="{{curTab.isEmpty}}" />
 
 <view class="bottom-btn">
-  <van-button custom-class="add-btn" block round bind:click="goUrl" color="#00a5a5">新增跟进信息</van-button>
+  <van-button custom-class="add-btn" block round bind:click="goUrl" color="#272c4c">新增跟进信息</van-button>
 </view>

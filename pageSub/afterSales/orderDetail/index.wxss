@@ -10,7 +10,7 @@
   height: 214rpx;
   padding-top: 20rpx;
   font-size: 32rpx;
-  background: linear-gradient(to right, #8dd6d6, #00a5a5);
+  background: linear-gradient(to right, #8dd6d6, #272c4c);
 }
 .page-bg .panel{
   width: 710rpx;

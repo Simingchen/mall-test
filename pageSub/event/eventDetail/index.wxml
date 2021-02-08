@@ -25,7 +25,7 @@
   </view>
   <view style="height:130rpx"></view>
   <view class="bottom-btn">
-    <van-button custom-class="add-btn {{detail.huodong_status == 2? 'disabled' : ''}}" block round bind:click="signUp" color="#00a5a5">
+    <van-button custom-class="add-btn {{detail.huodong_status == 2? 'disabled' : ''}}" block round bind:click="signUp" color="#272c4c">
       {{['未开始',(detail.is_baoming == 0 ? '开始报名' : '已报名'), '已结束'][detail.huodong_status]}}
     </van-button>
   </view>

@@ -23,6 +23,7 @@ Page({
     userInfo: {},
     realPrice: 0,   // 实际价格
     isShowTips: false,
+    canvas: null
   },
   async onLoad (option) {
     console.log(option)
@@ -279,7 +280,7 @@ Page({
     // const width = res[0].width
     // const height = res[0].height
     const width = 290
-    const height = 468
+    const height = 428
 
     const canvas = res[0].node
     const ctx = canvas.getContext('2d')
@@ -312,7 +313,7 @@ Page({
     roundRectColor(ctx, 0, 0, width, height, 18, "#fc7b51")
 
     // 变色背景
-    roundRectColor(ctx, 15, 57, 260, 395, 18, "#fff")
+    roundRectColor(ctx, 15, 57, 260, 355, 18, "#fff")
 
     // 主图
     let img1 = canvas.createImage();
@@ -356,7 +357,7 @@ Page({
 
       // price
       ctx.fillStyle = '#ca000e'
-      ctx.fillText("￥" + that.data.detail.price, 30, 420, 100)
+      ctx.fillText("￥" + that.data.detail.price, 30, 380, 100)
 
       const data = {
         // page: 'pages/index/index',
@@ -385,40 +386,81 @@ Page({
       img2.onload = (res) => {
         console.log(res)
         let qrImgSize = 70
-        ctx.drawImage(img2, 195,  370, qrImgSize, qrImgSize)
+        ctx.drawImage(img2, 195,  330, qrImgSize, qrImgSize)
 
         wx.hideLoading()
 
+        this.setData({
+          canvas
+        })
         // 保存到相册
-        var that = this
-        wx.canvasToTempFilePath({
-          canvas,
-          success: function (res) {
-            wx.saveImageToPhotosAlbum({
-              filePath: res.tempFilePath,
-              success: function (res) {
-                wx.showModal({
-                  title: '提示',
-                  showCancel: false,
-                  content: '分享图片已保存到相册,请到朋友圈选择图片发布',
-                  success(res) {
-                    if (res.confirm) {
-                      console.log('用户点击确定')
-                    } else if (res.cancel) {
-                      console.log('用户点击取消')
-                    }
-                  }
-                })
-              }
-            })
-          }
-        }, this)
+        // this.savePic(canvas)
       }
       img2.error = (err) => {
         console.log(err)
         wx.hideLoading()
       }
     }
+  },
+  savePic () {
+    wx.canvasToTempFilePath({
+      canvas: this.data.canvas,
+      success: function (res) {
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success: function (res) {
+            wx.showModal({
+              title: '提示',
+              showCancel: false,
+              content: '分享图片已保存到相册,请到朋友圈选择图片发布',
+              success(res) {
+                if (res.confirm) {
+                  console.log('用户点击确定')
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
+            })
+          },
+          fail: function (err) {
+            if (err.errMsg === "saveImageToPhotosAlbum:fail:auth denied" || err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
+              // 这边微信做过调整，必须要在按钮中触发，因此需要在弹框回调中进行调用
+              wx.showModal({
+                title: '提示',
+                content: '需要您授权保存相册',
+                showCancel: false,
+                success:modalSuccess=>{
+                  wx.openSetting({
+                    success(settingdata) {
+                      console.log("settingdata", settingdata)
+                      if (settingdata.authSetting['scope.writePhotosAlbum']) {
+                        wx.showModal({
+                          title: '提示',
+                          content: '获取权限成功,再次点击图片即可保存',
+                          showCancel: false,
+                        })
+                      } else {
+                        wx.showModal({
+                          title: '提示',
+                          content: '获取权限失败，将无法保存到相册哦~',
+                          showCancel: false,
+                        })
+                      }
+                    },
+                    fail(failData) {
+                      console.log("failData",failData)
+                    },
+                    complete(finishData) {
+                      console.log("finishData", finishData)
+                    }
+                  })
+                }
+              })
+            }
+          },
+        })
+      }
+    }, this)
   },
   closeShare() {
     this.setData({

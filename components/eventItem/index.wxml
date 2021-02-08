@@ -2,15 +2,17 @@
 <block wx:for="{{list}}" wx:key="index" >
 	<view class="event-item {{item.huodong_status == 1 ? 'active' : ''}} {{item.huodong_status == 2 ? 'end' : ''}}" bindtap="goUrl" data-item="{{item}}">
 		<image class="img" mode="aspectFill" lazy-load wx:if="{{item.url}}" src="{{item.url}}"/>
-		<view class="tit flex-box">
-			<view class="name flex-item ellipsis2">{{item.title}}</view>
-			<view class="tag">{{['未开始','进行中', '已结束'][item.huodong_status]}}</view>
-		</view>
-		<view class="desc" wx:if="{{item.synopsis}}">{{item.synopsis}}</view>
-		<view class="avator-box flex-start">
-			<view class="time">{{item.end_time}}</view>
-			<view class="flex-box company" wx:if="{{item.num}}">
-				第 {{item.num}} 期
+		<view style="padding:0 20rpx 20rpx;">
+			<view class="tit flex-box">
+				<view class="name flex-item ellipsis2">{{item.title}}</view>
+				<view class="tag">{{['未开始','进行中', '已结束'][item.huodong_status]}}</view>
+			</view>
+			<view class="desc" wx:if="{{item.synopsis}}">{{item.synopsis}}</view>
+			<view class="avator-box flex-start">
+				<view class="time">{{item.end_time}}</view>
+				<view class="flex-box company" wx:if="{{item.num}}">
+					第 {{item.num}} 期
+				</view>
 			</view>
 		</view>
 	</view>

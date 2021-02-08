@@ -7,5 +7,5 @@
 </view>
 
 <view class="btns">
-  <van-button custom-class="add-btn" color="#00a5a5" block round bind:click="save">保存</van-button>
+  <van-button custom-class="add-btn" color="#272c4c" block round bind:click="save">保存</van-button>
 </view>

@@ -1,4 +1,8 @@
+page{
+  background-color:#152345;
+}
 .img{
   display: block;
   width: 100%;
+  height: 1096rpx;
 }

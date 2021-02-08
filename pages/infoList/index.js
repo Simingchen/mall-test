@@ -94,10 +94,18 @@ Page({
       [curTab + '.list[' + (curTabItem.page.page - 1) + ']']: res.data,
       [curTab + '.loadStatus']: (curTabItem.page.page >= res.page) ? 'noMore' : 'loading'
     })
+
+    //停止下拉刷新
+    wx.stopPullDownRefresh();
   },
   // 上拉加载
   onReachBottom() {
     this.getList();
+  },
+  //刷新
+  onPullDownRefresh(){
+  
+    this.getList(true);
   },
   goUrl: app.throttle(function ({currentTarget}) {
     const item = encodeURIComponent(JSON.stringify(currentTarget.dataset.item))

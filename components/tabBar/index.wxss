@@ -29,10 +29,10 @@
   height: 98rpx;
 }
 .tabbar-box .active{
-  color:#00a5a5;
+  color:#272c4c;
 }
 .tabbar-box .active .iconfont{
-  color:#00a5a5;
+  color:#272c4c;
 }
 
 .van-tabbar--safe {

@@ -38,7 +38,7 @@ Page({
       // title: "提示",
       content: "使用提现功能需要添加一张支持提现的储蓄卡",
       confirmText: '去添加',
-      confirmColor: "#00a5a5",
+      confirmColor: "#272c4c",
       success: async(res) => {
         if (res.confirm) {
           console.log('用户点击确定')
