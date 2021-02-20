@@ -40,7 +40,7 @@ Page({
     const address = detail.values
     this.setData({
       areaValues: address,
-      area: `${address[0].name}/${address[1].name}/${address[2].name}`
+      area: `${address[0].name}/${address[1].name}/${address[2] ? address[2].name : ""}`
     })
   },
   // 保存地址
@@ -77,7 +77,7 @@ Page({
       "accept_name": par.userName,
       "province": par.areaValues[0].name,
       "city": par.areaValues[1].name,
-      "area": par.areaValues[2].name,
+      "area": par.areaValues[2] ? par.areaValues[2].name : "",
       "address": par.address,
       "mobile": par.phone,
     }

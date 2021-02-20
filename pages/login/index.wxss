@@ -1,8 +1,6 @@
-page{
-  background: #f0f2f5;
-}
+
 .login-page{
-  margin-top: 80rpx;
+  padding-top: 80rpx;
 }
 .logo{
   display: block;

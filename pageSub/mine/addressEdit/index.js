@@ -24,7 +24,7 @@ Page({
         "id": detail.id,
         userName: detail.name,
         code: detail.code,
-        "area": `${detail.province}/${detail.city}/${detail.district}`,
+        "area": `${detail.province} ${detail.city || ''} ${detail.district || ''}`,
         "address": detail.remark,
         phone: detail.mobile,
         checked: detail.is_default > 0
@@ -63,7 +63,8 @@ Page({
     const address = detail.values
     this.setData({
       areaValues: address,
-      area: `${address[0].name}/${address[1].name}/${address[2].name}`
+      area: `${address[0].name} ${address[1] ? address[1].name : ""} ${address[2] ? address[2].name : ""}`
+      
     })
   },
   // 保存地址
@@ -101,10 +102,24 @@ Page({
       return app.toast('详细地址不能为空')
     }
 
+    const { areaValues } = this.data
+    let cityCode = this.data.code
+    if (areaValues.length) {
+      if (areaValues[0] && areaValues[0].code) {
+        cityCode = areaValues[0].code
+      } 
+      if (areaValues[1] && areaValues[1].code) {
+        cityCode = areaValues[1].code
+      } 
+      if (areaValues[2] && areaValues[2].code) {
+        cityCode = areaValues[2].code
+      } 
+    }
+
     const data = {
       "uid": app.globalData.userInfo.id,
       "name": par.userName,
-      "code": par.areaValues[2].code || this.data.code,
+      "code":  cityCode,
       "remark": par.address,
       "mobile": par.phone,
       is_default: par.checked ? 1 : 0,

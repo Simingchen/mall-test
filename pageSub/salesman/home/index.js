@@ -139,7 +139,9 @@ Page({
     if (this.loading || curTab.page.finished) return;
 
     let data = {
-      uid: app.globalData.userInfo.id
+      uid: app.globalData.userInfo.id,
+      page_index: curTab.page.page,
+      page_size: curTab.page.size,
     }
     let par = {}
     this.loading = true
@@ -162,6 +164,8 @@ Page({
       ['curTab.isEmpty']: ![...curTab.list, ...res.data].length,
       ['curTab.list[' + (curTab.page.page - 2) + ']']: res.data,
       ['curTab.loadStatus']: res.data.length < 10 ? 'noMore' : 'loading'
+    }, ()=> {
+      console.log(this.data.curTab)
     })
   },
   // 上拉加载

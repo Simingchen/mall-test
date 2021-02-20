@@ -54,9 +54,9 @@ Page({
       return ''
     }
     const province = cityList.province_list[code.slice(0,2) + '0000']
-    const city = cityList.city_list[code.slice(0,4) + '00']
-    const county = cityList.county_list[code]
-    return `${province}/${city}/${county}`
+    const city = cityList.city_list[code.slice(0,4) + '00'] || ''
+    const county = cityList.county_list[code] || ''
+    return `${province} ${city} ${county}`
   },
   onClose() {
     this.setData({
@@ -95,7 +95,7 @@ Page({
     const address = detail.values
     this.setData({
       areaValues: address,
-      ['userInfo.city']: `${address[0].name}/${address[1].name}/${address[2].name}`
+      ['userInfo.city']: `${address[0].name} ${address[1] ? address[1].name : ""} ${address[2] ? address[2].name : ""}`
     })
     this.onClose()
   },
@@ -136,11 +136,26 @@ Page({
     if (!/^1[3456789]\d{9}$/.test(userInfo.phone)) {
       return app.toast('手机号格式错误')
     }
+
+    const { areaValues } = this.data
+    let cityCode = this.data.cityCode
+    if (areaValues.length) {
+      if (areaValues[0] && areaValues[0].code) {
+        cityCode = areaValues[0].code
+      } 
+      if (areaValues[1] && areaValues[1].code) {
+        cityCode = areaValues[1].code
+      } 
+      if (areaValues[2] && areaValues[2].code) {
+        cityCode = areaValues[2].code
+      } 
+    }
+
     const data = {
       "uid": app.globalData.userInfo.id || '',
       truename: userInfo.truename,
       sex: userInfo.sex,
-      city: this.data.areaValues.length ? this.data.areaValues[2].code : this.data.cityCode,
+      city: cityCode,
       brithday: userInfo.brithday,
       wxid: userInfo.wxid,
       phone: userInfo.phone,

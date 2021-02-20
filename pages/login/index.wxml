@@ -1,7 +1,7 @@
 <view class="login-page">
   <image class="logo" src="../../static/login.png"></image>
   <view class="logo-txt">请先登录</view>
-  <button wx:if="{{!phoneNumber}}" class="button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">授权手机号登录</button>
+  <button wx:if="{{!phoneNumber}}" style="background: #272c4c" class="button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">授权手机号登录</button>
 
   <button wx:else class="button" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGetUserInfo">授权登录</button>
 </view>

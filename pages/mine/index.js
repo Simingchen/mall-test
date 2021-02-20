@@ -51,6 +51,12 @@ Page({
     
     wx.navigateTo({ url })
   }),
+  goUrl1: app.throttle(function({currentTarget}){  //节流
+    if (!this.data.detail.openid) {
+      wx.navigateTo({url: "/pages/login/index"})
+      return false
+    }
+  }),
   onChangeOrder: app.throttle(function({detail}){
     if (detail == 4) {
       wx.navigateTo({

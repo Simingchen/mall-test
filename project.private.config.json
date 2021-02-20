@@ -1,0 +1,174 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "我的",
+          "pathName": "pages/mine/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "设置",
+          "pathName": "pageSub/mine/setting/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 7,
+          "name": "商品详情",
+          "pathName": "pageSub/index/goodsDetail/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "收货地址列表",
+          "pathName": "pageSub/mine/addressList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "编辑地址",
+          "pathName": "pageSub/mine/addressEdit/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的订单",
+          "pathName": "pageSub/mine/orderList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "登录",
+          "pathName": "pages/login/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "提交订单",
+          "pathName": "pageSub/index/submitOrder/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "申请售后",
+          "pathName": "pageSub/afterSales/orderSubmit/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "公告列表",
+          "pathName": "pageSub/mine/newsList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "银行卡列表",
+          "pathName": "pageSub/wallet/cardList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "钱包",
+          "pathName": "pageSub/wallet/wallet/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "提现",
+          "pathName": "pageSub/wallet/withdraw/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "渠道客户",
+          "pathName": "pageSub/salesman/home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "跟进列表",
+          "pathName": "pageSub/salesman/followList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pageSub/salesman/home/index",
+          "pathName": "pageSub/salesman/home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "编辑跟进",
+          "pathName": "pageSub/salesman/followEdit/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "成为经销商",
+          "pathName": "pageSub/agent/signUp/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pageSub/mine/passwordEdit/index",
+          "pathName": "pageSub/mine/passwordEdit/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "提现明细",
+          "pathName": "pageSub/wallet/withdrawList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "售后",
+          "pathName": "pageSub/afterSales/orderList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "每日分享",
+          "pathName": "pageSub/mine/shareList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "库存列表",
+          "pathName": "pageSub/mine/stockList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "钱包明细",
+          "pathName": "pageSub/wallet/tranList/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}
