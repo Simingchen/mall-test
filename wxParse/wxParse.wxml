@@ -23,9 +23,9 @@
 </template>
 
 <template name="WxEmojiView">
-  <view class="WxEmojiView wxParse-inline" style="{{item.styleStr}}">
+  <view class="WxEmojiView wxParse-inline" style="{{item.styleStr}}"> 
     <block wx:for="{{item.textArray}}" wx:key="index">
-      <block class="{{item.text == '\\n' ? 'wxParse-hide':''}}" wx:if="{{item.node == 'text'}}">{{item.text}}</block>
+      <block class="{{item.text == '\\n' ? 'wxParse-hide':''}}" wx:if="{{item.node == 'text' && item.text !='<o:p>'}}">{{item.text}}</block>
       <block wx:elif="{{item.node == 'element'}}">
         <image class="wxEmoji" src="{{item.baseSrc}}{{item.text}}" />
       </block>

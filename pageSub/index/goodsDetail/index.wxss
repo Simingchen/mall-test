@@ -251,6 +251,7 @@ page {
   background-color: white;
 }
 .canvas{
+  height: 856rpx;
   /* border: 1px solid #f2f2f2; */
 }
 .iconshanchu{

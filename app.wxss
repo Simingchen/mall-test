@@ -1,4 +1,5 @@
 @import './iconfont.wxss';
+@import "./wxParse/wxParse.wxss";
 
 page {
   color: #333;
