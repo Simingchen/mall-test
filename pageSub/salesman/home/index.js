@@ -143,15 +143,8 @@ Page({
       page_index: curTab.page.page,
       page_size: curTab.page.size,
     }
-    let par = {}
     this.loading = true
-    const res = await app.fetch({
-      url: "Api/user/promoterUserList",
-      data: {
-       ...data,
-        ...par
-      } 
-    })
+    const res = await app.fetch({ url: "Api/user/promoterUserList", data })
 
     curTab.page.page++
 
@@ -160,10 +153,10 @@ Page({
 
     this.setData({
       ['curTab.isLoaded']: true,
-      ['curTab.page']: { ...curTab.page, finished: res.data.length < 10 },
+      ['curTab.page']: {...curTab.page, finished: curTab.page.page >= res.page},
       ['curTab.isEmpty']: ![...curTab.list, ...res.data].length,
       ['curTab.list[' + (curTab.page.page - 2) + ']']: res.data,
-      ['curTab.loadStatus']: res.data.length < 10 ? 'noMore' : 'loading'
+      ['curTab.loadStatus']: (curTab.page.page >= res.page) ? 'noMore' : 'loading'
     }, ()=> {
       console.log(this.data.curTab)
     })
