@@ -2,7 +2,7 @@
 <view class="bgf" style="line-height:46rpx;padding: 0 40rpx;color:#666;">
   <view>签署状态：待签署</view>
   <view>签署方：丽合三生（广州）生物科技有限公司</view>
-  <view>说明：代发费用需要代发费用需要代发费用需要代发费用需要代发费用需要代发费用需要</view>
+  <view>说明：支持一键代发功能，所有经销商销售由公司统一发货，本协议指成为经销商后自动认同由公司做商品一件代发，请仔细阅读。</view>
 </view>
 <van-cell title="合同文件" border="{{false}}"/>
 <view class="bgf" style="line-height:40rpx;padding: 0 40rpx 40rpx;color:#666;">
