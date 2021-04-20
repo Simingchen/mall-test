@@ -24,7 +24,9 @@ Page({
     })
   },
   async getList () {
-    let goodsList = await app.fetch({url: "Api/goods/glist"})
+    let goodsList = await app.fetch({url: "Api/goods/glist", data: {
+      type: app.globalData.userInfo.type || ''
+    }})
     this.setData({
       goodsList
     })

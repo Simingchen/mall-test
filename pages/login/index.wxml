@@ -3,5 +3,7 @@
   <view class="logo-txt">请先登录</view>
   <button wx:if="{{!phoneNumber}}" style="background: #272c4c" class="button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">授权手机号登录</button>
 
-  <button wx:else class="button" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGetUserInfo">授权登录</button>
+  <!-- <button wx:else class="button" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGetUserInfo">授权登录</button> -->
+  <button wx:else bindtap="getUserProfile" style="background: #272c4c" class="button"> 请再次点击授权昵称和头像
+  </button>
 </view>

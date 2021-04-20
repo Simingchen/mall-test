@@ -41,6 +41,16 @@ Page({
       phoneNumber: JSON.parse(res1).phoneNumber
     })
   },
+  getUserProfile(e) {
+    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    wx.getUserProfile({
+      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        this.addUser(res.userInfo)
+      }
+    })
+  },
   //获取用户信息
   async onGetUserInfo({ detail }) {
     console.log(detail);
@@ -48,11 +58,13 @@ Page({
       app.toast("用户取消授权");
       return false;
     }
-
+    this.addUser(detail.userInfo)
+  },
+  async addUser(userInfo) {
     // 交换信息
     const data = {
-      nickname: detail.userInfo.nickName, 
-      headimg: detail.userInfo.avatarUrl, 
+      nickname: userInfo.nickName, 
+      headimg: userInfo.avatarUrl, 
       openid: this.data.loginRes.openid,
       promoter_user_id: wx.getStorageSync('ICode') || "",
       phone: this.data.phoneNumber
